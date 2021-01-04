@@ -75,7 +75,7 @@ const pickImage = async () => {
             />
         </View>
         <View style = {styles.footerContainer}>
-            <SignUpButton onPress = {pressHandler} title = {'Ulogujte se'}/>
+            <SignUpButton onPress = {pressHandler} title = {'Registrujte se'}/>
         </View>
         </View>
     </ImageBackground>
@@ -111,7 +111,7 @@ height: 116
 },
 inputContainer: {
 alignSelf: "center",
-marginBottom: 70
+marginBottom: 60
 },
 logInInput: {
 borderWidth: 2,

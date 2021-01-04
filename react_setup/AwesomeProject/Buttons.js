@@ -1,41 +1,103 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
+import * as Font from 'expo-font';
 
-export function LogInButton ({propStyle, onPress, title}) {
-  return (
-    <TouchableOpacity
-      onPress = {onPress}
-      style = {styles.logInButtonContainer}>
-        <Text style = {styles.logInButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
+const customFonts = {
+  'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
+};
+
+export class LogInButton extends React.Component {
+state={
+  fontsLoaded: false
 }
 
-export function SignUpButton ({onPress, title}) {
-  return (
-    <TouchableOpacity
-      onPress = {onPress}
-      style = {styles.signUpButtonContainer}>
-        <Text style = {styles.signUpButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
+async _loadFontsAsync() {
+  await Font.loadAsync(customFonts);
+  this.setState({ fontsLoaded: true });
 }
 
-export function FirstRunButton ({onPress, title}) {
-  const cameraIcon = require('./assets/images/camera_icon.svg')
+componentDidMount() {
+  this._loadFontsAsync();
+}
 
-  return (
-    <TouchableOpacity
-      onPress = {onPress}
-      style = {styles.firstRunButtonContainer}>
-      <Image
-        style = {styles.inputImage}
-        source = {cameraIcon}
-      />
-        <Text style = {styles.firstRunButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
+  render(){
+    if(this.state.fontsLoaded){
+      return (
+        <TouchableOpacity
+          onPress = {this.props.onPress}
+          style = {styles.logInButtonContainer}>
+            <Text style = {styles.logInButtonText}>{this.props.title}</Text>
+        </TouchableOpacity>
+      );
+    }else{
+      return <ActivityIndicator size='large' />;
+    }
+  }
+}
+
+export class SignUpButton extends React.Component {
+  state = {
+    fontsLoaded: false
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render(){
+    if(this.state.fontsLoaded){
+      return (
+        <TouchableOpacity
+          onPress = {this.props.onPress}
+          style = {styles.signUpButtonContainer}>
+            <Text style = {styles.signUpButtonText}>{this.props.title}</Text>
+        </TouchableOpacity>
+      );
+    }else{
+      return <ActivityIndicator size='large' />;
+    }
+  }
+}
+
+export class FirstRunButton extends React.Component {
+  state = {
+    fontsLoaded: false
+  }
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render(){
+    const cameraIcon = require('./assets/images/camera_icon.svg')
+
+    if(this.state.fontsLoaded){
+      return (
+        <TouchableOpacity
+          onPress = {this.state.onPress}
+          style = {styles.firstRunButtonContainer}>
+          <Image
+            style = {styles.inputImage}
+            source = {cameraIcon}
+          />
+            <Text style = {styles.firstRunButtonText}>{this.props.title}</Text>
+        </TouchableOpacity>
+      );
+    }else{
+      return <ActivityIndicator size='large' />;
+    }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -48,9 +110,10 @@ const styles = StyleSheet.create({
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: 15,
+    paddingTop: 20,
     color: '#ededed',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Comfortaa-Bold'
   },
   signUpButtonContainer: {
     width: 320,
@@ -61,9 +124,10 @@ const styles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: 15,
+    paddingTop: 20,
     color: '#ededed',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Comfortaa-Bold'
   },
   firstRunButtonContainer: {
     width: 250,
@@ -80,8 +144,9 @@ const styles = StyleSheet.create({
   },
   firstRunButtonText: {
     textAlign: "center",
-    paddingTop: 15,
+    paddingTop: 30,
     color: '#ededed',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Comfortaa-Bold'
   },
 });

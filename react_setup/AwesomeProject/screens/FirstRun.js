@@ -7,23 +7,26 @@ const pressHandler = () => {
   console.log(5);
 }
 
-export default function FirstRun() {
-  const backgroundImage = require('./../assets/images/logInBackground.jpg')
+export default class FirstRun extends React.Component {
+  
+  render(){
+    const backgroundImage = require('./../assets/images/logInBackground.jpg')
 
-  return (
-    <ImageBackground
-      style = {styles.backgroundImageContainer}
-      source = {backgroundImage}>
-      <View style = {styles.mainContainer}>
-      <View style = {styles.userContainer}>
-          <FirstRunButton onPress = {pressHandler} title = {'Nudim uslugu'}/>
+    return (
+      <ImageBackground
+        style = {styles.backgroundImageContainer}
+        source = {backgroundImage}>
+        <View style = {styles.mainContainer}>
+        <View style = {styles.userContainer}>
+            <FirstRunButton onPress = {pressHandler} title = {'Nudim uslugu'}/>
+          </View>
+          <View style = {styles.guestContainer}>
+            <FirstRunButton onPress = {pressHandler} title = {'Tražim uslugu'}/>
+          </View>
         </View>
-        <View style = {styles.guestContainer}>
-          <FirstRunButton onPress = {pressHandler} title = {'Tražim uslugu'}/>
-        </View>
-      </View>
-    </ImageBackground>
-  );
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
