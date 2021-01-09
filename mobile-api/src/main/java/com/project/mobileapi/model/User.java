@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class User implements UserDetails {
     private String phoneNumber;
 
     @Column(name = "entry_date")
-    private Date entryDate;
+    private LocalDate entryDate;
 
     @Column(name = "details")
     private String details;

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService{
                 .phoneNumber(userDTO.getPhoneNumber())
                 .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
                 .roles(new ArrayList<Role>() { { add(role); } })
+                .entryDate(LocalDate.now())
                 .build();
         return userRepository.save(user);
     }
