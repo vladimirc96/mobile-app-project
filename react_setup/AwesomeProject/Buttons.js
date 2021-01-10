@@ -36,6 +36,35 @@ componentDidMount() {
   }
 }
 
+export class AdvButton extends React.Component {
+  state={
+    fontsLoaded: false
+  }
+  
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+  
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+  
+    render(){
+      if(this.state.fontsLoaded){
+        return (
+          <TouchableOpacity
+            onPress = {this.props.onPress}
+            style = {styles.AdvButtonContainer}>
+              <Text style = {styles.AdvButtonText}>{this.props.title}</Text>
+          </TouchableOpacity>
+        );
+      }else{
+        return <ActivityIndicator size='large' />;
+      }
+    }
+  }
+
 export class SignUpButton extends React.Component {
   state = {
     fontsLoaded: false
@@ -80,7 +109,7 @@ export class FirstRunButton extends React.Component {
   }
 
   render(){
-    const cameraIcon = require('./assets/images/camera_icon.svg')
+    const cameraIcon = require('./assets/images/camera_icon.png')
 
     if(this.state.fontsLoaded){
       return (
@@ -124,7 +153,7 @@ const styles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: 20,
+    paddingTop: 10,
     color: '#ededed',
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'
@@ -149,4 +178,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'
   },
+  AdvButtonContainer: {
+    marginLeft: 15,
+    marginRight: 15,
+    width: 320,
+    height: 60,
+    borderRadius: 20,
+    backgroundColor: '#1e1c24',
+    opacity: 0.99
+  },
+  AdvButtonText: {
+    textAlign: "center",
+    paddingTop: 10,
+    color: '#ededed',
+    fontSize: 20,
+    fontFamily: 'Comfortaa-Bold'
+  }
 });
