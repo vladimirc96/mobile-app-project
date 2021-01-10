@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ImageBackground, Image, StyleSheet, TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { ImageBackground, Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { AdvButton } from '../Buttons'
-
 export default class Categories extends React.Component {
   
   render(){
@@ -16,7 +15,7 @@ export default class Categories extends React.Component {
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
             <View style={{marginBottom: 10}}>
-                <View style={{marginBottom: 40, height: 90, backgroundColor: '#1e1c24', borderBottomColor: '#ededed', borderBottomWidth: 2}}>
+                {/* <View style={{marginBottom: 40, height: 90, backgroundColor: '#1e1c24', borderBottomColor: '#ededed', borderBottomWidth: 2}}>
                   <View style={{flexDirection: "row"}}>
                   <Image
                       style = {styles.hamburger}
@@ -28,9 +27,9 @@ export default class Categories extends React.Component {
                       source = {avatar}
                     />
                   </View>
-                </View>
+                </View> */}
                 <View style={styles.categoryRow}>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={styles.category}>
                     <Image
                       style = {styles.inputImage}
                       source = {cameraIcon}
