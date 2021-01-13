@@ -19,6 +19,6 @@ public class UserController {
     @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
     public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO){
         User user = userService.register(userDTO);
-        return new ResponseEntity<>(User.toDto(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(UserAdapter.toDto(user), HttpStatus.CREATED);
     }
 }
