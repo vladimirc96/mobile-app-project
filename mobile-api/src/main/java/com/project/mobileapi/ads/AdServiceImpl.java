@@ -27,4 +27,9 @@ public class AdServiceImpl implements AdService{
         Ad ad = adRepository.save(AdMapper.INSTANCE.toModel(adDTO));
         return AdMapper.INSTANCE.toDto(ad);
     }
+
+    @Override
+    public AdDTO findOneById(Long adId) {
+        return AdMapper.INSTANCE.toDto(adRepository.findOneById(adId));
+    }
 }

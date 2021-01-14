@@ -25,8 +25,8 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "user_name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
@@ -99,13 +99,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public static UserDTO toDto(User user) {
-        return UserDTO.builder()
-                .name(user.getName())
-                .lastName(user.getLastName())
-                .username(user.getUsername())
-                .email(user.getEmail())
-                .phoneNumber(user.getPhoneNumber())
-                .location(new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart())).build();
-    }
 }

@@ -16,7 +16,7 @@ public class UserAdapter {
 
         return UserDTO.builder()
                 .username(user.getUsername())
-                .name(user.getName())
+                .name(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())

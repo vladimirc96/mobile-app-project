@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
         String salt = BCrypt.gensalt();
         Role role = roleRepository.findOneById(USER_ROLE_ID);
         User user = User.builder()
-                .name(userDTO.getName())
+                .firstName(userDTO.getName())
                 .lastName(userDTO.getLastName())
                 .username(userDTO.getUsername())
                 .password(BCrypt.hashpw(userDTO.getPassword(), salt))
