@@ -1,19 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function Header({ title, navigation }) {
+export default function Header({ title, navigation,mainScreen }) {
 
   const openMenu = () => {
     navigation.openDrawer();
   }
 
+  const avatar = require('./../assets/images/avatar.png')
+
   return (
     <View style={styles.header}>
-      <MaterialIcons name='menu' onPress={openMenu} style={styles.icon} />
+      {mainScreen && <MaterialIcons name='menu' onPress={openMenu} style={styles.icon} />}
       <View>
-        <Text style={styles.headerText}>{title}</Text>
+        <Text style={mainScreen? styles.headerTextMain : styles.headerText}>{title}</Text>
       </View>
+      <Image
+            source = {avatar}
+            style = {styles.avatar}
+      />
     </View>
   );
 }
@@ -24,16 +30,31 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   headerText: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#333',
+    color: '#ededed',
     letterSpacing: 1,
+    marginLeft: -60
+  },
+  headerTextMain: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#ededed',
+    letterSpacing: 1
   },
   icon: {
     position: 'absolute',
-    left: 16,
+    left: 5,
+    color: '#ededed',
+    fontSize: 40
+  },
+  avatar: {
+    height: 45,
+    width: 45,
+    position: 'absolute',
+    right: 5
   }
 });

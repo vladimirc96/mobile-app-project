@@ -14,7 +14,7 @@ export default class Categories extends React.Component {
       <ImageBackground
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
-            <View style={{marginBottom: 10}}>
+            <View style={{marginBottom: 10,marginTop: 40}}>
                 {/* <View style={{marginBottom: 40, height: 90, backgroundColor: '#1e1c24', borderBottomColor: '#ededed', borderBottomWidth: 2}}>
                   <View style={{flexDirection: "row"}}>
                   <Image

@@ -41,19 +41,19 @@ export default class SubCategory extends React.Component {
   }
 }
 
-  const styles = StyleSheet.create({
-    mainContainer: {
-      backgroundColor: '#1e1c24',
-      width: 320,
-      height: 50,
-      borderRadius: 20
-    },
-    mainContainerText: {
-      textAlign: "left",
-      paddingTop: 16,
-      paddingLeft: 10,
-      color: '#ededed',
-      fontSize: 18,
-      fontFamily: 'Comfortaa-Bold'
-    },
+const styles = StyleSheet.create({
+  mainContainer: {
+  backgroundColor: '#1e1c24',
+  width: '100%',
+  height: '100%',
+  borderRadius: 25,
+  },
+  mainContainerText: {
+  textAlign: "left",
+  paddingTop: 12,
+  paddingLeft: 10,
+  color: '#ededed',
+  fontSize: 18,
+  fontFamily: 'Comfortaa-Bold'
+  },
   });

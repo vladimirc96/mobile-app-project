@@ -9,10 +9,19 @@ const screens = {
         screen: Categories,
         navigationOptions: ({ navigation }) => {
         return {
-            headerTitle: () => <Header title='#APPNAME' navigation={navigation} />
+            headerTitle: () => <Header title='#APPNAME' navigation={navigation} mainScreen={true} />
         }
         },
     },
+    // SubCategories: {
+    //     screen: SubCategories,
+    //     navigationOptions: {//({ navigation }) => {
+    //         return {
+    //             headerTitle: () => <Header title='#APPNAME' navigation={navigation} />
+    //         title: 'Subcategory',
+    //         }
+    //     }
+    // },
     SubCategories: {
         screen: SubCategories,
         navigationOptions: ({ navigation }) => {
@@ -39,8 +48,8 @@ const screens = {
 // home stack navigator screens
 const CategoriesStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerTintColor: '#444',
-    headerStyle: { backgroundColor: '#eee', height: 60 }
+    headerTintColor: '#ededed',
+    headerStyle: { backgroundColor: '#1e1c24', height: 85 }
   }
 });
 
