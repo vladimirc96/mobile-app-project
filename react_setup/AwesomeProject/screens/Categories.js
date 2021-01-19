@@ -15,19 +15,6 @@ export default class Categories extends React.Component {
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
             <View style={{marginBottom: 10,marginTop: 40}}>
-                {/* <View style={{marginBottom: 40, height: 90, backgroundColor: '#1e1c24', borderBottomColor: '#ededed', borderBottomWidth: 2}}>
-                  <View style={{flexDirection: "row"}}>
-                  <Image
-                      style = {styles.hamburger}
-                      source = {hamburger}
-                    />
-                    <Text style = {styles.LogoText}>App name</Text>
-                    <Image
-                      style = {styles.hamburger}
-                      source = {avatar}
-                    />
-                  </View>
-                </View> */}
                 <View style={styles.categoryRow}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={styles.category}>
                     <Image

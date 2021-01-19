@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './../shared/header';
 import Categories from './../screens/Categories';
 import SubCategories from './../screens/SubCategories';
+import Ads from './../screens/Ads';
 
 const screens = {
     Categories: {
@@ -13,15 +14,6 @@ const screens = {
         }
         },
     },
-    // SubCategories: {
-    //     screen: SubCategories,
-    //     navigationOptions: {//({ navigation }) => {
-    //         return {
-    //             headerTitle: () => <Header title='#APPNAME' navigation={navigation} />
-    //         title: 'Subcategory',
-    //         }
-    //     }
-    // },
     SubCategories: {
         screen: SubCategories,
         navigationOptions: ({ navigation }) => {
@@ -30,19 +22,14 @@ const screens = {
         }
         },
     },
-
-    // Categories: {
-    //     screen: Categories,
-    //     navigationOptions: {
-    //         title: '#APPNAME',
-    //     },
-    // },
-    // SubCategories: {
-    //     screen: SubCategories,
-    //     navigationOptions: {
-    //         title: '#APPNAME',
-    //     },
-    // },
+    Ads: {
+        screen: Ads,
+        navigationOptions: ({ navigation }) => {
+        return {
+            headerTitle: () => <Header title='#APPNAME' navigation={navigation} />
+        }
+        },
+    },
 };
 
 // home stack navigator screens

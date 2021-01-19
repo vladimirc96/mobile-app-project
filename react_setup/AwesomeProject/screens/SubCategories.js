@@ -27,7 +27,7 @@ export default class SubCategories extends React.Component {
                     <Text style={{marginLeft:10, color:'#ededed'}}> #CATEGORY_NAME </Text>
                 </View>
                 <View style = {styles.subcategoryContainer}>
-                    <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
+                    <SubCategory onPress={() => this.props.navigation.navigate('Ads')} title = {'1. Subcategory'}/>
                 </View>
                 <View style = {styles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
