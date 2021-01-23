@@ -3,6 +3,7 @@ package com.project.mobileapi.ads;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class AdController {
     private final AdService adService;
 
     @PostMapping(value = "", consumes = "application/json", produces = "application/json")
+    @PreAuthorize("hasAuthority('POST_AD')")
     public ResponseEntity<AdDTO> save(@RequestBody AdDTO adDTO){
         AdDTO saved = adService.save(adDTO);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);

@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService{
                 .build();
         return userRepository.save(user);
     }
+
+    @Override
+    public UserDTO findOneByUsername(String username) {
+        return UserAdapter.toDto(userRepository.findOneByUsername(username));
+    }
 }

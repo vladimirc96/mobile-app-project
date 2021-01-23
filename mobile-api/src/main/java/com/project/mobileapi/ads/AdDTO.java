@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -15,12 +17,16 @@ public class AdDTO {
 
     private Long id;
 
+    @NotNull(message = "Naslov oglasa ne sme da bude prazan.")
+    @NotBlank(message = "Naslov oglasa ne sme da bude prazan.")
     private String title;
 
     private double price;
 
     private boolean priceFixed;
 
+    @NotNull(message = "Opis oglasa ne sme da bude prazan.")
+    @NotBlank(message = "Opis oglasa ne sme da bude prazan.")
     private String description;
 
     private Date creationDate;

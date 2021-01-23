@@ -1,21 +1,19 @@
 package com.project.mobileapi.user;
 
 import com.project.mobileapi.model.User;
+import com.project.mobileapi.security.TokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -24,6 +22,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final TokenUtils tokenUtils;
 
     @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
     public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO userDTO){
@@ -31,15 +30,12 @@ public class UserController {
         return new ResponseEntity<>(UserAdapter.toDto(user), HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
+    @GetMapping
+    @PreAuthorize("hasAuthority('GET_USER_DETAILS')")
+    public ResponseEntity<UserDTO> getUser(HttpServletRequest request){
+        String username = tokenUtils.getUsernameFromToken(tokenUtils.getToken(request));
+        UserDTO user = userService.findOneByUsername(username);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
 }
