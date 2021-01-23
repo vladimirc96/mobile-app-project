@@ -1,5 +1,7 @@
 package com.project.mobileapi.ads;
 
+import com.project.mobileapi.exceptions.ResourceNotFoundException;
+import com.project.mobileapi.util.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +31,12 @@ public class AdController {
 
     @GetMapping
     public ResponseEntity<List<AdDTO>> findAll(){
-        List<AdDTO> ads = adService.findAll();
-        return new ResponseEntity<>(ads, HttpStatus.OK);
+        return new ResponseEntity<>((List<AdDTO>) ObjectUtils.isEmpty(adService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{adId}")
     public ResponseEntity<AdDTO> findOneById(@PathVariable("adId") Long adId){
-        AdDTO ad = adService.findOneById(adId);
-        return new ResponseEntity<>(ad, HttpStatus.OK);
+        return new ResponseEntity<>(ObjectUtils.isEmpty(adService.findOneById(adId)), HttpStatus.OK);
     }
 
 }

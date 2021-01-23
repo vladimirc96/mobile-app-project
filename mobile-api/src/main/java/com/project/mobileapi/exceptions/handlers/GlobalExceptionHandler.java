@@ -1,5 +1,7 @@
-package com.project.mobileapi.exceptions;
+package com.project.mobileapi.exceptions.handlers;
 
+import com.project.mobileapi.exceptions.ApiError;
+import com.project.mobileapi.exceptions.ResourceNotFoundException;
 import org.hibernate.HibernateException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,11 @@ public class GlobalExceptionHandler {
             builder.append(errorMessage);
         });
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, builder.toString(), ex));
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleResourceNotFoundExceptions(ResourceNotFoundException ex){
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage(), ex));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

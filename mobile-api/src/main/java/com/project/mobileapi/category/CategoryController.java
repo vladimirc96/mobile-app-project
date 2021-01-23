@@ -1,5 +1,6 @@
 package com.project.mobileapi.category;
 
+import com.project.mobileapi.util.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll(){
-        return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>((List<CategoryDTO>) ObjectUtils.isEmpty(categoryService.findAll()), HttpStatus.OK);
     }
 
 }

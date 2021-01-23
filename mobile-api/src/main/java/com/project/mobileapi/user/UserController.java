@@ -2,6 +2,7 @@ package com.project.mobileapi.user;
 
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.security.TokenUtils;
+import com.project.mobileapi.util.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUser(HttpServletRequest request){
         String username = tokenUtils.getUsernameFromToken(tokenUtils.getToken(request));
         UserDTO user = userService.findOneByUsername(username);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(ObjectUtils.isEmpty(user), HttpStatus.OK);
     }
 
 }

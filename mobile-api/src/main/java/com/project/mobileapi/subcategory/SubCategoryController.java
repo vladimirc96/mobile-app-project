@@ -1,5 +1,6 @@
 package com.project.mobileapi.subcategory;
 
+import com.project.mobileapi.util.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class SubCategoryController {
 
     @GetMapping
     public ResponseEntity<List<SubCategoryDTO>> findAll(){
-        return new ResponseEntity<>(subCategoryService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>((List<SubCategoryDTO>) ObjectUtils.isEmpty(subCategoryService.findAll()), HttpStatus.OK);
     }
 
 }
