@@ -10,7 +10,7 @@ console.log(5);
 
 export default function SignUp() {
 const backgroundImage = require('./../assets/images/signUpBackground.jpg')
-const cameraIcon = require('./../assets/images/camera_icon.svg')
+const cameraIcon = require('./../assets/images/camera_icon.png')
 const B = (props) => <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>{props.children}</Text>
 
 const [image, setImage] = useState(null);
@@ -111,7 +111,7 @@ height: 116
 },
 inputContainer: {
 alignSelf: "center",
-marginBottom: 60
+marginBottom: 50
 },
 logInInput: {
 borderWidth: 2,
