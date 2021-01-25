@@ -54,8 +54,8 @@ public class User implements UserDetails {
     @Lob
     private byte[] cv;
 
-    @Column(name = "rating")
-    private double rating;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Rating> rating;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Location location;
