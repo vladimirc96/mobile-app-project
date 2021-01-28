@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
@@ -159,8 +160,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Comfortaa-Bold'
   },
   firstRunButtonContainer: {
-    width: 250,
-    height: 250,
+    width: wp("70%"),
+    height: hp("37%"),
     borderRadius: 30,
     backgroundColor: '#1e1c24',
     opacity: 0.90
@@ -173,23 +174,22 @@ const styles = StyleSheet.create({
   },
   firstRunButtonText: {
     textAlign: "center",
-    paddingTop: 30,
+    paddingTop: hp("5%"),
     color: '#ededed',
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'
   },
   AdvButtonContainer: {
-    marginLeft: 15,
-    marginRight: 15,
-    width: 320,
-    height: 60,
+    alignSelf: "center",
+    width: wp("92%"),
+    height: hp("9%"),
     borderRadius: 20,
     backgroundColor: '#1e1c24',
     opacity: 0.99
   },
   AdvButtonText: {
     textAlign: "center",
-    paddingTop: 10,
+    marginTop: hp("1.5%"),
     color: '#ededed',
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'

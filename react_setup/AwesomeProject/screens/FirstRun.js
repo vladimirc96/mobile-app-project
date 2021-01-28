@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import {FirstRunButton} from '../Buttons';
 
 const pressHandler = () => {
   console.log(5);
 }
 
-export default class FirstRun extends React.Component {
-  
+export default class FirstRun extends React.Component { 
   render(){
     const backgroundImage = require('./../assets/images/logInBackground.jpg')
 
@@ -40,15 +40,10 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: 40
+    marginTop: hp("11%")
   },
   guestContainer: {
     alignSelf: "center",
-    marginTop: 40
-  },
-  footerText: {
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 20
+    marginTop: hp("5%")
   }
 });

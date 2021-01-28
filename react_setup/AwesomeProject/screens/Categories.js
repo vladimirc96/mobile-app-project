@@ -16,7 +16,7 @@ export default class Categories extends React.Component {
       <ImageBackground
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
-            <View style={{marginBottom: 10,marginTop: 40}}>
+            <View style={{marginBottom: hp("4%"),marginTop: hp("8%"), alignSelf:"center"}}>
                 <View style={styles.categoryRow}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={styles.category}>
                     <Image
@@ -122,18 +122,16 @@ const styles = StyleSheet.create({
     resizeMode: "cover"
   },
   category: {
-    width: 95,
-    height: 95,
-    borderRadius: 35,
+    width: wp("28%"),
+    height: hp("15%"),
+    borderRadius: 30,
     backgroundColor: '#1e1c24',
     opacity: 0.90,
-    marginRight: 8,
-    marginLeft: 8,
-    marginBottom: 10
+    marginRight: wp("2%"),
+    marginLeft: wp("2"),
+    marginBottom: hp("1%")
   },
   categoryRow: {
-    paddingLeft: 10,
-    paddingRight: 10,
     flexDirection: "row"
   },
   inputImage: {
@@ -147,21 +145,6 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     color: '#ededed',
     fontSize: 10,
-    fontFamily: 'Comfortaa-Bold'
-  },
-  hamburger: {
-    marginTop: 33,
-    marginLeft: 20,
-    width: 50,
-    height: 50
-  },
-  LogoText: {
-    textAlign: "center",
-    marginTop: 30,
-    marginLeft: 30,
-    marginRight: 5,
-    color: '#ededed',
-    fontSize: 30,
     fontFamily: 'Comfortaa-Bold'
   }
 });

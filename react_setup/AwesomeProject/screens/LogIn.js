@@ -39,9 +39,11 @@ export default class LogIn extends React.Component {
           <View style = {styles.mainContainer}>
             <View style = {styles.headerContainer}>
               <Text
-                style = {styles.header1Text}>Dobrodošli</Text>
+                style = {styles.header1Text}>Dobrodošli
+              </Text>
               <Text
-                style = {styles.header2Text}>Ulogujte se.</Text>
+                style = {styles.header2Text}>Ulogujte se.
+              </Text>
             </View>
             <View style = {styles.inputContainer}>
               <TextInput
@@ -56,7 +58,7 @@ export default class LogIn extends React.Component {
                 />
             </View>
             <View style = {styles.footerContainer}>
-              <Text style = {styles.footerText}>Nemate profil? <TouchableOpacity> <B>Registruj se</B> </TouchableOpacity></Text>
+              {/* <Text style = {styles.footerText}> Nemate profil? <TouchableOpacity> <B>Registruj se</B> </TouchableOpacity></Text> */}
               <LogInButton onPress = {pressHandler} title = {'Ulogujte se'}/>
             </View>
           </View>

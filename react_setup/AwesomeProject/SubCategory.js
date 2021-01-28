@@ -27,7 +27,6 @@ export default class SubCategory extends React.Component {
   }
   
   render(){
-
     if(this.state.fontsLoaded){
       return (
         <TouchableOpacity
@@ -51,6 +50,7 @@ const styles = StyleSheet.create({
   },
   mainContainerText: {
   textAlign: "left",
+  textAlignVertical: "center",
   paddingTop: 12,
   paddingLeft: 10,
   color: '#ededed',
