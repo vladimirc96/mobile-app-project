@@ -3,6 +3,7 @@ import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput,
 import {SignUpButton} from '../Buttons';
 import * as ImagePicker from "expo-image-picker";
 import Constants from 'expo-constants'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const pressHandler = () => {
 console.log(5);
@@ -94,35 +95,35 @@ alignSelf: "center"
 headerContainer: {
 alignSelf: "center",
 justifyContent: 'center',
-marginTop: 50,
-marginBottom: 15,
+marginTop: hp("5.34%"),
+marginBottom: hp("1.6%"),
 borderWidth: 2,
-width: 150,
-height: 150,
+width: wp("7.8%"),
+height: hp("16%"),
 borderColor: '#ededed',
 backgroundColor: '#1e1c24',
 opacity: 0.8,
-paddingLeft: 15,
+paddingLeft: wp("0.78%"),
 borderRadius: 80,
 },
 inputImage: {
-width: 116,
-height: 116
+width: wp("6%"),
+height: hp("12.4%")
 },
 inputContainer: {
 alignSelf: "center",
-marginBottom: 50
+marginBottom: hp("5.34%")
 },
 logInInput: {
 borderWidth: 2,
-width: 320,
-height: 60,
+width: wp("60%"),
+height: hp("10%"),
 borderColor: '#ededed',
 backgroundColor: '#1e1c24',
 opacity: 0.8,
-paddingLeft: 15,
+paddingLeft: wp("0.8%"),
 borderRadius: 20,
-marginTop: 15
+marginTop: hp("1.6%")
 },
 footerContainer: {
 alignSelf: "center"
@@ -130,7 +131,7 @@ alignSelf: "center"
 footerText: {
 fontSize: 18,
 textAlign: "center",
-marginBottom: 20
+marginBottom: hp("2%")
 }
 
 });

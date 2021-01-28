@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ImageBackground, StyleSheet, TouchableOpacity, Text, View, Image, ScrollView } from 'react-native'
 import Ad from './../Ad'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const pressHandler = () => {
   console.log(5);
@@ -53,49 +55,36 @@ export default class Ads extends React.Component {
 
   const styles = StyleSheet.create({
     backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover"
+        flex: 1,
+        resizeMode: "cover"
     },
     mainContainer: {
-    flex: 1,
-    alignSelf: "center"
+        flex: 1,
+        alignSelf: "center"
     },
-    headerContainer: {
-    alignSelf: "center"
+        headerContainer: {
+        alignSelf: "center"
     },
     titleContainer: {
-    backgroundColor: '#1e1c24',
-    marginTop: 20,
-    marginBottom: 15,
-    alignContent : 'center',
-    width: 1500,
-    height: 50,
-    borderColor: '#ededed',
-    paddingTop: 6
-    },
-    titleIcon: {
-    width: 40,
-    height: 40,
-    bottom: 10,
-    left: 8
-    },
-    subcategoryContainer: {
-    alignSelf: "center",
-    marginTop: 10,
-    width: 300,
-    height: 60
+        backgroundColor: '#1e1c24',
+        marginTop: hp("2%"),
+        marginBottom: hp("0.75"),
+        alignContent : 'center',
+        width: wp("100%"),
+        height: hp("6%"),
+        borderColor: '#ededed',
+        paddingTop: hp("1%")
     },
     titleText: {
-        marginLeft:10,
         color:'#ededed',
         textAlign: "center",
         fontSize: 25
     },
     adContainer: {
         alignSelf: 'center',
-        marginTop: 10,
-        height: 110,
-        width: 330 
+        marginTop: hp("0.75%"),
+        height: hp("11.75%"),
+        width: wp("17.2%") 
     }
     });
     
