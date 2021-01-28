@@ -4,6 +4,8 @@ import { ImageBackground, StyleSheet, TouchableOpacity, Text, View, Image, Activ
 import * as Font from 'expo-font';
 import {Octicons} from '@expo/vector-icons'
 import { FontAwesome } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons'; 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
@@ -69,28 +71,23 @@ export default class Ad extends React.Component {
                 <Text style={styles.priceValue}>Dogovor</Text>
               </View>
               <View style = {styles.publishDateContainer}>
-                <Text style={styles.publishTitle}>postavljen</Text>
+                <Text style={styles.publishTitle}>postavljen:</Text>
                 <Text style={styles.publishDate}>danas</Text>
               </View>
               <View style = {styles.location}>
-                <Text style = {styles.locationText}>Lokacija</Text>
+                <Text style = {styles.locationText}>Novi Sad</Text>
               </View>
               <View>
-                <View style = {styles.ratingValue}>
-                  <Text style = {styles.ratingValueText}>ocena </Text>
-                  <Text style = {styles.ratingValueText}>3.5 </Text>
-                </View>
                 <View style = {styles.ratingStars}>
-                  <FontAwesome name="star" style={styles.star} />
-                  <FontAwesome name="star" style={styles.star} />
-                  <FontAwesome name="star" style={styles.star} />
-                  <FontAwesome name="star-half-empty" style={styles.star} />
-                  <FontAwesome name="star-o" style={styles.star}/>
+                  <Text style={styles.likeText}>6969</Text>
+                  <Fontisto name="like" style={styles.like}/>
+                  <Fontisto name="dislike" style={styles.dislike}/>
+                  <Text style={styles.dislikeText}>69</Text>
                 </View>
-                <View style = {styles.ratingComment}>
+                {/* <View style = {styles.ratingComment}>
                   <Text style = {styles.ratingCommentText}>od strane </Text>
                   <Text style = {styles.ratingCommentText}>4 korisnika </Text>
-                </View>
+                </View> */}
               </View>
             </View>
         </View>
@@ -115,10 +112,10 @@ const styles = StyleSheet.create({
   fontFamily: 'Comfortaa-Bold'
   },
   adImage: {
-    height: 100,
-    width: 100,
-    top: 5,
-    left: 5,
+    height: hp("10.7%"),
+    width: wp("5.2%"),
+    top: hp("0.53%"),
+    left: wp("0.26%"),
     borderWidth: 2,
     borderColor: '#ededed'
   },
@@ -126,18 +123,18 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   adMainText: {
-    marginTop: 5,
-    marginLeft: 10,
+    marginTop: hp("0.53%"),
+    marginLeft: wp("0.52%"),
     backgroundColor: '#3f3e42',
-    width: 135,
-    height: 100
+    width: wp("7%"),
+    height: hp("10.7%")
   },
   adDetails: {
-      marginTop: 5,
-      width: 75,
-      height: 100,
+      marginTop: hp("0.53%"),
+      width: wp("3.9%"),
+      height: ("10.7%"),
       backgroundColor: '#3f3e42',
-      marginLeft: 5
+      marginLeft: wp("0.26%")
   },
   line:{
       color: '#ededed',
@@ -147,20 +144,20 @@ const styles = StyleSheet.create({
   descriptionSmall:{
     backgroundColor:'#1e1c24',
     width:'100%',
-    height: 65,
+    height: hp("6.95%"),
     borderRadius: 5
   },
   descriptionLarge: {
     backgroundColor:'#1e1c24',
     width:'100%',
-    height: 52,
+    height: hp("5.55%"),
     borderRadius: 5
   },
   descriptionText: {
       fontSize: 8,
       color: '#ededed',
-      marginLeft: 3,
-      marginRight: 3
+      marginLeft: wp("0.16%"),
+      marginRight: wp("0.16%")
   },
   descriptionDetails: {
     alignSelf: 'center'
@@ -180,25 +177,27 @@ const styles = StyleSheet.create({
     flexDirection:'row',
   },
   leftDashContainer: {
-    marginLeft: 1,
+    marginLeft: wp("0.05%"),
     flexDirection: 'row'
   },
   ownerNameContainer: {
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    marginTop: hp("0.1%")
   },
   ownerName: {
     fontSize: 8,
     color: '#ededed'
   },
   priceContainer: {
+    marginTop: hp("0.1%"),
     alignSelf: 'center',
-    height: 18,
-    width: 65,
+    height: hp("1.92%"),
+    width: wp("3.39%"),
     backgroundColor: 'black'
   },
   priceValue: {
     textAlign: 'center',
-    marginTop: 2,
+    marginTop: hp("0.2%"),
     fontSize: 10,
     color: '#ededed'
   },
@@ -207,8 +206,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: 60,
-    marginTop: 4
+    width: wp("3.13%"),
+    marginTop: hp("0.43%")
   },
   publishTitle: {
     fontSize: 8,
@@ -223,37 +222,41 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: 60,
-    marginTop: 5
+    width: wp("3.13%"),
+    marginTop: hp("1%")
   },
   locationText: {
-    fontSize: 8,
-    color: '#ededed'
-  },
-  ratingValue: {
-    flexDirection: 'row',
-    width: 75,
-    justifyContent: 'center',
-    marginTop: 3
-  },
-  ratingValueText: {
     fontSize: 8,
     color: '#ededed'
   },
   ratingStars: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 75,
-    marginTop: 1
+    width: wp("3.9%"),
+    marginTop: hp("1.5%")
   },
-  star: {
+  likeText: {
+    fontSize: 9,
+    color: '#ededed'
+  },
+  like: {
+    marginLeft: wp("0.26%"),
     color: "#ededed"
+  },
+  dislike: {
+    marginLeft: wp("0.26%"),
+    color: "#ededed"
+  },
+  dislikeText: {
+    marginLeft: wp("0.26%"),
+    fontSize: 9,
+    color: '#ededed'
   },
   ratingComment: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 75,
-    marginTop: 1
+    width: wp("3.9%"),
+    marginTop: hp("0.1%")
   },
   ratingCommentText: {
     fontSize: 7,
