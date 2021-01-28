@@ -53,8 +53,12 @@ export default class Ad extends React.Component {
                     <Octicons name='dash' style={styles.line}/>
                   </View>
                 </View>
-                <View style={styles.description}>
+                <View style={ this.props.title.length < 15 ? styles.descriptionSmall : styles.descriptionLarge}>
                     <Text style={styles.descriptionText}> -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi</Text>
+                    <TouchableOpacity style={styles.descriptionDetails}>
+                    <Text style = {styles.descriptionDetailsText}>Detaljnije</Text>
+                    <FontAwesome name="angle-double-down" style={styles.detailsArrow} />
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.ownerNameContainer}>
                     <Text style={styles.ownerName}>Vlasnik: Slobodanka Jakovljevic </Text>
@@ -100,7 +104,7 @@ export default class Ad extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-  backgroundColor: '#1e1c24',
+  backgroundColor: '#3f3e42',
   width: '100%',
   height: '100%'
   },
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
   adMainText: {
     marginTop: 5,
     marginLeft: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#3f3e42',
     width: 135,
     height: 100
   },
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
       marginTop: 5,
       width: 75,
       height: 100,
-      backgroundColor: '#1e1c24',
+      backgroundColor: '#3f3e42',
       marginLeft: 5
   },
   line:{
@@ -140,16 +144,37 @@ const styles = StyleSheet.create({
       fontSize: 5,
       textAlignVertical: 'center'
   },
-  description:{
-      backgroundColor:'#1e1c24',
-      width:'100%',
-      height: 40,
-      borderRadius: 5,
-      borderWidth: 1
+  descriptionSmall:{
+    backgroundColor:'#1e1c24',
+    width:'100%',
+    height: 65,
+    borderRadius: 5
+  },
+  descriptionLarge: {
+    backgroundColor:'#1e1c24',
+    width:'100%',
+    height: 52,
+    borderRadius: 5
   },
   descriptionText: {
-      fontSize: 10,
-      color: '#ededed'
+      fontSize: 8,
+      color: '#ededed',
+      marginLeft: 3,
+      marginRight: 3
+  },
+  descriptionDetails: {
+    alignSelf: 'center'
+  },
+  descriptionDetailsText: {
+    fontSize: 8,
+    color: '#ededed',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
+  },
+  detailsArrow: {
+    color: '#ededed',
+    fontSize: 10,
+    alignSelf: 'center',
   },
   ownerContainer: {
     flexDirection:'row',
@@ -159,7 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   ownerNameContainer: {
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-start'
   },
   ownerName: {
     fontSize: 8,
@@ -178,7 +203,7 @@ const styles = StyleSheet.create({
     color: '#ededed'
   },
   publishDateContainer: {
-    backgroundColor:'#1e1c24',
+    backgroundColor:'#3f3e42',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -194,7 +219,7 @@ const styles = StyleSheet.create({
     color: '#ededed'
   },
   location: {
-    backgroundColor:'#1e1c24',
+    backgroundColor:'#3f3e42',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
