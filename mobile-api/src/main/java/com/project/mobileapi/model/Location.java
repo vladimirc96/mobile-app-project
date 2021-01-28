@@ -22,4 +22,8 @@ public class Location {
     @OneToOne
     private User user;
 
+    public Location(Long id, String value) {
+        this.id = id;
+        this.cityPart = value;
+    }
 }
