@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ImageBackground, Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { AdvButton } from '../Buttons'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 export default class Categories extends React.Component {
   
   render(){

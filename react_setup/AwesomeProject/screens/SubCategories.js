@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ImageBackground, StyleSheet, TouchableOpacity, Text, View, Image, ScrollView } from 'react-native'
 import SubCategory from './../SubCategory';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const pressHandler = () => {
   console.log(5);
@@ -83,14 +84,14 @@ export default class SubCategories extends React.Component {
     flexDirection: 'row',
     backgroundColor: '#1e1c24',
     alignSelf: "center",
-    marginTop: 20,
-    marginBottom: 15,
-    width: 200,
-    height: 70,
+    marginTop: hp("3%"),
+    marginBottom: hp("3%"),
+    width: wp("55%"),
+    height: hp("10%"),
     borderRadius: 30,
     borderWidth: 2,
     borderColor: '#ededed',
-    paddingTop: 22
+    paddingTop: hp("3%")
     },
     titleIcon: {
     width: 40,
@@ -100,9 +101,9 @@ export default class SubCategories extends React.Component {
     },
     subcategoryContainer: {
     alignSelf: "center",
-    marginTop: 10,
-    width: 300,
-    height: 60
+    marginTop: hp("1%"),
+    width: wp("85%"),
+    height: hp("9%")
     }
     });
     

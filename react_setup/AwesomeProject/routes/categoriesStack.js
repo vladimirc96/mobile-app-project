@@ -4,6 +4,7 @@ import Header from './../shared/header';
 import Categories from './../screens/Categories';
 import SubCategories from './../screens/SubCategories';
 import Ads from './../screens/Ads';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const screens = {
     Categories: {
@@ -36,7 +37,7 @@ const screens = {
 const CategoriesStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#ededed',
-    headerStyle: { backgroundColor: '#1e1c24', height: 85 }
+    headerStyle: { backgroundColor: '#1e1c24', height: hp("12%") }
   }
 });
 
