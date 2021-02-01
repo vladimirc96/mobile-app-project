@@ -24,7 +24,7 @@ export default class Ads extends React.Component {
                 <View style = {styles.titleContainer}>
                     <Text style={styles.titleText}> Privatni casovi </Text>
                 </View>
-                <View style={{height: 20}}>
+                <View style={styles.numberOfAdsContainer}>
 
                 </View>
                 <View style={styles.adContainer}>
@@ -62,18 +62,18 @@ export default class Ads extends React.Component {
         flex: 1,
         alignSelf: "center"
     },
-        headerContainer: {
-        alignSelf: "center"
-    },
     titleContainer: {
-        backgroundColor: '#1e1c24',
+        alignContent : 'center',
         marginTop: hp("2.5%"),
         marginBottom: hp("1%"),
-        alignContent : 'center',
         width: wp("100%"),
         height: hp("7%"),
-        borderColor: '#ededed',
-        paddingTop: hp("0.85%")
+        paddingTop: hp("0.85%"),
+        backgroundColor: '#1e1c24',
+        borderColor: '#ededed'
+    },
+    numberOfAdsContainer: {
+        height: 20,
     },
     titleText: {
         color:'#ededed',

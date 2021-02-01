@@ -16,97 +16,97 @@ export default class Categories extends React.Component {
       <ImageBackground
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
-            <View style={{marginBottom: hp("4%"),marginTop: hp("8%"), alignSelf:"center"}}>
-                <View style={styles.categoryRow}>
+            <View style={styles.mainContainer}>
+                <View style={styles.categoryRowContainer}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.categoryRow}>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.inputImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.inputImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.inputImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.categoryRow}>
+                <View style={styles.categoryRowContainer}>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.categoryRow}>
+                <View style={styles.categoryRowContainer}>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.category}>
                     <Image
-                      style = {styles.inputImage}
+                      style = {styles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.AdvButtonText}>Umetnost</Text>
+                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.categoryRowContainer}>
+                    <TouchableOpacity style={styles.category}>
+                    <Image
+                      style = {styles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.category}>
+                    <Image
+                      style = {styles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.category}>
+                    <Image
+                      style = {styles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {styles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -121,30 +121,35 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover"
   },
+  mainContainer: {
+    alignSelf:"center",
+    marginBottom: hp("4%"),
+    marginTop: hp("8%"),
+  },
+  categoryRowContainer: {
+    flexDirection: "row"
+  },
   category: {
+    marginBottom: hp("1%"),
+    marginRight: wp("2%"),
+    marginLeft: wp("2"),
     width: wp("28%"),
     height: hp("15%"),
     borderRadius: 30,
-    backgroundColor: '#1e1c24',
     opacity: 0.90,
-    marginRight: wp("2%"),
-    marginLeft: wp("2"),
-    marginBottom: hp("1%")
+    backgroundColor: '#1e1c24'
   },
-  categoryRow: {
-    flexDirection: "row"
-  },
-  inputImage: {
-    marginTop: 15,
+  categoryImage: {
     alignSelf: 'center',
+    marginTop: 15,
     width: 50,
     height: 50
   },
-  AdvButtonText: {
+  categoryName: {
     textAlign: "center",
     paddingTop: 3,
-    color: '#ededed',
     fontSize: 10,
-    fontFamily: 'Comfortaa-Bold'
+    fontFamily: 'Comfortaa-Bold',
+    color: '#ededed'
   }
 });

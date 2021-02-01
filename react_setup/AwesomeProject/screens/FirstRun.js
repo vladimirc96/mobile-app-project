@@ -17,7 +17,7 @@ export default class FirstRun extends React.Component {
         style = {styles.backgroundImageContainer}
         source = {backgroundImage}>
         <View style = {styles.mainContainer}>
-        <View style = {styles.userContainer}>
+          <View style = {styles.userContainer}>
             <FirstRunButton onPress = {pressHandler} title = {'Nudim uslugu'}/>
           </View>
           <View style = {styles.guestContainer}>
