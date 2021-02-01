@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ImageBackground, StyleSheet, TouchableOpacity, Text, View, Image, ScrollView } from 'react-native'
+import {ImageBackground, Text, View, Image, ScrollView} from 'react-native'
 import SubCategory from './../SubCategory';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {subCategoriesStyles} from '../shared/Styles';
 
 const pressHandler = () => {
   console.log(5);
@@ -16,48 +15,48 @@ export default class SubCategories extends React.Component {
 
       return (
         <ImageBackground
-            style = {styles.backgroundImageContainer}
+            style = {subCategoriesStyles.backgroundImageContainer}
             source = {backgroundImage}>
             <ScrollView>
-            <View style = {styles.mainContainer}>
-                <View style = {styles.titleContainer}>
+            <View style = {subCategoriesStyles.mainContainer}>
+                <View style = {subCategoriesStyles.titleContainer}>
                     <Image
-                        style = {styles.titleIcon}
+                        style = {subCategoriesStyles.titleIcon}
                         source = {cameraIcon}
                     />
                     <Text style={{marginLeft:10, color:'#ededed'}}> #CATEGORY_NAME </Text>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress={() => this.props.navigation.navigate('Ads')} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
-                <View style = {styles.subcategoryContainer}>
+                <View style = {subCategoriesStyles.subcategoryContainer}>
                     <SubCategory onPress = {pressHandler} title = {'1. Subcategory'}/>
                 </View>
             </View>
@@ -67,40 +66,4 @@ export default class SubCategories extends React.Component {
     }
   }
 
-
-  const styles = StyleSheet.create({
-    backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover"
-    },
-    mainContainer: {
-    flex: 1,
-    alignSelf: "center"
-    },
-    titleContainer: {
-    flexDirection: 'row',
-    alignSelf: "center",
-    marginTop: hp("3%"),
-    marginBottom: hp("3%"),
-    width: wp("55%"),
-    height: hp("10%"),
-    paddingTop: hp("3%"),
-    borderRadius: 30,
-    borderWidth: 2,
-    backgroundColor: '#1e1c24',
-    borderColor: '#ededed'
-    },
-    titleIcon: {
-    width: 40,
-    height: 40,
-    bottom: 10,
-    left: 8
-    },
-    subcategoryContainer: {
-    alignSelf: "center",
-    marginTop: hp("1%"),
-    width: wp("85%"),
-    height: hp("9%")
-    }
-    });
     

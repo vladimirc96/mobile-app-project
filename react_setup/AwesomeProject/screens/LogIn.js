@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput, View, ActivityIndicator } from 'react-native';
+import {ImageBackground, TouchableOpacity, Text, TextInput, View, ActivityIndicator} from 'react-native';
 import {LogInButton} from '../Buttons';
 import * as Font from 'expo-font';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {loginStyles} from '../shared/Styles';
 
 const customFonts = {
   'Comfortaa-Regular': require('../assets/fonts/Comfortaa-Regular.ttf'),
@@ -34,34 +33,34 @@ export default class LogIn extends React.Component {
     if(this.state.fontsLoaded){
       return (
         <ImageBackground
-          style = {styles.backgroundImageContainer}
+          style = {loginStyles.backgroundImageContainer}
           source = {backgroundImage}>
-          <View style = {styles.mainContainer}>
-            <View style = {styles.welcomeTextContainer}>
+          <View style = {loginStyles.mainContainer}>
+            <View style = {loginStyles.welcomeTextContainer}>
               <Text
-                style = {styles.firstText}>Dobrodošli
+                style = {loginStyles.firstText}>Dobrodošli
               </Text>
               <Text
-                style = {styles.secondText}>Ulogujte se.
+                style = {loginStyles.secondText}>Ulogujte se.
               </Text>
             </View>
-            <View style = {styles.inputContainer}>
+            <View style = {loginStyles.inputContainer}>
               <TextInput
-                style = {styles.inputField}
+                style = {loginStyles.inputField}
                 placeholder = "e-mail ili korisničko ime"
                 placeholderTextColor="#ededed"
                 />
               <TextInput
-                style = {styles.inputField}
+                style = {loginStyles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
                 />
             </View>
-            <View style = {styles.footerContainer}>
-              <View style={styles.footerSmallContainer}>
-                <Text style = {styles.footerText}> Nemate profil? </Text>
+            <View style = {loginStyles.footerContainer}>
+              <View style={loginStyles.footerSmallContainer}>
+                <Text style = {loginStyles.footerText}> Nemate profil? </Text>
                 <TouchableOpacity> 
-                  <Text style={styles.boldText}>Registruj se</Text>
+                  <Text style={loginStyles.boldText}>Registruj se</Text>
                 </TouchableOpacity>
               </View> 
               <LogInButton onPress = {pressHandler} title = {'Ulogujte se'}/>
@@ -75,62 +74,3 @@ export default class LogIn extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover"
-  },
-  mainContainer: {
-    flex: 1,
-    alignSelf: "center"
-  },
-  welcomeTextContainer: {
-    alignSelf: "center",
-    width: wp("90%"),
-    marginTop: hp("9%"),
-    marginBottom: hp("9%")
-  },
-  firstText: {
-    textAlign: "left",
-    fontSize: 40,
-    fontFamily: 'Comfortaa-Regular'
-  },
-  secondText: {
-    textAlign: "left",
-    fontWeight: "bold",
-    fontSize: 40,
-    fontFamily: 'Comfortaa-Regular'
-  },
-  inputContainer: {
-    alignSelf: "center",
-    marginBottom: hp("20%")
-  },
-  inputField: {
-    width: wp("90%"),
-    height: hp("10%"),
-    paddingLeft: wp("5%"),
-    marginTop: hp("2%"),
-    borderRadius: 20,
-    borderWidth: 2,
-    opacity: 0.8,
-    borderColor: '#ededed',
-    backgroundColor: '#1e1c24'
-  },
-  footerContainer: {
-    alignSelf: "center",
-    fontFamily: 'Comfortaa-Regular'
-  },
-  footerSmallContainer:{
-    flexDirection: "row",
-    marginBottom: hp("3%"),
-    justifyContent: 'center'
-  },
-  footerText: {
-    fontSize: 18,
-  },
-  boldText: {
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-    fontSize: 18
-  }
-});

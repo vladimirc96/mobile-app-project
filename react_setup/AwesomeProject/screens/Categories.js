@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ImageBackground, Image, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { ImageBackground, Image, TouchableOpacity, Text, View } from 'react-native';
 import { AdvButton } from '../Buttons'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { categoriesStyles } from '../shared/Styles'; 
 
 export default class Categories extends React.Component {
   
@@ -14,99 +13,99 @@ export default class Categories extends React.Component {
 
     return (
       <ImageBackground
-        style = {styles.backgroundImageContainer}
+        style = {categoriesStyles.backgroundImageContainer}
         source = {backgroundImage}>
-            <View style={styles.mainContainer}>
-                <View style={styles.categoryRowContainer}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={styles.category}>
+            <View style={categoriesStyles.mainContainer}>
+                <View style={categoriesStyles.categoryRowContainer}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SubCategories')} style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.categoryRowContainer}>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.categoryImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.categoryImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
-                    <Image
-                      style = {styles.categoryImage}
-                      source = {cameraIcon}
-                    />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.categoryRowContainer}>
-                    <TouchableOpacity style={styles.category}>
+                <View style={categoriesStyles.categoryRowContainer}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.categoryRowContainer}>
-                    <TouchableOpacity style={styles.category}>
+                <View style={categoriesStyles.categoryRowContainer}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.category}>
+                    <TouchableOpacity style={categoriesStyles.category}>
                     <Image
-                      style = {styles.categoryImage}
+                      style = {categoriesStyles.categoryImage}
                       source = {cameraIcon}
                     />
-                    <Text style = {styles.categoryName}>Umetnost</Text>
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={categoriesStyles.categoryRowContainer}>
+                    <TouchableOpacity style={categoriesStyles.category}>
+                    <Image
+                      style = {categoriesStyles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={categoriesStyles.category}>
+                    <Image
+                      style = {categoriesStyles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={categoriesStyles.category}>
+                    <Image
+                      style = {categoriesStyles.categoryImage}
+                      source = {cameraIcon}
+                    />
+                    <Text style = {categoriesStyles.categoryName}>Umetnost</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -115,41 +114,3 @@ export default class Categories extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover"
-  },
-  mainContainer: {
-    alignSelf:"center",
-    marginBottom: hp("4%"),
-    marginTop: hp("8%"),
-  },
-  categoryRowContainer: {
-    flexDirection: "row"
-  },
-  category: {
-    marginBottom: hp("1%"),
-    marginRight: wp("2%"),
-    marginLeft: wp("2"),
-    width: wp("28%"),
-    height: hp("15%"),
-    borderRadius: 30,
-    opacity: 0.90,
-    backgroundColor: '#1e1c24'
-  },
-  categoryImage: {
-    alignSelf: 'center',
-    marginTop: 15,
-    width: 50,
-    height: 50
-  },
-  categoryName: {
-    textAlign: "center",
-    paddingTop: 3,
-    fontSize: 10,
-    fontFamily: 'Comfortaa-Bold',
-    color: '#ededed'
-  }
-});

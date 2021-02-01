@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
+import {TouchableOpacity, Text, Image, ActivityIndicator} from 'react-native';
 import * as Font from 'expo-font';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {buttonsStyles} from './shared/Styles';
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
@@ -27,8 +26,8 @@ componentDidMount() {
       return (
         <TouchableOpacity
           onPress = {this.props.onPress}
-          style = {styles.logInButtonContainer}>
-            <Text style = {styles.logInButtonText}>{this.props.title}</Text>
+          style = {buttonsStyles.logInButtonContainer}>
+            <Text style = {buttonsStyles.logInButtonText}>{this.props.title}</Text>
         </TouchableOpacity>
       );
     }else{
@@ -56,8 +55,8 @@ export class AdvButton extends React.Component {
         return (
           <TouchableOpacity
             onPress = {this.props.onPress}
-            style = {styles.AdvButtonContainer}>
-              <Text style = {styles.AdvButtonText}>{this.props.title}</Text>
+            style = {buttonsStyles.AdvButtonContainer}>
+              <Text style = {buttonsStyles.AdvButtonText}>{this.props.title}</Text>
           </TouchableOpacity>
         );
       }else{
@@ -85,8 +84,8 @@ export class SignUpButton extends React.Component {
       return (
         <TouchableOpacity
           onPress = {this.props.onPress}
-          style = {styles.signUpButtonContainer}>
-            <Text style = {styles.signUpButtonText}>{this.props.title}</Text>
+          style = {buttonsStyles.signUpButtonContainer}>
+            <Text style = {buttonsStyles.signUpButtonText}>{this.props.title}</Text>
         </TouchableOpacity>
       );
     }else{
@@ -116,12 +115,12 @@ export class FirstRunButton extends React.Component {
       return (
         <TouchableOpacity
           onPress = {this.state.onPress}
-          style = {styles.firstRunButtonContainer}>
+          style = {buttonsStyles.firstRunButtonContainer}>
           <Image
-            style = {styles.inputImage}
+            style = {buttonsStyles.inputImage}
             source = {cameraIcon}
           />
-            <Text style = {styles.firstRunButtonText}>{this.props.title}</Text>
+            <Text style = {buttonsStyles.firstRunButtonText}>{this.props.title}</Text>
         </TouchableOpacity>
       );
     }else{
@@ -129,69 +128,3 @@ export class FirstRunButton extends React.Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  logInButtonContainer: {
-    width: wp("90%"),
-    height: hp("9%"),
-    borderRadius: 20,
-    backgroundColor: '#1e1c24',
-    opacity: 0.99
-  },
-  logInButtonText: {
-    textAlign: "center",
-    paddingTop: hp("1.5%"),
-    color: '#ededed',
-    fontSize: 20,
-    fontFamily: 'Comfortaa-Bold'
-  },
-  signUpButtonContainer: {
-    width: wp("90%"),
-    height: hp("9%"),
-    borderRadius: 20,
-    backgroundColor: '#1e1c24',
-    opacity: 0.99
-  },
-  signUpButtonText: {
-    textAlign: "center",
-    paddingTop: hp("1.5%"),
-    color: '#ededed',
-    fontSize: 20,
-    fontFamily: 'Comfortaa-Bold'
-  },
-  firstRunButtonContainer: {
-    width: wp("70%"),
-    height: hp("37%"),
-    borderRadius: 30,
-    backgroundColor: '#1e1c24',
-    opacity: 0.90
-  },
-  inputImage: {
-    marginTop: 20,
-    alignSelf: 'center',
-    width: 140,
-    height: 140
-  },
-  firstRunButtonText: {
-    textAlign: "center",
-    paddingTop: hp("5%"),
-    color: '#ededed',
-    fontSize: 20,
-    fontFamily: 'Comfortaa-Bold'
-  },
-  AdvButtonContainer: {
-    alignSelf: "center",
-    width: wp("92%"),
-    height: hp("9%"),
-    borderRadius: 20,
-    backgroundColor: '#1e1c24',
-    opacity: 0.99
-  },
-  AdvButtonText: {
-    textAlign: "center",
-    marginTop: hp("1.5%"),
-    color: '#ededed',
-    fontSize: 20,
-    fontFamily: 'Comfortaa-Bold'
-  }
-});

@@ -4,6 +4,7 @@ import {SignUpButton} from '../Buttons';
 import * as ImagePicker from "expo-image-picker";
 import Constants from 'expo-constants'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {signupStyles} from '../shared/Styles';
 
 const pressHandler = () => {
 console.log(5);
@@ -41,91 +42,44 @@ const pickImage = async () => {
 
     return (
     <ImageBackground
-            style = {styles.backgroundImageContainer}
+            style = {signupStyles.backgroundImageContainer}
             source = {backgroundImage}>
-        <View style = {styles.mainContainer}>
-        <View style = {styles.imageContainer}>
+        <View style = {signupStyles.mainContainer}>
+        <View style = {signupStyles.imageContainer}>
             <TouchableOpacity onPress = {pickImage}>
               <Image
-                  style = {styles.inputImage}
+                  style = {signupStyles.inputImage}
                   source = {cameraIcon}
               />
               {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
             </TouchableOpacity>
         </View>
-        <View style = {styles.inputContainer}>
+        <View style = {signupStyles.inputContainer}>
             <TextInput
-                style = {styles.inputField}
+                style = {signupStyles.inputField}
                 placeholder = "e-mail ili korisnicko ime"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.inputField}
+                style = {signupStyles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.inputField}
+                style = {signupStyles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.inputField}
+                style = {signupStyles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
         </View>
-        <View style = {styles.buttonContainer}>
+        <View style = {signupStyles.buttonContainer}>
             <SignUpButton onPress = {pressHandler} title = {'Registrujte se'}/>
         </View>
         </View>
     </ImageBackground>
     );
 }
-
-const styles = StyleSheet.create({
-backgroundImageContainer: {
-flex: 1,
-resizeMode: "cover"
-},
-mainContainer: {
-flex: 1,
-alignSelf: "center"
-},
-imageContainer: {
-alignSelf: "center",
-justifyContent: 'center',
-marginTop: hp("7.3%"),
-marginBottom: hp("2.2%"),
-borderWidth: 2,
-width: wp("44%"),
-height: hp("24%"),
-paddingLeft: wp("6.7%"),
-borderRadius: 80,
-opacity: 0.8,
-borderColor: '#ededed',
-backgroundColor: '#1e1c24'
-},
-inputImage: {
-width: wp("30%"),
-height: hp("17%")
-},
-inputContainer: {
-alignSelf: "center",
-marginBottom: hp("6%")
-},
-inputField: {
-borderWidth: 2,
-width: wp("90%"),
-height: hp("10%"),
-paddingLeft: wp("5%"),
-borderRadius: 20,
-marginTop: hp("2%"),
-opacity: 0.8,
-borderColor: '#ededed',
-backgroundColor: '#1e1c24',
-},
-buttonContainer: {
-alignSelf: "center"
-}
-});

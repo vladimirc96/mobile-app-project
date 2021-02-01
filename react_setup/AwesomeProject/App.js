@@ -30,7 +30,7 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <SignUp />
+        <Navigator />
       );
     } else {
       return <ActivityIndicator size='large' />;

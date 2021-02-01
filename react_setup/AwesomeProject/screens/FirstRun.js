@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React from 'react';
-import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput, View } from 'react-native';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {ImageBackground, View} from 'react-native';
 import {FirstRunButton} from '../Buttons';
+import {firstRunStyles} from '../shared/Styles';
 
 const pressHandler = () => {
   console.log(5);
@@ -14,13 +14,13 @@ export default class FirstRun extends React.Component {
 
     return (
       <ImageBackground
-        style = {styles.backgroundImageContainer}
+        style = {firstRunStyles.backgroundImageContainer}
         source = {backgroundImage}>
-        <View style = {styles.mainContainer}>
-          <View style = {styles.userContainer}>
+        <View style = {firstRunStyles.mainContainer}>
+          <View style = {firstRunStyles.userContainer}>
             <FirstRunButton onPress = {pressHandler} title = {'Nudim uslugu'}/>
           </View>
-          <View style = {styles.guestContainer}>
+          <View style = {firstRunStyles.guestContainer}>
             <FirstRunButton onPress = {pressHandler} title = {'Tražim uslugu'}/>
           </View>
         </View>
@@ -28,22 +28,3 @@ export default class FirstRun extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover"
-  },
-  mainContainer: {
-    flex: 1,
-    alignSelf: "center"
-  },
-  userContainer: {
-    alignSelf: "center",
-    marginTop: hp("11%")
-  },
-  guestContainer: {
-    alignSelf: "center",
-    marginTop: hp("5%")
-  }
-});

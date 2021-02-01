@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import {headerStyles} from './Styles';
 
 export default function Header({ title, navigation,mainScreen }) {
 
@@ -11,50 +12,15 @@ export default function Header({ title, navigation,mainScreen }) {
   const avatar = require('./../assets/images/avatar.png')
 
   return (
-    <View style={styles.header}>
-      {mainScreen && <MaterialIcons name='menu' onPress={openMenu} style={styles.icon} />}
+    <View style={headerStyles.header}>
+      {mainScreen && <MaterialIcons name='menu' onPress={openMenu} style={headerStyles.icon} />}
       <View>
-        <Text style={mainScreen? styles.headerTextMain : styles.headerText}>{title}</Text>
+        <Text style={mainScreen? headerStyles.headerTextMain : headerStyles.headerText}>{title}</Text>
       </View>
       <Image
             source = {avatar}
-            style = {styles.avatar}
+            style = {headerStyles.avatar}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  headerText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#ededed',
-    letterSpacing: 1,
-    marginLeft: -60
-  },
-  headerTextMain: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#ededed',
-    letterSpacing: 1
-  },
-  icon: {
-    position: 'absolute',
-    left: 5,
-    color: '#ededed',
-    fontSize: 40
-  },
-  avatar: {
-    height: 45,
-    width: 45,
-    position: 'absolute',
-    right: 5
-  }
-});

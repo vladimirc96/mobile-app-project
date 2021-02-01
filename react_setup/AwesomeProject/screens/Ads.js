@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ImageBackground, StyleSheet, TouchableOpacity, Text, View, Image, ScrollView } from 'react-native'
+import { ImageBackground, Text, View, ScrollView } from 'react-native'
 import Ad from './../Ad'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {adsStyles} from '../shared/Styles';
 
 
 const pressHandler = () => {
@@ -17,32 +16,32 @@ export default class Ads extends React.Component {
 
       return (
         <ImageBackground
-            style = {styles.backgroundImageContainer}
+            style = {adsStyles.backgroundImageContainer}
             source = {backgroundImage}>
             <ScrollView>
-            <View style = {styles.mainContainer}>
-                <View style = {styles.titleContainer}>
-                    <Text style={styles.titleText}> Privatni casovi </Text>
+            <View style = {adsStyles.mainContainer}>
+                <View style = {adsStyles.titleContainer}>
+                    <Text style={adsStyles.titleText}> Privatni casovi </Text>
                 </View>
-                <View style={styles.numberOfAdsContainer}>
+                <View style={adsStyles.numberOfAdsContainer}>
 
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='casovi girate duzi naslov'/>
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='CASOVI GITARE'/>
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='Casovi gitare'/>
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='Casovi gitare'/>
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='Casovi gitare'/>
                 </View>
-                <View style={styles.adContainer}>
+                <View style={adsStyles.adContainer}>
                     <Ad title='Casovi gitare'/>
                 </View>
             </View>
@@ -51,40 +50,3 @@ export default class Ads extends React.Component {
       );
     }
   }
-
-
-  const styles = StyleSheet.create({
-    backgroundImageContainer: {
-        flex: 1,
-        resizeMode: "cover"
-    },
-    mainContainer: {
-        flex: 1,
-        alignSelf: "center"
-    },
-    titleContainer: {
-        alignContent : 'center',
-        marginTop: hp("2.5%"),
-        marginBottom: hp("1%"),
-        width: wp("100%"),
-        height: hp("7%"),
-        paddingTop: hp("0.85%"),
-        backgroundColor: '#1e1c24',
-        borderColor: '#ededed'
-    },
-    numberOfAdsContainer: {
-        height: 20,
-    },
-    titleText: {
-        color:'#ededed',
-        textAlign: "center",
-        fontSize: 25
-    },
-    adContainer: {
-        alignSelf: 'center',
-        marginTop: hp("1%"),
-        height: hp("16%"),
-        width: wp("90%") 
-    }
-    });
-    
