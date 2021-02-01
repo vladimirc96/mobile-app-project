@@ -37,22 +37,22 @@ export default class LogIn extends React.Component {
           style = {styles.backgroundImageContainer}
           source = {backgroundImage}>
           <View style = {styles.mainContainer}>
-            <View style = {styles.headerContainer}>
+            <View style = {styles.welcomeTextContainer}>
               <Text
-                style = {styles.header1Text}>Dobrodošli
+                style = {styles.firstText}>Dobrodošli
               </Text>
               <Text
-                style = {styles.header2Text}>Ulogujte se.
+                style = {styles.secondText}>Ulogujte se.
               </Text>
             </View>
             <View style = {styles.inputContainer}>
               <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "e-mail ili korisničko ime"
                 placeholderTextColor="#ededed"
                 />
               <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
                 />
@@ -84,18 +84,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "center"
   },
-  headerContainer: {
-    width: wp("90%"),
+  welcomeTextContainer: {
     alignSelf: "center",
+    width: wp("90%"),
     marginTop: hp("9%"),
     marginBottom: hp("9%")
   },
-  header1Text: {
+  firstText: {
     textAlign: "left",
     fontSize: 40,
     fontFamily: 'Comfortaa-Regular'
   },
-  header2Text: {
+  secondText: {
     textAlign: "left",
     fontWeight: "bold",
     fontSize: 40,
@@ -105,16 +105,16 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: hp("20%")
   },
-  logInInput: {
-    borderWidth: 2,
+  inputField: {
     width: wp("90%"),
     height: hp("10%"),
-    borderColor: '#ededed',
-    backgroundColor: '#1e1c24',
-    opacity: 0.8,
     paddingLeft: wp("5%"),
+    marginTop: hp("2%"),
     borderRadius: 20,
-    marginTop: hp("2%")
+    borderWidth: 2,
+    opacity: 0.8,
+    borderColor: '#ededed',
+    backgroundColor: '#1e1c24'
   },
   footerContainer: {
     alignSelf: "center",

@@ -77,21 +77,18 @@ export default class SubCategories extends React.Component {
     flex: 1,
     alignSelf: "center"
     },
-    headerContainer: {
-    alignSelf: "center"
-    },
     titleContainer: {
     flexDirection: 'row',
-    backgroundColor: '#1e1c24',
     alignSelf: "center",
     marginTop: hp("3%"),
     marginBottom: hp("3%"),
     width: wp("55%"),
     height: hp("10%"),
+    paddingTop: hp("3%"),
     borderRadius: 30,
     borderWidth: 2,
-    borderColor: '#ededed',
-    paddingTop: hp("3%")
+    backgroundColor: '#1e1c24',
+    borderColor: '#ededed'
     },
     titleIcon: {
     width: 40,

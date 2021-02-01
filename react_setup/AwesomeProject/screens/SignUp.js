@@ -44,7 +44,7 @@ const pickImage = async () => {
             style = {styles.backgroundImageContainer}
             source = {backgroundImage}>
         <View style = {styles.mainContainer}>
-        <View style = {styles.headerContainer}>
+        <View style = {styles.imageContainer}>
             <TouchableOpacity onPress = {pickImage}>
               <Image
                   style = {styles.inputImage}
@@ -55,27 +55,27 @@ const pickImage = async () => {
         </View>
         <View style = {styles.inputContainer}>
             <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "e-mail ili korisnicko ime"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
             <TextInput
-                style = {styles.logInInput}
+                style = {styles.inputField}
                 placeholder = "lozinka"
                 placeholderTextColor="#ededed"
             />
         </View>
-        <View style = {styles.footerContainer}>
+        <View style = {styles.buttonContainer}>
             <SignUpButton onPress = {pressHandler} title = {'Registrujte se'}/>
         </View>
         </View>
@@ -92,7 +92,7 @@ mainContainer: {
 flex: 1,
 alignSelf: "center"
 },
-headerContainer: {
+imageContainer: {
 alignSelf: "center",
 justifyContent: 'center',
 marginTop: hp("7.3%"),
@@ -100,11 +100,11 @@ marginBottom: hp("2.2%"),
 borderWidth: 2,
 width: wp("44%"),
 height: hp("24%"),
-borderColor: '#ededed',
-backgroundColor: '#1e1c24',
-opacity: 0.8,
 paddingLeft: wp("6.7%"),
 borderRadius: 80,
+opacity: 0.8,
+borderColor: '#ededed',
+backgroundColor: '#1e1c24'
 },
 inputImage: {
 width: wp("30%"),
@@ -114,24 +114,18 @@ inputContainer: {
 alignSelf: "center",
 marginBottom: hp("6%")
 },
-logInInput: {
+inputField: {
 borderWidth: 2,
 width: wp("90%"),
 height: hp("10%"),
-borderColor: '#ededed',
-backgroundColor: '#1e1c24',
-opacity: 0.8,
 paddingLeft: wp("5%"),
 borderRadius: 20,
-marginTop: hp("2%")
+marginTop: hp("2%"),
+opacity: 0.8,
+borderColor: '#ededed',
+backgroundColor: '#1e1c24',
 },
-footerContainer: {
+buttonContainer: {
 alignSelf: "center"
-},
-footerText: {
-fontSize: 18,
-textAlign: "center",
-marginBottom: hp("2%")
 }
-
 });
