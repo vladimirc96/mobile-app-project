@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput, View, ActivityIndicator } from 'react-native';
 import {LogInButton} from '../Buttons';
 import * as Font from 'expo-font';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const customFonts = {
   'Comfortaa-Regular': require('../assets/fonts/Comfortaa-Regular.ttf'),
@@ -30,7 +31,6 @@ export default class LogIn extends React.Component {
 
   render(){
     const backgroundImage = require('./../assets/images/logInBackground.jpg')
-    const B = (props) => <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>{props.children}</Text>
     if(this.state.fontsLoaded){
       return (
         <ImageBackground
@@ -58,7 +58,12 @@ export default class LogIn extends React.Component {
                 />
             </View>
             <View style = {styles.footerContainer}>
-              {/* <Text style = {styles.footerText}> Nemate profil? <TouchableOpacity> <B>Registruj se</B> </TouchableOpacity></Text> */}
+              <View style={styles.footerSmallContainer}>
+                <Text style = {styles.footerText}> Nemate profil? </Text>
+                <TouchableOpacity> 
+                  <Text style={styles.boldText}>Registruj se</Text>
+                </TouchableOpacity>
+              </View> 
               <LogInButton onPress = {pressHandler} title = {'Ulogujte se'}/>
             </View>
           </View>
@@ -80,10 +85,10 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   headerContainer: {
-    width: 320,
+    width: wp("90%"),
     alignSelf: "center",
-    marginTop: 60,
-    marginBottom: 60
+    marginTop: hp("9%"),
+    marginBottom: hp("9%")
   },
   header1Text: {
     textAlign: "left",
@@ -98,26 +103,34 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     alignSelf: "center",
-    marginBottom: 160
+    marginBottom: hp("20%")
   },
   logInInput: {
     borderWidth: 2,
-    width: 320,
-    height: 60,
+    width: wp("90%"),
+    height: hp("10%"),
     borderColor: '#ededed',
     backgroundColor: '#1e1c24',
     opacity: 0.8,
-    paddingLeft: 15,
+    paddingLeft: wp("5%"),
     borderRadius: 20,
-    marginTop: 15
+    marginTop: hp("2%")
   },
   footerContainer: {
     alignSelf: "center",
     fontFamily: 'Comfortaa-Regular'
   },
+  footerSmallContainer:{
+    flexDirection: "row",
+    marginBottom: hp("3%"),
+    justifyContent: 'center'
+  },
   footerText: {
     fontSize: 18,
-    textAlign: "center",
-    marginBottom: 20
+  },
+  boldText: {
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    fontSize: 18
   }
 });

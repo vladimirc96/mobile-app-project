@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
   fontFamily: 'Comfortaa-Bold'
   },
   adImage: {
-    height: hp("10.7%"),
-    width: wp("5.2%"),
-    top: hp("0.53%"),
-    left: wp("0.26%"),
+    height: hp("14.5%"),
+    width: wp("27.2%"),
+    top: hp("0.7%"),
+    left: wp("1.36%"),
     borderWidth: 2,
     borderColor: '#ededed'
   },
@@ -123,18 +123,17 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   adMainText: {
-    marginTop: hp("0.53%"),
-    marginLeft: wp("0.52%"),
+    marginLeft: wp("2.72%"),
     backgroundColor: '#3f3e42',
-    width: wp("7%"),
-    height: hp("10.7%")
+    width: wp("36.6%"),
+    height: hp("14.5%")
   },
   adDetails: {
-      marginTop: hp("0.53%"),
-      width: wp("3.9%"),
-      height: ("10.7%"),
+      marginTop: hp("0.7%"),
+      width: wp("20.4%"),
+      height: hp("14.5%"),
       backgroundColor: '#3f3e42',
-      marginLeft: wp("0.26%")
+      marginLeft: wp("1.36%")
   },
   line:{
       color: '#ededed',
@@ -144,20 +143,20 @@ const styles = StyleSheet.create({
   descriptionSmall:{
     backgroundColor:'#1e1c24',
     width:'100%',
-    height: hp("6.95%"),
+    height: hp("9.5%"),
     borderRadius: 5
   },
   descriptionLarge: {
     backgroundColor:'#1e1c24',
     width:'100%',
-    height: hp("5.55%"),
+    height: hp("7%"),
     borderRadius: 5
   },
   descriptionText: {
       fontSize: 8,
       color: '#ededed',
-      marginLeft: wp("0.16%"),
-      marginRight: wp("0.16%")
+      marginLeft: wp("0.85%"),
+      marginRight: wp("0.85%")
   },
   descriptionDetails: {
     alignSelf: 'center'
@@ -177,27 +176,27 @@ const styles = StyleSheet.create({
     flexDirection:'row',
   },
   leftDashContainer: {
-    marginLeft: wp("0.05%"),
+    marginLeft: wp("0.3%"),
     flexDirection: 'row'
   },
   ownerNameContainer: {
     alignSelf: 'flex-start',
-    marginTop: hp("0.1%")
+    marginTop: hp("0.14%")
   },
   ownerName: {
     fontSize: 8,
     color: '#ededed'
   },
   priceContainer: {
-    marginTop: hp("0.1%"),
+    marginTop: hp("0.14%"),
     alignSelf: 'center',
-    height: hp("1.92%"),
-    width: wp("3.39%"),
+    height: hp("2.6%"),
+    width: wp("17.7%"),
     backgroundColor: 'black'
   },
   priceValue: {
     textAlign: 'center',
-    marginTop: hp("0.2%"),
+    marginTop: hp("0.27%"),
     fontSize: 10,
     color: '#ededed'
   },
@@ -206,8 +205,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: wp("3.13%"),
-    marginTop: hp("0.43%")
+    width: wp("16.4%"),
+    marginTop: hp("0.6%")
   },
   publishTitle: {
     fontSize: 8,
@@ -222,8 +221,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: wp("3.13%"),
-    marginTop: hp("1%")
+    width: wp("16.4%"),
+    marginTop: hp("1.36%")
   },
   locationText: {
     fontSize: 8,
@@ -232,31 +231,31 @@ const styles = StyleSheet.create({
   ratingStars: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: wp("3.9%"),
-    marginTop: hp("1.5%")
+    width: wp("20.4%"),
+    marginTop: hp("2%")
   },
   likeText: {
     fontSize: 9,
     color: '#ededed'
   },
   like: {
-    marginLeft: wp("0.26%"),
+    marginLeft: wp("1.36%"),
     color: "#ededed"
   },
   dislike: {
-    marginLeft: wp("0.26%"),
+    marginLeft: wp("1.36%"),
     color: "#ededed"
   },
   dislikeText: {
-    marginLeft: wp("0.26%"),
+    marginLeft: wp("1.36%"),
     fontSize: 9,
     color: '#ededed'
   },
   ratingComment: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: wp("3.9%"),
-    marginTop: hp("0.1%")
+    width: wp("20.4%"),
+    marginTop: hp("0.14%")
   },
   ratingCommentText: {
     fontSize: 7,

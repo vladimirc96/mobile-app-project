@@ -67,13 +67,13 @@ export default class Ads extends React.Component {
     },
     titleContainer: {
         backgroundColor: '#1e1c24',
-        marginTop: hp("2%"),
-        marginBottom: hp("0.75"),
+        marginTop: hp("2.5%"),
+        marginBottom: hp("1%"),
         alignContent : 'center',
         width: wp("100%"),
-        height: hp("6%"),
+        height: hp("7%"),
         borderColor: '#ededed',
-        paddingTop: hp("1%")
+        paddingTop: hp("0.85%")
     },
     titleText: {
         color:'#ededed',
@@ -82,9 +82,9 @@ export default class Ads extends React.Component {
     },
     adContainer: {
         alignSelf: 'center',
-        marginTop: hp("0.75%"),
-        height: hp("11.75%"),
-        width: wp("17.2%") 
+        marginTop: hp("1%"),
+        height: hp("16%"),
+        width: wp("90%") 
     }
     });
     

@@ -132,29 +132,29 @@ export class FirstRunButton extends React.Component {
 
 const styles = StyleSheet.create({
   logInButtonContainer: {
-    width: 320,
-    height: 60,
+    width: wp("90%"),
+    height: hp("9%"),
     borderRadius: 20,
     backgroundColor: '#1e1c24',
     opacity: 0.99
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: 20,
+    paddingTop: hp("1.5%"),
     color: '#ededed',
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'
   },
   signUpButtonContainer: {
-    width: 320,
-    height: 60,
+    width: wp("90%"),
+    height: hp("9%"),
     borderRadius: 20,
     backgroundColor: '#1e1c24',
     opacity: 0.99
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: 10,
+    paddingTop: hp("1.5%"),
     color: '#ededed',
     fontSize: 20,
     fontFamily: 'Comfortaa-Bold'

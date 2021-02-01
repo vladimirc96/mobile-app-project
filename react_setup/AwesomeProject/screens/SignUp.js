@@ -95,35 +95,35 @@ alignSelf: "center"
 headerContainer: {
 alignSelf: "center",
 justifyContent: 'center',
-marginTop: hp("5.34%"),
-marginBottom: hp("1.6%"),
+marginTop: hp("7.3%"),
+marginBottom: hp("2.2%"),
 borderWidth: 2,
-width: wp("7.8%"),
-height: hp("16%"),
+width: wp("44%"),
+height: hp("24%"),
 borderColor: '#ededed',
 backgroundColor: '#1e1c24',
 opacity: 0.8,
-paddingLeft: wp("0.78%"),
+paddingLeft: wp("6.7%"),
 borderRadius: 80,
 },
 inputImage: {
-width: wp("6%"),
-height: hp("12.4%")
+width: wp("30%"),
+height: hp("17%")
 },
 inputContainer: {
 alignSelf: "center",
-marginBottom: hp("5.34%")
+marginBottom: hp("6%")
 },
 logInInput: {
 borderWidth: 2,
-width: wp("60%"),
+width: wp("90%"),
 height: hp("10%"),
 borderColor: '#ededed',
 backgroundColor: '#1e1c24',
 opacity: 0.8,
-paddingLeft: wp("0.8%"),
+paddingLeft: wp("5%"),
 borderRadius: 20,
-marginTop: hp("1.6%")
+marginTop: hp("2%")
 },
 footerContainer: {
 alignSelf: "center"
