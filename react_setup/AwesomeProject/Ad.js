@@ -84,10 +84,6 @@ export default class Ad extends React.Component {
                   <Fontisto name="dislike" style={styles.dislike}/>
                   <Text style={styles.dislikeText}>69</Text>
                 </View>
-                {/* <View style = {styles.ratingComment}>
-                  <Text style = {styles.ratingCommentText}>od strane </Text>
-                  <Text style = {styles.ratingCommentText}>4 korisnika </Text>
-                </View> */}
               </View>
             </View>
         </View>
@@ -101,15 +97,12 @@ export default class Ad extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-  backgroundColor: '#3f3e42',
-  width: '100%',
-  height: '100%'
+    backgroundColor: '#3f3e42',
+    width: '100%',
+    height: '100%'
   },
-  adTitle: {
-  textAlign: "left",
-  color: '#ededed',
-  fontSize: 14,
-  fontFamily: 'Comfortaa-Bold'
+  adMainContainer: {
+    flexDirection: "row"
   },
   adImage: {
     height: hp("14.5%"),
@@ -119,58 +112,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#ededed'
   },
-  adMainContainer: {
-    flexDirection: "row"
-  },
   adMainText: {
     marginLeft: wp("2.72%"),
-    backgroundColor: '#3f3e42',
     width: wp("36.6%"),
-    height: hp("14.5%")
+    height: hp("14.5%"),
+    backgroundColor: '#3f3e42'
   },
-  adDetails: {
-      marginTop: hp("0.7%"),
-      width: wp("20.4%"),
-      height: hp("14.5%"),
-      backgroundColor: '#3f3e42',
-      marginLeft: wp("1.36%")
-  },
-  line:{
-      color: '#ededed',
-      fontSize: 5,
-      textAlignVertical: 'center'
-  },
-  descriptionSmall:{
-    backgroundColor:'#1e1c24',
-    width:'100%',
-    height: hp("9.5%"),
-    borderRadius: 5
-  },
-  descriptionLarge: {
-    backgroundColor:'#1e1c24',
-    width:'100%',
-    height: hp("7%"),
-    borderRadius: 5
-  },
-  descriptionText: {
-      fontSize: 8,
-      color: '#ededed',
-      marginLeft: wp("0.85%"),
-      marginRight: wp("0.85%")
-  },
-  descriptionDetails: {
-    alignSelf: 'center'
-  },
-  descriptionDetailsText: {
-    fontSize: 8,
-    color: '#ededed',
-    fontWeight: 'bold',
-    textDecorationLine: 'underline'
-  },
-  detailsArrow: {
-    color: '#ededed',
-    fontSize: 10,
-    alignSelf: 'center',
+  adTitle: {
+    textAlign: "left",
+    fontSize: 14,
+    fontFamily: 'Comfortaa-Bold',
+    color: '#ededed'
   },
   ownerContainer: {
     flexDirection:'row',
@@ -178,6 +130,43 @@ const styles = StyleSheet.create({
   leftDashContainer: {
     marginLeft: wp("0.3%"),
     flexDirection: 'row'
+  },
+  line:{
+    textAlignVertical: 'center',
+    fontSize: 5,
+    color: '#ededed'
+  },
+  descriptionSmall:{
+    width:'100%',
+    height: hp("9.5%"),
+    borderRadius: 5,
+    backgroundColor:'#1e1c24'
+  },
+  descriptionLarge: {
+    width:'100%',
+    height: hp("7%"),
+    borderRadius: 5,
+    backgroundColor:'#1e1c24'
+  },
+  descriptionText: {
+    fontSize: 8,
+    marginLeft: wp("0.85%"),
+    marginRight: wp("0.85%"),
+    color: '#ededed'
+  },
+  descriptionDetails: {
+    alignSelf: 'center'
+  },
+  descriptionDetailsText: {
+    fontSize: 8,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    color: '#ededed'
+  },
+  detailsArrow: {
+    alignSelf: 'center',
+    fontSize: 10,
+    color: '#ededed'
   },
   ownerNameContainer: {
     alignSelf: 'flex-start',
@@ -187,9 +176,16 @@ const styles = StyleSheet.create({
     fontSize: 8,
     color: '#ededed'
   },
+  adDetails: {
+    marginTop: hp("0.7%"),
+    marginLeft: wp("1.36%"),
+    width: wp("20.4%"),
+    height: hp("14.5%"),
+    backgroundColor: '#3f3e42'
+  },
   priceContainer: {
-    marginTop: hp("0.14%"),
     alignSelf: 'center',
+    marginTop: hp("0.14%"),
     height: hp("2.6%"),
     width: wp("17.7%"),
     backgroundColor: 'black'
@@ -201,12 +197,12 @@ const styles = StyleSheet.create({
     color: '#ededed'
   },
   publishDateContainer: {
-    backgroundColor:'#3f3e42',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginTop: hp("0.6%"),
     width: wp("16.4%"),
-    marginTop: hp("0.6%")
+    backgroundColor:'#3f3e42'
   },
   publishTitle: {
     fontSize: 8,
@@ -217,12 +213,12 @@ const styles = StyleSheet.create({
     color: '#ededed'
   },
   location: {
-    backgroundColor:'#3f3e42',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     width: wp("16.4%"),
-    marginTop: hp("1.36%")
+    marginTop: hp("1.36%"),
+    backgroundColor:'#3f3e42'
   },
   locationText: {
     fontSize: 8,
@@ -249,16 +245,6 @@ const styles = StyleSheet.create({
   dislikeText: {
     marginLeft: wp("1.36%"),
     fontSize: 9,
-    color: '#ededed'
-  },
-  ratingComment: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: wp("20.4%"),
-    marginTop: hp("0.14%")
-  },
-  ratingCommentText: {
-    fontSize: 7,
     color: '#ededed'
   }
   });
