@@ -5,7 +5,7 @@ import * as Font from 'expo-font';
 import {Octicons} from '@expo/vector-icons'
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons'; 
-import {adStyles} from './shared/Styles'; 
+import { adStyles } from './shared/Styles'; 
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')

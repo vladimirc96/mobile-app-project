@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, Text, View, ScrollView } from 'react-native'
 import Ad from './../Ad'
-import {adsStyles} from '../shared/Styles';
+import { adsStyles } from '../shared/Styles';
 
 
 const pressHandler = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image, ScrollView} from 'react-native'
 import SubCategory from './../SubCategory';
-import {subCategoriesStyles} from '../shared/Styles';
+import { subCategoriesStyles } from '../shared/Styles'; 
 
 const pressHandler = () => {
   console.log(5);
@@ -12,7 +12,6 @@ export default class SubCategories extends React.Component {
     render(){
     const backgroundImage = require('./../assets/images/logInBackground.jpg')
     const cameraIcon = require('./../assets/images/camera_icon.png')
-
       return (
         <ImageBackground
             style = {subCategoriesStyles.backgroundImageContainer}
