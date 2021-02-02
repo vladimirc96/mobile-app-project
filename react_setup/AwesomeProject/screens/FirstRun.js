@@ -1,14 +1,15 @@
-
-import React from 'react';
 import {ImageBackground, View} from 'react-native';
+
 import {FirstRunButton} from '../Buttons';
+import React from 'react';
 import {firstRunStyles} from '../shared/Styles';
 
-const pressHandler = () => {
-  console.log(5);
-}
-
 export default class FirstRun extends React.Component { 
+
+  pressHandler = () => {
+    this.props.navigation.navigate('');
+  }
+
   render(){
     const backgroundImage = require('./../assets/images/logInBackground.jpg')
 

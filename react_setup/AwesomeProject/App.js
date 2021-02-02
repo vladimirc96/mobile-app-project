@@ -1,13 +1,14 @@
-import React from 'react';
-import { Text, View, StyleSheet,ActivityIndicator } from 'react-native';
-import LogIn from './screens/LogIn';
-import SignUp from './screens/SignUp';
-import FirstRun from './screens/FirstRun';
-import Categories from './screens/Categories';
-import SubCategories from './screens/SubCategories';
 import * as Font from 'expo-font';
-import Navigator from './routes/drawer';
 
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+
+import Categories from './screens/Categories';
+import FirstRun from './screens/FirstRun';
+import LogIn from './screens/LogIn';
+import Navigator from './routes/firstRunStack';
+import React from 'react';
+import SignUp from './screens/SignUp';
+import SubCategories from './screens/SubCategories';
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
