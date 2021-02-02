@@ -492,3 +492,22 @@ export const adStyles = StyleSheet.create({
     color: "#ededed",
   },
 });
+
+export const firstRunStyles = StyleSheet.create({
+  backgroundImageContainer: {
+    flex: 1,
+    resizeMode: "cover"
+  },
+  mainContainer: {
+    flex: 1,
+    alignSelf: "center"
+  },
+  userContainer: {
+    alignSelf: "center",
+    marginTop: hp("11%")
+  },
+  guestContainer: {
+    alignSelf: "center",
+    marginTop: hp("5%")
+  }
+}); 

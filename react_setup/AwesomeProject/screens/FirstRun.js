@@ -4,10 +4,22 @@ import {FirstRunButton} from '../Buttons';
 import React from 'react';
 import {firstRunStyles} from '../shared/Styles';
 
+const SCREENS = {
+  HOME: 1,
+  LOGIN: 2,
+}
+
 export default class FirstRun extends React.Component { 
 
-  pressHandler = () => {
-    this.props.navigation.navigate('');
+  pressHandler = (screenType) => {
+    switch(screenType){
+      case SCREENS.HOME:
+        this.props.navigation.navigate('Home'); 
+        break;
+      case SCREENS.LOGIN:
+        this.props.navigation.navigate('LogIn');
+        break;
+    }
   }
 
   render(){
@@ -19,10 +31,10 @@ export default class FirstRun extends React.Component {
         source = {backgroundImage}>
         <View style = {firstRunStyles.mainContainer}>
           <View style = {firstRunStyles.userContainer}>
-            <FirstRunButton onPress = {pressHandler} title = {'Nudim uslugu'}/>
+            <FirstRunButton onPress = {() => this.pressHandler(SCREENS.LOGIN)} title = {'Nudim uslugu'}/>
           </View>
           <View style = {firstRunStyles.guestContainer}>
-            <FirstRunButton onPress = {pressHandler} title = {'Tražim uslugu'}/>
+            <FirstRunButton onPress = {() => this.pressHandler(SCREENS.HOME)} title = {'Tražim uslugu'}/>
           </View>
         </View>
       </ImageBackground>

@@ -114,7 +114,7 @@ export class FirstRunButton extends React.Component {
     if(this.state.fontsLoaded){
       return (
         <TouchableOpacity
-          onPress = {this.state.onPress}
+          onPress = {this.props.onPress}
           style = {buttonsStyles.firstRunButtonContainer}>
           <Image
             style = {buttonsStyles.inputImage}
