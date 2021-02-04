@@ -1,5 +1,6 @@
 import LogIn from "../screens/LogIn";
 import React from "react";
+import SignUp from "../screens/SignUp";
 import FirstRun from "../screens/FirstRun";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -11,6 +12,9 @@ const screens = {
   },
   LogIn: {
     screen: LogIn,
+  },
+  SignUp: {
+    screen: SignUp,
   },
   Home: {
     screen: Home,
