@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground, Image, TouchableOpacity, Text, View } from 'react-native';
-import { AdvButton } from '../Buttons'
+import { AdvButton } from '../components/Buttons'
 import { categoriesStyles } from '../shared/Styles'; 
 
 export default class Categories extends React.Component {

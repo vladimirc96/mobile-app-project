@@ -1,6 +1,6 @@
 import {ImageBackground, View} from 'react-native';
 
-import {FirstRunButton} from '../Buttons';
+import {FirstRunButton} from '../components/Buttons';
 import React from 'react';
 import {firstRunStyles} from '../shared/Styles';
 

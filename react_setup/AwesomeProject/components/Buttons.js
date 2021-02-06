@@ -1,10 +1,10 @@
 import React from 'react';
 import {TouchableOpacity, Text, Image, ActivityIndicator} from 'react-native';
 import * as Font from 'expo-font';
-import {buttonsStyles} from './shared/Styles';
+import {buttonsStyles} from '../shared/Styles';
 
 const customFonts = {
-  'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
+  'Comfortaa-Bold': require('../assets/fonts/Comfortaa-Bold.ttf')
 };
 
 export class LogInButton extends React.Component {
@@ -109,7 +109,7 @@ export class FirstRunButton extends React.Component {
   }
 
   render(){
-    const cameraIcon = require('./assets/images/camera_icon.png')
+    const cameraIcon = require('../assets/images/camera_icon.png')
 
     if(this.state.fontsLoaded){
       return (

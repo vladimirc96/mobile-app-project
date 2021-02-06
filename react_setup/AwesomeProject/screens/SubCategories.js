@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image, ScrollView} from 'react-native'
-import SubCategory from './../SubCategory';
+import SubCategory from '../components/SubCategory';
 import { subCategoriesStyles } from '../shared/Styles'; 
 
 const pressHandler = () => {

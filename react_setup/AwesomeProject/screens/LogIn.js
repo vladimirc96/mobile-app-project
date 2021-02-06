@@ -7,7 +7,7 @@ import {
   View,
   ActivityIndicator,
 } from "react-native";
-import { LogInButton } from "../Buttons";
+import { LogInButton } from "../components/Buttons";
 import * as Font from "expo-font";
 import { loginStyles } from "../shared/Styles";
 

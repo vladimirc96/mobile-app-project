@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground, Text, View, ScrollView } from 'react-native'
-import Ad from './../Ad'
+import Ad from '../components/Ad'
 import { adsStyles } from '../shared/Styles';
 
 

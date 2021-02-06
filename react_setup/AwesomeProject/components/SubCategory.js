@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import * as Font from 'expo-font';
-import {subCategoryStyles} from './shared/Styles';
+import {subCategoryStyles} from '../shared/Styles';
 
 const customFonts = {
-  'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
+  'Comfortaa-Bold': require('../assets/fonts/Comfortaa-Bold.ttf')
 };
 
 const pressHandler = () => {
