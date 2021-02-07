@@ -511,3 +511,12 @@ export const firstRunStyles = StyleSheet.create({
     marginTop: hp("5%"),
   },
 });
+
+export const errorMessageStyles = StyleSheet.create({
+  errorText: {
+    color: 'crimson',
+    fontWeight: 'bold',
+    marginBottom: 1,
+    marginTop: 6,
+  }
+})

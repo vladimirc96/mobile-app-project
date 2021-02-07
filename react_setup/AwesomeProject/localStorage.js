@@ -12,3 +12,5 @@ const LocalStorage = {
     return await AsyncStorage.removeItem(key);
   },
 };
+
+export default LocalStorage;
