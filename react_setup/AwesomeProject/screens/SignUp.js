@@ -1,5 +1,9 @@
 import React from "react";
-import { ImageBackground, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { signupStyles } from "../shared/Styles";
 import SignUpForm from "../components/forms/SignUpForm";
 

@@ -496,18 +496,18 @@ export const adStyles = StyleSheet.create({
 export const firstRunStyles = StyleSheet.create({
   backgroundImageContainer: {
     flex: 1,
-    resizeMode: "cover"
+    resizeMode: "cover",
   },
   mainContainer: {
     flex: 1,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: hp("11%")
+    marginTop: hp("11%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginTop: hp("5%")
-  }
-}); 
+    marginTop: hp("5%"),
+  },
+});

@@ -1,19 +1,24 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
-import * as Font from 'expo-font';
-import {subCategoryStyles} from '../shared/Styles';
+import React from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from "react-native";
+import * as Font from "expo-font";
+import { subCategoryStyles } from "../shared/Styles";
 
 const customFonts = {
-  'Comfortaa-Bold': require('../assets/fonts/Comfortaa-Bold.ttf')
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
 const pressHandler = () => {
   console.log(5);
-}
+};
 
 export default class SubCategory extends React.Component {
   state = {
-    fontsLoaded: false
+    fontsLoaded: false,
   };
 
   async _loadFontsAsync() {
@@ -24,18 +29,21 @@ export default class SubCategory extends React.Component {
   componentDidMount() {
     this._loadFontsAsync();
   }
-  
-  render(){
-    if(this.state.fontsLoaded){
+
+  render() {
+    if (this.state.fontsLoaded) {
       return (
         <TouchableOpacity
-          onPress = {this.props.onPress}
-          style = {subCategoryStyles.mainContainer}>
-            <Text style = {subCategoryStyles.mainContainerText}>{this.props.title}</Text>
+          onPress={this.props.onPress}
+          style={subCategoryStyles.mainContainer}
+        >
+          <Text style={subCategoryStyles.mainContainerText}>
+            {this.props.title}
+          </Text>
         </TouchableOpacity>
       );
-    }else{
-      return <ActivityIndicator size='large' />;
+    } else {
+      return <ActivityIndicator size="large" />;
     }
   }
 }

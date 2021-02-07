@@ -35,8 +35,8 @@ export default class LogIn extends React.Component {
   };
 
   login = () => {
-    console.log('login');
-  }
+    console.log("login");
+  };
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");

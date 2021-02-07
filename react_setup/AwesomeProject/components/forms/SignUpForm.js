@@ -5,8 +5,11 @@ import { TouchableOpacity, Text, TextInput, View, Image } from "react-native";
 import { SignUpButton } from "../Buttons";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
+import * as yup from "yup";
 
-export default function SignUpForm() {
+const SignUpSchema = yup.object({});
+
+export default function SignUpForm({ signup }) {
   const cameraIcon = require("../../assets/images/camera_icon.png");
 
   const [image, setImage] = useState(null);
