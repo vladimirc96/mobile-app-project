@@ -514,9 +514,9 @@ export const firstRunStyles = StyleSheet.create({
 
 export const errorMessageStyles = StyleSheet.create({
   errorText: {
-    color: 'crimson', 
-    fontWeight: 'bold',
+    color: "crimson",
+    fontWeight: "bold",
     marginBottom: 1,
     marginTop: 6,
-  }
-})
+  },
+});

@@ -61,7 +61,7 @@ export default function SignUpForm({ signup }) {
           location: { id: null, value: "" },
         }}
         onSubmit={(values) => {
-          signup({...values, image});
+          signup({ ...values, image });
         }}
         validationSchema={signUpSchema}
       >
