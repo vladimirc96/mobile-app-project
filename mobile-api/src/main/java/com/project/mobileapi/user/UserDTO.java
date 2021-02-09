@@ -5,16 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     @NotNull(message = "Korisničko ime ne sme da bude prazno.")
     @NotBlank(message = "Korisničko ime ne sme da bude prazno.")
@@ -42,4 +44,5 @@ public class UserDTO {
     @NotNull(message = "Lokacija ne sme da bude prazna.")
     private KeyValue location;
 
+    private MultipartFile image;
 }

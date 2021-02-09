@@ -1,5 +1,12 @@
-import MobileApi from './MobileApi';
+import MobileApi from "./MobileApi";
 
-const url = "/users"
+const url = "/users";
 
-export const signup = (user) => MobileApi.post(`${url}/register`, user);
+export const signup = (user) => {
+  const config = {
+    params: {
+      image: user.image,
+    },
+  };
+  return MobileApi.post(`${url}/register`, user, config);
+};

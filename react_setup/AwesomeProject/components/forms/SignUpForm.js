@@ -13,7 +13,10 @@ const signUpSchema = yup.object({
   password: yup.string().required("Šifra je obavezna."),
   name: yup.string().required("Ime je obavezno."),
   lastName: yup.string().required("Prezime je obavezno."),
-  email: yup.string().required("Email je obavezan.").email("Email nije validan."),
+  email: yup
+    .string()
+    .required("Email je obavezan.")
+    .email("Email nije validan."),
   phoneNumber: yup.string().required("Broj telefona je obavezan."),
 });
 
@@ -40,9 +43,6 @@ export default function SignUpForm({ signup }) {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
     }
@@ -58,12 +58,12 @@ export default function SignUpForm({ signup }) {
           lastName: "",
           email: "",
           phoneNumber: "",
-          location: "",
+          location: { id: null, value: "" },
         }}
         onSubmit={(values) => {
-          signup(values);
+          signup({...values, image});
         }}
-        //validationSchema={signUpSchema}
+        validationSchema={signUpSchema}
       >
         {(props) => (
           <ScrollView>

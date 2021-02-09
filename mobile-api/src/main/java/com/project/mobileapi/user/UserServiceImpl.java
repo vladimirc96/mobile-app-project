@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService{
     private final RoleRepository roleRepository;
 
     @Override
-    public User register(UserDTO userDTO) {
+    public User register(UserDTO userDTO) throws IOException {
         String salt = BCrypt.gensalt();
         Role role = roleRepository.findOneById(USER_ROLE_ID);
         User user = User.builder()
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService{
                 .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
                 .roles(new ArrayList<Role>() { { add(role); } })
                 .entryDate(LocalDate.now())
+                .image(userDTO.getImage().getBytes())
                 .build();
         return userRepository.save(user);
     }
