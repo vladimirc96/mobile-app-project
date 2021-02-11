@@ -98,7 +98,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   AdvButtonText: {
     textAlign: "center",
-    marginTop: hp("1.5%"),
+    marginTop: 15,
     color: "#ededed",
     fontSize: 20,
     fontFamily: "Comfortaa-Bold",
@@ -182,6 +182,7 @@ export const loginStyles = StyleSheet.create({
     borderWidth: 2,
     opacity: 0.8,
     borderColor: "#ededed",
+    color: "#ffffff",
     backgroundColor: "#1e1c24",
   },
   footerContainer: {
@@ -357,6 +358,7 @@ export const adStyles = StyleSheet.create({
     borderColor: "#ededed",
   },
   adMainText: {
+    marginTop: 3, 
     marginLeft: wp("2.72%"),
     width: wp("36.6%"),
     height: hp("14.5%"),
