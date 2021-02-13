@@ -19,8 +19,8 @@ export const adsStyles = StyleSheet.create({
     marginTop: hp("2.5%"),
     marginBottom: hp("1%"),
     width: wp("100%"),
-    height: hp("7%"),
-    paddingTop: hp("0.85%"),
+    height: hp("6%"),
+    paddingTop: hp("0.7%"),
     backgroundColor: "#1e1c24",
     borderColor: "#ededed",
   },
@@ -30,7 +30,7 @@ export const adsStyles = StyleSheet.create({
   titleText: {
     color: "#ededed",
     textAlign: "center",
-    fontSize: 25,
+    fontSize: hp("3.6%"),
   },
   adContainer: {
     alignSelf: "center",
@@ -76,21 +76,35 @@ export const buttonsStyles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     opacity: 0.9,
   },
-  inputImage: {
-    marginTop: 20,
+  inputImageHeight: {
+    marginTop: hp("2%"),
     alignSelf: "center",
-    width: 140,
-    height: 140,
+    width: hp("25%"),
+    height: hp("25%"),
   },
-  firstRunButtonText: {
+  inputImageWidth: {
+    marginTop: wp("6%"),
+    alignSelf: "center",
+    width: wp("52%"),
+    height: wp("52%"),
+  },
+  firstRunButtonTextHeight: {
     textAlign: "center",
-    paddingTop: hp("5%"),
+    paddingTop: hp("2%"),
     color: "#ededed",
-    fontSize: 20,
+    fontSize: hp("4%"),
+    fontFamily: "Comfortaa-Bold",
+  },
+  firstRunButtonTextWidth: {
+    textAlign: "center",
+    paddingTop: wp("3%"),
+    color: "#ededed",
+    fontSize: wp("6%"),
     fontFamily: "Comfortaa-Bold",
   },
   AdvButtonContainer: {
     alignSelf: "center",
+    marginTop: hp("4%"), 
     width: wp("92%"),
     height: hp("9%"),
     borderRadius: 20,
@@ -99,9 +113,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   AdvButtonText: {
     textAlign: "center",
-    marginTop: 15,
+    marginTop: hp("3%"),
     color: "#ededed",
-    fontSize: 20,
+    fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
 });
@@ -112,33 +126,54 @@ export const categoriesStyles = StyleSheet.create({
     resizeMode: "cover",
   },
   mainContainer: {
+    flex: 1,
     alignSelf: "center",
-    marginBottom: hp("4%"),
-    marginTop: hp("8%"),
+    paddingTop: hp("7%")
   },
   categoryRowContainer: {
     flexDirection: "row",
-  },
-  category: {
     marginBottom: hp("1%"),
+  },
+  singleCategoryContainer: {
     marginRight: wp("2%"),
     marginLeft: wp("2"),
     width: wp("28%"),
     height: hp("15%"),
+  }
+});
+
+export const categoryStyles = StyleSheet.create({
+
+  category: {
+    width: "100%",
+    height: "100%",
     borderRadius: 30,
     opacity: 0.9,
     backgroundColor: "#1e1c24",
   },
-  categoryImage: {
+  categoryImageHeight: {
     alignSelf: "center",
-    marginTop: 15,
-    width: 50,
-    height: 50,
+    marginTop: hp("1%"),
+    width: hp("10%"),
+    height: hp("10%"),
   },
-  categoryName: {
+  categoryImageWidth: {
+    alignSelf: "center",
+    marginTop: wp("2%"),
+    width: wp("20%"),
+    height: wp("20%"),
+  },
+  categoryNameHeight: {
     textAlign: "center",
-    paddingTop: 3,
-    fontSize: 10,
+    paddingTop: hp("0.3%"),
+    fontSize: hp("1.9%"),
+    fontFamily: "Comfortaa-Bold",
+    color: "#ededed",
+  },
+  categoryNameWidth: {
+    textAlign: "center",
+    paddingTop: wp("0.4%"),
+    fontSize: wp("2.5%"),
     fontFamily: "Comfortaa-Bold",
     color: "#ededed",
   },
@@ -341,28 +376,28 @@ export const headerStyles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: hp("3%"),
     color: "#ededed",
     letterSpacing: 1,
     marginLeft: -60,
   },
   headerTextMain: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: hp("3%"),
     color: "#ededed",
     letterSpacing: 1,
   },
   icon: {
     position: "absolute",
-    left: 5,
+    left: wp("2%"),
     color: "#ededed",
-    fontSize: 40,
+    fontSize: hp("4%"),
   },
   avatar: {
-    height: 45,
-    width: 45,
+    height: hp("7%"),
+    width: hp("7%"),
     position: "absolute",
-    right: 5,
+    right: wp("2%"),
   },
 });
 
@@ -553,7 +588,7 @@ export const firstRunStyles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: hp("11%"),
+    marginTop: hp("10.5%")
   },
   guestContainer: {
     alignSelf: "center",

@@ -7,6 +7,11 @@ const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 export class LogInButton extends React.Component {
   state = {
     fontsLoaded: false,
@@ -99,8 +104,8 @@ export class SignUpButton extends React.Component {
 
 export class FirstRunButton extends React.Component {
   state = {
-    fontsLoaded: false,
-  };
+    fontsLoaded: false
+  }
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
@@ -111,23 +116,23 @@ export class FirstRunButton extends React.Component {
     this._loadFontsAsync();
   }
 
-  render() {
-    const cameraIcon = require("../assets/images/camera_icon.png");
+  render(){
+    const cameraIcon = require('../assets/images/camera_icon.png')
 
-    if (this.state.fontsLoaded) {
+    if(this.state.fontsLoaded){
       return (
         <TouchableOpacity
-          onPress={this.props.onPress}
-          style={buttonsStyles.firstRunButtonContainer}
-        >
-          <Image style={buttonsStyles.inputImage} source={cameraIcon} />
-          <Text style={buttonsStyles.firstRunButtonText}>
-            {this.props.title}
-          </Text>
+          onPress = {this.props.onPress}
+          style = {buttonsStyles.firstRunButtonContainer}>
+          <Image
+             style={ (windowHeight * 0.37) < (windowWidth * 0.7) ? buttonsStyles.inputImageHeight : buttonsStyles.inputImageWidth}
+            source = {cameraIcon}
+          />
+            <Text style={ (windowHeight * 0.37) < (windowWidth * 0.7) ? buttonsStyles.firstRunButtonTextHeight : buttonsStyles.firstRunButtonTextWidth}>{this.props.title}</Text>
         </TouchableOpacity>
       );
-    } else {
-      return <ActivityIndicator size="large" />;
+    }else{
+      return <ActivityIndicator size='large' />;
     }
   }
 }
