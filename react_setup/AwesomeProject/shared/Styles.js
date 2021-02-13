@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { withTheme } from "react-native-elements";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -247,6 +248,17 @@ export const signupStyles = StyleSheet.create({
   },
   buttonContainer: {
     alignSelf: "center",
+  },
+  inputErrorField: {
+    borderWidth: 2,
+    width: wp("90%"),
+    height: hp("10%"),
+    paddingLeft: wp("5%"),
+    borderRadius: 20,
+    marginTop: hp("2%"),
+    opacity: 0.8,
+    borderColor: "red",
+    backgroundColor: "#1e1c24",
   },
 });
 
@@ -509,14 +521,5 @@ export const firstRunStyles = StyleSheet.create({
   guestContainer: {
     alignSelf: "center",
     marginTop: hp("5%"),
-  },
-});
-
-export const errorMessageStyles = StyleSheet.create({
-  errorText: {
-    color: "crimson",
-    fontWeight: "bold",
-    marginBottom: 1,
-    marginTop: 6,
   },
 });

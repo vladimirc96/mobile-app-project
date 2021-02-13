@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
                 .password(BCrypt.hashpw(userDTO.getPassword(), salt))
                 .email(userDTO.getEmail())
                 .phoneNumber(userDTO.getPhoneNumber())
-                .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
+                .location(userDTO.getLocation() != null ? new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()) : null)
                 .roles(new ArrayList<Role>() { { add(role); } })
                 .entryDate(LocalDate.now())
                 .image(userDTO.getImage().getBytes())

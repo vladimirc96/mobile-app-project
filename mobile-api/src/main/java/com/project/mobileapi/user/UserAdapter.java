@@ -2,6 +2,7 @@ package com.project.mobileapi.user;
 
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.util.KeyValue;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class UserAdapter {
 
@@ -21,7 +22,7 @@ public class UserAdapter {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .details(user.getDetails())
-                .location(new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()))
+                .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : null)
                 .build();
     }
 

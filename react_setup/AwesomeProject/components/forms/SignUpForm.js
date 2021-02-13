@@ -3,7 +3,6 @@ import { signupStyles } from "../../shared/Styles";
 import { Formik } from "formik";
 import { TouchableOpacity, TextInput, View, Image } from "react-native";
 import { SignUpButton } from "../Buttons";
-import ErrorMessage from "../ErrorMessage";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import * as yup from "yup";
@@ -11,8 +10,6 @@ import * as yup from "yup";
 const signUpSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
   password: yup.string().required("Šifra je obavezna."),
-  name: yup.string().required("Ime je obavezno."),
-  lastName: yup.string().required("Prezime je obavezno."),
   email: yup
     .string()
     .required("Email je obavezan.")
@@ -54,11 +51,8 @@ export default function SignUpForm({ signup }) {
         initialValues={{
           username: "",
           password: "",
-          name: "",
-          lastName: "",
           email: "",
           phoneNumber: "",
-          location: { id: null, value: "" },
         }}
         onSubmit={(values) => {
           signup({ ...values, image });
@@ -80,95 +74,68 @@ export default function SignUpForm({ signup }) {
             </View>
             <View style={signupStyles.inputContainer}>
               <TextInput
-                style={signupStyles.inputField}
+                style={
+                  props.errors.username && props.touched.username
+                    ? signupStyles.inputErrorField
+                    : signupStyles.inputField
+                }
                 placeholder="Korisničko ime"
-                placeholderTextColor="#ededed"
+                placeholderTextColor={
+                  props.errors.username && props.touched.username
+                    ? "red"
+                    : "#ededed"
+                }
                 onChangeText={props.handleChange("username")}
                 value={props.values.username}
                 onBlur={props.handleBlur("username")}
               />
-              <ErrorMessage
-                touched={props.touched.username}
-                errorMessage={props.errors.username}
-              />
-
               <TextInput
-                style={signupStyles.inputField}
+                style={
+                  props.errors.password && props.touched.password
+                    ? signupStyles.inputErrorField
+                    : signupStyles.inputField
+                }
                 placeholder="Lozinka"
-                placeholderTextColor="#ededed"
+                placeholderTextColor={
+                  props.errors.password && props.touched.password
+                    ? "red"
+                    : "#ededed"
+                }
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
                 onBlur={props.handleBlur("password")}
                 secureTextEntry={true}
               />
-              <ErrorMessage
-                touched={props.touched.password}
-                errorMessage={props.errors.password}
-              />
-
               <TextInput
-                style={signupStyles.inputField}
-                placeholder="Ime"
-                placeholderTextColor="#ededed"
-                onChangeText={props.handleChange("name")}
-                value={props.values.name}
-                onBlur={props.handleBlur("name")}
-              />
-              <ErrorMessage
-                touched={props.touched.name}
-                errorMessage={props.errors.name}
-              />
-
-              <TextInput
-                style={signupStyles.inputField}
-                placeholder="Prezime"
-                placeholderTextColor="#ededed"
-                onChangeText={props.handleChange("lastName")}
-                value={props.values.lastName}
-                onBlur={props.handleBlur("lastName")}
-              />
-              <ErrorMessage
-                touched={props.touched.lastName}
-                errorMessage={props.errors.lastName}
-              />
-
-              <TextInput
-                style={signupStyles.inputField}
+                style={
+                  props.errors.email && props.touched.email
+                    ? signupStyles.inputErrorField
+                    : signupStyles.inputField
+                }
                 placeholder="Email"
-                placeholderTextColor="#ededed"
+                placeholderTextColor={
+                  props.errors.email && props.touched.email ? "red" : "#ededed"
+                }
                 onChangeText={props.handleChange("email")}
                 value={props.values.email}
                 onBlur={props.handleBlur("email")}
               />
-              <ErrorMessage
-                touched={props.touched.email}
-                errorMessage={props.errors.email}
-              />
-
               <TextInput
-                style={signupStyles.inputField}
+                style={
+                  props.errors.phoneNumber && props.touched.phoneNumber
+                    ? signupStyles.inputErrorField
+                    : signupStyles.inputField
+                }
                 placeholder="Broj telefona"
-                placeholderTextColor="#ededed"
+                placeholderTextColor={
+                  props.errors.phoneNumber && props.touched.phoneNumber
+                    ? "red"
+                    : "#ededed"
+                }
                 onChangeText={props.handleChange("phoneNumber")}
                 value={props.values.phoneNumber}
                 onBlur={props.handleBlur("phoneNumber")}
               />
-              <ErrorMessage
-                touched={props.touched.phoneNumber}
-                errorMessage={props.errors.phoneNumber}
-              />
-
-              {/* <TextInput
-                style={signupStyles.inputField}
-                placeholder="Lokacija"
-                placeholderTextColor="#ededed"
-                onChangeText={props.handleChange("location")}
-                value={props.values.location}
-              />
-              <ErrorMessage
-                touched={props.touched.username}
-                errorMessage={props.errors.username}
-              /> */}
             </View>
             <View style={signupStyles.buttonContainer}>
               <SignUpButton

@@ -41,7 +41,6 @@ public class UserDTO implements Serializable {
 
     private String details;
 
-    @NotNull(message = "Lokacija ne sme da bude prazna.")
     private KeyValue location;
 
     private MultipartFile image;
