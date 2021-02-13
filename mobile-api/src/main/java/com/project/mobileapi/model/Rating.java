@@ -29,7 +29,7 @@ public class Rating {
     private String comment;
 
     @Column(name = "user")
-    private String user;
+    private String username;
 
     @Column(name = "positive")
     private boolean positive;

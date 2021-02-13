@@ -1,15 +1,19 @@
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
-
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { createAppContainer } from "react-navigation";
 // stacks
 import CategoriesStack from './categoriesStack';
-import FirstRunStack from './firstRunStack'
-;
+import Drawer from "../components/Drawer";
+
 // drawer navigation options
-const RootDrawerNavigator = createDrawerNavigator({
+const RootDrawerNavigator = createDrawerNavigator(
+  {
     Categories: {
-    screen: CategoriesStack,
+      screen: CategoriesStack,
     },
-});
+  },
+  {
+    contentComponent: Drawer,
+  }
+);
 
 export default createAppContainer(RootDrawerNavigator);
