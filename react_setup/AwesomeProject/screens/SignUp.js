@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from 'react';
 import { Button, ImageBackground, TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
-import {SignUpButton} from '../Buttons';
+import {SignUpButton} from '../components/Buttons';
 import * as ImagePicker from "expo-image-picker";
 import Constants from 'expo-constants'
 import {signupStyles} from '../shared/Styles';
