@@ -27,7 +27,7 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <Profile />
+        <Navigator />
       );
     } else {
       return <ActivityIndicator size='large' />;
