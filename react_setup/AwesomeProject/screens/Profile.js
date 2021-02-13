@@ -1,12 +1,12 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Image, TouchableOpacity, Text, View } from 'react-native';
-import { AdvButton } from '../Buttons'
+import { AdvButton } from '../components/Buttons'
 import { Octicons, Fontisto, SimpleLineIcons, Feather } from '@expo/vector-icons';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { adStyles } from './../shared/Styles'; 
+import { adStyles } from '../shared/Styles'; 
 
 export default class Categories extends React.Component {
   

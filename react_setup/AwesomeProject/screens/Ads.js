@@ -1,19 +1,12 @@
-import React from 'react';
-import { ImageBackground, Text, View, ScrollView } from 'react-native'
-import Ad from './../Ad'
-import { adsStyles } from '../shared/Styles';
-
-
-const pressHandler = () => {
-  console.log(5);
-}
+import React from "react";
+import { ImageBackground, Text, View, ScrollView } from "react-native";
+import Ad from "../components/Ad";
+import { adsStyles } from "../shared/Styles";
 
 export default class Ads extends React.Component {
 
-    render(){
+    render() {
     const backgroundImage = require('./../assets/images/logInBackground.jpg')
-    const cameraIcon = require('./../assets/images/camera_icon.png')
-
       return (
         <ImageBackground
             style = {adsStyles.backgroundImageContainer}
@@ -45,8 +38,8 @@ export default class Ads extends React.Component {
                     <Ad title='Casovi gitare'/>
                 </View>
             </View>
-            </ScrollView>
-        </ImageBackground>
-      );
-    }
+        </ScrollView>
+      </ImageBackground>
+    );
   }
+}

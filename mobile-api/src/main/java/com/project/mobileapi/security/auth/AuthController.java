@@ -35,12 +35,11 @@ public class AuthController {
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
         User user = (User) authentication.getPrincipal();
-        // VRATI DRUGI STATUS KOD
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         String jwt = tokenUtils.generateToken(user.getUsername(), device);
-        int expiresIn = 3600;
+        long expiresIn = tokenUtils.getExpirationDateFromToken(jwt).getTime();
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
     }
 

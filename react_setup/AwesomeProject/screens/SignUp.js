@@ -1,85 +1,54 @@
-import React, { useEffect, useState }  from 'react';
-import { Button, ImageBackground, StyleSheet, TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
-import {SignUpButton} from '../Buttons';
-import * as ImagePicker from "expo-image-picker";
-import Constants from 'expo-constants'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {signupStyles} from '../shared/Styles';
+import React from "react";
+import {
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import { signupStyles } from "../shared/Styles";
+import SignUpForm from "../components/forms/SignUpForm";
+import { signup } from "../services/UserService";
+import { login } from "../services/AuthService";
+import LocalStorage from "../localStorage";
 
-const pressHandler = () => {
-console.log(5);
-}
+export default function SignUp(props) {
+  const backgroundImage = require("./../assets/images/signUpBackground.jpg");
 
-export default function SignUp() {
-const backgroundImage = require('./../assets/images/signUpBackground.jpg')
-const cameraIcon = require('./../assets/images/camera_icon.png')
-const B = (props) => <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>{props.children}</Text>
+  const signupCallback = async (user) => {
+    try {
+      const formData = new FormData();
+      Object.keys(user).forEach((key) => formData.append(key, user[key]));
+      const response = await fetch(user.image);
+      const blob = await response.blob();
+      formData.append("image", blob);
 
-const [image, setImage] = useState(null);
-useEffect(() => {
-    (async () => {
-          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
-      })();
-}, []);
-
-const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
+      await signup(formData);
+      redirect(user);
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
-    return (
-    <ImageBackground
-            style = {signupStyles.backgroundImageContainer}
-            source = {backgroundImage}>
-        <View style = {signupStyles.mainContainer}>
-        <View style = {signupStyles.imageContainer}>
-            <TouchableOpacity onPress = {pickImage}>
-              <Image
-                  style = {signupStyles.inputImage}
-                  source = {cameraIcon}
-              />
-              {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-            </TouchableOpacity>
-        </View>
-        <View style = {signupStyles.inputContainer}>
-            <TextInput
-                style = {signupStyles.inputField}
-                placeholder = "e-mail ili korisnicko ime"
-                placeholderTextColor="#ededed"
-            />
-            <TextInput
-                style = {signupStyles.inputField}
-                placeholder = "lozinka"
-                placeholderTextColor="#ededed"
-            />
-            <TextInput
-                style = {signupStyles.inputField}
-                placeholder = "lozinka"
-                placeholderTextColor="#ededed"
-            />
-            <TextInput
-                style = {signupStyles.inputField}
-                placeholder = "lozinka"
-                placeholderTextColor="#ededed"
-            />
-        </View>
-        <View style = {signupStyles.buttonContainer}>
-            <SignUpButton onPress = {pressHandler} title = {'Registrujte se'}/>
-        </View>
-        </View>
-    </ImageBackground>
-    );
+  const redirect = async (user) => {
+    try {
+      const token = await login({
+        username: user.username,
+        password: user.password,
+      });
+      LocalStorage.setItem("currentUser", token);
+      props.navigation.navigate("Home");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ImageBackground
+        style={signupStyles.backgroundImageContainer}
+        source={backgroundImage}
+      >
+        <SignUpForm signup={signupCallback} />
+      </ImageBackground>
+    </TouchableWithoutFeedback>
+  );
 }

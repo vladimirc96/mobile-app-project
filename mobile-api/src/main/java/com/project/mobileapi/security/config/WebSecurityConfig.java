@@ -4,9 +4,11 @@ import com.project.mobileapi.security.CustomUserDetailsService;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.security.auth.RestAuthenticationEntryPoint;
 import com.project.mobileapi.security.auth.TokenAuthenticationFilter;
+import com.project.mobileapi.util.KeyValueConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpMethod;
 import org.springframework.mobile.device.DeviceHandlerMethodArgumentResolver;
 import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
@@ -123,4 +125,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         argumentResolvers.add(deviceHandlerMethodArgumentResolver());
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new KeyValueConverter());
+    }
 }

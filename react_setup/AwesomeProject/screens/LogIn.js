@@ -7,7 +7,7 @@ import {
   View,
   ActivityIndicator,
 } from "react-native";
-import { LogInButton } from "../Buttons";
+import { LogInButton } from "../components/Buttons";
 import * as Font from "expo-font";
 import { loginStyles } from "../shared/Styles";
 
@@ -35,8 +35,8 @@ export default class LogIn extends React.Component {
   };
 
   login = () => {
-    console.log('login');
-  }
+    console.log("login");
+  };
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");

@@ -1,13 +1,13 @@
-import * as Font from 'expo-font';
+import * as Font from "expo-font";
 
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from "react-native";
 
 import Navigator from './routes/firstRunStack';
 import React from 'react';
 import Profile from './screens/Profile';
 
 const customFonts = {
-  'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')
+  "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
 };
 
 export default class App extends React.Component {
@@ -26,11 +26,9 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.fontsLoaded) {
-      return (
-        <Navigator />
-      );
+      return <Navigator />;
     } else {
-      return <ActivityIndicator size='large' />;
+      return <ActivityIndicator size="large" />;
     }
   }
 }
