@@ -63,7 +63,7 @@ export default class Ad extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={adStyles.ownerNameContainer}>
-                    <Text style={adStyles.ownerName}>Vlasnik: Slobodanka Jakovljevic </Text>
+                    <Text style={adStyles.ownerName} onPress={() => this.props.navigation.navigate('Profile')}>Vlasnik: Slobodanka Jakovljevic </Text>
                 </View>
             </View>
             <View style={adStyles.adDetails}>

@@ -49,9 +49,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: hp("1.5%"),
+    paddingTop: hp("3%"),
     color: "#ededed",
-    fontSize: 20,
+    fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
   signUpButtonContainer: {
@@ -63,9 +63,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: hp("1.5%"),
+    paddingTop: hp("3%"),
     color: "#ededed",
-    fontSize: 20,
+    fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
   firstRunButtonContainer: {
@@ -160,13 +160,13 @@ export const loginStyles = StyleSheet.create({
   },
   firstText: {
     textAlign: "left",
-    fontSize: 40,
+    fontSize: hp("5.5%"),
     fontFamily: "Comfortaa-Regular",
   },
   secondText: {
     textAlign: "left",
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: hp("5.5%"),
     fontFamily: "Comfortaa-Regular",
   },
   inputContainer: {
@@ -177,7 +177,8 @@ export const loginStyles = StyleSheet.create({
     width: wp("90%"),
     height: hp("10%"),
     paddingLeft: wp("5%"),
-    marginTop: hp("2%"),
+    marginTop: hp("1.5%"),
+    fontSize: hp("2%"),
     borderRadius: 20,
     borderWidth: 2,
     opacity: 0.8,
@@ -195,12 +196,12 @@ export const loginStyles = StyleSheet.create({
     justifyContent: "center",
   },
   footerText: {
-    fontSize: 18,
+    fontSize: hp("3%"),
   },
   boldText: {
     fontWeight: "bold",
     textDecorationLine: "underline",
-    fontSize: 18,
+    fontSize: hp("3%"),
   },
 });
 
@@ -213,23 +214,41 @@ export const signupStyles = StyleSheet.create({
     flex: 1,
     alignSelf: "center",
   },
-  imageContainer: {
+  imageContainerHeight: {
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: hp("7.3%"),
+    marginBottom: hp("2.2%"),
+    borderWidth: 2,
+    width: hp("24%"),
+    height: hp("24%"),
+    paddingLeft: hp("3.25%"),
+    borderRadius: 180,
+    opacity: 0.8,
+    borderColor: "#ededed",
+    backgroundColor: "#1e1c24",
+  },
+  imageContainerWidth: {
     alignSelf: "center",
     justifyContent: "center",
     marginTop: hp("7.3%"),
     marginBottom: hp("2.2%"),
     borderWidth: 2,
     width: wp("44%"),
-    height: hp("24%"),
-    paddingLeft: wp("6.7%"),
-    borderRadius: 80,
+    height: wp("44%"),
+    paddingLeft: wp("6.25%"),
+    borderRadius: 100,
     opacity: 0.8,
     borderColor: "#ededed",
     backgroundColor: "#1e1c24",
   },
-  inputImage: {
-    width: wp("30%"),
+  inputImageHeight: {
+    width: hp("17%"),
     height: hp("17%"),
+  },
+  inputImageWidth: {
+    width: wp("30%"),
+    height: wp("30%"),
   },
   inputContainer: {
     alignSelf: "center",
@@ -241,7 +260,8 @@ export const signupStyles = StyleSheet.create({
     height: hp("10%"),
     paddingLeft: wp("5%"),
     borderRadius: 20,
-    marginTop: hp("2%"),
+    marginTop: hp("1.5%"),
+    fontSize: hp("2%"),
     opacity: 0.8,
     borderColor: "#ededed",
     backgroundColor: "#1e1c24",
@@ -265,19 +285,31 @@ export const subCategoriesStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("3%"),
     marginBottom: hp("3%"),
-    width: wp("55%"),
+    minWidth: wp("40%"),
     height: hp("10%"),
-    paddingTop: hp("3%"),
     borderRadius: 30,
     borderWidth: 2,
     backgroundColor: "#1e1c24",
     borderColor: "#ededed",
   },
-  titleIcon: {
-    width: 40,
-    height: 40,
-    bottom: 10,
-    left: 8,
+  title:{
+    marginTop:hp("2.75%"),
+    fontSize: hp("2.5%"),
+    marginLeft:wp("3.5%"),
+    marginRight:wp("1.5%"),
+    color:'#ededed'
+  },
+  titleIconHeight: {
+    width: hp("5%"),
+    height: hp("5%"),
+    top: hp("2%"),
+    left: wp("2.5%"),
+  },
+  titleIconWidth:{
+    width: wp("12%"),
+    height: wp("12%"),
+    top: wp("4%"),
+    left: wp("2.5%")
   },
   subcategoryContainer: {
     alignSelf: "center",
@@ -332,10 +364,10 @@ export const subCategoryStyles = StyleSheet.create({
   mainContainerText: {
     textAlign: "left",
     textAlignVertical: "center",
-    paddingTop: 12,
-    paddingLeft: 10,
+    paddingTop: hp("2.75%"),
+    paddingLeft: wp("4%"),
     color: "#ededed",
-    fontSize: 18,
+    fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
 });

@@ -27,7 +27,7 @@ export default class Ads extends React.Component {
 
                 </View>
                 <View style={adsStyles.adContainer}>
-                    <Ad title='CASOVI GITARE DUZI NASLOV'/>
+                    <Ad navigation={this.props.navigation} title='CASOVI GITARE DUZI NASLOV'/>
                 </View>
                 <View style={adsStyles.adContainer}>
                     <Ad title='CASOVI GITARE'/>

@@ -4,7 +4,7 @@ import { ActivityIndicator } from 'react-native';
 
 import Navigator from './routes/firstRunStack';
 import React from 'react';
-import Profile from './screens/Profile';
+import { Profiler } from 'react';
 
 const customFonts = {
   'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf')

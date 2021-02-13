@@ -4,6 +4,7 @@ import Header from "./../shared/header";
 import Categories from "./../screens/Categories";
 import SubCategories from "./../screens/SubCategories";
 import Ads from "./../screens/Ads";
+import Profile from "./../screens/Profile";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -28,6 +29,14 @@ const screens = {
   },
   Ads: {
     screen: Ads,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+      };
+    },
+  },
+  Profile: {
+    screen: Profile,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
