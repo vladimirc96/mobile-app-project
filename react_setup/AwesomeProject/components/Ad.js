@@ -11,13 +11,13 @@ import * as Font from "expo-font";
 import { Octicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import { adStyles } from "../shared/Styles";
+import { adStyles } from "./../shared/Styles";
 
 const customFonts = {
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
-const gitara = require("../assets/images/gitara.jpg");
+const gitara = require("./../assets/images/gitara.jpg");
 
 const pressHandler = () => {
   console.log(5);
@@ -81,7 +81,10 @@ export default class Ad extends React.Component {
                 </TouchableOpacity>
               </View>
               <View style={adStyles.ownerNameContainer}>
-                <Text style={adStyles.ownerName}>
+                <Text
+                  style={adStyles.ownerName}
+                  onPress={() => this.props.navigation.navigate("Profile")}
+                >
                   Vlasnik: Slobodanka Jakovljevic{" "}
                 </Text>
               </View>
