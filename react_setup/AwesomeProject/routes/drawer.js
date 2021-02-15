@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 // stacks
-import CategoriesStack from './categoriesStack';
+import CategoriesStack from "./categoriesStack";
 import Drawer from "../components/Drawer";
 
 // drawer navigation options

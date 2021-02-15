@@ -104,7 +104,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   AdvButtonContainer: {
     alignSelf: "center",
-    marginTop: hp("4%"), 
+    marginTop: hp("4%"),
     width: wp("92%"),
     height: hp("9%"),
     borderRadius: 20,
@@ -128,7 +128,7 @@ export const categoriesStyles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignSelf: "center",
-    paddingTop: hp("7%")
+    paddingTop: hp("7%"),
   },
   categoryRowContainer: {
     flexDirection: "row",
@@ -139,11 +139,10 @@ export const categoriesStyles = StyleSheet.create({
     marginLeft: wp("2"),
     width: wp("28%"),
     height: hp("15%"),
-  }
+  },
 });
 
 export const categoryStyles = StyleSheet.create({
-
   category: {
     width: "100%",
     height: "100%",
@@ -339,12 +338,12 @@ export const subCategoriesStyles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     borderColor: "#ededed",
   },
-  title:{
-    marginTop:hp("2.75%"),
+  title: {
+    marginTop: hp("2.75%"),
     fontSize: hp("2.5%"),
-    marginLeft:wp("3.5%"),
-    marginRight:wp("1.5%"),
-    color:'#ededed'
+    marginLeft: wp("3.5%"),
+    marginRight: wp("1.5%"),
+    color: "#ededed",
   },
   titleIconHeight: {
     width: hp("5%"),
@@ -352,11 +351,11 @@ export const subCategoriesStyles = StyleSheet.create({
     top: hp("2%"),
     left: wp("2.5%"),
   },
-  titleIconWidth:{
+  titleIconWidth: {
     width: wp("12%"),
     height: wp("12%"),
     top: wp("4%"),
-    left: wp("2.5%")
+    left: wp("2.5%"),
   },
   subcategoryContainer: {
     alignSelf: "center",
@@ -424,7 +423,7 @@ export const adStyles = StyleSheet.create({
     backgroundColor: "#3f3e42",
     width: "100%",
     height: "100%",
-    borderRadius: 5
+    borderRadius: 5,
   },
   adMainContainer: {
     flexDirection: "row",
@@ -438,7 +437,7 @@ export const adStyles = StyleSheet.create({
     borderColor: "#ededed",
   },
   adMainText: {
-    marginTop: 3, 
+    marginTop: 3,
     marginLeft: wp("2.72%"),
     width: wp("36.6%"),
     backgroundColor: "#3f3e42",
@@ -588,7 +587,7 @@ export const firstRunStyles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: hp("10.5%")
+    marginTop: hp("10.5%"),
   },
   guestContainer: {
     alignSelf: "center",
