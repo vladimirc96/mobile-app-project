@@ -1,5 +1,6 @@
 package com.project.mobileapi.category;
 
+import com.project.mobileapi.model.Category;
 import com.project.mobileapi.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,10 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public List<CategoryDTO> findAll() {
         return categoryRepository.findAll().stream().map(CategoryMapper.INSTANCE::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Category findOneById(Long id) {
+        return categoryRepository.findOneById(id);
     }
 }

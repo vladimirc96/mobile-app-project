@@ -54,7 +54,7 @@ export default class Category extends React.Component {
                 : categoryStyles.categoryNameWidth
             }
           >
-            Umetnost
+            {this.props.title}
           </Text>
         </TouchableOpacity>
       );
