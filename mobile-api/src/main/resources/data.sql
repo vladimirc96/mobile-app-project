@@ -1,4 +1,4 @@
-INSERT INTO table_users VALUES ('test', null, null, 'test@gmail.com', '2021-01-14', 'Test', null, 'Test', '$2a$10$X5m5pL5ra2hkbJNl8ffrJ.uZnuBwB9z0ofwBJqX9i9OouszMLJ5C.',
+INSERT INTO table_users VALUES ('test', null, null, 'test@gmail.com', '2021-01-14', 'Test', null, 'Test', '$2a$10$/MwqV/SnmvqIalj/RIMy.Ox7HSnclNyCy1NNLeLY7nlwfMWDiRMwi',
  '062');
 
 INSERT INTO table_privileges VALUES (1, 'GET_USER_DETAILS');

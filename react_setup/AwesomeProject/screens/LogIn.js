@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  ImageBackground,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  View,
-  ActivityIndicator,
-} from "react-native";
-import { LogInButton } from "../components/Buttons";
+import { ImageBackground, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 import { loginStyles } from "../shared/Styles";
+import LoginForm from "../components/forms/LoginForm";
+import { login } from "../services/AuthService";
+import LocalStorage from "../localStorage";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -30,12 +25,17 @@ export default class LogIn extends React.Component {
     this._loadFontsAsync();
   }
 
-  navigateToRegistration = () => {
-    this.props.navigation.navigate("SignUp");
-  };
-
-  login = () => {
-    console.log("login");
+  handleLogin = async (user) => {
+    try {
+      const token = await login({
+        username: user.username,
+        password: user.password,
+      });
+      LocalStorage.setItem("currentUser", token);
+      this.props.navigation.navigate("Home");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   render() {
@@ -46,33 +46,10 @@ export default class LogIn extends React.Component {
           style={loginStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <View style={loginStyles.mainContainer}>
-            <View style={loginStyles.welcomeTextContainer}>
-              <Text style={loginStyles.firstText}>Dobrodošli</Text>
-              <Text style={loginStyles.secondText}>Ulogujte se.</Text>
-            </View>
-            <View style={loginStyles.inputContainer}>
-              <TextInput
-                style={loginStyles.inputField}
-                placeholder="e-mail ili korisničko ime"
-                placeholderTextColor="#ededed"
-              />
-              <TextInput
-                style={loginStyles.inputField}
-                placeholder="lozinka"
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <View style={loginStyles.footerContainer}>
-              <View style={loginStyles.footerSmallContainer}>
-                <Text style={loginStyles.footerText}> Nemate profil? </Text>
-                <TouchableOpacity onPress={this.navigateToRegistration}>
-                  <Text style={loginStyles.boldText}>Registruj se</Text>
-                </TouchableOpacity>
-              </View>
-              <LogInButton onPress={this.login} title={"Ulogujte se"} />
-            </View>
-          </View>
+          <LoginForm
+            login={this.handleLogin}
+            navigation={this.props.navigation}
+          />
         </ImageBackground>
       );
     } else {
