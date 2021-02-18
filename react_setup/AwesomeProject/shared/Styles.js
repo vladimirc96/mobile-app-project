@@ -300,6 +300,7 @@ export const signupStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "#ededed",
     backgroundColor: "#1e1c24",
+    color: "#ffffff",
   },
   buttonContainer: {
     alignSelf: "center",
@@ -314,6 +315,8 @@ export const signupStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "red",
     backgroundColor: "#1e1c24",
+    color: "#ffffff",
+    fontSize: hp("2%"),
   },
 });
 

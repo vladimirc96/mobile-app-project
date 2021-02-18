@@ -3,18 +3,45 @@ import { ImageBackground, Text, View, Image, ScrollView } from "react-native";
 import SubCategory from "./../components/SubCategory";
 import { subCategoriesStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
+import { getAllByCategoryId } from "../services/SubCategoryService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const pressHandler = () => {
-  console.log(5);
-};
-
 export default class SubCategories extends React.Component {
+  state = {
+    subCategories: [],
+  };
+
+  componentDidMount() {
+    this.getAllByCategoryId();
+  }
+
+  async getAllByCategoryId() {
+    try {
+      const data = await getAllByCategoryId(
+        this.props.navigation.state.params.categoryId
+      );
+      this.setState({ subCategories: data });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
+    const subCategoryList = this.state.subCategories.map((subCategory) => (
+      <View
+        style={subCategoriesStyles.subcategoryContainer}
+        key={subCategory.id}
+      >
+        <SubCategory
+          onPress={() => this.props.navigation.navigate("Ads")}
+          title={subCategory.name}
+        />
+      </View>
+    ));
     return (
       <ImageBackground
         style={subCategoriesStyles.backgroundImageContainer}
@@ -33,42 +60,7 @@ export default class SubCategories extends React.Component {
               />
               <Text style={subCategoriesStyles.title}> #CATEGORY_NAME </Text>
             </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory
-                onPress={() => this.props.navigation.navigate("Ads")}
-                title={"1. Subcategory"}
-              />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
-            <View style={subCategoriesStyles.subcategoryContainer}>
-              <SubCategory onPress={pressHandler} title={"1. Subcategory"} />
-            </View>
+            {subCategoryList}
           </View>
         </ScrollView>
       </ImageBackground>

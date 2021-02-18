@@ -6,6 +6,7 @@ import { SignUpButton } from "../Buttons";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import * as yup from "yup";
+import { Dimensions } from "react-native";
 
 const signUpSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
@@ -16,6 +17,9 @@ const signUpSchema = yup.object({
     .email("Email nije validan."),
   phoneNumber: yup.string().required("Broj telefona je obavezan."),
 });
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 export default function SignUpForm({ signup }) {
   const cameraIcon = require("../../assets/images/camera_icon.png");
@@ -61,9 +65,22 @@ export default function SignUpForm({ signup }) {
       >
         {(props) => (
           <ScrollView>
-            <View style={signupStyles.imageContainer}>
+            <View
+              style={
+                windowHeight * 0.37 < windowWidth * 0.7
+                  ? signupStyles.imageContainerHeight
+                  : signupStyles.imageContainerWidth
+              }
+            >
               <TouchableOpacity onPress={pickImage}>
-                <Image style={signupStyles.inputImage} source={cameraIcon} />
+                <Image
+                  style={
+                    windowHeight * 0.37 < windowWidth * 0.7
+                      ? signupStyles.inputImageHeight
+                      : signupStyles.inputImageWidth
+                  }
+                  source={cameraIcon}
+                />
                 {image && (
                   <Image
                     source={{ uri: image }}
