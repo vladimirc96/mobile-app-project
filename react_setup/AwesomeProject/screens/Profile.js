@@ -26,7 +26,7 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default class Categories extends React.Component {
+export default class Profile extends React.Component {
   constructor(){
     super()
     this.state ={
@@ -84,7 +84,10 @@ export default class Categories extends React.Component {
               <Text style={styles.ratingText}>69</Text>
             </View>
             <View style={styles.editButton}>
-              <Text style={styles.editButtonText}> Izmeni Profil </Text>
+              <Text
+              style={styles.editButtonText}
+              onPress={() => this.props.navigation.navigate("EditProfile")}
+              > Izmeni Profil </Text>
             </View>
           </View>
           <View style={styles.aboutUser}>
