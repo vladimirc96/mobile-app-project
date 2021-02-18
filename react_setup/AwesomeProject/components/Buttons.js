@@ -41,7 +41,6 @@ export class LogInButton extends React.Component {
     }
   }
 }
-
 export class AdvButton extends React.Component {
   state = {
     fontsLoaded: false,

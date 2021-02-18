@@ -31,7 +31,7 @@ export default class LogIn extends React.Component {
         username: user.username,
         password: user.password,
       });
-      LocalStorage.setItem("currentUser", token);
+      await LocalStorage.setItem("currentUser", token);
       this.props.navigation.navigate("Home");
     } catch (err) {
       alert(err.message);

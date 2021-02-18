@@ -1,21 +1,48 @@
 import SafeAreaView from "react-native-safe-area-view";
 import { DrawerItems } from "react-navigation-drawer";
-import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { logout } from "../services/AuthService";
+import LocalStorage from "../localStorage";
 
 export default function Drawer(props) {
+  const handleLogout = async () => {
+    try {
+      await logout();
+      await LocalStorage.removeItem("currentUser");
+      alert("Odjavljeni ste");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const getToken = async () => {
+    const data = await LocalStorage.getItem("currentUser");
+    console.log(data);
+    setToken(data);
+  };
+
+  const [token, setToken] = useState({});
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
   return (
-    <ScrollView>
-      <SafeAreaView
-        style={styles.container}
-        forceInset={{ top: "always", horizontal: "never" }}
-      >
-        <DrawerItems
-          {...props}
-          onItemPress={() => props.navigation.navigate("Categories")}
-        />
-      </SafeAreaView>
-    </ScrollView>
+    <SafeAreaView
+      style={styles.container}
+      forceInset={{ top: "always", horizontal: "never" }}
+    >
+      <DrawerItems
+        {...props}
+        onItemPress={() => props.navigation.navigate("Categories")}
+      />
+      {token ? (
+        <TouchableOpacity onPress={handleLogout}>
+          <Text>Odjava</Text>
+        </TouchableOpacity>
+      ) : null}
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
