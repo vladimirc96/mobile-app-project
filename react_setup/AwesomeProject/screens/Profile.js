@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   Text,
   View,
+  ScrollView
 } from "react-native";
 import { AdvButton } from "../components/Buttons";
 import {
   Octicons,
   Fontisto,
+  FontAwesome,
   SimpleLineIcons,
   Feather,
 } from "@expo/vector-icons";
@@ -19,8 +21,26 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { adStyles } from "../shared/Styles";
+import { Dimensions } from "react-native";
 
-export default class Categories extends React.Component {
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
+export default class Profile extends React.Component {
+  constructor(){
+    super()
+    this.state ={
+      text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
+      shortText: true
+    }
+  }
+
+  handlePress = () => {
+    this.setState(prevState => ({
+      shortText: !prevState.shortText
+    }));
+  }
+
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
@@ -32,20 +52,25 @@ export default class Categories extends React.Component {
         style={styles.backgroundImageContainer}
         source={backgroundImage}
       >
+        <ScrollView>
         <View style={styles.mainContainer}>
           <View style={styles.basicUserInfo}>
-            <Image style={styles.inputImage} source={avatar} />
+            <Image style={
+                  windowHeight * 0.37 < windowWidth * 0.7
+                    ? styles.profileImageHeight
+                    : styles.profileImageWidth
+                } source={avatar} />
             <Text style={styles.profileName}>Vladimir Cvetanovic</Text>
             <View style={styles.userLocation}>
-              <SimpleLineIcons name="location-pin" size={22} color="white" />
+              <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="white" />
               <Text style={styles.location}>Novi Sad, Srbija</Text>
             </View>
             <View style={styles.userMail}>
-              <Fontisto name="email" size={20} color="white" />
+              <Fontisto name="email" size={hp("2.5%")} color="white" />
               <Text style={styles.location}>dovla.car@gmail.com</Text>
             </View>
             <View style={styles.userOntact}>
-              <Feather name="phone" size={20} color="white" />
+              <Feather name="phone" size={hp("2.5%")} color="white" />
               <Text style={styles.location}>+381 62 266 021</Text>
             </View>
             <View style={styles.userRating}>
@@ -58,32 +83,68 @@ export default class Categories extends React.Component {
               </TouchableOpacity>
               <Text style={styles.ratingText}>69</Text>
             </View>
+            <View style={styles.editButton}>
+              <Text
+              style={styles.editButtonText}
+              onPress={() => this.props.navigation.navigate("EditProfile")}
+              > Izmeni Profil </Text>
+            </View>
           </View>
           <View style={styles.aboutUser}>
             <Text style={styles.sectionName}>O korisniku</Text>
-            <View style={styles.dashContainer}>
+            {/* <View style={styles.dashContainer}>
               <Octicons name="dash" style={styles.line} />
               <Octicons name="dash" style={styles.line} />
               <Octicons name="dash" style={styles.line} />
               <Octicons name="dash" style={styles.line} />
-            </View>
+            </View> */}
             <View style={styles.userDetails}>
               <Text style={styles.details}>
-                Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,
-                SrbijaNovi Sad, Srbija Novi Sad, Srbija Novi Sad, SrbijaNovi
-                Sad, SrbijaNovi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija
-                Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija
+                {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
               </Text>
+          </View>
+          <FontAwesome
+                    name={this.state.shortText? "angle-double-down" : "angle-double-up"}
+                    style={styles.arrow}
+                    onPress={this.handlePress}
+                  />
+            </View>
+          <View style={styles.smallContainer}>
+            <View style={{flexDirection: "row"}}>
+              <Text style={styles.sectionName}>Komentari</Text>
+              <FontAwesome
+                    name="angle-double-down"
+                    style={styles.arrowSmall}
+                  />
+            </View>
+            {/* <View style={styles.dashContainer}>
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+            </View> */}
+            <View style={styles.userDetails}>
+              <Text style={styles.details}>Casovi iz pythona</Text>
+              <View style={{flexDirection: "row", marginTop: hp("0.25%"), marginLeft: wp("1%")}}>
+                <SimpleLineIcons name="like" style={styles.like} />
+              </View>
+              
             </View>
           </View>
-          <View style={styles.aboutUser}>
-            <Text style={styles.sectionName}>Komentari</Text>
-            <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
+          <View style={styles.smallContainer}>
+            <View style={{flexDirection: "row"}}>
+              <Text style={styles.sectionName}>Oglasi</Text>
+              <FontAwesome
+                    name="angle-double-down"
+                    style={styles.arrowSmall}
+                  />
             </View>
+            {/* <View style={styles.dashContainer}>
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+            </View> 
             <View style={styles.userDetails}>
               <Text style={styles.details}>Casovi iz pythona</Text>
               <SimpleLineIcons name="like" style={styles.like} />
@@ -93,9 +154,10 @@ export default class Categories extends React.Component {
                 Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,
                 SrbijaNovi Sad, Srbija
               </Text>
-            </View>
+            </View> */}
           </View>
         </View>
+        </ScrollView>
       </ImageBackground>
     );
   }
@@ -108,27 +170,57 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     alignSelf: "center",
-    marginTop: hp("8%"),
+    marginTop: hp("3%"),
     width: wp("90%"),
-    height: hp("40%"),
+    height: wp("60%")
+  },
+  editButton: {
+    width: wp("90%"),
+    height: hp("5%"),
+    borderRadius: 10,
+    textAlign: "center",
+    backgroundColor: "#03d5ff",
+    borderWidth: 1,
+    borderColor: "#ededed"
+  },
+  editButtonText: {
+    marginTop: hp("1%"),
+    color: "#ededed",
+    fontSize: hp("2%"),
+    fontWeight: "bold"
   },
   basicUserInfo: {
+    maxHeight: hp("50%"),
+    marginBottom: wp("1%"),
     backgroundColor: "#1e1c24",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ededed",
+    borderColor: "#ededed"
   },
-  inputImage: {
+  profileImageHeight: {
     alignSelf: "center",
     marginTop: hp("1.5%"),
+    width: hp("15%"),
+    height: hp("15%"),
+  },
+  profileImageWidth:{
+    alignSelf: "center",
+    marginTop: wp("3%"),
     width: wp("30%"),
-    height: hp("17%"),
+    height: wp("30%"),
+  },
+  titleIconWidth: {
+    width: wp("12%"),
+    height: wp("12%"),
+    top: wp("4%"),
+    left: wp("2.5%"),
   },
   profileName: {
     alignSelf: "center",
     marginTop: hp("1.5%"),
     marginBottom: hp("0.5%"),
-    fontSize: 20,
+    fontSize: hp("3%"),
+    fontWeight: "bold",
     color: "#ededed",
   },
   userLocation: {
@@ -138,7 +230,7 @@ const styles = StyleSheet.create({
   },
   location: {
     marginLeft: wp("1%"),
-    fontSize: 16,
+    fontSize: wp("4%"),
     color: "#ededed",
   },
   userMail: {
@@ -157,7 +249,7 @@ const styles = StyleSheet.create({
     marginBottom: hp("1.5%"),
   },
   ratingText: {
-    fontSize: 16,
+    fontSize: hp("2%"),
     color: "#ededed",
     marginLeft: wp("1%"),
     marginRight: wp("3%"),
@@ -166,14 +258,14 @@ const styles = StyleSheet.create({
     color: "#ededed",
   },
   like: {
-    fontSize: 18,
+    fontSize: hp("2.75%"),
     color: "#ededed",
   },
   dislikeComponent: {
     color: "#ededed",
   },
   dislike: {
-    fontSize: 18,
+    fontSize: hp("2.75%"),
     color: "#ededed",
   },
   userContact: {
@@ -185,6 +277,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   aboutUser: {
+    marginBottom: hp("0.5%"),
+    backgroundColor: "#1e1c24",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ededed",
+  },
+  smallContainer: {
+    marginBottom: hp("0.5%"),
     backgroundColor: "#1e1c24",
     borderRadius: 10,
     borderWidth: 1,
@@ -193,8 +293,10 @@ const styles = StyleSheet.create({
   sectionName: {
     left: wp("2%"),
     marginTop: hp("1.5%"),
-    marginBottom: hp("0.5%"),
-    fontSize: 20,
+    marginBottom: hp("1.5%"),
+    marginLeft: wp("2%"),
+    marginRight: wp("2%"),
+    fontSize: hp("2.5%"),
     color: "#ededed",
   },
   dashContainer: {
@@ -203,18 +305,30 @@ const styles = StyleSheet.create({
   },
   line: {
     textAlignVertical: "center",
-    fontSize: 5,
+    fontSize: hp("3%"),
     color: "#ededed",
   },
   userDetails: {
-    paddingHorizontal: wp("2.5%"),
-    paddingVertical: hp("1%"),
+    paddingHorizontal: hp("1.25%"),
+    paddingVertical: wp("2%"),
     marginHorizontal: wp("1.5%"),
     marginVertical: hp("0.5%"),
     borderRadius: 10,
     backgroundColor: "#1f1f2f",
   },
   details: {
+    fontSize: hp("2%"),
     color: "#ededed",
   },
+  arrow: {
+    alignSelf: "center",
+    fontSize: hp("3%"),
+    color: "#ededed",
+  },
+  arrowSmall: {
+    alignSelf: "center",
+    marginTop: hp("0.5%"),
+    fontSize: hp("3%"),
+    color: "#ededed",
+  }
 });

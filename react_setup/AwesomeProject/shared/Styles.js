@@ -118,6 +118,23 @@ export const buttonsStyles = StyleSheet.create({
     fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
+  editProfileButtonContainer: {
+    alignSelf: "center",
+    marginTop: hp("2%"),
+    marginBottom: hp("2%"),
+    width: wp("25%"),
+    height: hp("4.25%"),
+    borderRadius: 6,
+    backgroundColor: "#87cefa",
+    opacity: 0.99,
+  },
+  editProfileButtonText: {
+    textAlign: "center",
+    marginTop: hp("1%"),
+    color: "#ededed",
+    fontSize: hp("2.25%"),
+    fontFamily: "Comfortaa-Bold",
+  },
 });
 
 export const categoriesStyles = StyleSheet.create({
@@ -413,6 +430,9 @@ export const headerStyles = StyleSheet.create({
     width: hp("7%"),
     position: "absolute",
     right: wp("2%"),
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: "white",
   },
 });
 
