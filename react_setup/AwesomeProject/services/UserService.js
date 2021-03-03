@@ -10,3 +10,13 @@ export const signup = (user) => {
   };
   return MobileApi.post(`${url}/register`, user, config);
 };
+
+export const getUserInfo = (username) => {
+  const config = {
+    params: {
+      username,
+    },
+  };
+  return MobileApi.get(`${url}/user-info`, config);
+};
+

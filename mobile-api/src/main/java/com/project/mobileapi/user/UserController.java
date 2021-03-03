@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,12 @@ public class UserController {
     @PreAuthorize("hasAuthority('GET_USER_DETAILS')")
     public ResponseEntity<UserDTO> getUser(HttpServletRequest request){
         String username = tokenUtils.getUsernameFromToken(tokenUtils.getToken(request));
+        UserDTO user = userService.findOneByUsername(username);
+        return new ResponseEntity<>(ObjectUtils.isEmpty(user), HttpStatus.OK);
+    }
+
+    @GetMapping("user-info")
+    public ResponseEntity<UserDTO> getUserInfo(@RequestParam String username){
         UserDTO user = userService.findOneByUsername(username);
         return new ResponseEntity<>(ObjectUtils.isEmpty(user), HttpStatus.OK);
     }
