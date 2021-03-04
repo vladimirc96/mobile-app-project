@@ -97,7 +97,7 @@ export default class EditProfile extends React.Component {
             </View>
             <TextInput
               multiline={true}
-              numberOfLines={5}
+              numberOfLines={4}
               style={styles.detailsInputField}
               placeholder="Napiši nešto o sebi..."
               placeholderTextColor="#ededed"
@@ -121,14 +121,6 @@ export default class EditProfile extends React.Component {
         minHeight: hp("80%"),
         borderRadius: 10,
         backgroundColor: "#2d2d2d",
-    },
-    backForwardContainer: {
-      flexDirection: 'row',
-      justifyContent: "center",
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      height: hp("4%"),
-      backgroundColor: "#181824",
     },
     inputImageHeight: {
         alignSelf: "center",

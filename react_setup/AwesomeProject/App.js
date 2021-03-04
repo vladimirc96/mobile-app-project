@@ -4,10 +4,8 @@ import { ActivityIndicator } from "react-native";
 
 import Navigator from "./routes/firstRunStack";
 import React from "react";
-import { Profiler } from "react";
-import EditProfile from "./screens/EditPtofile";
-import { EditProfileButton } from "./components/Buttons";
 
+import AdCreation from "./screens/adCreation";
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
