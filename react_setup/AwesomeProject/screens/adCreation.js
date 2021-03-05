@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign, FontAwesome  } from '@expo/vector-icons'; 
 import {Picker} from "@react-native-picker/picker";
 import RadioButton from './../components/RadioButton';
 import * as ImagePicker from "expo-image-picker";
@@ -29,7 +29,8 @@ export default class AdCreation extends React.Component {
       selectedCategory: "category_id_1",
       selectedSubcategory: "subcategory_id_1",
       checkedPrice: "price_id_1",
-      image: null
+      image: null,
+      selectedType: "adType_id_2"
     };
 
     componentDidMount() {
@@ -132,10 +133,26 @@ export default class AdCreation extends React.Component {
                 </TouchableOpacity>
               </View>
               <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Izaberi tip oglasa</Text>
+                <View style={styles.inputFieldAdditionalContainer}>
+                  <Text style={styles.fieldName}>Izaberi tip oglasa</Text>
+                  <FontAwesome name="question-circle-o" style={styles.questionMarkIcon} />
+                </View>
+                <View style={styles.dropDownTypeContainer}>
+                  <View style={styles.dropDownSubContainer}>
+                      <Picker
+                        selectedSubcategory={this.state.selectedType}
+                        style={{fontWeight: "600", fontSize: hp("2%"), backgroundColor: "#1e1c24", color: "white", borderColor: 'transparent', paddingTop: hp("0.75%")}}
+                        onValueChange={(itemValue, itemIndex) => this.setState({selectedType: itemValue})}
+                      >
+                        <Picker.Item label= 'Basic' value= 'adType_id_1' />
+                        <Picker.Item label= 'VIP' value= 'adType_id_2' />
+                        <Picker.Item label= 'Gold' value= 'adType_id_3' />
+                      </Picker>
+                    </View>
+                  </View>
                 <TextInput
-                  style={styles.inputField}
-                  placeholder="Ženski"
+                  style={styles.typeCodeInput}
+                  placeholder="Unesite kod ovde"
                   placeholderTextColor="#ededed"
                 />
               </View>
@@ -223,6 +240,7 @@ export default class AdCreation extends React.Component {
       width: wp('75%'),
       backgroundColor: "#1e1c24",
       height: hp("4%"),
+      fontWeight: "bold"
     },
     priceRBContainer:{
       marginTop: hp("0.75%"),
@@ -236,7 +254,7 @@ export default class AdCreation extends React.Component {
       alignSelf: 'center',
       marginTop: hp("0.75%"),
       width: wp("82%"),
-      borderRadius: 9,
+      borderRadius: 8,
       borderWidth: 1,
       borderColor: "white",
       backgroundColor: "#1e1c24",
@@ -258,5 +276,36 @@ export default class AdCreation extends React.Component {
       fontSize: hp("2.25%"),
       color: "#ededed",
       paddingTop: hp("0.55%") 
+    },
+    inputFieldAdditionalContainer: {
+      flexDirection: 'row',
+    },
+    questionMarkIcon: {
+      marginLeft: wp("1%"),
+      fontSize: hp("2.25%"),
+      color: "#ededed",
+      paddingTop: hp("1.25%")
+    },
+    dropDownTypeContainer: {
+      marginTop: hp("0.75%"),
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: "white",
+      backgroundColor: "#1e1c24",
+      height: hp("4.5%"),
+    },
+    typeCodeInput: {
+      alignSelf: 'center',
+      textAlign: 'center',
+      marginTop: hp("0.75%"),
+      width: wp('40%'),
+      height: hp("4%"),
+      paddingLeft: wp("1.5%"),
+      borderWidth: 1,
+      borderRadius: 8,
+      borderColor: '#ededed',
+      fontSize: hp("2%"),
+      fontStyle: 'italic',
+      opacity: 0.8,
     }
   });

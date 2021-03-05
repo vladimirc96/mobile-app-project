@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.fontsLoaded) {
-      return <Navigator />;
+      return <AdCreation />;
     } else {
       return <ActivityIndicator size="large" />;
     }
