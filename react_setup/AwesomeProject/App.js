@@ -1,12 +1,7 @@
 import * as Font from "expo-font";
-
 import { ActivityIndicator } from "react-native";
-
 import Navigator from "./routes/firstRunStack";
 import React from "react";
-import { Profiler } from "react";
-import EditProfile from "./screens/EditPtofile";
-import { EditProfileButton } from "./components/Buttons";
 
 
 const customFonts = {

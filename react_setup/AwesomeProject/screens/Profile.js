@@ -57,7 +57,7 @@ export default class Profile extends React.Component {
     const avatar = require("./../assets/images/avatar.png");
 
     if (!this.state.user) {
-      return (<View></View>);
+      return <View></View>;
     }
 
     return (
@@ -112,7 +112,11 @@ export default class Profile extends React.Component {
               <View style={styles.editButton}>
                 <Text
                   style={styles.editButtonText}
-                  onPress={() => this.props.navigation.navigate("EditProfile")}
+                  onPress={() =>
+                    this.props.navigation.navigate("EditProfile", {
+                      user: this.state.user,
+                    })
+                  }
                 >
                   Izmeni Profil
                 </Text>

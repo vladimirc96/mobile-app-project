@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import { StyleSheet, Image, Text, TextInput, View } from "react-native";
 import { EditProfileButton } from "../Buttons";
@@ -9,6 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as yup from "yup";
+import { Picker } from "@react-native-picker/picker";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -18,19 +19,20 @@ const editProfileSchema = yup.object({
   password: yup.string(),
 });
 
-export default function EditProfileForm({ updateUser, navigation }) {
+export default function EditProfileForm({ updateUser, locations, user }) {
   const avatar = require("../../assets/images/avatar.png");
 
   return (
     <View>
       <Formik
         initialValues={{
-          username: "",
-          name: "",
-          lastName: "",
-          phoneNumber: "",
-          email: "",
-          location: "",
+          username: user.username,
+          name: user.name,
+          lastName: user.lastName,
+          phoneNumber: user.phoneNumber,
+          email: user.email,
+          location: user.location,
+          details: user.details ? user.details : '',
         }}
         onSubmit={(values) => {
           updateUser(values);
@@ -53,41 +55,53 @@ export default function EditProfileForm({ updateUser, navigation }) {
                 <Text style={styles.fieldName}>Korisničko ime</Text>
                 <TextInput
                   style={styles.inputField}
-                  placeholder="dovla_car"
-                  placeholderTextColor="#ededed"
+                  onChangeText={props.handleChange("username")}
+                  value={props.values.username}
                 />
               </View>
               <View style={styles.inputFieldContainer}>
                 <Text style={styles.fieldName}>Ime i prezime</Text>
                 <TextInput
                   style={styles.inputField}
-                  placeholder="Vladimir Cvetanovic"
-                  placeholderTextColor="#ededed"
+                  onChangeText={props.handleChange("name")}
+                  value={props.values.name}
                 />
               </View>
               <View style={styles.inputFieldContainer}>
                 <Text style={styles.fieldName}>Kontakt telefon</Text>
                 <TextInput
                   style={styles.inputField}
-                  placeholder="062266021"
-                  placeholderTextColor="#ededed"
+                  onChangeText={props.handleChange("phoneNumber")}
+                  value={props.values.phoneNumber}
                 />
               </View>
               <View style={styles.inputFieldContainer}>
                 <Text style={styles.fieldName}>E-mail adresa</Text>
                 <TextInput
                   style={styles.inputField}
-                  placeholder="dovla.car96@hotmail.com"
-                  placeholderTextColor="#ededed"
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
                 />
               </View>
+
               <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Lokacija</Text>
-                <TextInput
-                  style={styles.inputField}
-                  placeholder="Novi Sad"
-                  placeholderTextColor="#ededed"
-                />
+                <Picker
+                  selectedValue={props.values.location}
+                  style={{
+                    fontSize: hp("2%"),
+                    backgroundColor: "#1e1c24",
+                    color: "white",
+                    borderColor: "transparent",
+                    paddingTop: hp("0.5%"),
+                  }}
+                  onValueChange={(itemValue, itemIndex) =>
+                    props.setFieldValue("location", itemValue)
+                  }
+                >
+                  {locations.map((location) => (
+                    <Picker.Item label={location.value} value={location.id} key={location.id}/>
+                  ))}
+                </Picker>
               </View>
               <View style={styles.inputFieldContainer}>
                 <Text style={styles.fieldName}>Pol</Text>
@@ -102,8 +116,8 @@ export default function EditProfileForm({ updateUser, navigation }) {
               multiline={true}
               numberOfLines={5}
               style={styles.detailsInputField}
-              placeholder="Napiši nešto o sebi..."
-              placeholderTextColor="#ededed"
+              onChangeText={props.handleChange("details")}
+              value={props.values.details}
             />
             <EditProfileButton title={"Sačuvaj"} />
           </View>
@@ -182,6 +196,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     opacity: 0.8,
     backgroundColor: "#1e1c24",
+    color: "#ffffff",
   },
   detailsInputField: {
     alignSelf: "center",

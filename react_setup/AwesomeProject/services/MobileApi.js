@@ -1,8 +1,14 @@
 import LocalStorage from "../localStorage";
 import axios from "axios";
+import Constants from "expo-constants";
+const { manifest } = Constants;
+
+const api = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
+  ? manifest.debuggerHost.split(`:`).shift().concat(`:8080`)
+  : `api.example.com`;
 
 const Axios = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: 'http://'.concat(api),
 });
 
 Axios.interceptors.request.use((req) => {
