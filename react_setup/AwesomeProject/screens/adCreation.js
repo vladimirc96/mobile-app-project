@@ -10,13 +10,13 @@ import {
 } from "react-native";
 import { AntDesign, FontAwesome  } from '@expo/vector-icons'; 
 import {Picker} from "@react-native-picker/picker";
-import RadioButton from './../components/RadioButton';
+import RadioButton from '../components/RadioButton';
 import * as ImagePicker from "expo-image-picker";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { EditProfileButton } from "./../components/Buttons";
+import { EditProfileButton } from "../components/Buttons";
 
 import { Dimensions } from "react-native";
 

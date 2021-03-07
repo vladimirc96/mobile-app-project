@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native";
 import Navigator from "./routes/firstRunStack";
 import React from "react";
 
-import AdCreation from "./screens/adCreation";
+import AboutUs from "./screens/AboutUs";
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.fontsLoaded) {
-      return <AdCreation />;
+      return <Navigator />;
     } else {
       return <ActivityIndicator size="large" />;
     }
