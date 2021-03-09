@@ -154,7 +154,7 @@ export const buttonsStyles = StyleSheet.create({
   aboutContactText: {
     textAlign: "center",
     paddingTop: hp("2.75%"),
-    marginLeft: wp("1.25%"),
+    marginLeft: wp("2%"),
     color: "#ededed",
     fontSize: wp("5%"),
     fontFamily: "Comfortaa-Bold",

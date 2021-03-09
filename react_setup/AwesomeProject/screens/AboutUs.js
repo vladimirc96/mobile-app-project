@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "space-between",
     width: wp("100%"),
-    height: hp("100%"),
+    height: hp("88%"),
     backgroundColor: "#ededed",
   },
   titleContainer: {
     alignContent: "center",
-    marginTop: hp("2%"),
+    marginTop: hp("5%"),
   },
   titleText: {
     alignSelf: "center",
