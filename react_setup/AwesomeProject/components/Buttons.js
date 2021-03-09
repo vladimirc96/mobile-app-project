@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, Image, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
-import { Fontisto  } from '@expo/vector-icons'; 
+import { Fontisto } from "@expo/vector-icons";
 import { buttonsStyles } from "../shared/Styles";
 
 const customFonts = {
@@ -172,7 +172,9 @@ export class EditProfileButton extends React.Component {
           onPress={this.props.onPress}
           style={buttonsStyles.editProfileButtonContainer}
         >
-          <Text style={buttonsStyles.editProfileButtonText}>{this.props.title}</Text>
+          <Text style={buttonsStyles.editProfileButtonText}>
+            {this.props.title}
+          </Text>
         </TouchableOpacity>
       );
     } else {

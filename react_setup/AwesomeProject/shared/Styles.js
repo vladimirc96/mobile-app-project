@@ -136,9 +136,9 @@ export const buttonsStyles = StyleSheet.create({
     fontFamily: "Comfortaa-Bold",
   },
   aboutContactButtonContainer: {
-    flexDirection: 'row',
-    alignContent: 'center',
-    alignSelf: 'center',
+    flexDirection: "row",
+    alignContent: "center",
+    alignSelf: "center",
     width: wp("80%"),
     height: hp("9%"),
     borderRadius: 20,
@@ -146,10 +146,10 @@ export const buttonsStyles = StyleSheet.create({
     opacity: 0.99,
   },
   aboutContactIcon: {
-    marginLeft:  wp("12%"),
+    marginLeft: wp("12%"),
     paddingTop: hp("2.75%"),
     fontSize: wp("5%"),
-    color: "#ededed"
+    color: "#ededed",
   },
   aboutContactText: {
     textAlign: "center",

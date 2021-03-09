@@ -5,7 +5,7 @@ import AboutUs from "./../screens/AboutUs";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
-    AboutUs: {
+  AboutUs: {
     screen: AboutUs,
     navigationOptions: ({ navigation }) => {
       return {
@@ -15,7 +15,7 @@ const screens = {
         headerLeft: null,
       };
     },
-  }
+  },
 };
 
 // home stack navigator screens

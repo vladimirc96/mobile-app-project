@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Text,
   View,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { AdvButton } from "../components/Buttons";
 import {
@@ -27,19 +27,20 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export default class Profile extends React.Component {
-  constructor(){
-    super()
-    this.state ={
-      text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
-      shortText: true
-    }
+  constructor() {
+    super();
+    this.state = {
+      text:
+        "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
+      shortText: true,
+    };
   }
 
   handlePress = () => {
-    this.setState(prevState => ({
-      shortText: !prevState.shortText
+    this.setState((prevState) => ({
+      shortText: !prevState.shortText,
     }));
-  }
+  };
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
@@ -53,93 +54,112 @@ export default class Profile extends React.Component {
         source={backgroundImage}
       >
         <ScrollView>
-        <View style={styles.mainContainer}>
-          <View style={styles.basicUserInfo}>
-            <Image style={
+          <View style={styles.mainContainer}>
+            <View style={styles.basicUserInfo}>
+              <Image
+                style={
                   windowHeight * 0.37 < windowWidth * 0.7
                     ? styles.profileImageHeight
                     : styles.profileImageWidth
-                } source={avatar} />
-            <Text style={styles.profileName}>Vladimir Cvetanovic</Text>
-            <View style={styles.userLocation}>
-              <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>Novi Sad, Srbija</Text>
-            </View>
-            <View style={styles.userMail}>
-              <Fontisto name="email" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>dovla.car@gmail.com</Text>
-            </View>
-            <View style={styles.userOntact}>
-              <Feather name="phone" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>+381 62 266 021</Text>
-            </View>
-            <View style={styles.userRating}>
-              <TouchableOpacity style={styles.likeComponent}>
-                <SimpleLineIcons name="like" style={styles.like} />
-              </TouchableOpacity>
-              <Text style={styles.ratingText}>6969</Text>
-              <TouchableOpacity style={styles.dislikeComponent}>
-                <SimpleLineIcons name="dislike" style={styles.dislike} />
-              </TouchableOpacity>
-              <Text style={styles.ratingText}>69</Text>
-            </View>
-            <View style={styles.editButton}>
-              <Text
-              style={styles.editButtonText}
-              onPress={() => this.props.navigation.navigate("EditProfile")}
-              > Izmeni Profil </Text>
-            </View>
-          </View>
-          <View style={styles.aboutUser}>
-            <Text style={styles.sectionName}>O korisniku</Text>
-            {/* <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-            </View> */}
-            <View style={styles.userDetails}>
-              <Text style={styles.details}>
-                {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
-              </Text>
-          </View>
-          <FontAwesome
-                    name={this.state.shortText? "angle-double-down" : "angle-double-up"}
-                    style={styles.arrow}
-                    onPress={this.handlePress}
-                  />
-            </View>
-          <View style={styles.smallContainer}>
-            <View style={{flexDirection: "row"}}>
-              <Text style={styles.sectionName}>Komentari</Text>
-              <FontAwesome
-                    name="angle-double-down"
-                    style={styles.arrowSmall}
-                  />
-            </View>
-            {/* <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-            </View> */}
-            <View style={styles.userDetails}>
-              <Text style={styles.details}>Casovi iz pythona</Text>
-              <View style={{flexDirection: "row", marginTop: hp("0.25%"), marginLeft: wp("1%")}}>
-                <SimpleLineIcons name="like" style={styles.like} />
+                }
+                source={avatar}
+              />
+              <Text style={styles.profileName}>Vladimir Cvetanovic</Text>
+              <View style={styles.userLocation}>
+                <SimpleLineIcons
+                  name="location-pin"
+                  size={hp("2.5%")}
+                  color="white"
+                />
+                <Text style={styles.location}>Novi Sad, Srbija</Text>
               </View>
-              
+              <View style={styles.userMail}>
+                <Fontisto name="email" size={hp("2.5%")} color="white" />
+                <Text style={styles.location}>dovla.car@gmail.com</Text>
+              </View>
+              <View style={styles.userOntact}>
+                <Feather name="phone" size={hp("2.5%")} color="white" />
+                <Text style={styles.location}>+381 62 266 021</Text>
+              </View>
+              <View style={styles.userRating}>
+                <TouchableOpacity style={styles.likeComponent}>
+                  <SimpleLineIcons name="like" style={styles.like} />
+                </TouchableOpacity>
+                <Text style={styles.ratingText}>6969</Text>
+                <TouchableOpacity style={styles.dislikeComponent}>
+                  <SimpleLineIcons name="dislike" style={styles.dislike} />
+                </TouchableOpacity>
+                <Text style={styles.ratingText}>69</Text>
+              </View>
+              <View style={styles.editButton}>
+                <Text
+                  style={styles.editButtonText}
+                  onPress={() => this.props.navigation.navigate("EditProfile")}
+                >
+                  {" "}
+                  Izmeni Profil{" "}
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.smallContainer}>
-            <View style={{flexDirection: "row"}}>
-              <Text style={styles.sectionName}>Oglasi</Text>
+            <View style={styles.aboutUser}>
+              <Text style={styles.sectionName}>O korisniku</Text>
+              {/* <View style={styles.dashContainer}>
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+            </View> */}
+              <View style={styles.userDetails}>
+                <Text style={styles.details}>
+                  {this.state.shortText
+                    ? this.state.text.substr(0, 80)
+                    : this.state.text}
+                </Text>
+              </View>
               <FontAwesome
-                    name="angle-double-down"
-                    style={styles.arrowSmall}
-                  />
+                name={
+                  this.state.shortText ? "angle-double-down" : "angle-double-up"
+                }
+                style={styles.arrow}
+                onPress={this.handlePress}
+              />
             </View>
-            {/* <View style={styles.dashContainer}>
+            <View style={styles.smallContainer}>
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.sectionName}>Komentari</Text>
+                <FontAwesome
+                  name="angle-double-down"
+                  style={styles.arrowSmall}
+                />
+              </View>
+              {/* <View style={styles.dashContainer}>
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+              <Octicons name="dash" style={styles.line} />
+            </View> */}
+              <View style={styles.userDetails}>
+                <Text style={styles.details}>Casovi iz pythona</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginTop: hp("0.25%"),
+                    marginLeft: wp("1%"),
+                  }}
+                >
+                  <SimpleLineIcons name="like" style={styles.like} />
+                </View>
+              </View>
+            </View>
+            <View style={styles.smallContainer}>
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.sectionName}>Oglasi</Text>
+                <FontAwesome
+                  name="angle-double-down"
+                  style={styles.arrowSmall}
+                />
+              </View>
+              {/* <View style={styles.dashContainer}>
               <Octicons name="dash" style={styles.line} />
               <Octicons name="dash" style={styles.line} />
               <Octicons name="dash" style={styles.line} />
@@ -155,8 +175,8 @@ export default class Profile extends React.Component {
                 SrbijaNovi Sad, Srbija
               </Text>
             </View> */}
+            </View>
           </View>
-        </View>
         </ScrollView>
       </ImageBackground>
     );
@@ -172,7 +192,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("3%"),
     width: wp("90%"),
-    height: wp("60%")
+    height: wp("60%"),
   },
   editButton: {
     width: wp("90%"),
@@ -181,13 +201,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: "#03d5ff",
     borderWidth: 1,
-    borderColor: "#ededed"
+    borderColor: "#ededed",
   },
   editButtonText: {
     marginTop: hp("1%"),
     color: "#ededed",
     fontSize: hp("2%"),
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   basicUserInfo: {
     maxHeight: hp("50%"),
@@ -195,7 +215,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ededed"
+    borderColor: "#ededed",
   },
   profileImageHeight: {
     alignSelf: "center",
@@ -203,7 +223,7 @@ const styles = StyleSheet.create({
     width: hp("15%"),
     height: hp("15%"),
   },
-  profileImageWidth:{
+  profileImageWidth: {
     alignSelf: "center",
     marginTop: wp("3%"),
     width: wp("30%"),
@@ -330,5 +350,5 @@ const styles = StyleSheet.create({
     marginTop: hp("0.5%"),
     fontSize: hp("3%"),
     color: "#ededed",
-  }
+  },
 });
