@@ -135,6 +135,30 @@ export const buttonsStyles = StyleSheet.create({
     fontSize: hp("2.25%"),
     fontFamily: "Comfortaa-Bold",
   },
+  aboutContactButtonContainer: {
+    flexDirection: "row",
+    alignContent: "center",
+    alignSelf: "center",
+    width: wp("80%"),
+    height: hp("9%"),
+    borderRadius: 20,
+    backgroundColor: "#1e1c24",
+    opacity: 0.99,
+  },
+  aboutContactIcon: {
+    marginLeft: wp("12%"),
+    paddingTop: hp("2.75%"),
+    fontSize: wp("5%"),
+    color: "#ededed",
+  },
+  aboutContactText: {
+    textAlign: "center",
+    paddingTop: hp("2.75%"),
+    marginLeft: wp("2%"),
+    color: "#ededed",
+    fontSize: wp("5%"),
+    fontFamily: "Comfortaa-Bold",
+  },
 });
 
 export const categoriesStyles = StyleSheet.create({

@@ -26,6 +26,7 @@ export default function Drawer(props) {
 
   useEffect(() => {
     getToken();
+    console.log(props);
   }, []);
 
   return (
@@ -35,7 +36,9 @@ export default function Drawer(props) {
     >
       <DrawerItems
         {...props}
-        onItemPress={() => props.navigation.navigate("Categories")}
+        onItemPress={({ route, focused }) => {
+          props.navigation.navigate(route.key);
+        }}
       />
       {token ? (
         <TouchableOpacity onPress={handleLogout}>
