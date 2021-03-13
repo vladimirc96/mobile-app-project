@@ -170,7 +170,9 @@ export class EditProfileButton extends React.Component {
           onPress={this.props.onPress}
           style={buttonsStyles.editProfileButtonContainer}
         >
-          <Text style={buttonsStyles.editProfileButtonText}>{this.props.title}</Text>
+          <Text style={buttonsStyles.editProfileButtonText}>
+            {this.props.title}
+          </Text>
         </TouchableOpacity>
       );
     } else {

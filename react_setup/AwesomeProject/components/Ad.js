@@ -79,7 +79,11 @@ export default class Ad extends React.Component {
               <View style={adStyles.ownerNameContainer}>
                 <Text
                   style={adStyles.ownerName}
-                  onPress={() => this.props.navigation.navigate("Profile", { username: 'test' })}
+                  onPress={() =>
+                    this.props.navigation.navigate("Profile", {
+                      username: "test",
+                    })
+                  }
                 >
                   Vlasnik: Slobodanka Jakovljevic{" "}
                 </Text>

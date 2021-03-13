@@ -10,6 +10,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +49,9 @@ public class UserController {
         return new ResponseEntity<>(ObjectUtils.isEmpty(user), HttpStatus.OK);
     }
 
-
+    @PutMapping
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(userService.saveUser(userDTO), HttpStatus.CREATED);
+    }
 
 }

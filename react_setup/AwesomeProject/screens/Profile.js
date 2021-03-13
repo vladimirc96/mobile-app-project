@@ -19,7 +19,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { Dimensions } from "react-native";
-import { getUserInfo } from "../services/UserService";
+import { getUserInfo, saveUser } from "../services/UserService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -52,6 +52,16 @@ export default class Profile extends React.Component {
     }));
   };
 
+  updateUser = async (user) => {
+    try {
+      const data = await saveUser(user);
+      this.setState({ user: data });
+      alert("Uspesno ste sacuvali izmene");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const avatar = require("./../assets/images/avatar.png");
@@ -77,7 +87,7 @@ export default class Profile extends React.Component {
                 source={avatar}
               />
               <Text style={styles.profileName}>
-                {this.state.user.name + " " + this.state.user.lastName}
+                {this.state.user.firstName + " " + this.state.user.lastName}
               </Text>
               <View style={styles.userLocation}>
                 <SimpleLineIcons
@@ -115,6 +125,7 @@ export default class Profile extends React.Component {
                   onPress={() =>
                     this.props.navigation.navigate("EditProfile", {
                       user: this.state.user,
+                      updateUser: this.updateUser,
                     })
                   }
                 >

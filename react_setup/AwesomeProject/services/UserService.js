@@ -20,3 +20,6 @@ export const getUserInfo = (username) => {
   return MobileApi.get(`${url}/user-info`, config);
 };
 
+export const saveUser = (user) => {
+  return MobileApi.put(`${url}`, user);
+};

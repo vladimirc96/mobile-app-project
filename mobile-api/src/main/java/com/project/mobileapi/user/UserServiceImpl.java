@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
         String salt = BCrypt.gensalt();
         Role role = roleRepository.findOneById(USER_ROLE_ID);
         User user = User.builder()
-                .firstName(userDTO.getName())
+                .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
                 .username(userDTO.getUsername())
                 .password(BCrypt.hashpw(userDTO.getPassword(), salt))
@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO findOneByUsername(String username) {
         return UserAdapter.toDto(userRepository.findOneByUsername(username));
+    }
+
+    @Override
+    public UserDTO saveUser(UserDTO userDTO) {
+        return UserAdapter.toDto(userRepository.save(UserAdapter.toModel(userDTO)));
     }
 }

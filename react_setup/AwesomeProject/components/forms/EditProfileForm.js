@@ -26,13 +26,14 @@ export default function EditProfileForm({ updateUser, locations, user }) {
     <View>
       <Formik
         initialValues={{
+          id: user.id,
           username: user.username,
-          name: user.name,
+          firstName: user.firstName,
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
           email: user.email,
           location: user.location,
-          details: user.details ? user.details : '',
+          details: user.details ? user.details : "",
         }}
         onSubmit={(values) => {
           updateUser(values);
@@ -63,8 +64,8 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                 <Text style={styles.fieldName}>Ime i prezime</Text>
                 <TextInput
                   style={styles.inputField}
-                  onChangeText={props.handleChange("name")}
-                  value={props.values.name}
+                  onChangeText={props.handleChange("firstName")}
+                  value={props.values.firstName}
                 />
               </View>
               <View style={styles.inputFieldContainer}>
@@ -86,7 +87,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
 
               <View style={styles.inputFieldContainer}>
                 <Picker
-                  selectedValue={props.values.location}
+                  selectedValue={props.values.location.id}
                   style={{
                     fontSize: hp("2%"),
                     backgroundColor: "#1e1c24",
@@ -94,12 +95,16 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                     borderColor: "transparent",
                     paddingTop: hp("0.5%"),
                   }}
-                  onValueChange={(itemValue, itemIndex) =>
-                    props.setFieldValue("location", itemValue)
-                  }
+                  onValueChange={(itemValue, itemIndex) => {
+                    props.setFieldValue("location", locations[itemIndex]);
+                  }}
                 >
                   {locations.map((location) => (
-                    <Picker.Item label={location.value} value={location.id} key={location.id}/>
+                    <Picker.Item
+                      label={location.value}
+                      value={location.id}
+                      key={location.id}
+                    />
                   ))}
                 </Picker>
               </View>
@@ -119,7 +124,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
               onChangeText={props.handleChange("details")}
               value={props.values.details}
             />
-            <EditProfileButton title={"Sačuvaj"} />
+            <EditProfileButton title={"Sačuvaj"} onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>

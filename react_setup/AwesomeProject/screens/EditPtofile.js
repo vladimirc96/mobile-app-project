@@ -3,34 +3,32 @@ import EditProfileForm from "../components/forms/EditProfileForm";
 import { ImageBackground, StyleSheet } from "react-native";
 import { getAll } from "../services/LocationService";
 export default class EditProfile extends React.Component {
-  
   state = {
     locations: [],
-  }
+  };
 
-  update = (user) => {
-    console.log(user);
-  }
-
-  async componentDidMount(){
-    try{
+  async componentDidMount() {
+    try {
       const data = await getAll();
-      console.log(data);
-      this.setState({locations: data})
-    }catch(err){
+      this.setState({ locations: data });
+    } catch (err) {
       console.log(err.message);
     }
   }
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
-  
+
     return (
       <ImageBackground
         style={styles.backgroundImageContainer}
         source={backgroundImage}
       >
-        <EditProfileForm updateUser={this.update} locations={this.state.locations} user={this.props.navigation.getParam('user')}/>
+        <EditProfileForm
+          updateUser={this.props.navigation.getParam("updateUser")}
+          locations={this.state.locations}
+          user={this.props.navigation.getParam("user")}
+        />
       </ImageBackground>
     );
   }

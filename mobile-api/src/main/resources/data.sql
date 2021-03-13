@@ -27,8 +27,8 @@ INSERT INTO table_location VALUES (25, 'Sremska kamenica');
 INSERT INTO table_location VALUES (26, 'Sajmište');
 
 
-INSERT INTO table_users VALUES ('test', null, null, 'test@gmail.com', '2021-01-14', 'Test', null, 'Test', '$2a$10$/MwqV/SnmvqIalj/RIMy.Ox7HSnclNyCy1NNLeLY7nlwfMWDiRMwi',
- '0624892247', 1);
+INSERT INTO table_users VALUES (1, null, null, 'test@gmail.com', '2021-01-14', 'Test', null, 'Test', '$2a$10$/MwqV/SnmvqIalj/RIMy.Ox7HSnclNyCy1NNLeLY7nlwfMWDiRMwi',
+ '0624892247', 'test', 1);
 
 INSERT INTO table_privileges VALUES (1, 'GET_USER_DETAILS');
 
