@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UserDTO {
 
+    private Long id;
+
     @NotNull(message = "Korisničko ime ne sme da bude prazno.")
     @NotBlank(message = "Korisničko ime ne sme da bude prazno.")
     private String username;
@@ -24,7 +26,7 @@ public class UserDTO {
     @NotBlank(message = "Šifra ne sme da bude prazna.")
     private String password;
 
-    private String name;
+    private String firstName;
 
     private String lastName;
 

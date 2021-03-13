@@ -6,4 +6,6 @@ public interface UserService {
 
     User register(UserDTO userDTO);
     UserDTO findOneByUsername(String username);
+    UserDTO saveUser(UserDTO userDTO);
+    
 }
