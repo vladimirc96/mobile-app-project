@@ -31,7 +31,8 @@ export default class Categories extends React.Component {
     super()
     this.state ={
       text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
-      shortText: true
+      shortText: true,
+      showComments: false
     }
   }
 
@@ -39,6 +40,10 @@ export default class Categories extends React.Component {
     this.setState(prevState => ({
       shortText: !prevState.shortText
     }));
+  }
+
+  handleShowComments = () => {
+    this.setState({showComments:true})
   }
 
   render() {
@@ -112,21 +117,35 @@ export default class Categories extends React.Component {
               <FontAwesome
                     name="angle-double-down"
                     style={styles.arrowSmall}
+                    onPress={this.handleShowComments}
                   />
             </View>
-            {/* <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-            </View> */}
-            <View style={styles.userDetails}>
-              <Text style={styles.details}>Casovi iz pythona</Text>
-              <View style={{flexDirection: "row", marginTop: hp("0.25%"), marginLeft: wp("1%")}}>
-                <SimpleLineIcons name="like" style={styles.like} />
+
+            {
+              this.state.showComments
+              &&
+              <View>
+              <View style={styles.userDetails}>
+                <Text style={styles.commentTitle}>Casovi iz pythona</Text>
+                <View style={{flexDirection: "row", marginTop: hp("0.25%"), marginLeft: wp("1%")}}>
+                  <SimpleLineIcons name="like" style={styles.like} />
+                  <Text style={styles.commentUser}>Fedor96</Text>
+                  <Text style={styles.commentTime}>30 Jul 2020 - 30 Avg 2020</Text>
+                </View>
+                <Text style={styles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
               </View>
-              
+              <View style={styles.userDetails}>
+                <Text style={styles.commentTitle}>Casovi iz pythona</Text>
+                <View style={{flexDirection: "row", marginTop: hp("0.25%"), marginLeft: wp("1%")}}>
+                  <SimpleLineIcons name="like" style={styles.like} />
+                  <Text style={styles.commentUser}>Fedor96</Text>
+                  <Text style={styles.commentTime}>30 Jul 2020 - 30 Avg 2020</Text>
+                </View>
+                <Text style={styles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
+              </View>
             </View>
+            }
+
           </View>
           <View style={styles.smallContainer}>
             <View style={{flexDirection: "row"}}>
@@ -136,22 +155,6 @@ export default class Categories extends React.Component {
                     style={styles.arrowSmall}
                   />
             </View>
-            {/* <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-            </View> 
-            <View style={styles.userDetails}>
-              <Text style={styles.details}>Casovi iz pythona</Text>
-              <SimpleLineIcons name="like" style={styles.like} />
-            </View>
-            <View style={styles.userDetails}>
-              <Text style={styles.details}>
-                Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,
-                SrbijaNovi Sad, Srbija
-              </Text>
-            </View> */}
           </View>
         </View>
         </ScrollView>
@@ -172,12 +175,11 @@ const styles = StyleSheet.create({
     height: wp("60%")
   },
   editButton: {
-    width: wp("90%"),
     height: hp("5%"),
-    borderRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     textAlign: "center",
     backgroundColor: "#03d5ff",
-    borderWidth: 1,
     borderColor: "#ededed"
   },
   editButtonText: {
@@ -256,7 +258,7 @@ const styles = StyleSheet.create({
   },
   like: {
     fontSize: hp("2.75%"),
-    color: "#ededed",
+    color: "#ededed"
   },
   dislikeComponent: {
     color: "#ededed",
@@ -315,6 +317,29 @@ const styles = StyleSheet.create({
   },
   details: {
     fontSize: hp("2%"),
+    color: "#ededed",
+  },
+  commentTitle:{
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    color: "#ededed",
+  },
+  commentUser:{
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    marginTop: hp("0.5%"),
+    marginLeft: wp("2%"),
+    color: "#ededed",
+  },
+  commentTime:{
+    fontSize: hp("2%"),
+    marginTop: hp("0.5%"),
+    marginLeft: wp("1%"),
+    color: "#ededed",
+  },
+  commentText:{
+    fontSize: hp("2%"),
+    marginTop: hp("1%"),
     color: "#ededed",
   },
   arrow: {
