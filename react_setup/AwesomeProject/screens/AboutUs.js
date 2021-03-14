@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { screensEnabled } from "react-native-screens";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,6 +15,7 @@ const windowHeight = Dimensions.get("window").height;
 const SCREENS = {
   HOME: 1,
   LOGIN: 2,
+  CONTACTUS: 3
 };
 
 export default class AboutUs extends React.Component {
@@ -24,6 +26,9 @@ export default class AboutUs extends React.Component {
         break;
       case SCREENS.LOGIN:
         this.props.navigation.navigate("LogIn");
+        break;
+      case SCREENS.CONTACTUS:
+        this.props.navigation.navigate("ContactUs");
         break;
     }
   };
@@ -59,7 +64,7 @@ export default class AboutUs extends React.Component {
               Imate li pitanja ili sugestiju?
             </Text>
             <AboutUsContact
-              onPress={() => this.pressHandler(SCREENS.LOGIN)}
+              onPress={() => this.pressHandler(SCREENS.CONTACTUS)}
               title={"Kontaktirajte nas"}
             />
           </View>

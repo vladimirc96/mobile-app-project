@@ -2,6 +2,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import React from "react";
 import Header from "./../shared/header";
 import AboutUs from "./../screens/AboutUs";
+import ContactUs from "./../screens/ContactUs";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -13,6 +14,14 @@ const screens = {
           <Header title="O nama" navigation={navigation} mainScreen={true} />
         ),
         headerLeft: null,
+      };
+    },
+  },
+  ContactUs: {
+    screen: ContactUs,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
       };
     },
   },
