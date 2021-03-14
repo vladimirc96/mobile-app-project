@@ -47,7 +47,10 @@ export default class Categories extends React.Component {
       >
         <View style={categoriesStyles.mainContainer}>
           {rows}
-          <AdvButton title={"Postavite oglas"} />
+          <AdvButton
+            title={"Postavite oglas"}
+            onPress={() => this.props.navigation.navigate("AdCreation")}
+          />
         </View>
       </ImageBackground>
     );

@@ -19,10 +19,6 @@ const customFonts = {
 
 const gitara = require("./../assets/images/gitara.jpg");
 
-const pressHandler = () => {
-  console.log(5);
-};
-
 export default class Ad extends React.Component {
   state = {
     fontsLoaded: false,
@@ -83,7 +79,11 @@ export default class Ad extends React.Component {
               <View style={adStyles.ownerNameContainer}>
                 <Text
                   style={adStyles.ownerName}
-                  onPress={() => this.props.navigation.navigate("Profile")}
+                  onPress={() =>
+                    this.props.navigation.navigate("Profile", {
+                      username: "test",
+                    })
+                  }
                 >
                   Vlasnik: Slobodanka Jakovljevic{" "}
                 </Text>

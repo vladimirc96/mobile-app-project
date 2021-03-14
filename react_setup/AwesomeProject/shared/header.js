@@ -1,7 +1,8 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { headerStyles } from "./Styles";
+import LocalStorage from "../localStorage";
 
 export default function Header({ title, navigation, mainScreen }) {
   const openMenu = () => {
@@ -9,6 +10,17 @@ export default function Header({ title, navigation, mainScreen }) {
   };
 
   const avatar = require("./../assets/images/avatar.png");
+
+  const getToken = async () => {
+    const data = await LocalStorage.getItem("currentUser");
+    setToken(data);
+  };
+
+  const [token, setToken] = useState({});
+
+  useEffect(() => {
+    getToken();
+  }, []);
 
   return (
     <View style={headerStyles.header}>
@@ -28,7 +40,7 @@ export default function Header({ title, navigation, mainScreen }) {
           {title}
         </Text>
       </View>
-      <Image source={avatar} style={headerStyles.avatar} />
+      {token ? <Image source={avatar} style={headerStyles.avatar} /> : null}
     </View>
   );
 }

@@ -5,6 +5,8 @@ import Categories from "./../screens/Categories";
 import SubCategories from "./../screens/SubCategories";
 import Ads from "./../screens/Ads";
 import Profile from "./../screens/Profile";
+import EditProfile from "./../screens/EditPtofile";
+import AdCreation from "../screens/AdCreation";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -37,6 +39,22 @@ const screens = {
   },
   Profile: {
     screen: Profile,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+      };
+    },
+  },
+  EditProfile: {
+    screen: EditProfile,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+      };
+    },
+  },
+  AdCreation: {
+    screen: AdCreation,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,

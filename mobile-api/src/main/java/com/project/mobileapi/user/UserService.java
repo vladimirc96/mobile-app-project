@@ -8,4 +8,6 @@ public interface UserService {
 
     User register(UserDTO userDTO) throws IOException;
     UserDTO findOneByUsername(String username);
+    UserDTO saveUser(UserDTO userDTO);
+    
 }

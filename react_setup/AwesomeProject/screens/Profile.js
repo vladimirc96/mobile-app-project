@@ -32,7 +32,19 @@ export default class Categories extends React.Component {
     this.state ={
       text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
       shortText: true,
-      showComments: false
+      showComments: false,
+      user: null
+    }
+  }
+
+async componentDidMount() {
+    try {
+      const data = await getUserInfo(
+        this.props.navigation.getParam("username")
+      );
+      this.setState({ user: data });
+    } catch (err) {
+      console.log(err.message);
     }
   }
 
@@ -46,7 +58,15 @@ export default class Categories extends React.Component {
     this.setState({showComments:true})
   }
 
-  render() {
+  updateUser = async (user) => {
+    try {
+      const data = await saveUser(user);
+      this.setState({ user: data });
+      alert("Uspesno ste sacuvali izmene");
+    } catch (err) {
+      console.log(err);
+    }
+  };  render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const hamburger = require("./../assets/images/hamburger.png");

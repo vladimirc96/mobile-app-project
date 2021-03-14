@@ -18,6 +18,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserDTO implements Serializable {
 
+    private Long id;
+
     @NotNull(message = "Korisničko ime ne sme da bude prazno.")
     @NotBlank(message = "Korisničko ime ne sme da bude prazno.")
     private String username;
@@ -26,7 +28,7 @@ public class UserDTO implements Serializable {
     @NotBlank(message = "Šifra ne sme da bude prazna.")
     private String password;
 
-    private String name;
+    private String firstName;
 
     private String lastName;
 
