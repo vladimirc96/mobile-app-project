@@ -38,6 +38,11 @@ export const adsStyles = StyleSheet.create({
     minHeight: wp("29.92%"),
     width: wp("90%"),
   },
+  smallAdContainer: {
+    alignSelf: "center",
+    marginTop: hp("0.5%"),
+    width: wp("90%"),
+  }
 });
 
 export const buttonsStyles = StyleSheet.create({

@@ -20,8 +20,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { adStyles } from "../shared/Styles";
+import { adStyles, adsStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
+import SmallAd from "../components/SmallAd";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -33,6 +34,7 @@ export default class Categories extends React.Component {
       text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
       shortText: true,
       showComments: false,
+      showAds: false,
       user: null
     }
   }
@@ -54,8 +56,16 @@ async componentDidMount() {
     }));
   }
 
-  handleShowComments = () => {
-    this.setState({showComments:true})
+  toggleComments = () => {
+    this.setState(prevState => ({
+      showComments:!prevState.showComments
+    }));
+  }
+
+  toggleAds = () => {
+    this.setState(prevState => ({
+      showAds:!prevState.showAds
+    }));
   }
 
   updateUser = async (user) => {
@@ -114,12 +124,6 @@ async componentDidMount() {
           </View>
           <View style={styles.aboutUser}>
             <Text style={styles.sectionName}>O korisniku</Text>
-            {/* <View style={styles.dashContainer}>
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-              <Octicons name="dash" style={styles.line} />
-            </View> */}
             <View style={styles.userDetails}>
               <Text style={styles.details}>
                 {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
@@ -134,11 +138,14 @@ async componentDidMount() {
           <View style={styles.smallContainer}>
             <View style={{flexDirection: "row"}}>
               <Text style={styles.sectionName}>Komentari</Text>
-              <FontAwesome
-                    name="angle-double-down"
-                    style={styles.arrowSmall}
-                    onPress={this.handleShowComments}
-                  />
+              {
+                !this.state.showComments &&
+                <FontAwesome
+                name="angle-double-down"
+                style={styles.arrowSmall}
+                onPress={this.toggleComments}
+              />
+              }
             </View>
 
             {
@@ -163,18 +170,44 @@ async componentDidMount() {
                 </View>
                 <Text style={styles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
               </View>
-            </View>
+              <FontAwesome
+                    name="angle-double-up"
+                    style={styles.arrow}
+                    onPress={this.toggleComments}
+                  />
+            </View> 
             }
-
           </View>
           <View style={styles.smallContainer}>
             <View style={{flexDirection: "row"}}>
               <Text style={styles.sectionName}>Oglasi</Text>
-              <FontAwesome
-                    name="angle-double-down"
-                    style={styles.arrowSmall}
-                  />
+              {
+                !this.state.showAds
+                &&
+                <FontAwesome
+                name="angle-double-down"
+                style={styles.arrowSmall}
+                onPress={this.toggleAds}
+              />
+              }
             </View>
+            {
+              this.state.showAds
+              &&
+              <View>
+              <View style={adsStyles.smallAdContainer}>
+               <SmallAd title="CASOVI GITARE" />
+              </View>
+              <View style={adsStyles.smallAdContainer}>
+               <SmallAd title="CASOVI GITARE" />
+              </View>
+              <FontAwesome
+                    name="angle-double-up"
+                    style={styles.arrow}
+                    onPress={this.toggleAds}
+                  />
+            </View> 
+            }
           </View>
         </View>
         </ScrollView>
