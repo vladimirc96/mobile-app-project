@@ -28,9 +28,11 @@ export const adsStyles = StyleSheet.create({
     height: 20,
   },
   titleText: {
-    color: "#ededed",
+    paddingTop: hp("0.75%"), 
+    color: "#ffffff",
     textAlign: "center",
     fontSize: hp("3.6%"),
+    fontFamily: 'Comfortaa-Bold'
   },
   adContainer: {
     alignSelf: "center",
@@ -56,7 +58,7 @@ export const buttonsStyles = StyleSheet.create({
   logInButtonText: {
     textAlign: "center",
     paddingTop: hp("3%"),
-    color: "#ededed",
+    color: "#ffffff",
     fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
@@ -70,7 +72,7 @@ export const buttonsStyles = StyleSheet.create({
   signUpButtonText: {
     textAlign: "center",
     paddingTop: hp("3%"),
-    color: "#ededed",
+    color: "#ffffff",
     fontSize: hp("3%"),
     fontFamily: "Comfortaa-Bold",
   },
@@ -259,13 +261,14 @@ export const loginStyles = StyleSheet.create({
     height: hp("10%"),
     paddingLeft: wp("5%"),
     marginTop: hp("1.5%"),
-    fontSize: hp("2%"),
+    fontSize: hp("2.25%"),
+    fontFamily: "Comfortaa-Light",
     borderRadius: 20,
     borderWidth: 2,
-    opacity: 0.8,
     borderColor: "#ededed",
     color: "#ffffff",
     backgroundColor: "#1e1c24",
+    opacity: 0.8,
   },
   inputErrorField: {
     borderWidth: 2,
@@ -277,12 +280,12 @@ export const loginStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "red",
     backgroundColor: "#1e1c24",
-    color: "#ffffff",
-    fontSize: hp("2%"),
+    color: "#ededed",
+    fontSize: hp("2.25%"),
+    fontFamily: "Comfortaa-Light",
   },
   footerContainer: {
     alignSelf: "center",
-    fontFamily: "Comfortaa-Regular",
   },
   footerSmallContainer: {
     flexDirection: "row",
@@ -290,7 +293,9 @@ export const loginStyles = StyleSheet.create({
     justifyContent: "center",
   },
   footerText: {
-    fontSize: hp("3%"),
+    paddingTop: hp("1.25%"),
+    fontSize: hp("2.5%"),
+    fontFamily: "Comfortaa-Regular",
   },
   boldText: {
     fontWeight: "bold",
@@ -355,7 +360,8 @@ export const signupStyles = StyleSheet.create({
     paddingLeft: wp("5%"),
     borderRadius: 20,
     marginTop: hp("1.5%"),
-    fontSize: hp("2%"),
+    fontSize: hp("2.25%"),
+    fontFamily: "Comfortaa-Light",
     opacity: 0.8,
     borderColor: "#ededed",
     backgroundColor: "#1e1c24",
@@ -375,7 +381,9 @@ export const signupStyles = StyleSheet.create({
     borderColor: "red",
     backgroundColor: "#1e1c24",
     color: "#ffffff",
-    fontSize: hp("2%"),
+    fontSize: hp("2.25%"),
+    fontFamily: "Comfortaa-Light",
+
   },
 });
 
@@ -507,42 +515,38 @@ export const adStyles = StyleSheet.create({
     width: wp("36.6%"),
     backgroundColor: "#3f3e42",
   },
+  adTitleContainer: {
+    borderBottomWidth: 0.5,
+    borderColor: "#ededed",
+    marginBottom: hp("1%"),
+  },
   adTitle: {
-    textAlign: "left",
+    textAlign: "center",
     fontSize: wp("3%"),
     marginTop: wp("1%"),
     fontFamily: "Comfortaa-Bold",
-    color: "#ededed",
-  },
-  ownerContainer: {
-    flexDirection: "row",
-  },
-  leftDashContainer: {
-    marginLeft: wp("0.3%"),
-    flexDirection: "row",
-  },
-  line: {
-    textAlignVertical: "center",
-    fontSize: 5,
     color: "#ededed",
   },
   descriptionSmall: {
     width: "100%",
     height: wp("19%"),
     borderRadius: 5,
+    fontFamily: 'Roboto-Regular',
     backgroundColor: "#1e1c24",
   },
   descriptionLarge: {
     width: "100%",
     height: wp("15.5%"),
     borderRadius: 5,
+    fontFamily: 'Roboto-Regular',
     backgroundColor: "#1e1c24",
   },
   descriptionText: {
-    fontSize: wp("2.25%"),
+    fontSize: wp("2.5%"),
     marginLeft: wp("0.85%"),
     marginRight: wp("0.85%"),
     color: "#ededed",
+    fontFamily: 'Roboto-Regular',
   },
   descriptionDetails: {
     alignSelf: "center",
@@ -550,6 +554,7 @@ export const adStyles = StyleSheet.create({
   descriptionDetailsText: {
     fontSize: wp("2.25%"),
     fontWeight: "bold",
+    fontFamily: 'Roboto-Regular',
     textDecorationLine: "underline",
     color: "#ededed",
   },
@@ -564,6 +569,8 @@ export const adStyles = StyleSheet.create({
   },
   ownerName: {
     fontSize: wp("2%"),
+    fontFamily: 'Roboto-Thin',
+    fontStyle: 'italic',
     color: "#ededed",
   },
   adDetails: {
@@ -584,6 +591,7 @@ export const adStyles = StyleSheet.create({
     textAlign: "center",
     marginTop: wp("1%"),
     fontSize: wp("2.75%"),
+    fontFamily: 'Roboto-Regular',
     color: "#ededed",
   },
   publishDateContainer: {
@@ -595,11 +603,12 @@ export const adStyles = StyleSheet.create({
     backgroundColor: "#3f3e42",
   },
   publishTitle: {
-    fontSize: wp("2.25%"),
+    fontSize: wp("2.5%"),
+    fontFamily: 'Roboto-Light',
     color: "#ededed",
   },
   publishDate: {
-    fontSize: wp("2.25%"),
+    fontSize: wp("2.5%"),
     color: "#ededed",
   },
   location: {
@@ -611,7 +620,8 @@ export const adStyles = StyleSheet.create({
     backgroundColor: "#3f3e42",
   },
   locationText: {
-    fontSize: wp("2.25%"),
+    fontSize: wp("2.5%"),
+    fontFamily: 'Roboto-Bold',
     color: "#ededed",
   },
   ratingStars: {
@@ -622,6 +632,7 @@ export const adStyles = StyleSheet.create({
   },
   likeText: {
     fontSize: wp("2.75%"),
+    fontFamily: 'Roboto-Light',
     color: "#ededed",
   },
   like: {
@@ -637,6 +648,7 @@ export const adStyles = StyleSheet.create({
   dislikeText: {
     marginLeft: wp("1.36%"),
     fontSize: wp("2.75%"),
+    fontFamily: 'Roboto-Light',
     color: "#ededed",
   },
 });

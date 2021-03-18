@@ -10,6 +10,11 @@ import { signup } from "../services/UserService";
 import { login } from "../services/AuthService";
 import LocalStorage from "../localStorage";
 
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+};
+
 export default function SignUp(props) {
   const backgroundImage = require("./../assets/images/signUpBackground.jpg");
 

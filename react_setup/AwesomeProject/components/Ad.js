@@ -15,6 +15,10 @@ import { adStyles } from "./../shared/Styles";
 
 const customFonts = {
   "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
 const gitara = require("./../assets/images/gitara.jpg");
@@ -45,14 +49,8 @@ export default class Ad extends React.Component {
               <Image style={adStyles.adImage} source={gitara} />
             </View>
             <View style={adStyles.adMainText}>
-              <Text style={adStyles.adTitle}>{this.props.title}</Text>
-              <View style={adStyles.ownerContainer}>
-                <View style={adStyles.leftDashContainer}>
-                  <Octicons name="dash" style={adStyles.line} />
-                  <Octicons name="dash" style={adStyles.line} />
-                  <Octicons name="dash" style={adStyles.line} />
-                  <Octicons name="dash" style={adStyles.line} />
-                </View>
+              <View style={adStyles.adTitleContainer}>
+                <Text style={adStyles.adTitle}>{this.props.title}</Text>
               </View>
               <View
                 style={
