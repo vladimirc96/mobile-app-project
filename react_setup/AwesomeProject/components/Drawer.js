@@ -18,7 +18,6 @@ export default function Drawer(props) {
 
   const getToken = async () => {
     const data = await LocalStorage.getItem("currentUser");
-    console.log(data);
     setToken(data);
   };
 
@@ -26,7 +25,6 @@ export default function Drawer(props) {
 
   useEffect(() => {
     getToken();
-    console.log(props);
   }, []);
 
   return (

@@ -20,8 +20,6 @@ public class UserDTO implements Serializable {
 
     private Long id;
 
-    private Long id;
-
     @NotNull(message = "Korisničko ime ne sme da bude prazno.")
     @NotBlank(message = "Korisničko ime ne sme da bude prazno.")
     private String username;

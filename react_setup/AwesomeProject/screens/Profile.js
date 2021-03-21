@@ -8,9 +8,6 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import {
-  ScrollView
-} from "react-native";
 import { AdvButton } from "../components/Buttons";
 import {
   Octicons,
@@ -23,7 +20,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { Dimensions } from "react-native";
 import { getUserInfo, saveUser } from "../services/UserService";
 import { adStyles, adsStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
