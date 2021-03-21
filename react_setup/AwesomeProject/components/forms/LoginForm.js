@@ -67,7 +67,7 @@ export default function LoginForm({ login, navigation }) {
             <View style={loginStyles.footerContainer}>
               <View style={loginStyles.footerSmallContainer}>
                 <Text style={loginStyles.footerText}> Nemate profil? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
                   <Text style={loginStyles.boldText}>Registruj se</Text>
                 </TouchableOpacity>
               </View>
