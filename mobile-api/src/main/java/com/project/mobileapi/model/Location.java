@@ -3,6 +3,7 @@ package com.project.mobileapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="table_location")
@@ -19,8 +20,8 @@ public class Location {
     @Column(name = "city_part")
     private String cityPart;
 
-    @OneToOne
-    private User user;
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<User> user;
 
     public Location(Long id, String value) {
         this.id = id;

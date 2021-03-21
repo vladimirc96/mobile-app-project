@@ -6,15 +6,15 @@ import Category from "./../components/Category";
 
 const categories = [
   { id: 1, name: "Majstori i zanati" },
-  { id: 2, name: "Računari, mobilni telefoni i bela tehnika" },
+  { id: 2, name: "Računari, telefoni\nbela tehnika" },
   { id: 3, name: "Privatni časovi" },
   { id: 4, name: "Prevodi i izrada radova" },
   { id: 5, name: "Prevoz" },
   { id: 6, name: "Muzika i oprema" },
-  { id: 7, name: "Fotografija i video" },
-  { id: 8, name: "Dizajn, umetnosti i štampa" },
+  { id: 7, name: "Fotografija i\nvideo" },
+  { id: 8, name: "Dizajn, štampa i umetnost" },
   { id: 9, name: "Lepota, nega i tretmani" },
-  { id: 10, name: "Održavanje i kućni poslovi" },
+  { id: 10, name: "Održavanje i\nkućni poslovi" },
 ];
 
 export default class Categories extends React.Component {

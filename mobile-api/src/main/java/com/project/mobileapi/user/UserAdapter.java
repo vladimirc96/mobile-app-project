@@ -23,7 +23,24 @@ public class UserAdapter {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .details(user.getDetails())
-                .location(new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()))
+                .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : null)
+                .build();
+    }
+
+    public static User toModel(UserDTO userDTO){
+        if(userDTO == null){
+            return null;
+        }
+
+        return User.builder()
+                .id(userDTO.getId())
+                .username(userDTO.getUsername())
+                .firstName(userDTO.getFirstName())
+                .lastName(userDTO.getLastName())
+                .email(userDTO.getEmail())
+                .phoneNumber(userDTO.getPhoneNumber())
+                .details(userDTO.getDetails())
+                .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
                 .build();
     }
 

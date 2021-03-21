@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, Image, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
+import { Fontisto } from "@expo/vector-icons";
 import { buttonsStyles } from "../shared/Styles";
 
 const customFonts = {
@@ -8,6 +9,7 @@ const customFonts = {
 };
 
 import { Dimensions } from "react-native";
+import { View } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -173,6 +175,37 @@ export class EditProfileButton extends React.Component {
           <Text style={buttonsStyles.editProfileButtonText}>
             {this.props.title}
           </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
+
+export class AboutUsContact extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.onPress}
+          style={buttonsStyles.aboutContactButtonContainer}
+        >
+          <Fontisto name="email" style={buttonsStyles.aboutContactIcon} />
+          <Text style={buttonsStyles.aboutContactText}>{this.props.title}</Text>
         </TouchableOpacity>
       );
     } else {
