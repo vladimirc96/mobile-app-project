@@ -9,7 +9,9 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const customFonts = {
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
 };
 
 const pressHandler = () => {

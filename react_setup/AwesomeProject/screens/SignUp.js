@@ -13,6 +13,7 @@ import LocalStorage from "../localStorage";
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
 };
 
 export default function SignUp(props) {

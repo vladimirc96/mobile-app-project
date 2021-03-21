@@ -5,6 +5,17 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+};
+
 export const adsStyles = StyleSheet.create({
   backgroundImageContainer: {
     flex: 1,
@@ -194,7 +205,7 @@ export const categoryStyles = StyleSheet.create({
   category: {
     width: "100%",
     height: "100%",
-    borderRadius: 30,
+    borderRadius: 25,
     opacity: 0.9,
     backgroundColor: "#1e1c24",
   },
@@ -213,15 +224,15 @@ export const categoryStyles = StyleSheet.create({
   categoryNameHeight: {
     textAlign: "center",
     paddingTop: hp("0.3%"),
-    fontSize: hp("1.9%"),
-    fontFamily: "Comfortaa-Bold",
+    fontSize: hp("1.55%"),
+    fontFamily: "Comfortaa-Light",
     color: "#ededed",
   },
   categoryNameWidth: {
     textAlign: "center",
     paddingTop: wp("0.4%"),
     fontSize: wp("2.5%"),
-    fontFamily: "Comfortaa-Bold",
+    fontFamily: "Comfortaa-Light",
     color: "#ededed",
   },
 });
@@ -365,7 +376,7 @@ export const signupStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "#ededed",
     backgroundColor: "#1e1c24",
-    color: "#ffffff",
+    color: "#ededed",
   },
   buttonContainer: {
     alignSelf: "center",
@@ -380,7 +391,7 @@ export const signupStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "red",
     backgroundColor: "#1e1c24",
-    color: "#ffffff",
+    color: "#ededed",
     fontSize: hp("2.25%"),
     fontFamily: "Comfortaa-Light",
 

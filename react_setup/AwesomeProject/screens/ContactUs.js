@@ -7,7 +7,9 @@ import {
   Text,
   TextInput,
   View,
+  ActivityIndicator,
 } from "react-native";
+import * as Font from "expo-font";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../components/RadioButton";
@@ -23,14 +25,29 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+};
 export default class AdCreation extends React.Component {
   state = {
+    fontsLoaded: false,
     selectedCategory: "category_id_1",
     selectedSubcategory: "subcategory_id_1",
     checkedPrice: "price_id_1",
     image: null,
     selectedType: "adType_id_2",
   };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
 
   componentDidMount() {
     (async () => {
@@ -61,65 +78,65 @@ export default class AdCreation extends React.Component {
     const hamburger = require("./../assets/images/hamburger.png");
     const avatar = require("./../assets/images/avatar.png");
 
-    return (
-      <ImageBackground
-        style={styles.backgroundImageContainer}
-        source={backgroundImage}
-      >
-        <View style={styles.mainContainer}>
-          <View style={styles.backForwardContainer}></View>
-          <View style={styles.inputFieldContainer}>
-            <Text style={styles.fieldNameBold}>Imate pitanje, sugestiju ili zelite da postanete deo tima? 
-                Posaljite nam poruku!
+      return (
+        <ImageBackground
+          style={styles.backgroundImageContainer}
+          source={backgroundImage}
+        >
+          <View style={styles.mainContainer}>
+            <View style={styles.backForwardContainer}></View>
+            <View style={styles.inputFieldContainer}>
+              <Text style={styles.fieldNameBold}>Imate pitanje, sugestiju ili zelite da postanete deo tima? 
+                  Posaljite nam poruku!
+              </Text>
+              <Text style={styles.fieldName}> Naslov poruke </Text>
+              <TextInput
+                style={styles.adNameField}
+                placeholder="Max. 50 karaktera."
+                placeholderTextColor="#ededed"
+              />
+            </View>
+            <View style={styles.inputFieldContainer}>
+              <Text style={styles.fieldName}>Vasa poruka</Text>
+              <TextInput
+                multiline={true}
+                numberOfLines={6}
+                style={styles.adDescriptionField}
+                placeholder="Max. 1000 karaktera."
+                placeholderTextColor="#ededed"
+              />
+            </View>
+            <View style={styles.inputFieldContainerWithMargin}>
+            <Text style={styles.fieldNameBold}>Naisli ste na gresku?
+              Okacite screenshoot, kako bi nas tim mogao da je popravi
             </Text>
-            <Text style={styles.fieldName}> Naslov poruke </Text>
-            <TextInput
-              style={styles.adNameField}
-              placeholder="Max. 50 karaktera."
-              placeholderTextColor="#ededed"
-            />
-          </View>
-          <View style={styles.inputFieldContainer}>
-            <Text style={styles.fieldName}>Vasa poruka</Text>
-            <TextInput
-              multiline={true}
-              numberOfLines={6}
-              style={styles.adDescriptionField}
-              placeholder="Max. 1000 karaktera."
-              placeholderTextColor="#ededed"
-            />
-          </View>
-          <View style={styles.inputFieldContainerWithMargin}>
-          <Text style={styles.fieldNameBold}>Naisli ste na gresku?
-            Okacite screenshoot, kako bi nas tim mogao da je popravi
-          </Text>
-            <Text style={styles.fieldName}>Fotografija</Text>
-            <TouchableOpacity onPress={this.pickImage}>
-              <View style={styles.pickImageContainer}>
-                <View style={styles.pickImageAdditional}>
-                  <Text style={styles.pickingImage}> Izaberi sliku</Text>
-                  <AntDesign name="pluscircleo" style={styles.plusIcon} />
+              <Text style={styles.fieldName}>Fotografija</Text>
+              <TouchableOpacity onPress={this.pickImage}>
+                <View style={styles.pickImageContainer}>
+                  <View style={styles.pickImageAdditional}>
+                    <Text style={styles.pickingImage}> Izaberi sliku</Text>
+                    <AntDesign name="pluscircleo" style={styles.plusIcon} />
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.inputFieldContainerWithMargin}>
+              <Text style={styles.fieldName}> Vasi podaci </Text>
+              <TextInput
+                style={styles.adNameField}
+                placeholder="Ime"
+                placeholderTextColor="#ededed"
+              />
+              <TextInput
+                style={styles.adNameField}
+                placeholder="E mail adresa"
+                placeholderTextColor="#ededed"
+              />
+            </View>
+            <EditProfileButton title={"Posalji"} />
           </View>
-          <View style={styles.inputFieldContainerWithMargin}>
-            <Text style={styles.fieldName}> Vasi podaci </Text>
-            <TextInput
-              style={styles.adNameField}
-              placeholder="Ime"
-              placeholderTextColor="#ededed"
-            />
-            <TextInput
-              style={styles.adNameField}
-              placeholder="E mail adresa"
-              placeholderTextColor="#ededed"
-            />
-          </View>
-          <EditProfileButton title={"Posalji"} />
-        </View>
-      </ImageBackground>
-    );
+        </ImageBackground>
+      );
   }
 }
 
