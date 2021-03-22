@@ -4,19 +4,39 @@ import { createAppContainer } from "react-navigation";
 import CategoriesStack from "./categoriesStack";
 import AboutUsStack from "./aboutUsStack";
 import Drawer from "../components/Drawer";
+import { FontAwesome } from "@expo/vector-icons";
+import Profile from "../screens/Profile";
+import React from "react";
 
 // drawer navigation options
 const RootDrawerNavigator = createDrawerNavigator(
   {
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        drawerIcon: () => <FontAwesome name="user-o" size={24} color="white" />,
+      },
+    },
     Categories: {
       screen: CategoriesStack,
+      navigationOptions: {
+        drawerIcon: () => (
+          <FontAwesome name="list-ul" size={24} color="white" />
+        ),
+      },
     },
     AboutUs: {
       screen: AboutUsStack,
+      navigationOptions: {
+        drawerIcon: () => (
+          <FontAwesome name="question-circle-o" size={24} color="white" />
+        ),
+      },
     },
   },
   {
     contentComponent: Drawer,
+    initialRouteName: 'Categories',
   }
 );
 
