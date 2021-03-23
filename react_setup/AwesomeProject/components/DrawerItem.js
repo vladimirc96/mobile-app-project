@@ -16,10 +16,10 @@ export default function DrawerItem(props) {
   return (
     <TouchableOpacity
       style={{ marginTop: 10, marginLeft: 10 }}
-      onPress={() => props.navigation.navigate(props.routeName, {username: 'test'})}
+      onPress={() => props.navigate(props.navigation)}
     >
       <View style={styles.container}>
-        {props.drawerIcon}
+        {props.drawerIcon()}
         <Text style={styles.menuText}>{getLabel(props.routeName)}</Text>
       </View>
     </TouchableOpacity>

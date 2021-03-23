@@ -1,33 +1,52 @@
 import SafeAreaView from "react-native-safe-area-view";
-import { DrawerItems } from "react-navigation-drawer";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { logout } from "../services/AuthService";
-import LocalStorage from "../localStorage";
 import { Divider } from "react-native-elements";
 import DrawerItem from "./DrawerItem";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/actions/authentication/authentication";
 
 export default function Drawer(props) {
-  const handleLogout = async () => {
-    try {
-      await logout();
-      await LocalStorage.removeItem("currentUser");
-      alert("Odjavljeni ste");
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  const dispatch = useDispatch();
 
-  const getToken = async () => {
-    const data = await LocalStorage.getItem("currentUser");
-    setToken(data);
-  };
+  const token = useSelector((state) => state.authenticationReducer.token);
 
-  const [token, setToken] = useState({});
+  const logoutUser = () => dispatch(logout());
+
+  const [drawerItems, setDrawerItems] = useState([]);
+
+  const initItems = () => {
+    const items = [
+      {
+        navigate: (navigation) =>
+          navigation.navigate("Profile", { username: user.username }),
+        routeName: "Profile",
+        drawerIcon: () => {
+          return props.descriptors["Profile"].options.drawerIcon();
+        },
+      },
+      {
+        navigate: (navigation) => navigation.navigate("Categories"),
+        routeName: "Categories",
+        drawerIcon: () => {
+          return props.descriptors["Categories"].options.drawerIcon();
+        },
+      },
+      {
+        navigate: (navigation) => navigation.navigate("AboutUs"),
+        routeName: "AboutUs",
+        drawerIcon: () => {
+          return props.descriptors["AboutUs"].options.drawerIcon();
+        },
+      },
+    ];
+    setDrawerItems(items);
+  };
 
   useEffect(() => {
-    getToken();
+    console.log(user);
+    initItems();
   }, []);
 
   return (
@@ -35,15 +54,16 @@ export default function Drawer(props) {
       style={styles.container}
       forceInset={{ top: "always", horizontal: "never" }}
     >
-      {props.items.map((item) => {
+      {drawerItems.map((item) => {
         if (!token && item.key === "Profile") {
           return;
         }
         return (
           <DrawerItem
-            key={item.key}
+            key={item.routeName}
             routeName={item.routeName}
-            drawerIcon={props.descriptors[item.key].options.drawerIcon()}
+            drawerIcon={item.drawerIcon}
+            navigate={item.navigate}
             navigation={props.navigation}
           />
         );
@@ -52,17 +72,13 @@ export default function Drawer(props) {
       <View style={{ marginTop: "5%" }}>
         <Divider style={{ backgroundColor: "white" }} />
       </View>
-      {/* <DrawerItems
-        {...props}
-        onItemPress={({ route, focused }) => {
-          props.navigation.navigate(route.key);
-        }}
-        labelStyle={styles.label}
-      /> */}
+
       {token ? (
         <TouchableOpacity
           style={{ marginTop: 10, marginLeft: 10 }}
-          onPress={handleLogout}
+          onPress={() => {
+            logoutUser();
+          }}
         >
           <View style={styles.logoutContainer}>
             <MaterialIcons name="logout" size={24} color="white" />

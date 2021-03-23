@@ -4,13 +4,20 @@ import { TouchableOpacity, TextInput, View, Text } from "react-native";
 import * as yup from "yup";
 import { loginStyles } from "../../shared/Styles";
 import { LogInButton } from "../Buttons";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/actions/authentication/authentication";
+import { getUserInfo } from "../../store/actions/user/user";
 
 const loginSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
   password: yup.string().required("Šifra je obavezna."),
 });
 
-export default function LoginForm({ login, navigation }) {
+export default function LoginForm({ navigation }) {
+  const dispatch = useDispatch();
+
+  const loginUser = (credentials) => dispatch(login(credentials));
+
   return (
     <View>
       <Formik
@@ -19,7 +26,11 @@ export default function LoginForm({ login, navigation }) {
           password: "",
         }}
         onSubmit={(values) => {
-          login(values);
+          loginUser({
+            username: values.username,
+            password: values.password,
+          });
+          navigation.navigate("Home");
         }}
         validationSchema={loginSchema}
       >
