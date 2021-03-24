@@ -2,8 +2,11 @@ import * as Font from "expo-font";
 import { ActivityIndicator } from "react-native";
 import Navigator from "./routes/firstRunStack";
 import React from "react";
-import { Provider } from 'react-redux';
-import store from './store/store';
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import configureStore from "./store/store";
+
+const persistStore = configureStore();
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
@@ -24,7 +27,13 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.fontsLoaded) {
-      return <Provider store={store}><Navigator /></Provider>;
+      return (
+        <Provider store={persistStore.store}>
+          <PersistGate loading={null} persistor={persistStore.persistor}>
+            <Navigator />
+          </PersistGate>
+        </Provider>
+      );
     } else {
       return <ActivityIndicator size="large" />;
     }

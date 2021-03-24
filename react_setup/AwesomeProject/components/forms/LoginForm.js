@@ -5,8 +5,7 @@ import * as yup from "yup";
 import { loginStyles } from "../../shared/Styles";
 import { LogInButton } from "../Buttons";
 import { useDispatch } from "react-redux";
-import { login } from "../../store/actions/authentication/authentication";
-import { getUserInfo } from "../../store/actions/user/user";
+import { login } from "../../store/actions/authentication/authenticationActions";
 
 const loginSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
@@ -17,6 +16,13 @@ export default function LoginForm({ navigation }) {
   const dispatch = useDispatch();
 
   const loginUser = (credentials) => dispatch(login(credentials));
+  
+  const handleLogin = (credentials) => {
+    return new Promise((resolve, reject) => {
+      loginUser(credentials);
+      resolve();
+    });
+  };
 
   return (
     <View>
@@ -25,8 +31,8 @@ export default function LoginForm({ navigation }) {
           username: "",
           password: "",
         }}
-        onSubmit={(values) => {
-          loginUser({
+        onSubmit={async (values) => {
+          await handleLogin({
             username: values.username,
             password: values.password,
           });
