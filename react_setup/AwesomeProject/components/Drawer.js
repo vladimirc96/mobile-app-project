@@ -45,13 +45,16 @@ export class Drawer extends React.Component {
   }
 
   render() {
+    if(this.state.drawerItems.length === 0){
+      return <View></View>
+    }
     return (
       <SafeAreaView
         style={styles.container}
         forceInset={{ top: "always", horizontal: "never" }}
       >
         {this.state.drawerItems.map((item) => {
-          if (!this.props.token && item.key === "Profile") {
+          if (!this.props.token && item.routeName === "Profile") {
             return;
           }
           return (

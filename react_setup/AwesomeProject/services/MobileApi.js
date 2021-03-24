@@ -1,6 +1,8 @@
 import axios from "axios";
 import Constants from "expo-constants";
-import store from '../store/store';
+import configureStore from "../store/store";
+
+const persistStore = configureStore();
 
 const { manifest } = Constants;
 
@@ -13,9 +15,8 @@ const Axios = axios.create({
   baseURL: "http://".concat(api),
 });
 
-
 Axios.interceptors.request.use((req) => {
-  const state = store.getState();
+  const state = persistStore.store.getState();
   const token = state.authenticationReducer.token;
   if (token !== null && token !== undefined) {
     req.headers.Authorization = "Bearer " + token.accessToken;
