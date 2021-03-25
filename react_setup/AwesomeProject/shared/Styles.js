@@ -207,7 +207,6 @@ export const categoryStyles = StyleSheet.create({
     height: "100%",
     borderRadius: 25,
     opacity: 0.9,
-    backgroundColor: "#1e1c24",
   },
   categoryImageHeight: {
     alignSelf: "center",

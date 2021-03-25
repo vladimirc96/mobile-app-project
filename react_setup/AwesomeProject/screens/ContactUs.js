@@ -73,7 +73,7 @@ export default class AdCreation extends React.Component {
   };
 
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const hamburger = require("./../assets/images/hamburger.png");
     const avatar = require("./../assets/images/avatar.png");

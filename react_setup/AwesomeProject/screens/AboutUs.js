@@ -53,7 +53,7 @@ export default class AboutUs extends React.Component {
   };
 
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     if (this.state.fontsLoaded) {
       return (
         <ImageBackground
