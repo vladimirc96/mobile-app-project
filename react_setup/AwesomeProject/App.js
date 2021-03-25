@@ -2,6 +2,7 @@ import * as Font from "expo-font";
 import { ActivityIndicator } from "react-native";
 import Navigator from "./routes/firstRunStack";
 import React from "react";
+import Ads from "./screens/Ads";
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
