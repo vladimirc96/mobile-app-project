@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, Text, View, ScrollView, Modal, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { ImageBackground, Text, View, ScrollView, Modal, TouchableOpacity, Image, StyleSheet, ActivityIndicator} from "react-native";
 import Ad from "../components/Ad";
 import { adsStyles } from "../shared/Styles";
 import { Ionicons } from '@expo/vector-icons';
@@ -16,22 +16,36 @@ import {
 } from "react-native-responsive-screen";
 import { BlurView } from 'expo-blur';
 import { Dimensions } from "react-native";
+import * as Font from "expo-font";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Bold.ttf"),
+};
+
 export default class Ads extends React.Component {
-  constructor(){
-    super()
-    this.state ={
-      showModal: false
-    }
+  state = {
+    fontsLoaded: false,
+	showModal: false
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
   }
 
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const avatar = require("./../assets/images/gitara.jpg");
+    if(this.state.fontsLoaded){
     return (
       <ImageBackground
         style={adsStyles.backgroundImageContainer}
@@ -141,7 +155,12 @@ export default class Ads extends React.Component {
       </ImageBackground>
     );
   }
-}
+  else{
+    return <ActivityIndicator size="large" />;
+  }
+}}
+	
+
 
 const styles = StyleSheet.create({
   backgroundImageContainer: {

@@ -5,21 +5,23 @@ import { categoriesStyles } from "./../shared/Styles";
 import Category from "./../components/Category";
 
 const categories = [
-  { id: 1, name: "Majstori i zanati" },
-  { id: 2, name: "Računari, mobilni telefoni i bela tehnika" },
-  { id: 3, name: "Privatni časovi" },
-  { id: 4, name: "Prevodi i izrada radova" },
-  { id: 5, name: "Prevoz" },
-  { id: 6, name: "Muzika i oprema" },
-  { id: 7, name: "Fotografija i video" },
-  { id: 8, name: "Dizajn, umetnosti i štampa" },
-  { id: 9, name: "Lepota, nega i tretmani" },
-  { id: 10, name: "Održavanje i kućni poslovi" },
+  { id: 1, name: "Majstori i zanati", imagePath:  require("../assets/images/kat_ikonice_krug/zanati.png"), color: "blue" },
+  { id: 2, name: "Računari, telefoni\nbela tehnika",  imagePath:  require("../assets/images/kat_ikonice_krug/racunari.png"), color: "blue" },
+  { id: 3, name: "Privatni časovi",  imagePath:  require("../assets/images/kat_ikonice_krug/privatni.png"), color: "blue" },
+  { id: 4, name: "Prevodi i izrada radova",  imagePath:  require("../assets/images/kat_ikonice_krug/prevodjenje.png"), color: "blue" },
+  { id: 5, name: "Prevoz",  imagePath:  require("../assets/images/kat_ikonice_krug/transport.png"), color: "blue" },
+  { id: 6, name: "Muzika i oprema",  imagePath:  require("../assets/images/kat_ikonice_krug/muzika.png"), color: "blue" },
+  { id: 7, name: "Fotografija i\nvideo",  imagePath:  require("../assets/images/kat_ikonice_krug/foto.png"), color: "blue" },
+  { id: 8, name: "Dizajn, štampa i umetnost",  imagePath:  require("../assets/images/kat_ikonice_krug/dizajn.png"), color: "blue" },
+  { id: 9, name: "Lepota, nega i tretmani",  imagePath:  require("../assets/images/kat_ikonice_krug/lepota.png"), color: "blue" },
+  { id: 10, name: "Kućne usluge i\nodržavanje",  imagePath:  require("../assets/images/kat_ikonice_krug/kucniPoslovi.png"), color: "blue" },
+  { id: 11, name: "Gurmanluci",  imagePath:  require("../assets/images/kat_ikonice_krug/zanati.png"), color: "blue" },
+  { id: 12, name: "Sport i zdravlje",  imagePath:  require("../assets/images/kat_ikonice_krug/zanati.png"), color: "blue" },
 ];
 
 export default class Categories extends React.Component {
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     const categoryList = categories.map((category) => (
       <View style={categoriesStyles.singleCategoryContainer} key={category.id}>
         <Category
@@ -29,6 +31,8 @@ export default class Categories extends React.Component {
             })
           }
           title={category.name}
+          imagePath={category.imagePath}
+          color={category.color}
         />
       </View>
     ));

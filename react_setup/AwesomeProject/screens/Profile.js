@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Text,
   View,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { AdvButton } from "../components/Buttons";
 import {
@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { getUserInfo, saveUser } from "../services/UserService";
 import { adStyles, adsStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
@@ -27,7 +28,7 @@ import SmallAd from "../components/SmallAd";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default class Categories extends React.Component {
+export default class Profile extends React.Component {
   constructor(){
     super()
     this.state ={
@@ -76,11 +77,17 @@ async componentDidMount() {
     } catch (err) {
       console.log(err);
     }
-  };  render() {
+  };
+
+  render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const hamburger = require("./../assets/images/hamburger.png");
     const avatar = require("./../assets/images/avatar.png");
+
+    if (!this.state.user) {
+      return <View></View>;
+    }
 
     return (
       <ImageBackground
@@ -89,39 +96,62 @@ async componentDidMount() {
       >
         <ScrollView>
         <View style={styles.mainContainer}>
-          <View style={styles.basicUserInfo}>
-            <Image style={
+            <View style={styles.basicUserInfo}>
+              <Image
+                style={
                   windowHeight * 0.37 < windowWidth * 0.7
                     ? styles.profileImageHeight
                     : styles.profileImageWidth
-                } source={avatar} />
-            <Text style={styles.profileName}>Vladimir Cvetanovic</Text>
-            <View style={styles.userLocation}>
-              <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>Novi Sad, Srbija</Text>
+                }
+                source={avatar}
+              />
+              <Text style={styles.profileName}>
+                {this.state.user.firstName + " " + this.state.user.lastName}
+              </Text>
+              <View style={styles.userLocation}>
+                <SimpleLineIcons
+                  name="location-pin"
+                  size={hp("2.5%")}
+                  color="white"
+                />
+                <Text style={styles.location}>
+                  {this.state.user.location.value + ", Novi Sad"}
+                </Text>
+              </View>
+              <View style={styles.userMail}>
+                <Fontisto name="email" size={hp("2.5%")} color="white" />
+                <Text style={styles.location}>{this.state.user.email}</Text>
+              </View>
+              <View style={styles.userOntact}>
+                <Feather name="phone" size={hp("2.5%")} color="white" />
+                <Text style={styles.location}>
+                  {this.state.user.phoneNumber}
+                </Text>
+              </View>
+              <View style={styles.userRating}>
+                <TouchableOpacity style={styles.likeComponent}>
+                  <SimpleLineIcons name="like" style={styles.like} />
+                </TouchableOpacity>
+                <Text style={styles.ratingText}>6969</Text>
+                <TouchableOpacity style={styles.dislikeComponent}>
+                  <SimpleLineIcons name="dislike" style={styles.dislike} />
+                </TouchableOpacity>
+                <Text style={styles.ratingText}>69</Text>
+              </View>
+              <View style={styles.editButton}>
+                <Text
+                  style={styles.editButtonText}
+                  onPress={() =>
+                    this.props.navigation.navigate("EditProfile", {
+                      user: this.state.user,
+                      updateUser: this.updateUser,
+                    })
+                  }
+                >
+                  Izmeni Profil
+                </Text>
+              </View>
             </View>
-            <View style={styles.userMail}>
-              <Fontisto name="email" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>dovla.car@gmail.com</Text>
-            </View>
-            <View style={styles.userOntact}>
-              <Feather name="phone" size={hp("2.5%")} color="white" />
-              <Text style={styles.location}>+381 62 266 021</Text>
-            </View>
-            <View style={styles.userRating}>
-              <TouchableOpacity style={styles.likeComponent}>
-                <SimpleLineIcons name="like" style={styles.like} />
-              </TouchableOpacity>
-              <Text style={styles.ratingText}>6969</Text>
-              <TouchableOpacity style={styles.dislikeComponent}>
-                <SimpleLineIcons name="dislike" style={styles.dislike} />
-              </TouchableOpacity>
-              <Text style={styles.ratingText}>69</Text>
-            </View>
-            <View style={styles.editButton}>
-              <Text style={styles.editButtonText}> Izmeni Profil </Text>
-            </View>
-          </View>
           <View style={styles.aboutUser}>
             <Text style={styles.sectionName}>O korisniku</Text>
             <View style={styles.userDetails}>

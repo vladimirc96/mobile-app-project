@@ -11,7 +11,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => (
-          <Header title="O nama" navigation={navigation} mainScreen={true} />
+          <Header title="" navigation={navigation} mainScreen={true} />
         ),
         headerLeft: null,
       };
