@@ -20,6 +20,7 @@ const SCREENS = {
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
   "Roboto-Black": require("../assets/fonts/Roboto-Black.ttf"),
   "Roboto-LightItalic": require("../assets/fonts/Roboto-LightItalic.ttf"),
 };
@@ -53,7 +54,7 @@ export default class AboutUs extends React.Component {
   };
 
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     if (this.state.fontsLoaded) {
       return (
         <ImageBackground

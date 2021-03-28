@@ -33,13 +33,12 @@ export default class Category extends React.Component {
   }
 
   render() {
-    const cameraIcon = require("../assets/images/camera_icon.png");
 
     if (this.state.fontsLoaded) {
       return (
         <TouchableOpacity
           onPress={this.props.onPress}
-          style={categoryStyles.category}
+          style={[categoryStyles.category, {backgroundColor: this.props.color}]}
         >
           <Image
             style={
@@ -47,7 +46,7 @@ export default class Category extends React.Component {
                 ? categoryStyles.categoryImageHeight
                 : categoryStyles.categoryImageWidth
             }
-            source={cameraIcon}
+            source={this.props.imagePath}
           />
           <Text
             style={
