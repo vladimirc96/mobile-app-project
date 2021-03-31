@@ -6,6 +6,7 @@ import DrawerItem from "./DrawerItem";
 import { MaterialIcons } from "@expo/vector-icons";
 import { logout } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
+
 export class Drawer extends React.Component {
   constructor(props, context) {
     super(props, context);
