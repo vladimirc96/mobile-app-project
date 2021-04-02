@@ -48,7 +48,6 @@ export default class LogIn extends React.Component {
           source={backgroundImage}
         >
           <LoginForm
-            login={this.handleLogin}
             navigation={this.props.navigation}
           />
         </ImageBackground>

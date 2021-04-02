@@ -42,15 +42,17 @@ INSERT INTO roles_privileges VALUES (1, 2);
 INSERT INTO user_roles VALUES ('test', 1);
 
 INSERT INTO table_categories VALUES (1, 'Majstori i zanati');
-INSERT INTO table_categories VALUES (2, 'Računari, mobilni telefoni i bela tehnika');
+INSERT INTO table_categories VALUES (2, 'Računari, telefoni bela tehnika');
 INSERT INTO table_categories VALUES (3, 'Privatni časovi');
 INSERT INTO table_categories VALUES (4, 'Prevodi i izrada radova');
 INSERT INTO table_categories VALUES (5, 'Prevoz');
 INSERT INTO table_categories VALUES (6, 'Muzika i oprema');
 INSERT INTO table_categories VALUES (7, 'Fotografija i video');
-INSERT INTO table_categories VALUES (8, 'Dizajn, umetnosti i štampa');
+INSERT INTO table_categories VALUES (8, 'Dizajn, štampa i umetnost');
 INSERT INTO table_categories VALUES (9, 'Lepota, nega i tretmani');
-INSERT INTO table_categories VALUES (10, 'Održavanje i kućni poslovi');
+INSERT INTO table_categories VALUES (10, 'Kućne usluge i održavanje');
+INSERT INTO table_categories VALUES (11, 'Gurmanluci');
+INSERT INTO table_categories VALUES (12, 'Sport i zdravlje');
 
 --  MAJSTORI I ZANATI
 INSERT INTO table_subcategories VALUES (1, 'Vodoinstaleteri');
@@ -125,7 +127,7 @@ INSERT INTO table_subcategories VALUES (51, 'Kozmetika');
 INSERT INTO table_subcategories VALUES (52, 'Depilacije');
 INSERT INTO table_subcategories VALUES (53, 'Masaže');
 
--- ODRŽAVANJE I KUĆNI POSLOVI
+-- KUĆNE USLUGE I ODRŽAVANJE
 INSERT INTO table_subcategories VALUES (54, 'Čistači');
 INSERT INTO table_subcategories VALUES (55, 'Tepisi i podovi');
 INSERT INTO table_subcategories VALUES (56, 'Baštovani');
@@ -135,6 +137,17 @@ INSERT INTO table_subcategories VALUES (59, 'Čuvanje dece');
 INSERT INTO table_subcategories VALUES (60, 'Čuvanje ljubimaca');
 INSERT INTO table_subcategories VALUES (61, 'Nega odraslih');
 
+-- GURMANLUCI
+INSERT INTO table_subcategories VALUES (62, 'Torte i kolači');
+INSERT INTO table_subcategories VALUES (63, 'Ketering');
+INSERT INTO table_subcategories VALUES (64, 'Domaći i organski proizvodi');
+
+
+-- SPORT I ZDRAVLJE
+INSERT INTO table_subcategories VALUES (65, 'Personalni treninzi');
+INSERT INTO table_subcategories VALUES (66, 'Kiropraktičari');
+INSERT INTO table_subcategories VALUES (67, 'Masaže');
+INSERT INTO table_subcategories VALUES (68, 'Alternativna medicina');
 
 INSERT INTO categories_subcategories VALUES (1, 1);
 INSERT INTO categories_subcategories VALUES (1, 2);
@@ -207,4 +220,13 @@ INSERT INTO categories_subcategories VALUES (10, 58);
 INSERT INTO categories_subcategories VALUES (10, 59);
 INSERT INTO categories_subcategories VALUES (10, 60);
 INSERT INTO categories_subcategories VALUES (10, 61);
+
+INSERT INTO categories_subcategories VALUES (11, 62);
+INSERT INTO categories_subcategories VALUES (11, 63);
+INSERT INTO categories_subcategories VALUES (11, 64);
+
+INSERT INTO categories_subcategories VALUES (12, 65);
+INSERT INTO categories_subcategories VALUES (12, 66);
+INSERT INTO categories_subcategories VALUES (12, 67);
+INSERT INTO categories_subcategories VALUES (12, 68);
 

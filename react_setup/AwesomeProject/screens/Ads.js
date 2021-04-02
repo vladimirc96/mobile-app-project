@@ -45,7 +45,7 @@ export default class Ads extends React.Component {
   }
 
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     const avatar = require("./../assets/images/gitara.jpg");
     if(this.state.fontsLoaded){
     return (

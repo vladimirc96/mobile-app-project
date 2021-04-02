@@ -1,6 +1,9 @@
-import LocalStorage from "../localStorage";
 import axios from "axios";
 import Constants from "expo-constants";
+import configureStore from "../store/store";
+
+const persistStore = configureStore();
+
 const { manifest } = Constants;
 
 const api =
@@ -13,9 +16,10 @@ const Axios = axios.create({
 });
 
 Axios.interceptors.request.use((req) => {
-  let user = LocalStorage.getItem("currentUser");
-  if (user !== null || user !== undefined) {
-    req.headers.Authorization = "Bearer " + user.accessToken;
+  const state = persistStore.store.getState();
+  const token = state.authenticationReducer.token;
+  if (token !== null && token !== undefined) {
+    req.headers.Authorization = "Bearer " + token.accessToken;
   }
   return req;
 });

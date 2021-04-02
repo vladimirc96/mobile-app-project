@@ -20,6 +20,7 @@ const SCREENS = {
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
   "Roboto-Black": require("../assets/fonts/Roboto-Black.ttf"),
   "Roboto-LightItalic": require("../assets/fonts/Roboto-LightItalic.ttf"),
 };
