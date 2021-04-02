@@ -7,9 +7,8 @@ import {
   Text,
   TextInput,
   View,
-  ActivityIndicator,
+  ActivityIndicator
 } from "react-native";
-import * as Font from "expo-font";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../components/RadioButton";
@@ -19,17 +18,16 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { EditProfileButton } from "../components/Buttons";
-
+import * as Font from "expo-font";
 import { Dimensions } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
 };
+
 export default class AdCreation extends React.Component {
   state = {
     fontsLoaded: false,
@@ -46,10 +44,6 @@ export default class AdCreation extends React.Component {
   }
 
   componentDidMount() {
-    this._loadFontsAsync();
-  }
-
-  componentDidMount() {
     (async () => {
       const {
         status,
@@ -58,6 +52,8 @@ export default class AdCreation extends React.Component {
         alert("Sorry, we need camera roll permissions to make this work!");
       }
     })();
+
+    this._loadFontsAsync();
   }
 
   pickImage = async () => {
@@ -73,11 +69,11 @@ export default class AdCreation extends React.Component {
   };
 
   render() {
-    const backgroundImage = require("./../assets/images/background_bright.jpg");
+    const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const hamburger = require("./../assets/images/hamburger.png");
     const avatar = require("./../assets/images/avatar.png");
-
+    if(this.state.fontsLoaded){
       return (
         <ImageBackground
           style={styles.backgroundImageContainer}
@@ -137,6 +133,10 @@ export default class AdCreation extends React.Component {
           </View>
         </ImageBackground>
       );
+    }
+    else{
+      return <ActivityIndicator size="large" />;
+    }
   }
 }
 
@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
     fontSize: hp("1.55%"),
     fontWeight: "bold",
     color: "#ededed",
+    fontFamily: "Comfortaa-Regular",
   },
   adNameField: {
     marginTop: hp("0.75%"),

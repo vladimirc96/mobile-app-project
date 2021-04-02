@@ -7,6 +7,7 @@ import {
   Text,
   View,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import { AdvButton } from "../components/Buttons";
 import {
@@ -24,20 +25,34 @@ import { getUserInfo, saveUser } from "../services/UserService";
 import { adStyles, adsStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
+import * as Font from "expo-font";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+};
 
 export default class Profile extends React.Component {
   constructor(){
     super()
     this.state ={
+      fontsLoaded: false,
       text: "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
       shortText: true,
       showComments: false,
       showAds: false,
       user: null
     }
+  }
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
   }
 
 async componentDidMount() {
@@ -49,6 +64,8 @@ async componentDidMount() {
     } catch (err) {
       console.log(err.message);
     }
+
+    this._loadFontsAsync();
   }
 
   handlePress = () => {
@@ -89,8 +106,10 @@ async componentDidMount() {
       return <View></View>;
     }
 
-    return (
-      <ImageBackground
+    
+      if (this.state.fontsLoaded){
+        return (
+        <ImageBackground
         style={styles.backgroundImageContainer}
         source={backgroundImage}
       >
@@ -112,18 +131,18 @@ async componentDidMount() {
                 <SimpleLineIcons
                   name="location-pin"
                   size={hp("2.5%")}
-                  color="white"
+                  color="black"
                 />
                 <Text style={styles.location}>
                   {this.state.user.location.value + ", Novi Sad"}
                 </Text>
               </View>
               <View style={styles.userMail}>
-                <Fontisto name="email" size={hp("2.5%")} color="white" />
+                <Fontisto name="email" size={hp("2.5%")} color="black" />
                 <Text style={styles.location}>{this.state.user.email}</Text>
               </View>
               <View style={styles.userOntact}>
-                <Feather name="phone" size={hp("2.5%")} color="white" />
+                <Feather name="phone" size={hp("2.5%")} color="black" />
                 <Text style={styles.location}>
                   {this.state.user.phoneNumber}
                 </Text>
@@ -153,7 +172,7 @@ async componentDidMount() {
               </View>
             </View>
           <View style={styles.aboutUser}>
-            <Text style={styles.sectionName}>O korisniku</Text>
+              <Text style={styles.sectionName}>O korisniku</Text>
             <View style={styles.userDetails}>
               <Text style={styles.details}>
                 {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
@@ -166,7 +185,7 @@ async componentDidMount() {
                   />
             </View>
           <View style={styles.smallContainer}>
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", alignSelf: "center"}}>
               <Text style={styles.sectionName}>Komentari</Text>
               {
                 !this.state.showComments &&
@@ -209,7 +228,7 @@ async componentDidMount() {
             }
           </View>
           <View style={styles.smallContainer}>
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", alignSelf: "center"}}>
               <Text style={styles.sectionName}>Oglasi</Text>
               {
                 !this.state.showAds
@@ -243,6 +262,12 @@ async componentDidMount() {
         </ScrollView>
       </ImageBackground>
     );
+    
+      }
+      else{
+        return <ActivityIndicator size="large" />;
+      }
+     
   }
 }
 
@@ -267,17 +292,17 @@ const styles = StyleSheet.create({
   },
   editButtonText: {
     marginTop: hp("1%"),
-    color: "#ededed",
+    color: "black",
     fontSize: hp("2%"),
     fontWeight: "bold"
   },
   basicUserInfo: {
     maxHeight: hp("50%"),
     marginBottom: wp("1%"),
-    backgroundColor: "#1e1c24",
+    backgroundColor: "#ededed",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ededed"
+    borderColor: "#606060"
   },
   profileImageHeight: {
     alignSelf: "center",
@@ -303,7 +328,8 @@ const styles = StyleSheet.create({
     marginBottom: hp("0.5%"),
     fontSize: hp("3%"),
     fontWeight: "bold",
-    color: "#ededed",
+    color: "black",
+    fontFamily: "Roboto-Bold"
   },
   userLocation: {
     flexDirection: "row",
@@ -313,16 +339,19 @@ const styles = StyleSheet.create({
   location: {
     marginLeft: wp("1%"),
     fontSize: wp("4%"),
-    color: "#ededed",
+    fontFamily: "Roboto-Light",
+    color: "black",
   },
   userMail: {
     flexDirection: "row",
     alignSelf: "center",
+    fontFamily: "Roboto-Light",
     marginBottom: hp("0.5%"),
   },
   userOntact: {
     flexDirection: "row",
     alignSelf: "center",
+    fontFamily: "Roboto-Light",
     marginBottom: hp("0.5%"),
   },
   userRating: {
@@ -332,23 +361,24 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: hp("2%"),
-    color: "#ededed",
+    fontFamily: "Roboto-Light",
+    color: "black",
     marginLeft: wp("1%"),
     marginRight: wp("3%"),
   },
   likeComponent: {
-    color: "#ededed",
+    color: "black",
   },
   like: {
     fontSize: hp("2.75%"),
-    color: "#ededed"
+    color: "black"
   },
   dislikeComponent: {
-    color: "#ededed",
+    color: "black",
   },
   dislike: {
     fontSize: hp("2.75%"),
-    color: "#ededed",
+    color: "black",
   },
   userContact: {
     flexDirection: "row",
@@ -360,17 +390,17 @@ const styles = StyleSheet.create({
   },
   aboutUser: {
     marginBottom: hp("0.5%"),
-    backgroundColor: "#1e1c24",
+    backgroundColor: "#ededed",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ededed",
+    borderColor: "#606060",
   },
   smallContainer: {
     marginBottom: hp("0.5%"),
-    backgroundColor: "#1e1c24",
+    backgroundColor: "#ededed",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ededed",
+    borderColor: "#606060",
   },
   sectionName: {
     left: wp("2%"),
@@ -379,7 +409,9 @@ const styles = StyleSheet.create({
     marginLeft: wp("2%"),
     marginRight: wp("2%"),
     fontSize: hp("2.5%"),
-    color: "#ededed",
+    textAlign: "center",
+    fontFamily: "Roboto-Bold",
+    color: "black",
   },
   dashContainer: {
     marginLeft: wp("0.3%"),
@@ -388,7 +420,7 @@ const styles = StyleSheet.create({
   line: {
     textAlignVertical: "center",
     fontSize: hp("3%"),
-    color: "#ededed",
+    color: "black",
   },
   userDetails: {
     paddingHorizontal: hp("1.25%"),
@@ -396,44 +428,45 @@ const styles = StyleSheet.create({
     marginHorizontal: wp("1.5%"),
     marginVertical: hp("0.5%"),
     borderRadius: 10,
-    backgroundColor: "#1f1f2f",
+    backgroundColor: "white",
   },
   details: {
     fontSize: hp("2%"),
-    color: "#ededed",
+    fontFamily: "Roboto-Light",
+    color: "black",
   },
   commentTitle:{
     fontSize: hp("2%"),
     fontWeight: "bold",
-    color: "#ededed",
+    color: "black",
   },
   commentUser:{
     fontSize: hp("2%"),
     fontWeight: "bold",
     marginTop: hp("0.5%"),
     marginLeft: wp("2%"),
-    color: "#ededed",
+    color: "black",
   },
   commentTime:{
     fontSize: hp("2%"),
     marginTop: hp("0.5%"),
     marginLeft: wp("1%"),
-    color: "#ededed",
+    color: "black",
   },
   commentText:{
     fontSize: hp("2%"),
     marginTop: hp("1%"),
-    color: "#ededed",
+    color: "black",
   },
   arrow: {
     alignSelf: "center",
     fontSize: hp("3%"),
-    color: "#ededed",
+    color: "black",
   },
   arrowSmall: {
     alignSelf: "center",
     marginTop: hp("0.5%"),
     fontSize: hp("3%"),
-    color: "#ededed",
+    color: "black",
   }
 });

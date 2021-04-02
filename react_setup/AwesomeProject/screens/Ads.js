@@ -25,6 +25,8 @@ const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
 export default class Ads extends React.Component {
@@ -61,24 +63,35 @@ export default class Ads extends React.Component {
                         visible={this.state.showModal}
                         style={{borderWidth:0,borderColor:"none"}}
                         >
-                          <View style={{backgroundColor:"white", width:wp("90%"), height: hp("85%"), borderRadius: 5}}>
+                          <View style={{backgroundColor:"#ededed", width:wp("90%"), height: hp("85%"), borderRadius: 5}}>
                             <View style={{ flexDirection: "row",justifyContent:"space-between"}}>
                               <View></View>
                               <Ionicons name="md-close" size={26} onPress={() => this.setState({showModal: false})} style={{marginTop:hp("0.5%"), marginRight:hp("0.5%")}} color="black" />
                             </View>
                             <View style={{alignSelf:"center"}}>
 
-                              <View style={{borderColor:"black", borderWidth: 1, borderRadius: 10, width: wp("86%"), height: hp("5%"), marginLeft: wp("2.5%"), marginRight: wp("2.5%"), textAlign:"center"}}> 
-                                <Text style={{fontSize: hp("3%"), textAlign:"center"}}> Casovi nemackog </Text>
+                              <View style={{borderColor:"#d6d6d6", backgroundColor: "white", borderWidth: 1, borderRadius: 10, width: wp("86%"), height: hp("5%"), marginLeft: wp("2.5%"), marginRight: wp("2.5%"), textAlign:"center", flexDirection: "row", flex:1, justifyContent: "space-between"}}>
+                                <View>
+                                  <Text style={{fontSize: hp("2.5%"), color: "black",fontFamily: "Roboto-Bold", marginTop: hp("0.8%")}}> Casovi nemackog </Text>
+                                </View> 
+                                <View style={{height: hp("3%"), width: wp("20%"), backgroundColor: "black", marginTop: hp("0.8%"), marginRight: wp("1.5%"), borderRadius: 5}}>
+                                  <Text style={{marginTop: hp("0.5%"), color:"white", fontSize: hp("1.75%"), fontFamily: "Roboto-Bold", textAlign: "center"}}>Dogovor</Text>
+                                </View>
                               </View>
 
 
                               <View style={styles.basicUserInfo}>
-                                  <Image style={
+                                <View style={
+                                        windowHeight * 0.37 < windowWidth * 0.7
+                                          ? styles.profileImageBorderHeight
+                                          : styles.profileImageBorderWidth
+                                      }>
+                                <Image style={
                                         windowHeight * 0.37 < windowWidth * 0.7
                                           ? styles.profileImageHeight
                                           : styles.profileImageWidth
                                       } source={avatar} />
+                                </View>
                                 <Text style={styles.profileName}>Vladimir Cvetanovic</Text>
                                 <View style={styles.userLocation}>
                                   <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="black" />
@@ -104,7 +117,7 @@ export default class Ads extends React.Component {
                                 </View>
                               </View>
                               <View style={styles.description}>
-                                <Text style={{marginLeft: 2, marginRight: 2}}>
+                                <Text style={{marginLeft: 2, marginRight: 2, fontFamily: "Roboto-Light"}}>
                                   Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
                                   Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
                                   Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
@@ -182,7 +195,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "black"
+    borderColor: "#d6d6d6"
   },
   description: {
     minHeight: hp("33%"),
@@ -197,19 +210,35 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "black"
+    borderColor: "#d6d6d6"
   },
   profileImageHeight: {
     alignSelf: "center",
-    marginTop: hp("1.5%"),
+    marginTop: hp("0.35%"),
     width: hp("15%"),
-    height: hp("15%"),
+    height: hp("15%")
   },
   profileImageWidth:{
     alignSelf: "center",
-    marginTop: wp("3%"),
+    marginTop: wp("0.7%"),
     width: wp("30%"),
-    height: wp("30%"),
+    height: wp("30%")
+  },
+  profileImageBorderHeight: {
+    alignSelf: "center",
+    marginTop: hp("1.5%"),
+    width: hp("16%"),
+    height: hp("16%"),
+    borderWidth: 1,
+    borderColor: "#747474"
+  },
+  profileImageBorderWidth:{
+    alignSelf: "center",
+    marginTop: wp("3%"),
+    width: wp("32%"),
+    height: wp("32%"),
+    borderWidth: 1,
+    borderColor: "#d6d6d6"
   },
   titleIconWidth: {
     width: wp("12%"),
@@ -223,6 +252,7 @@ const styles = StyleSheet.create({
     marginBottom: hp("0.5%"),
     fontSize: hp("3%"),
     fontWeight: "bold",
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   userLocation: {
@@ -233,6 +263,7 @@ const styles = StyleSheet.create({
   location: {
     marginLeft: wp("1%"),
     fontSize: wp("4%"),
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   userMail: {
@@ -252,6 +283,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: hp("2%"),
+    fontFamily: "Roboto-Light",
     color: "black",
     marginLeft: wp("1%"),
     marginRight: wp("3%"),
