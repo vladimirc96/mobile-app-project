@@ -23,6 +23,9 @@ import { adsStyles, profileStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
 import * as Font from "expo-font";
+import AdModal from './AdModal';import CommentModal from "./CommentModal";
+9+
+60.
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -43,7 +46,8 @@ export default class Profile extends React.Component {
       shortText: true,
       showComments: false,
       showAds: false,
-      user: null
+      user: null,
+      showModal: false
     }
   }
 
@@ -93,6 +97,10 @@ async componentDidMount() {
     }
   };
 
+  toggleModal = () => {
+    this.setState(prevState => ({showModal:!prevState.showModal}))
+  }
+
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
     const avatar = require("./../assets/images/avatar.png");
@@ -108,7 +116,9 @@ async componentDidMount() {
         style={profileStyles.backgroundImageContainer}
         source={backgroundImage}
       >
-        <ScrollView>
+        {this.state.showModal? 
+          <CommentModal toggleModal={this.toggleModal} /> :
+          <ScrollView>
         <View style={profileStyles.mainContainer}>
             <View style={profileStyles.basicUserInfo}>
               <Image
@@ -214,6 +224,9 @@ async componentDidMount() {
                 </View>
                 <Text style={profileStyles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
               </View>
+              <TouchableOpacity style={profileStyles.comment} onPress={() => this.toggleModal()}>
+                <Text style={profileStyles.commentButtonText}>Oceni korisnika</Text>
+              </TouchableOpacity>
               <FontAwesome
                     name="angle-double-up"
                     style={profileStyles.arrow}
@@ -222,7 +235,7 @@ async componentDidMount() {
             </View> 
             }
           </View>
-          <View style={profileStyles.smallContainerBottom}>
+          <View style={profileStyles.smallContainer}>
             <View style={{flexDirection: "row", alignSelf: "center"}}>
               <Text style={profileStyles.sectionName}>Oglasi </Text>
               {
@@ -255,6 +268,7 @@ async componentDidMount() {
           </View>
         </View>
         </ScrollView>
+        }
       </ImageBackground>
     );
       }

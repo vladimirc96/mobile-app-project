@@ -521,13 +521,12 @@ export const adStyles = StyleSheet.create({
   adImage: {
     height: wp("27.2%"),
     width: wp("27.2%"),
-    top: wp("1.36%"),
-    left: wp("1.36%"),
+    top: wp("0.68%"),
+    left: wp("0.68%"),
     borderWidth: 2,
     borderColor: "#7d7d7d",
   },
   adMainText: {
-    marginTop: 3,
     marginLeft: wp("2.72%"),
     width: wp("36.6%"),
     backgroundColor: "#eee8e8",
@@ -535,12 +534,12 @@ export const adStyles = StyleSheet.create({
   adTitleContainer: {
     borderBottomWidth: 0.5,
     borderColor: "#7d7d7d",
-    marginBottom: hp("1%"),
+    marginBottom: hp("0.5%"),
   },
   adTitle: {
+    marginTop: wp("0.5%"),
     textAlign: "center",
     fontSize: wp("3%"),
-    marginTop: wp("1%"),
     fontFamily: "Comfortaa-Bold",
     color: "black",
   },
@@ -595,7 +594,7 @@ export const adStyles = StyleSheet.create({
     color: "black",
   },
   adDetails: {
-    marginTop: wp("2%"),
+    marginTop: wp("1%"),
     marginLeft: wp("1.5%"),
     width: wp("20.4%"),
     backgroundColor: "#eee8e8",
@@ -976,6 +975,11 @@ export const modalStyles = StyleSheet.create({
       marginLeft: 2,
       marginRight: 2,
       fontFamily: "Roboto-Light"
+    },
+    textInput: {
+      marginLeft: 2,
+      marginRight: 2,
+      fontFamily: "Roboto-Light"
     }
 });
 
@@ -1146,6 +1150,14 @@ export const profileStyles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "white",
   },
+  comment: {
+    paddingHorizontal: hp("1.25%"),
+    paddingVertical: wp("2%"),
+    marginHorizontal: wp("1.5%"),
+    marginVertical: hp("0.5%"),
+    borderRadius: 10,
+    backgroundColor: "white",
+  },
   details: {
     fontSize: hp("2%"),
     fontFamily: "Roboto-Light",
@@ -1153,6 +1165,12 @@ export const profileStyles = StyleSheet.create({
   },
   commentTitle:{
     fontSize: hp("2%"),
+    fontWeight: "bold",
+    color: "black",
+  },
+  commentButtonText:{
+    fontSize: hp("2.5%"),
+    textAlign: "center",
     fontWeight: "bold",
     color: "black",
   },
