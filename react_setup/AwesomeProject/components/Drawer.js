@@ -46,8 +46,8 @@ export class Drawer extends React.Component {
   }
 
   render() {
-    if(this.state.drawerItems.length === 0){
-      return <View></View>
+    if (this.state.drawerItems.length === 0) {
+      return <View></View>;
     }
     return (
       <SafeAreaView

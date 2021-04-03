@@ -6,6 +6,8 @@ import AboutUsStack from "./aboutUsStack";
 import Drawer from "../components/Drawer";
 import { FontAwesome } from "@expo/vector-icons";
 import Profile from "../screens/Profile";
+import AboutUs from "../screens/Profile";
+import ContactUs from "../screens/ContactUs";
 import React from "react";
 
 // drawer navigation options
@@ -13,10 +15,8 @@ const RootDrawerNavigator = createDrawerNavigator(
   {
     Profile: {
       screen: Profile,
-       navigationOptions: {
-        drawerIcon: () => (
-          <FontAwesome name="user-o" size={24} color="white" />
-        ),
+      navigationOptions: {
+        drawerIcon: () => <FontAwesome name="user-o" size={24} color="white" />,
       },
     },
     Categories: {
@@ -28,11 +28,13 @@ const RootDrawerNavigator = createDrawerNavigator(
       },
     },
     AboutUs: {
-      screen: AboutUsStack,
-      navigationOptions: {
-        drawerIcon: () => (
-          <FontAwesome name="question-circle-o" size={24} color="white" />
-        ),
+      screen: AboutUs,
+      navigationOptions: ({ navigation }) => {
+        return {
+          drawerIcon: () => (
+            <FontAwesome name="question-circle-o" size={24} color="white" />
+          ),
+        };
       },
     },
   },

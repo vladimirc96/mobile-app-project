@@ -3,16 +3,17 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function DrawerItem(props) {
-
   const getLabel = (labelName) => {
-    if(labelName === 'Categories'){
-      return 'Kategorije';
-    }else if(labelName === 'AboutUs'){
-      return 'O nama';
-    }else if(labelName === 'Profile'){
-      return 'Moj profil';
+    if (labelName === "Categories") {
+      return "Kategorije";
+    } else if (labelName === "AboutUs") {
+      return "O nama";
+    } else if (labelName === "Profile") {
+      return "Moj profil";
+    } else if (labelName === "ContactUs") {
+      return "Kontakt";
     }
-  }
+  };
   return (
     <TouchableOpacity
       style={{ marginTop: 10, marginLeft: 10 }}

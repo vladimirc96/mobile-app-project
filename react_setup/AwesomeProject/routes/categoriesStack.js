@@ -7,6 +7,8 @@ import Ads from "./../screens/Ads";
 import Profile from "./../screens/Profile";
 import EditProfile from "./../screens/EditPtofile";
 import AdCreation from "./../screens/adCreation";
+import AboutUs from "./../screens/AboutUs";
+import ContactUs from "./../screens/ContactUs";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -55,6 +57,22 @@ const screens = {
   },
   AdCreation: {
     screen: AdCreation,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+      };
+    },
+  },
+  AboutUs: {
+    screen: AboutUs,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+      };
+    },
+  },
+  ContactUs: {
+    screen: ContactUs,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
