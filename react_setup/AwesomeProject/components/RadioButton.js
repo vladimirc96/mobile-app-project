@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     width: wp("40%"),
     paddingLeft: wp("1.5%"),
     fontSize: hp("2%"),
+    fontFamily: "Roboto-Light",
     fontStyle: "italic",
     opacity: 0.8,
   },
@@ -118,7 +119,8 @@ const styles = StyleSheet.create({
     paddingTop: hp("0.5%"),
     width: wp("8%"),
     fontSize: hp("1.75%"),
-    fontWeight: "bold",
+    fontFamily: "Roboto-Bold",
+    opacity: 0.8,
     color: "#ededed",
   },
   radioCircle: {
