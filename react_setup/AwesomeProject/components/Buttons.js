@@ -118,7 +118,8 @@ export class FirstRunButton extends React.Component {
   }
 
   render() {
-    const cameraIcon = require("../assets/images/camera_icon.png");
+    const sharingIcon = require("../assets/images/nudim_uslugu.png");
+    const searchingIcon = require("../assets/images/trazim_uslugu.png");
 
     if (this.state.fontsLoaded) {
       return (
@@ -132,7 +133,11 @@ export class FirstRunButton extends React.Component {
                 ? buttonsStyles.inputImageHeight
                 : buttonsStyles.inputImageWidth
             }
-            source={cameraIcon}
+            source={
+              this.props.title == "Nudim uslugu"
+                ? sharingIcon
+                : searchingIcon
+            }
           />
           <Text
             style={

@@ -1,11 +1,27 @@
 import React from "react";
 import EditProfileForm from "../components/forms/EditProfileForm";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, ActivityIndicator, } from "react-native";
 import { getAll } from "../services/LocationService";
+
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+};
 export default class EditProfile extends React.Component {
   state = {
+    fontsLoaded: false,
     locations: [],
   };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
 
   async componentDidMount() {
     try {
@@ -14,6 +30,9 @@ export default class EditProfile extends React.Component {
     } catch (err) {
       console.log(err.message);
     }
+
+    this._loadFontsAsync();
+
   }
 
   render() {
