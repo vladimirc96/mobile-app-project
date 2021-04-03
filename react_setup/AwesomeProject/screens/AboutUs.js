@@ -8,6 +8,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { screensEnabled } from "react-native-screens";
+import { aboutUsStyles } from "./../shared/Styles";
+ 
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -58,19 +60,19 @@ export default class AboutUs extends React.Component {
     if (this.state.fontsLoaded) {
       return (
         <ImageBackground
-          style={styles.backgroundImageContainer}
+          style={aboutUsStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <View style={styles.mainContainer}>
+          <View style={aboutUsStyles.mainContainer}>
             <View>
-              <View style={styles.titleContainer}>
-                <Text style={styles.titleText}> #APPNAME</Text>
+              <View style={aboutUsStyles.titleContainer}>
+                <Text style={aboutUsStyles.titleText}> #APPNAME</Text>
               </View>
-              <View style={styles.subtitleContainer}>
-                <View style={styles.subtitleNameContainer}>
-                  <Text style={styles.subtitleText}> O nama</Text>
+              <View style={aboutUsStyles.subtitleContainer}>
+                <View style={aboutUsStyles.subtitleNameContainer}>
+                  <Text style={aboutUsStyles.subtitleText}> O nama</Text>
                 </View>
-                  <Text style={styles.mainText}>
+                  <Text style={aboutUsStyles.mainText}>
                     {" "}
                     Ovo je prica o nama, ovo je prica o njoj..... Ovo je prica o
                     nama, ovo je prica o njoj..... Ovo je prica o nama, ovo je prica
@@ -80,8 +82,8 @@ export default class AboutUs extends React.Component {
                   </Text>
               </View>
             </View>
-            <View style={styles.contactPartContainer}>
-              <Text style={styles.contactText}>
+            <View style={aboutUsStyles.contactPartContainer}>
+              <Text style={aboutUsStyles.contactText}>
                 {" "}
                 Imate li pitanja ili sugestiju?
               </Text>
@@ -98,56 +100,3 @@ export default class AboutUs extends React.Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover",
-  },
-  mainContainer: {
-    alignSelf: "center",
-    justifyContent: "space-between",
-    width: wp("100%"),
-    height: hp("88%"),
-  },
-  titleContainer: {
-    alignContent: "center",
-    marginTop: hp("5%"),
-  },
-  titleText: {
-    alignSelf: "center",
-    fontSize: hp("5%"),
-    fontWeight: "600",
-  },
-  subtitleContainer: {
-    alignSelf: "center",
-    marginTop: hp("2%"),
-    width: wp("90%"),
-  },
-  subtitleNameContainer: {
-    borderBottomWidth: 1
-  },
-  subtitleText: {
-    marginTop: hp("2%"),
-    paddingLeft: wp("1.5%"),
-    fontSize: hp("2.5%"),
-    fontFamily: 'Roboto-Black',
-  },
-  mainText: {
-    marginTop: hp("1.25%"),
-    fontSize: hp("2.25%"),
-    textAlign: "justify",
-    fontFamily: 'Roboto-LightItalic',
-    fontWeight: "400",
-  },
-  contactPartContainer: {
-    marginBottom: hp("5%"),
-  },
-  contactText: {
-    marginBottom: hp("1.25%"),
-    fontSize: hp("2%"),
-    fontFamily: 'Comfortaa-Regular',
-    fontWeight: "600",
-    textAlign: "center",
-  },
-});

@@ -7,7 +7,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import configureStore from "./store/store";
 
 const persistStore = configureStore();
-
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
 };

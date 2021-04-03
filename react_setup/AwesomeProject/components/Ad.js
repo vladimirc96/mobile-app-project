@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Font from "expo-font";
-import { Octicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { adStyles } from "./../shared/Styles";

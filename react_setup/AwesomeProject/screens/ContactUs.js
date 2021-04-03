@@ -19,7 +19,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { EditProfileButton } from "../components/Buttons";
-
+import { contactUsStyles } from "./../shared/Styles";
 import { Dimensions } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
@@ -28,9 +28,13 @@ const windowHeight = Dimensions.get("window").height;
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
-export default class AdCreation extends React.Component {
+export default class ContactUs extends React.Component {
   state = {
     fontsLoaded: false,
     selectedCategory: "category_id_1",
@@ -46,10 +50,6 @@ export default class AdCreation extends React.Component {
   }
 
   componentDidMount() {
-    this._loadFontsAsync();
-  }
-
-  componentDidMount() {
     (async () => {
       const {
         status,
@@ -58,6 +58,8 @@ export default class AdCreation extends React.Component {
         alert("Sorry, we need camera roll permissions to make this work!");
       }
     })();
+
+    this._loadFontsAsync();
   }
 
   pickImage = async () => {
@@ -78,58 +80,59 @@ export default class AdCreation extends React.Component {
     const hamburger = require("./../assets/images/hamburger.png");
     const avatar = require("./../assets/images/avatar.png");
 
+    if(this.state.fontsLoaded){
       return (
         <ImageBackground
-          style={styles.backgroundImageContainer}
+          style={contactUsStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <View style={styles.mainContainer}>
-            <View style={styles.backForwardContainer}></View>
-            <View style={styles.inputFieldContainer}>
-              <Text style={styles.fieldNameBold}>Imate pitanje, sugestiju ili zelite da postanete deo tima? 
-                  Posaljite nam poruku!
+          <View style={contactUsStyles.mainContainer}>
+            <View style={contactUsStyles.backForwardContainer}></View>
+            <View style={contactUsStyles.inputFieldContainer}>
+              <Text style={contactUsStyles.fieldNameBold}>Imate pitanje, sugestiju ili želite da postanete deo tima? 
+                  Pošaljite nam poruku!
               </Text>
-              <Text style={styles.fieldName}> Naslov poruke </Text>
+              <Text style={contactUsStyles.fieldName}> Naslov poruke </Text>
               <TextInput
-                style={styles.adNameField}
+                style={contactUsStyles.adNameField}
                 placeholder="Max. 50 karaktera."
                 placeholderTextColor="#ededed"
               />
             </View>
-            <View style={styles.inputFieldContainer}>
-              <Text style={styles.fieldName}>Vasa poruka</Text>
+            <View style={contactUsStyles.inputFieldContainer}>
+              <Text style={contactUsStyles.fieldName}>Vaša poruka</Text>
               <TextInput
                 multiline={true}
                 numberOfLines={6}
-                style={styles.adDescriptionField}
+                style={contactUsStyles.adDescriptionField}
                 placeholder="Max. 1000 karaktera."
                 placeholderTextColor="#ededed"
               />
             </View>
-            <View style={styles.inputFieldContainerWithMargin}>
-            <Text style={styles.fieldNameBold}>Naisli ste na gresku?
-              Okacite screenshoot, kako bi nas tim mogao da je popravi
+            <View style={contactUsStyles.inputFieldContainerWithMargin}>
+            <Text style={contactUsStyles.fieldNameBold}>Naišli ste na grešku?
+              Okačite screenshoot, kako bi naš tim mogao da je popravi
             </Text>
-              <Text style={styles.fieldName}>Fotografija</Text>
+              <Text style={contactUsStyles.fieldName}>Fotografija</Text>
               <TouchableOpacity onPress={this.pickImage}>
-                <View style={styles.pickImageContainer}>
-                  <View style={styles.pickImageAdditional}>
-                    <Text style={styles.pickingImage}> Izaberi sliku</Text>
-                    <AntDesign name="pluscircleo" style={styles.plusIcon} />
+                <View style={contactUsStyles.pickImageContainer}>
+                  <View style={contactUsStyles.pickImageAdditional}>
+                    <Text style={contactUsStyles.pickingImage}> Izaberi sliku</Text>
+                    <AntDesign name="pluscircleo" style={contactUsStyles.plusIcon} />
                   </View>
                 </View>
               </TouchableOpacity>
             </View>
-            <View style={styles.inputFieldContainerWithMargin}>
-              <Text style={styles.fieldName}> Vasi podaci </Text>
+            <View style={contactUsStyles.inputFieldContainerWithMargin}>
+              <Text style={contactUsStyles.fieldName}> Vaši podaci </Text>
               <TextInput
-                style={styles.adNameField}
+                style={contactUsStyles.adNameField}
                 placeholder="Ime"
                 placeholderTextColor="#ededed"
               />
               <TextInput
-                style={styles.adNameField}
-                placeholder="E mail adresa"
+                style={contactUsStyles.adNameField}
+                placeholder="E-mail adresa"
                 placeholderTextColor="#ededed"
               />
             </View>
@@ -137,165 +140,9 @@ export default class AdCreation extends React.Component {
           </View>
         </ImageBackground>
       );
+    }
+    else{
+      return <ActivityIndicator size="large" />;
+    }
   }
 }
-
-const styles = StyleSheet.create({
-  backgroundImageContainer: {
-    flex: 1,
-    resizeMode: "cover",
-  },
-  mainContainer: {
-    alignSelf: "center",
-    marginTop: hp("2%"),
-    width: wp("90%"),
-    minHeight: hp("80%"),
-    borderRadius: 10,
-    backgroundColor: "#2d2d2d",
-  },
-  backForwardContainer: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    height: hp("4%"),
-    backgroundColor: "#1e1c24",
-  },
-  inputFieldContainer: {
-    alignSelf: "center",
-    marginLeft: wp("1%"),
-    width: wp("82%"),
-  },
-  inputFieldContainerWithMargin: {
-    alignSelf: "center",
-    marginLeft: wp("1%"),
-    marginTop: hp("3%"),
-    width: wp("82%"),
-  },
-  fieldName: {
-    marginLeft: wp("1%"),
-    marginTop: hp("1.25%"),
-    fontSize: hp("1.55%"),
-    color: "#ededed",
-  },
-  fieldNameBold: {
-    marginLeft: wp("1%"),
-    marginTop: hp("1.25%"),
-    fontSize: hp("1.55%"),
-    fontWeight: "bold",
-    color: "#ededed",
-  },
-  adNameField: {
-    marginTop: hp("0.75%"),
-    width: wp("82%"),
-    height: hp("4.5%"),
-    paddingLeft: wp("1.5%"),
-    fontSize: hp("1.9%"),
-    fontStyle: "italic",
-    opacity: 0.8,
-    backgroundColor: "#1e1c24",
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "white",
-  },
-  adDescriptionField: {
-    width: wp("82%"),
-    marginTop: hp("0.75%"),
-    paddingLeft: wp("1.5%"),
-    fontSize: hp("1.9%"),
-    fontStyle: "italic",
-    opacity: 0.8,
-    backgroundColor: "#1e1c24",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "white",
-  },
-  dropDownCatSubContainer: {
-    marginTop: hp("0.75%"),
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
-    height: hp("9%"),
-  },
-  dropDownCatContainer: {
-    marginTop: hp("0.25%"),
-    alignSelf: "center",
-    width: wp("75%"),
-    borderBottomWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
-    height: hp("4%"),
-  },
-  dropDownSubContainer: {
-    alignSelf: "center",
-    width: wp("75%"),
-    backgroundColor: "#1e1c24",
-    height: hp("4%"),
-    fontWeight: "bold",
-  },
-  priceRBContainer: {
-    marginTop: hp("0.75%"),
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
-    height: hp("9%"),
-  },
-  pickImageContainer: {
-    alignSelf: "center",
-    marginTop: hp("0.75%"),
-    width: wp("82%"),
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
-    height: hp("4.5%"),
-  },
-  pickImageAdditional: {
-    alignSelf: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: wp("75%"),
-  },
-  pickingImage: {
-    paddingTop: hp("0.55%"),
-    fontSize: hp("1.9%"),
-    fontWeight: "bold",
-    color: "#ededed",
-  },
-  plusIcon: {
-    fontSize: hp("2.25%"),
-    color: "#ededed",
-    paddingTop: hp("0.55%"),
-  },
-  inputFieldAdditionalContainer: {
-    flexDirection: "row",
-  },
-  questionMarkIcon: {
-    marginLeft: wp("1%"),
-    fontSize: hp("2.25%"),
-    color: "#ededed",
-    paddingTop: hp("1.25%"),
-  },
-  dropDownTypeContainer: {
-    marginTop: hp("0.75%"),
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
-    height: hp("4.5%"),
-  },
-  typeCodeInput: {
-    alignSelf: "center",
-    textAlign: "center",
-    marginTop: hp("0.75%"),
-    width: wp("40%"),
-    height: hp("4%"),
-    paddingLeft: wp("1.5%"),
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: "#ededed",
-    fontSize: hp("2%"),
-    fontStyle: "italic",
-    opacity: 0.8,
-  },
-});
