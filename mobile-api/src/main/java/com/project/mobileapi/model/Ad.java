@@ -3,6 +3,7 @@ package com.project.mobileapi.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -30,7 +31,7 @@ public class Ad {
     private String description;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "views")
     private int views;
@@ -42,4 +43,6 @@ public class Ad {
     @Lob
     private byte[] image;
 
+    @ManyToOne
+    private SubCategory subCategory;
 }

@@ -1,4 +1,14 @@
 import React from "react";
+import * as yup from "yup";
+import { Formik } from "formik";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { EditProfileButton } from "../Buttons";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { Picker } from "@react-native-picker/picker";
+import RadioButton from "../RadioButton";
 import {
   ImageBackground,
   StyleSheet,
@@ -9,86 +19,38 @@ import {
   View,
   ActivityIndicator,
 } from "react-native";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
-import RadioButton from "../components/RadioButton";
-import * as ImagePicker from "expo-image-picker";
-import * as Font from "expo-font";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { EditProfileButton } from "../components/Buttons";
-
 import { Dimensions } from "react-native";
-import { adCreationStyles } from "./../shared/Styles";
-import AdForm from "../components/forms/AdForm";
+import { adCreationStyles } from "../../shared/Styles";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const customFonts = {
-  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
-  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
-  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
-  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
-  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
-};
+const adSchema = yup.object({
+  title: yup.string().required("Naslov je obavezan."),
+  description: yup.string().required("Opis je obavezan."),
+  category: yup.string().required("Kategorija je obavezna."),
+  subCategory: yup.string().required("Podkagetorija je obavezna."),
+  price: yup.string(),
+});
 
-export default class AdCreation extends React.Component {
-  state = {
-    fontsLoaded: false,
-    selectedCategory: "category_id_1",
-    selectedSubcategory: "subcategory_id_1",
-    checkedPrice: "price_id_1",
-    image: null,
-    selectedType: "adType_id_2",
-    categories: [],
-    subCategories: [],
-  };
-
-  async _loadFontsAsync() {
-    await Font.loadAsync(customFonts);
-    this.setState({ fontsLoaded: true });
-  }
-
-  componentDidMount() {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
-
-    this._loadFontsAsync();
-  }
-
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
-
-  render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
-
-    if (this.state.fontsLoaded) {
-      return (
-        <ImageBackground
-          style={adCreationStyles.backgroundImageContainer}
-          source={backgroundImage}
-        >
-          {/* <View style={adCreationStyles.mainContainer}>
+export default function AdForm(props) {
+  return (
+    <View>
+      <Formik
+        initialValues={{
+          title: "",
+          description: "",
+          category: "",
+          subCategory: "",
+          price: "",
+        }}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+        validationSchema={adSchema}
+      >
+        {(props) => (
+          <View style={adCreationStyles.mainContainer}>
             <View style={adCreationStyles.backForwardContainer}></View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
@@ -96,6 +58,7 @@ export default class AdCreation extends React.Component {
                 style={adCreationStyles.adNameField}
                 placeholder="Max. 50 karaktera."
                 placeholderTextColor="#ededed"
+                value={props.values.title}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
@@ -106,6 +69,7 @@ export default class AdCreation extends React.Component {
                 style={adCreationStyles.adDescriptionField}
                 placeholder="Max. 500 karaktera."
                 placeholderTextColor="#ededed"
+                value={props.values.description}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
@@ -115,7 +79,7 @@ export default class AdCreation extends React.Component {
               <View style={adCreationStyles.dropDownCatSubContainer}>
                 <View style={adCreationStyles.dropDownCatContainer}>
                   <Picker
-                    selectedCategory={this.state.selectedCategory}
+                    selectedValue={""}
                     style={{
                       fontSize: hp("1.9%"),
                       backgroundColor: "#1e1c24",
@@ -125,20 +89,23 @@ export default class AdCreation extends React.Component {
                       paddingTop: hp("0.5%"),
                     }}
                     onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedCategory: itemValue })
+                      console.log(itemValue, itemIndex)
                     }
+                    value={props.values.category}
                   >
-                    <Picker.Item
-                      label="Majstori i zanati"
-                      value="category_id_1"
-                    />
-                    <Picker.Item label="Dizajn" value="category_id_2" />
-                    <Picker.Item label="Muzika" value="category_id_3" />
+                    {props.categories
+                      ? props.categories.map((category) => (
+                          <Picker.Item
+                            label={category.name}
+                            value={category.id}
+                          />
+                        ))
+                      : null}
                   </Picker>
                 </View>
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
-                    selectedSubcategory={this.state.selectedSubcategory}
+                    selectedValue={""}
                     style={{
                       fontSize: hp("1.9%"),
                       backgroundColor: "#1e1c24",
@@ -148,15 +115,18 @@ export default class AdCreation extends React.Component {
                       paddingTop: hp("0.75%"),
                     }}
                     onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedSubcategory: itemValue })
+                      console.log(itemValue, itemIndex)
                     }
+                    value={props.values.subCategory}
                   >
-                    <Picker.Item
-                      label="Majstori i zanati"
-                      value="subcategory_id_1"
-                    />
-                    <Picker.Item label="Dizajn" value="subcategory_id_2" />
-                    <Picker.Item label="Muzika" value="subcategory_id_3" />
+                    {props.subCategories
+                      ? props.subCategories.map((subCategory) => (
+                          <Picker.Item
+                            label={subCategory.name}
+                            value={subCategory.id}
+                          />
+                        ))
+                      : null}
                   </Picker>
                 </View>
               </View>
@@ -169,18 +139,25 @@ export default class AdCreation extends React.Component {
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Fotografija</Text>
-              <TouchableOpacity onPress={this.pickImage}>
+              <TouchableOpacity>
                 <View style={adCreationStyles.pickImageContainer}>
                   <View style={adCreationStyles.pickImageAdditional}>
-                    <Text style={adCreationStyles.pickingImage}> Izaberi sliku</Text>
-                    <AntDesign name="pluscircleo" style={adCreationStyles.plusIcon} />
+                    <Text style={adCreationStyles.pickingImage}>
+                      Izaberi sliku
+                    </Text>
+                    <AntDesign
+                      name="pluscircleo"
+                      style={adCreationStyles.plusIcon}
+                    />
                   </View>
                 </View>
               </TouchableOpacity>
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <View style={adCreationStyles.inputFieldAdditionalContainer}>
-                <Text style={adCreationStyles.fieldName}>Izaberi tip oglasa</Text>
+                <Text style={adCreationStyles.fieldName}>
+                  Izaberi tip oglasa
+                </Text>
                 <FontAwesome
                   name="question-circle-o"
                   style={adCreationStyles.questionMarkIcon}
@@ -189,7 +166,7 @@ export default class AdCreation extends React.Component {
               <View style={adCreationStyles.dropDownTypeContainer}>
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
-                    selectedSubcategory={this.state.selectedType}
+                    selectedValue={""}
                     style={{
                       fontSize: hp("1.9%"),
                       backgroundColor: "#1e1c24",
@@ -199,7 +176,7 @@ export default class AdCreation extends React.Component {
                       paddingTop: hp("0.75%"),
                     }}
                     onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedType: itemValue })
+                      console.log(itemValue, itemIndex)
                     }
                   >
                     <Picker.Item label="Basic" value="adType_id_1" />
@@ -215,12 +192,9 @@ export default class AdCreation extends React.Component {
               />
             </View>
             <EditProfileButton title={"Postavi"} />
-          </View> */}
-          <AdForm categories={this.state.categories} subCategories={this.state.subCategories}></AdForm>
-        </ImageBackground>
-      );
-    } else {
-      return <ActivityIndicator size="large" />;
-    }
-  }
+          </View>
+        )}
+      </Formik>
+    </View>
+  );
 }

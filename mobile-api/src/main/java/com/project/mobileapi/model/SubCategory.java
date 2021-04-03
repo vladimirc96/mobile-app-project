@@ -22,4 +22,7 @@ public class SubCategory {
 
     @ManyToMany(mappedBy = "subCategories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Ad> ads;
 }

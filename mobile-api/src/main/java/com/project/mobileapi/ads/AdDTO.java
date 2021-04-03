@@ -1,12 +1,15 @@
 package com.project.mobileapi.ads;
 
+import com.project.mobileapi.subcategory.SubCategoryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -29,10 +32,12 @@ public class AdDTO {
     @NotBlank(message = "Opis oglasa ne sme da bude prazan.")
     private String description;
 
-    private Date creationDate;
+    private LocalDate creationDate;
 
     private int views;
 
-    private boolean deleted;
+    private MultipartFile image;
+
+    private SubCategoryDTO subCategory;
 
 }
