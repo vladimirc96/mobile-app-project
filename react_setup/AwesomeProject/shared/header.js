@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { headerStyles } from "./Styles";
-import { useSelector } from "react-redux";
-import { Button, Menu, Divider, Provider, Avatar } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
+import { Menu, Divider, Provider, Avatar } from "react-native-paper";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { logout } from "../store/actions/authentication/authenticationActions";
 
 export default function Header({ title, navigation, mainScreen }) {
   const openDrawer = () => {
@@ -21,9 +21,15 @@ export default function Header({ title, navigation, mainScreen }) {
 
   const closeMenu = () => setVisible(false);
 
+  const dispatch = useDispatch();
+
+  const logoutUser = () => dispatch(logout());
+
   const avatar = require("./../assets/images/avatar.png");
 
   const token = useSelector((state) => state.authenticationReducer.token);
+
+  const user = useSelector((state) => state.userReducer.user);
 
   return (
     <Provider>
@@ -65,10 +71,19 @@ export default function Header({ title, navigation, mainScreen }) {
                 </TouchableOpacity>
               }
             >
-              <Menu.Item onPress={() => {}} title="Profil" />
-              <Menu.Item onPress={() => {}} title="Odjavi se" />
-              <Divider />
-              <Menu.Item onPress={() => {}} title="Item 3" />
+              <Menu.Item
+                onPress={() => {
+                  navigation.navigate("Profile", { username: user.username });
+                  setVisible(false);
+                }}
+                title="Profil"
+              />
+              <Menu.Item
+                onPress={() => {
+                  logoutUser();
+                }}
+                title="Odjavi se"
+              />
             </Menu>
           </View>
         ) : null}

@@ -13,15 +13,10 @@ const RootDrawerNavigator = createDrawerNavigator(
   {
     Profile: {
       screen: Profile,
-      navigationOptions: ({ navigation }) => {
-        return {
-          drawerIcon: () => (
-            <FontAwesome name="user-o" size={24} color="white" />
-          ),
-          headerTitle: () => (
-            <Header title="#APPNAME" navigation={navigation} />
-          ),
-        };
+       navigationOptions: {
+        drawerIcon: () => (
+          <FontAwesome name="user-o" size={24} color="white" />
+        ),
       },
     },
     Categories: {
