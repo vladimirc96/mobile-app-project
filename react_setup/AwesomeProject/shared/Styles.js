@@ -50,7 +50,7 @@ export const adsStyles = StyleSheet.create({
   adContainer: {
     alignSelf: "center",
     marginTop: hp("1%"),
-    minHeight: wp("29.92%"),
+    height: wp("29.92%"),
     width: wp("90%"),
   },
   smallAdContainer: {
