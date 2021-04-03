@@ -511,7 +511,7 @@ export const adStyles = StyleSheet.create({
     height: "100%",
     borderRadius: 7,
     borderWidth: 2,
-    borderColor: "565656"
+    borderColor: "#565656"
   },
   adMainContainer: {
     flexDirection: "row",
@@ -547,7 +547,7 @@ export const adStyles = StyleSheet.create({
     height: wp("19%"),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "7d7d7d",
+    borderColor: "#7d7d7d",
     fontFamily: 'Roboto-Regular',
     backgroundColor: "white",
   },
@@ -556,7 +556,7 @@ export const adStyles = StyleSheet.create({
     height: wp("15.5%"),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "7d7d7d",
+    borderColor: "#7d7d7d",
     fontFamily: 'Roboto-Regular',
     backgroundColor: "#f5f5f5",
   },
@@ -658,7 +658,7 @@ export const adStyles = StyleSheet.create({
   like: {
     marginLeft: wp("1.3%"),
     fontSize: wp("3%"),
-    color: "",
+    color: "black",
   },
   dislike: {
     marginLeft: wp("1.25%"),
@@ -690,4 +690,497 @@ export const firstRunStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("5%"),
   },
+});
+
+export const modalStyles = StyleSheet.create({
+    blurView: {
+      width:wp("100%"),
+      height:hp("100%")
+    },
+    modalWrap: {
+      alignSelf: "center",
+      marginTop: hp("1%")
+    },
+    modal: {
+      borderWidth:0,
+      borderColor:"#d6d6d6"
+    },
+    modalInnerWrap: {
+      backgroundColor:"#ededed",
+      alignSelf: "center",
+      width:wp("90%"),
+      height: hp("90%"),
+      borderRadius: 5
+    },
+    closeButtonContainer: {
+      flexDirection: "row",
+      justifyContent:"space-between"
+    },
+    closeButton: {
+      marginTop:hp("0.5%"),
+      marginRight:hp("0.5%")
+    },
+    titleContainer: {
+      borderColor:"#d6d6d6",
+      backgroundColor: "white",
+      borderWidth: 1,
+      borderRadius: 10,
+      width: wp("86%"),
+      height: hp("5%"),
+      marginLeft: wp("2.5%"),
+      marginRight: wp("2.5%"),
+      marginBottom: hp("5%"),
+      textAlign:"center",
+      flexDirection: "row",
+      flex:1,
+      justifyContent: "space-between"
+    },
+    title: {
+      fontSize: hp("2.5%"),
+      color: "black",
+      fontFamily: "Roboto-Bold",
+      marginTop: hp("0.8%")
+    },
+    priceContainer: {
+      height: hp("3%"),
+      width: wp("20%"),
+      backgroundColor: "black",
+      marginTop: hp("0.8%"),
+      marginRight: wp("1.5%"),
+      borderRadius: 5
+    },
+    price: {
+      marginTop: hp("0.5%"),
+      color:"white",
+      fontSize: hp("1.75%"),
+      fontFamily: "Roboto-Bold",
+      textAlign: "center"
+    },
+    centerdWrap :{
+      alignSelf:"center"
+    },
+    basicUserInfo: {
+      maxHeight: hp("50%"),
+      marginBottom: wp("1%"),
+      marginTop: hp("1%"),
+      marginLeft: wp("2.5%"),
+      marginRight: wp("2.5%"),
+      backgroundColor: "white",
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: "#d6d6d6"
+    },
+    profileImageBorderHeight: {
+      alignSelf: "center",
+      marginTop: hp("1.5%"),
+      width: hp("16%"),
+      height: hp("16%"),
+      borderWidth: 1,
+      borderColor: "#747474"
+    },
+    profileImageBorderWidth:{
+      alignSelf: "center",
+      marginTop: wp("3%"),
+      width: wp("32%"),
+      height: wp("32%"),
+      borderWidth: 1,
+      borderColor: "#d6d6d6"
+    },  backgroundImageContainer: {
+      flex: 1,
+      resizeMode: "cover",
+    },
+    mainContainer: {
+      alignSelf: "center",
+      marginTop: hp("3%"),
+      width: wp("90%"),
+      height: wp("60%")
+    },
+    description: {
+      minHeight: hp("33%"),
+      marginBottom: hp("0.5%"),
+      marginTop: hp("1%"),
+      marginLeft: wp("2.5%"),
+      marginRight: wp("2.5%"),
+      paddingLeft: wp("2%"),
+      paddingLeft: wp("1%"),
+      paddingTop: wp("2%"),
+      paddingBottom: wp("2%"),
+      backgroundColor: "white",
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: "#d6d6d6"
+    },
+    profileImageHeight: {
+      alignSelf: "center",
+      marginTop: hp("0.35%"),
+      width: hp("15%"),
+      height: hp("15%")
+    },
+    profileImageWidth:{
+      alignSelf: "center",
+      marginTop: wp("0.7%"),
+      width: wp("30%"),
+      height: wp("30%")
+    },
+    titleIconWidth: {
+      width: wp("12%"),
+      height: wp("12%"),
+      top: wp("4%"),
+      left: wp("2.5%"),
+    },
+    profileName: {
+      alignSelf: "center",
+      marginTop: hp("1.5%"),
+      marginBottom: hp("0.5%"),
+      fontSize: hp("3%"),
+      fontWeight: "bold",
+      fontFamily: "Roboto-Light",
+      color: "black",
+    },
+    userLocation: {
+      flexDirection: "row",
+      alignSelf: "center",
+      marginBottom: hp("0.25%"),
+    },
+    location: {
+      marginLeft: wp("1%"),
+      fontSize: wp("4%"),
+      fontFamily: "Roboto-Light",
+      color: "black",
+    },
+    userMail: {
+      flexDirection: "row",
+      alignSelf: "center",
+      marginBottom: hp("0.5%"),
+    },
+    userOntact: {
+      flexDirection: "row",
+      alignSelf: "center",
+      marginBottom: hp("0.5%"),
+    },
+    userRating: {
+      flexDirection: "row",
+      alignSelf: "center",
+      marginBottom: hp("1.5%"),
+    },
+    ratingText: {
+      fontSize: hp("2%"),
+      fontFamily: "Roboto-Light",
+      color: "black",
+      marginLeft: wp("1%"),
+      marginRight: wp("3%"),
+    },
+    likeComponent: {
+      color: "black",
+    },
+    like: {
+      fontSize: hp("2.75%"),
+      color: "black"
+    },
+    dislikeComponent: {
+      color: "black",
+    },
+    dislike: {
+      fontSize: hp("2.75%"),
+      color: "black",
+    },
+    userContact: {
+      flexDirection: "row",
+      alignSelf: "center",
+    },
+    userEmail: {
+      flexDirection: "row",
+      alignSelf: "center",
+    },
+    aboutUser: {
+      marginBottom: hp("0.5%"),
+      backgroundColor: "#1e1c24",
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: "black",
+    },
+    smallContainer: {
+      marginBottom: hp("0.5%"),
+      backgroundColor: "#1e1c24",
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: "#ededed",
+    },
+    sectionName: {
+      left: wp("2%"),
+      marginTop: hp("1.5%"),
+      marginBottom: hp("1.5%"),
+      marginLeft: wp("2%"),
+      marginRight: wp("2%"),
+      fontSize: hp("2.5%"),
+      color: "#ededed",
+    },
+    dashContainer: {
+      marginLeft: wp("0.3%"),
+      flexDirection: "row",
+    },
+    line: {
+      textAlignVertical: "center",
+      fontSize: hp("3%"),
+      color: "#ededed",
+    },
+    userDetails: {
+      paddingHorizontal: hp("1.25%"),
+      paddingVertical: wp("2%"),
+      marginHorizontal: wp("1.5%"),
+      marginVertical: hp("0.5%"),
+      borderRadius: 10,
+      backgroundColor: "#1f1f2f",
+    },
+    details: {
+      fontSize: hp("2%"),
+      color: "#ededed",
+    },
+    commentTitle:{
+      fontSize: hp("2%"),
+      fontWeight: "bold",
+      color: "#ededed",
+    },
+    commentUser:{
+      fontSize: hp("2%"),
+      fontWeight: "bold",
+      marginTop: hp("0.5%"),
+      marginLeft: wp("2%"),
+      color: "#ededed",
+    },
+    commentTime:{
+      fontSize: hp("2%"),
+      marginTop: hp("0.5%"),
+      marginLeft: wp("1%"),
+      color: "#ededed",
+    },
+    commentText:{
+      fontSize: hp("2%"),
+      marginTop: hp("1%"),
+      color: "#ededed",
+    },
+    arrow: {
+      alignSelf: "center",
+      fontSize: hp("3%"),
+      color: "#ededed",
+    },
+    arrowSmall: {
+      alignSelf: "center",
+      marginTop: hp("0.5%"),
+      fontSize: hp("3%"),
+      color: "#ededed",
+    },
+    adText: {
+      marginLeft: 2,
+      marginRight: 2,
+      fontFamily: "Roboto-Light"
+    }
+});
+
+export const profileStyles = StyleSheet.create({
+  backgroundImageContainer: {
+    flex: 1,
+    resizeMode: "cover",
+  },
+  mainContainer: {
+    alignSelf: "center",
+    marginTop: hp("3%"),
+    width: wp("90%"),
+    minHeight: hp("80%")
+  },
+  editButton: {
+    height: hp("5%"),
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    textAlign: "center",
+    backgroundColor: "#03d5ff",
+    borderColor: "#ededed"
+  },
+  editButtonText: {
+    marginTop: hp("1%"),
+    color: "black",
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  basicUserInfo: {
+    maxHeight: hp("50%"),
+    marginBottom: wp("1%"),
+    backgroundColor: "#ededed",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#606060"
+  },
+  profileImageHeight: {
+    alignSelf: "center",
+    marginTop: hp("1.5%"),
+    width: hp("15%"),
+    height: hp("15%"),
+  },
+  profileImageWidth:{
+    alignSelf: "center",
+    marginTop: wp("3%"),
+    width: wp("30%"),
+    height: wp("30%"),
+  },
+  titleIconWidth: {
+    width: wp("12%"),
+    height: wp("12%"),
+    top: wp("4%"),
+    left: wp("2.5%"),
+  },
+  profileName: {
+    alignSelf: "center",
+    marginTop: hp("1.5%"),
+    marginBottom: hp("0.5%"),
+    fontSize: hp("3%"),
+    fontWeight: "bold",
+    color: "black",
+    fontFamily: "Roboto-Bold"
+  },
+  userLocation: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("0.25%"),
+  },
+  location: {
+    marginLeft: wp("1%"),
+    fontSize: wp("4%"),
+    fontFamily: "Roboto-Light",
+    color: "black",
+  },
+  userMail: {
+    flexDirection: "row",
+    alignSelf: "center",
+    fontFamily: "Roboto-Light",
+    marginBottom: hp("0.5%"),
+  },
+  userOntact: {
+    flexDirection: "row",
+    alignSelf: "center",
+    fontFamily: "Roboto-Light",
+    marginBottom: hp("0.5%"),
+  },
+  userRating: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("1.5%"),
+  },
+  ratingText: {
+    fontSize: hp("2%"),
+    fontFamily: "Roboto-Light",
+    color: "black",
+    marginLeft: wp("1%"),
+    marginRight: wp("3%"),
+  },
+  likeComponent: {
+    color: "black",
+  },
+  like: {
+    fontSize: hp("2.75%"),
+    color: "black"
+  },
+  dislikeComponent: {
+    color: "black",
+  },
+  dislike: {
+    fontSize: hp("2.75%"),
+    color: "black",
+  },
+  userContact: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  userEmail: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  aboutUser: {
+    marginBottom: hp("0.5%"),
+    backgroundColor: "#ededed",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#606060",
+  },
+  smallContainer: {
+    marginBottom: hp("0.5%"),
+    backgroundColor: "#ededed",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#606060",
+  },
+  smallContainerBottom: {
+    marginBottom: hp("5%"),
+    backgroundColor: "#ededed",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#606060",
+  },
+  sectionName: {
+    left: wp("2%"),
+    marginTop: hp("1.5%"),
+    marginBottom: hp("1.5%"),
+    marginLeft: wp("2%"),
+    marginRight: wp("2%"),
+    fontSize: hp("2.5%"),
+    textAlign: "center",
+    fontFamily: "Roboto-Bold",
+    color: "black",
+  },
+  dashContainer: {
+    marginLeft: wp("0.3%"),
+    flexDirection: "row",
+  },
+  line: {
+    textAlignVertical: "center",
+    fontSize: hp("3%"),
+    color: "black",
+  },
+  userDetails: {
+    paddingHorizontal: hp("1.25%"),
+    paddingVertical: wp("2%"),
+    marginHorizontal: wp("1.5%"),
+    marginVertical: hp("0.5%"),
+    borderRadius: 10,
+    backgroundColor: "white",
+  },
+  details: {
+    fontSize: hp("2%"),
+    fontFamily: "Roboto-Light",
+    color: "black",
+  },
+  commentTitle:{
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    color: "black",
+  },
+  commentUser:{
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    marginTop: hp("0.5%"),
+    marginLeft: wp("2%"),
+    color: "black",
+  },
+  commentTime:{
+    fontSize: hp("2%"),
+    marginTop: hp("0.5%"),
+    marginLeft: wp("1%"),
+    color: "black",
+  },
+  commentText:{
+    fontSize: hp("2%"),
+    marginTop: hp("1%"),
+    color: "black",
+  },
+  arrow: {
+    alignSelf: "center",
+    fontSize: hp("3%"),
+    color: "black",
+  },
+  arrowSmall: {
+    alignSelf: "center",
+    marginTop: hp("0.5%"),
+    fontSize: hp("3%"),
+    color: "black",
+  }
 });
