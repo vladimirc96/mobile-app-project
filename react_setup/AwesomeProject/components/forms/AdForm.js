@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import {
@@ -22,6 +22,9 @@ import {
 import { Dimensions } from "react-native";
 import { adCreationStyles } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
+import RichTextEditor from "../RichTextEditor";
+import HTMLView from "react-native-htmlview";
+import { WebView } from "react-native-webview";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -35,6 +38,16 @@ const adSchema = yup.object({
 });
 
 export default function AdForm(props) {
+  const [visible, setVisible] = useState(false);
+
+  const handleChangeVisible = (isVisible) => {
+    setVisible(isVisible);
+  };
+
+  const handleChangeRichText = (formikProps, html, css) => {
+    formikProps.setFieldValue("description", html);
+  };
+
   return (
     <View>
       <Formik
@@ -64,14 +77,16 @@ export default function AdForm(props) {
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
-              <TextInput
-                multiline={true}
-                numberOfLines={3}
-                style={adCreationStyles.adDescriptionField}
-                placeholder="Max. 500 karaktera."
-                placeholderTextColor="#ededed"
-                value={formikProps.values.description}
+              <RichTextEditor
+                visible={visible}
+                handleChangeVisible={handleChangeVisible}
+                handleChangeRichText={handleChangeRichText}
+                formikProps={formikProps}
               />
+              <TouchableOpacity
+                style={adCreationStyles.adDescriptionField}
+                onPress={() => setVisible(true)}
+              ></TouchableOpacity>
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>

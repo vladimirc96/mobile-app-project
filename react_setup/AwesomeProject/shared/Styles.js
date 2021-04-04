@@ -1263,6 +1263,7 @@ export const adCreationStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "white",
+    height: hp("5%")
   },
   dropDownCatSubContainer: {
     marginTop: hp("0.75%"),
