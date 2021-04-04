@@ -36,8 +36,6 @@ public class AdDTO {
 
     private int views;
 
-    private MultipartFile image;
-
     private SubCategoryDTO subCategory;
 
 }

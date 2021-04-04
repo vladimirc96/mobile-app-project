@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, ActivityIndicator } from "react-native";
+import { ImageBackground, ActivityIndicator, View, Text } from "react-native";
 import * as Font from "expo-font";
 import { loginStyles } from "../shared/Styles";
 import LoginForm from "../components/forms/LoginForm";
@@ -9,7 +9,7 @@ import LocalStorage from "../localStorage";
 const customFonts = {
   "Comfortaa-Regular": require("./../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("./../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
 export default class LogIn extends React.Component {
@@ -47,9 +47,13 @@ export default class LogIn extends React.Component {
           style={loginStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <LoginForm
-            navigation={this.props.navigation}
-          />
+          <View style={loginStyles.mainContainer}>
+            <View style={loginStyles.welcomeTextContainer}>
+              <Text style={loginStyles.firstText}>Dobrodošli</Text>
+              <Text style={loginStyles.secondText}>Ulogujte se.</Text>
+            </View>
+            <LoginForm navigation={this.props.navigation} />
+          </View>
         </ImageBackground>
       );
     } else {

@@ -16,7 +16,7 @@ public interface AdMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "creationDate", target = "creationDate")
     @Mapping(source = "views", target = "views")
-    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subacetegory.SubCategoryMapper.INSTANCE.toModel(adDTO))")
+    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toModel(adDTO.getSubCategory()))")
     Ad toModel(AdDTO adDTO);
 
     @Mapping(source = "id", target = "id")
@@ -26,6 +26,6 @@ public interface AdMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "creationDate", target = "creationDate")
     @Mapping(source = "views", target = "views")
-    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subacetegory.SubCategoryMapper.toModel(adDTO))")
+    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toDto(ad.getSubCategory()))")
     AdDTO toDto(Ad ad);
 }

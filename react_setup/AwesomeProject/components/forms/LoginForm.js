@@ -16,7 +16,7 @@ export default function LoginForm({ navigation }) {
   const dispatch = useDispatch();
 
   const loginUser = (credentials) => dispatch(login(credentials));
-  
+
   const handleLogin = (credentials) => {
     return new Promise((resolve, reject) => {
       loginUser(credentials);
@@ -41,11 +41,7 @@ export default function LoginForm({ navigation }) {
         validationSchema={loginSchema}
       >
         {(props) => (
-          <View style={loginStyles.mainContainer}>
-            <View style={loginStyles.welcomeTextContainer}>
-              <Text style={loginStyles.firstText}>Dobrodošli</Text>
-              <Text style={loginStyles.secondText}>Ulogujte se.</Text>
-            </View>
+          <View>
             <View style={loginStyles.inputContainer}>
               <TextInput
                 style={
