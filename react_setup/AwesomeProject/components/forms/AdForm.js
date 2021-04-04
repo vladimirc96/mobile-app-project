@@ -21,6 +21,7 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import { adCreationStyles } from "../../shared/Styles";
+import { Divider } from "react-native-elements";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -40,8 +41,8 @@ export default function AdForm(props) {
         initialValues={{
           title: "",
           description: "",
-          category: "",
-          subCategory: "",
+          category: props.categories[0],
+          subCategory: { id: null, name: "" },
           price: "",
         }}
         onSubmit={(values) => {
@@ -49,7 +50,7 @@ export default function AdForm(props) {
         }}
         validationSchema={adSchema}
       >
-        {(props) => (
+        {(formikProps) => (
           <View style={adCreationStyles.mainContainer}>
             <View style={adCreationStyles.backForwardContainer}></View>
             <View style={adCreationStyles.inputFieldContainer}>
@@ -58,18 +59,18 @@ export default function AdForm(props) {
                 style={adCreationStyles.adNameField}
                 placeholder="Max. 50 karaktera."
                 placeholderTextColor="#ededed"
-                value={props.values.title}
+                value={formikProps.values.title}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
               <TextInput
                 multiline={true}
-                numberOfLines={4}
+                numberOfLines={3}
                 style={adCreationStyles.adDescriptionField}
                 placeholder="Max. 500 karaktera."
                 placeholderTextColor="#ededed"
-                value={props.values.description}
+                value={formikProps.values.description}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
@@ -79,7 +80,7 @@ export default function AdForm(props) {
               <View style={adCreationStyles.dropDownCatSubContainer}>
                 <View style={adCreationStyles.dropDownCatContainer}>
                   <Picker
-                    selectedValue={""}
+                    selectedValue={formikProps.values.category.id}
                     style={{
                       fontSize: hp("1.9%"),
                       backgroundColor: "#1e1c24",
@@ -88,24 +89,28 @@ export default function AdForm(props) {
                       borderColor: "transparent",
                       paddingTop: hp("0.5%"),
                     }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      console.log(itemValue, itemIndex)
-                    }
-                    value={props.values.category}
+                    onValueChange={(itemValue, itemIndex) => {
+                      formikProps.setFieldValue("category", {
+                        id: props.categories[itemIndex].id,
+                        name: props.categories[itemIndex].name,
+                      });
+                      props.onChangeCategory(props.categories[itemIndex].id);
+                    }}
+                    value={formikProps.values.category}
                   >
-                    {props.categories
-                      ? props.categories.map((category) => (
-                          <Picker.Item
-                            label={category.name}
-                            value={category.id}
-                          />
-                        ))
-                      : null}
+                    {props.categories.map((category) => (
+                      <Picker.Item
+                        key={category.id}
+                        label={category.name}
+                        value={category.id}
+                      />
+                    ))}
                   </Picker>
                 </View>
+                <Divider style={{ backgroundColor: "white" }} />
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
-                    selectedValue={""}
+                    selectedValue={formikProps.values.subCategory.id}
                     style={{
                       fontSize: hp("1.9%"),
                       backgroundColor: "#1e1c24",
@@ -114,19 +119,21 @@ export default function AdForm(props) {
                       borderColor: "transparent",
                       paddingTop: hp("0.75%"),
                     }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      console.log(itemValue, itemIndex)
-                    }
-                    value={props.values.subCategory}
+                    onValueChange={(itemValue, itemIndex) => {
+                      formikProps.setFieldValue(
+                        "subCategory",
+                        props.subCategories[itemIndex]
+                      );
+                    }}
+                    value={formikProps.values.subCategory}
                   >
-                    {props.subCategories
-                      ? props.subCategories.map((subCategory) => (
-                          <Picker.Item
-                            label={subCategory.name}
-                            value={subCategory.id}
-                          />
-                        ))
-                      : null}
+                    {props.subCategories.map((subCategory) => (
+                      <Picker.Item
+                        key={subCategory.id}
+                        label={subCategory.name}
+                        value={subCategory.id}
+                      />
+                    ))}
                   </Picker>
                 </View>
               </View>

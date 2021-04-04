@@ -1,31 +1,13 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  View,
-  ActivityIndicator,
-} from "react-native";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
-import RadioButton from "../components/RadioButton";
+import { ImageBackground, ActivityIndicator } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Font from "expo-font";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { EditProfileButton } from "../components/Buttons";
 
-import { Dimensions } from "react-native";
 import { adCreationStyles } from "./../shared/Styles";
 import AdForm from "../components/forms/AdForm";
-
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+import { getCategories } from "../store/actions/category/categoryActions";
+import { connect } from "react-redux";
+import { getAllByCategoryId } from "../services/SubCategoryService";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -37,7 +19,7 @@ const customFonts = {
   "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
-export default class AdCreation extends React.Component {
+export class AdCreation extends React.Component {
   state = {
     fontsLoaded: false,
     selectedCategory: "category_id_1",
@@ -65,6 +47,7 @@ export default class AdCreation extends React.Component {
     })();
 
     this._loadFontsAsync();
+    this.getSubCategories(1);
   }
 
   pickImage = async () => {
@@ -77,6 +60,19 @@ export default class AdCreation extends React.Component {
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }
+  };
+
+  getSubCategories = async (categoryId) => {
+    try {
+      const data = await getAllByCategoryId(categoryId);
+      this.setState({ subCategories: data });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  onChangeCategory = (categoryId) => {
+    this.getSubCategories(categoryId);
   };
 
   render() {
@@ -216,7 +212,11 @@ export default class AdCreation extends React.Component {
             </View>
             <EditProfileButton title={"Postavi"} />
           </View> */}
-          <AdForm categories={this.state.categories} subCategories={this.state.subCategories}></AdForm>
+          <AdForm
+            categories={this.props.categories}
+            subCategories={this.state.subCategories}
+            onChangeCategory={this.onChangeCategory}
+          ></AdForm>
         </ImageBackground>
       );
     } else {
@@ -224,3 +224,17 @@ export default class AdCreation extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categoryReducer.categories,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: () => dispatch(getCategories()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdCreation);

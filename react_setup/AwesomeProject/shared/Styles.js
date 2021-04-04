@@ -1270,16 +1270,14 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("9%"),
+    height: hp("13%"),
   },
   dropDownCatContainer: {
     marginTop: hp("0.25%"),
     alignSelf: "center",
     width: wp("75%"),
-    borderBottomWidth: 1,
-    borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("4%"),
+    height: hp("6%"),
   },
   dropDownSubContainer: {
     alignSelf: "center",
@@ -1340,7 +1338,7 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("4.5%"),
+    height: hp("7%"),
   },
   typeCodeInput: {
     alignSelf: "center",
