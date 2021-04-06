@@ -1,0 +1,1 @@
+export const CONFIRM_CHANGES_MESSAGE = 'Izmene neće biti sačuvane. Da li želite da nastavite?';

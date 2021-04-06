@@ -44,7 +44,7 @@ export default function AdForm(props) {
     setVisible(isVisible);
   };
 
-  const handleChangeRichText = (formikProps, html, css) => {
+  const handleChangeRichText = (formikProps, html) => {
     formikProps.setFieldValue("description", html);
   };
 
@@ -82,6 +82,7 @@ export default function AdForm(props) {
                 handleChangeVisible={handleChangeVisible}
                 handleChangeRichText={handleChangeRichText}
                 formikProps={formikProps}
+                html={formikProps.values.description}
               />
               <TouchableOpacity
                 style={adCreationStyles.adDescriptionField}

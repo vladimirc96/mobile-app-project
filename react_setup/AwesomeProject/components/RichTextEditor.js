@@ -17,14 +17,36 @@ import {
   View,
   Button,
 } from "react-native";
+import { showPopup, confirmButton, rejectButton } from "../shared/AlertPopup";
+import { CONFIRM_CHANGES_MESSAGE } from "../constants/AlertPopup";
 
 export default class RichTextEditor extends React.Component {
-  state = {
-    html: "",
+  handleChangeHtml = (html) => {
+    this.props.handleChangeRichText(this.props.formikProps, html);
   };
 
-  handleChangeHtml = (html) => {
-    this.setState({ html });
+  handleConfirm = () => {
+    this.props.handleChangeVisible(false);
+    this.props.handleChangeRichText(this.props.formikProps, "");
+  };
+
+  handleReject = () => {};
+
+  onCancel = () => {
+    const buttons = [
+      confirmButton(this.handleConfirm),
+      rejectButton(this.handleReject),
+    ];
+    if (this.props.html !== "") {
+      showPopup("", CONFIRM_CHANGES_MESSAGE, buttons);
+    } else {
+      this.props.handleChangeVisible(false);
+    }
+  };
+
+  onSave = () => {
+    this.props.handleChangeRichText(this.props.formikProps, this.props.html);
+    this.props.handleChangeVisible(false);
   };
 
   richText = React.createRef();
@@ -44,7 +66,7 @@ export default class RichTextEditor extends React.Component {
               containerStyle={styles.editor}
               ref={this.richText}
               style={styles.rich}
-              initialContentHTML={this.state.html}
+              initialContentHTML={this.props.html}
               placeholder={"Unesite opis ovde"}
               onChange={this.handleChangeHtml}
             />
@@ -72,27 +94,11 @@ export default class RichTextEditor extends React.Component {
             <View style={styles.footer}>
               <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                  <Button
-                    title="Sačuvaj"
-                    onPress={() => {
-                      this.props.handleChangeRichText(
-                        this.props.formikProps,
-                        this.state.html
-                      );
-                      this.props.handleChangeVisible(false);
-                    }}
-                  ></Button>
+                  <Button title="Sačuvaj" onPress={this.onSave}></Button>
                 </View>
                 <View style={{ flex: 1 }}></View>
                 <View style={styles.button}>
-                  <Button
-                    title="Izađi"
-                    onPress={() => {
-                      // dodati poruku "Niste sacuvali izmene. Da li zelite da nastavite?"
-                      this.setState({ html: "" });
-                      this.props.handleChangeVisible(false);
-                    }}
-                  ></Button>
+                  <Button title="Izađi" onPress={this.onCancel}></Button>
                 </View>
               </View>
             </View>
