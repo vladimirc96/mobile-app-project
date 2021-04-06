@@ -295,7 +295,7 @@ export const loginStyles = StyleSheet.create({
     opacity: 0.8,
     borderColor: "red",
     backgroundColor: "#1e1c24",
-    color: "#ededed",
+    color: "#ff102d",
     fontSize: hp("2.25%"),
     fontFamily: "Comfortaa-Light",
   },

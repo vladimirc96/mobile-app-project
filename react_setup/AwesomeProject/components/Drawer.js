@@ -1,12 +1,21 @@
 import SafeAreaView from "react-native-safe-area-view";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Divider } from "react-native-elements";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  FlatList,
+} from "react-native";
 import DrawerItem from "./DrawerItem";
 import { MaterialIcons } from "@expo/vector-icons";
 import { logout } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { cloneDeep } from "lodash";
 export class Drawer extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -49,38 +58,46 @@ export class Drawer extends React.Component {
     if (this.state.drawerItems.length === 0) {
       return <View></View>;
     }
+    const drawerItems = cloneDeep(this.state.drawerItems);
+    if (!this.props.token) {
+      drawerItems.splice(0, 1);
+    }
     return (
       <SafeAreaView
         style={styles.container}
         forceInset={{ top: "always", horizontal: "never" }}
       >
-        {this.state.drawerItems.map((item) => {
-          if (!this.props.token && item.routeName === "Profile") {
-            return;
-          }
-          return (
-            <DrawerItem
-              key={item.routeName}
-              routeName={item.routeName}
-              drawerIcon={item.drawerIcon}
-              navigate={item.navigate}
-              navigation={this.props.navigation}
-            />
-          );
-        })}
-
-        <View style={{ marginTop: "5%" }}>
-          <Divider style={{ backgroundColor: "white" }} />
+        <View style={styles.drawerItemList}>
+          <FlatList
+            data={drawerItems}
+            renderItem={({ item }) => {
+              return (
+                <DrawerItem
+                  key={item.routeName}
+                  routeName={item.routeName}
+                  drawerIcon={item.drawerIcon}
+                  navigate={item.navigate}
+                  navigation={this.props.navigation}
+                />
+              );
+            }}
+            keyExtractor={(item) => item.routeName}
+          ></FlatList>
         </View>
 
         {this.props.token ? (
           <TouchableOpacity
-            style={{ marginTop: 10, marginLeft: 10 }}
+            style={styles.logoutContainer}
             onPress={() => {
               this.props.logoutUser();
             }}
           >
-            <View style={styles.logoutContainer}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
               <MaterialIcons name="logout" size={24} color="white" />
               <Text style={styles.menuText}>Odjavi se</Text>
             </View>
@@ -112,16 +129,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e1c24",
   },
   logoutContainer: {
-    height: 55,
-    flex: 1,
+    marginTop: hp("2%"),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
+    marginLeft: 10,
   },
   menuText: {
     fontSize: 20,
     color: "#fff",
     textAlign: "center",
     marginLeft: 20,
+  },
+  drawerItemList: {
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
   },
 });

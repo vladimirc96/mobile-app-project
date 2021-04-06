@@ -26,5 +26,6 @@ const FirstRunStack = createStackNavigator(screens, {
     headerShown: false,
   },
 });
+const FirstRunNavigator = createAppContainer(FirstRunStack);
 
-export default createAppContainer(FirstRunStack);
+export default FirstRunNavigator;

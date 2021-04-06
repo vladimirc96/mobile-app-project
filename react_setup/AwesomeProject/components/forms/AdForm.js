@@ -73,6 +73,7 @@ export default function AdForm(props) {
                 placeholder="Max. 50 karaktera."
                 placeholderTextColor="#ededed"
                 value={formikProps.values.title}
+                onChangeText={formikProps.handleChange("title")}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>

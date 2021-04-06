@@ -44,4 +44,6 @@ const RootDrawerNavigator = createDrawerNavigator(
   }
 );
 
-export default createAppContainer(RootDrawerNavigator);
+const DrawerNavigator = createAppContainer(RootDrawerNavigator);
+
+export default DrawerNavigator;
