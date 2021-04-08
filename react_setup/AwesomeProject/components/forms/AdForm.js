@@ -23,7 +23,6 @@ import { Dimensions } from "react-native";
 import { adCreationStyles } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
-import HTMLView from "react-native-htmlview";
 import { WebView } from "react-native-webview";
 
 const windowWidth = Dimensions.get("window").width;

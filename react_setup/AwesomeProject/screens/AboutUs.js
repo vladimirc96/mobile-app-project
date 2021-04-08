@@ -1,6 +1,7 @@
 import { ImageBackground, View, ActivityIndicator } from "react-native";
 import { AboutUsContact } from "../components/Buttons";
 import * as Font from "expo-font";
+import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { Dimensions, StyleSheet, Text } from "react-native";
 import {
@@ -66,20 +67,41 @@ export default class AboutUs extends React.Component {
           <View style={aboutUsStyles.mainContainer}>
             <View>
               <View style={aboutUsStyles.titleContainer}>
-                <Text style={aboutUsStyles.titleText}> #APPNAME</Text>
+                <Text style={aboutUsStyles.titleText}>Pronađi sam.</Text>
               </View>
               <View style={aboutUsStyles.subtitleContainer}>
                 <View style={aboutUsStyles.subtitleNameContainer}>
-                  <Text style={aboutUsStyles.subtitleText}> O nama</Text>
+                  <Text style={aboutUsStyles.subtitleText}>Čemu služi ova aplikacija?</Text>
                 </View>
-                  <Text style={aboutUsStyles.mainText}>
-                    {" "}
-                    Ovo je prica o nama, ovo je prica o njoj..... Ovo je prica o
-                    nama, ovo je prica o njoj..... Ovo je prica o nama, ovo je prica
-                    o njoj..... Ovo je prica o nama, ovo je prica o njoj.....Ovo je
-                    prica o nama, ovo je prica o njoj..... Ovo je prica o nama, ovo
-                    je prica o njoj.....
-                  </Text>
+                <Text style={aboutUsStyles.mainTextFirstPart}>
+                  {" "}
+                  Pronađi sam je aplikacija koju je razvio tim mladih ljudi, entuzijasta, sa ciljem
+                  da uz pomoć te aplikacije, oni koji traže određenu uslugu lako i brzo nađu one koji tu uslugu pružaju.
+                </Text>
+                  <View style={aboutUsStyles.SecondPartTextContainer}>
+                    <Text style={aboutUsStyles.mainTextSecondPart}>
+                      Sebi smo postavili tri izazova:
+                    </Text>
+                  </View>
+                  <View style={aboutUsStyles.SecondPartTextContainer}>
+                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon}/>
+                    <Text style={aboutUsStyles.mainTextThirdPart}>
+                      da vredni ljudi, koji nude svoje znanje i veštine, budu lako dostupni onima koji to traže
+                    </Text>
+                  </View>
+                  <View style={aboutUsStyles.SecondPartTextContainer}>
+                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon}/>
+                    <Text style={aboutUsStyles.mainTextThirdPart}>
+                      da što više korisnih usluga imate na jednom mestu i to na Vašem mobilnom uređaju 
+                    </Text>
+                  </View>
+                  <View style={aboutUsStyles.SecondPartTextContainer}>
+                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon} />
+                    <Text style={aboutUsStyles.mainTextThirdPart}>
+                      da iskoristimo tehnologiju na pravi način, jer je brža od tradicionalnog oglašavanja
+                      (novinski oglasi, lepljenje letaka po autobuskim stanicama...)
+                    </Text>
+                  </View>
               </View>
             </View>
             <View style={aboutUsStyles.contactPartContainer}>

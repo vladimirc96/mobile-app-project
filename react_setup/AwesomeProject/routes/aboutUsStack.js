@@ -21,7 +21,7 @@ const screens = {
     screen: ContactUs,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },

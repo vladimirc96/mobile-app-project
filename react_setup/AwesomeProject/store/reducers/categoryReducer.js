@@ -22,7 +22,7 @@ const initialState = {
     },
     {
       id: 4,
-      name: "Prevodi i izrada radova",
+      name: "Prevodi i izrada\nradova",
       imagePath: require("../../assets/images/kat_ikonice_krug/prevodjenje.png"),
       color: "#b9a17a",
     },
@@ -52,7 +52,7 @@ const initialState = {
     },
     {
       id: 9,
-      name: "Lepota, nega i tretmani",
+      name: "Lepota, nega i\ntretmani",
       imagePath: require("../../assets/images/kat_ikonice_krug/lepota.png"),
       color: "#f4e7c5",
     },

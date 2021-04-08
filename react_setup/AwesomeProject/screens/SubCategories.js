@@ -29,7 +29,7 @@ export default class SubCategories extends React.Component {
   }
 
   render() {
-    const backgroundImage = require("./../assets/images/logInBackground.jpg");
+    const backgroundImage = require("./../assets/images/background_bright.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const subCategoryList = this.state.subCategories.map((subCategory) => (
       <View
