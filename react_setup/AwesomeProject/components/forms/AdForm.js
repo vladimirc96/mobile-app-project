@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import {
@@ -24,6 +24,7 @@ import { adCreationStyles } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import { WebView } from "react-native-webview";
+import * as ImagePicker from "expo-image-picker";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -69,7 +70,7 @@ export default function AdForm(props) {
     });
     if (!result.cancelled) {
       setImage(result.uri);
-      alert('Slika je uspešno učitana');
+      alert("Slika je uspešno učitana");
     }
   };
 
@@ -102,7 +103,7 @@ export default function AdForm(props) {
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
-              <AdDescriptionAdding title={"Dodaj opis oglasa"} />
+              {/* <AdDescriptionAdding title={"Dodaj opis oglasa"} /> */}
               <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
               <RichTextEditor
                 visible={visible}
@@ -130,7 +131,7 @@ export default function AdForm(props) {
                       fontFamily: "Roboto-Bold",
                       color: "white",
                       borderColor: "transparent",
-                      paddingTop: hp("0.5%"),
+                      paddingTop: hp("8%"),
                     }}
                     onValueChange={(itemValue, itemIndex) => {
                       formikProps.setFieldValue("category", {
@@ -140,6 +141,7 @@ export default function AdForm(props) {
                       props.onChangeCategory(props.categories[itemIndex].id);
                     }}
                     value={formikProps.values.category}
+                    itemStyle={{ alignSelf: "center", marginLeft: 100 }}
                   >
                     {props.categories.map((category) => (
                       <Picker.Item
@@ -160,7 +162,7 @@ export default function AdForm(props) {
                       fontFamily: "Roboto-Bold",
                       color: "white",
                       borderColor: "transparent",
-                      paddingTop: hp("0.75%"),
+                      paddingTop: hp("8%"),
                     }}
                     onValueChange={(itemValue, itemIndex) => {
                       formikProps.setFieldValue(
@@ -189,6 +191,7 @@ export default function AdForm(props) {
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Fotografija</Text>
+              {!image ? (
                 <TouchableOpacity onPress={pickImage}>
                   <View style={adCreationStyles.pickImageContainer}>
                     <View style={adCreationStyles.pickImageAdditional}>
@@ -202,6 +205,15 @@ export default function AdForm(props) {
                     </View>
                   </View>
                 </TouchableOpacity>
+              ) : (
+                <View style={adCreationStyles.pickImageContainer}>
+                  <View style={adCreationStyles.pickImageAdditional}>
+                    <Text style={adCreationStyles.pickingImage}>
+                      Slika uspešno sačuvana
+                    </Text>
+                  </View>
+                </View>
+              )}
             </View>
             <EditProfileButton title={"Postavi"} />
           </View>
