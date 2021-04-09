@@ -25,6 +25,7 @@ import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import { WebView } from "react-native-webview";
 import * as ImagePicker from "expo-image-picker";
+import { ScrollView } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -90,144 +91,146 @@ export default function AdForm(props) {
         validationSchema={adSchema}
       >
         {(formikProps) => (
-          <View style={adCreationStyles.mainContainer}>
-            <View style={adCreationStyles.backForwardContainer}></View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
-              <TextInput
-                style={[
-                  adCreationStyles.adNameField,
-                  formikProps.errors.title && formikProps.touched.title
-                    ? errorStyle.error
-                    : null,
-                ]}
-                placeholder="Max. 50 karaktera."
-                placeholderTextColor={
-                  formikProps.errors.title && formikProps.touched.title
-                    ? "#ff102d"
-                    : "#ededed"
-                }
-                value={formikProps.values.title}
-                onChangeText={formikProps.handleChange("title")}
-                onBlur={formikProps.handleBlur("title")}
-              />
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              {/* <AdDescriptionAdding title={"Dodaj opis oglasa"} /> */}
-              <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
-              <RichTextEditor
-                visible={visible}
-                handleChangeVisible={handleChangeVisible}
-                handleChangeRichText={handleChangeRichText}
-                formikProps={formikProps}
-                html={formikProps.values.description}
-              />
-              <TouchableOpacity
-                style={adCreationStyles.adDescriptionField}
-                onPress={() => setVisible(true)}
-              ></TouchableOpacity>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>
-                Izaberi kategoriju i potkategoriju
-              </Text>
-              <View style={adCreationStyles.dropDownCatSubContainer}>
-                <View style={adCreationStyles.dropDownCatContainer}>
-                  <Picker
-                    selectedValue={formikProps.values.category.id}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("8%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      formikProps.setFieldValue("category", {
-                        id: props.categories[itemIndex].id,
-                        name: props.categories[itemIndex].name,
-                      });
-                      props.onChangeCategory(props.categories[itemIndex].id);
-                    }}
-                    value={formikProps.values.category}
-                    itemStyle={{ alignSelf: "center", marginLeft: 100 }}
-                  >
-                    {props.categories.map((category) => (
-                      <Picker.Item
-                        key={category.id}
-                        label={category.name}
-                        value={category.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-                <Divider style={{ height: 1, backgroundColor: "white" }} />
-                {/* <Divider style={{ backgroundColor: "white" }} /> */}
-                <View style={adCreationStyles.dropDownSubContainer}>
-                  <Picker
-                    selectedValue={formikProps.values.subCategory.id}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("8%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      formikProps.setFieldValue(
-                        "subCategory",
-                        props.subCategories[itemIndex]
-                      );
-                    }}
-                    value={formikProps.values.subCategory}
-                  >
-                    {props.subCategories.map((subCategory) => (
-                      <Picker.Item
-                        key={subCategory.id}
-                        label={subCategory.name}
-                        value={subCategory.id}
-                      />
-                    ))}
-                  </Picker>
+          <ScrollView>
+            <View style={adCreationStyles.mainContainer}>
+              <View style={adCreationStyles.backForwardContainer}></View>
+              <View style={adCreationStyles.inputFieldContainer}>
+                <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
+                <TextInput
+                  style={[
+                    adCreationStyles.adNameField,
+                    formikProps.errors.title && formikProps.touched.title
+                      ? errorStyle.error
+                      : null,
+                  ]}
+                  placeholder="Max. 50 karaktera."
+                  placeholderTextColor={
+                    formikProps.errors.title && formikProps.touched.title
+                      ? "#ff102d"
+                      : "#ededed"
+                  }
+                  value={formikProps.values.title}
+                  onChangeText={formikProps.handleChange("title")}
+                  onBlur={formikProps.handleBlur("title")}
+                />
+              </View>
+              <View style={adCreationStyles.inputFieldContainer}>
+                {/* <AdDescriptionAdding title={"Dodaj opis oglasa"} /> */}
+                <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
+                <RichTextEditor
+                  visible={visible}
+                  handleChangeVisible={handleChangeVisible}
+                  handleChangeRichText={handleChangeRichText}
+                  formikProps={formikProps}
+                  html={formikProps.values.description}
+                />
+                <TouchableOpacity
+                  style={adCreationStyles.adDescriptionField}
+                  onPress={() => setVisible(true)}
+                ></TouchableOpacity>
+              </View>
+              <View style={adCreationStyles.inputFieldContainer}>
+                <Text style={adCreationStyles.fieldName}>
+                  Izaberi kategoriju i potkategoriju
+                </Text>
+                <View style={adCreationStyles.dropDownCatSubContainer}>
+                  <View style={adCreationStyles.dropDownCatContainer}>
+                    <Picker
+                      selectedValue={formikProps.values.category.id}
+                      style={{
+                        fontSize: hp("1.9%"),
+                        backgroundColor: "#1e1c24",
+                        fontFamily: "Roboto-Bold",
+                        color: "white",
+                        borderColor: "transparent",
+                        paddingTop: hp("8%"),
+                      }}
+                      onValueChange={(itemValue, itemIndex) => {
+                        formikProps.setFieldValue("category", {
+                          id: props.categories[itemIndex].id,
+                          name: props.categories[itemIndex].name,
+                        });
+                        props.onChangeCategory(props.categories[itemIndex].id);
+                      }}
+                      value={formikProps.values.category}
+                      itemStyle={{ alignSelf: "center", marginLeft: 100 }}
+                    >
+                      {props.categories.map((category) => (
+                        <Picker.Item
+                          key={category.id}
+                          label={category.name}
+                          value={category.id}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
+                  <Divider style={{ height: 1, backgroundColor: "white" }} />
+                  {/* <Divider style={{ backgroundColor: "white" }} /> */}
+                  <View style={adCreationStyles.dropDownSubContainer}>
+                    <Picker
+                      selectedValue={formikProps.values.subCategory.id}
+                      style={{
+                        fontSize: hp("1.9%"),
+                        backgroundColor: "#1e1c24",
+                        fontFamily: "Roboto-Bold",
+                        color: "white",
+                        borderColor: "transparent",
+                        paddingTop: hp("8%"),
+                      }}
+                      onValueChange={(itemValue, itemIndex) => {
+                        formikProps.setFieldValue(
+                          "subCategory",
+                          props.subCategories[itemIndex]
+                        );
+                      }}
+                      value={formikProps.values.subCategory}
+                    >
+                      {props.subCategories.map((subCategory) => (
+                        <Picker.Item
+                          key={subCategory.id}
+                          label={subCategory.name}
+                          value={subCategory.id}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
                 </View>
               </View>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
-              <View style={adCreationStyles.priceRBContainer}>
-                <RadioButton />
+              <View style={adCreationStyles.inputFieldContainer}>
+                <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
+                <View style={adCreationStyles.priceRBContainer}>
+                  <RadioButton />
+                </View>
               </View>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Fotografija</Text>
-              {!image ? (
-                <TouchableOpacity onPress={pickImage}>
+              <View style={adCreationStyles.inputFieldContainer}>
+                <Text style={adCreationStyles.fieldName}>Fotografija</Text>
+                {!image ? (
+                  <TouchableOpacity onPress={pickImage}>
+                    <View style={adCreationStyles.pickImageContainer}>
+                      <View style={adCreationStyles.pickImageAdditional}>
+                        <Text style={adCreationStyles.pickingImage}>
+                          Izaberi sliku
+                        </Text>
+                        <AntDesign
+                          name="pluscircleo"
+                          style={adCreationStyles.plusIcon}
+                        />
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                ) : (
                   <View style={adCreationStyles.pickImageContainer}>
                     <View style={adCreationStyles.pickImageAdditional}>
                       <Text style={adCreationStyles.pickingImage}>
-                        Izaberi sliku
+                        Slika uspešno sačuvana
                       </Text>
-                      <AntDesign
-                        name="pluscircleo"
-                        style={adCreationStyles.plusIcon}
-                      />
                     </View>
                   </View>
-                </TouchableOpacity>
-              ) : (
-                <View style={adCreationStyles.pickImageContainer}>
-                  <View style={adCreationStyles.pickImageAdditional}>
-                    <Text style={adCreationStyles.pickingImage}>
-                      Slika uspešno sačuvana
-                    </Text>
-                  </View>
-                </View>
-              )}
+                )}
+              </View>
+              <EditProfileButton title={"Objavi"} />
             </View>
-            <EditProfileButton title={"Postavi"} />
-          </View>
+          </ScrollView>
         )}
       </Formik>
     </View>
