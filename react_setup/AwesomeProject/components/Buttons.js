@@ -156,6 +156,38 @@ export class FirstRunButton extends React.Component {
   }
 }
 
+export class AdDescriptionAdding extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.onPress}
+          style={buttonsStyles.adDescriptionButtonContainer}
+        >
+          <Text style={buttonsStyles.adDescriptionButtonText}>
+            {this.props.title}
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
+
 export class EditProfileButton extends React.Component {
   state = {
     fontsLoaded: false,

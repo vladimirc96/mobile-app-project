@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { EditProfileButton } from "../Buttons";
+import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../RadioButton";
@@ -47,6 +47,32 @@ export default function AdForm(props) {
     formikProps.setFieldValue("description", html);
   };
 
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const {
+        status,
+      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    if (!result.cancelled) {
+      setImage(result.uri);
+      alert('Slika je uspešno učitana');
+    }
+  };
+
   return (
     <View>
       <Formik
@@ -76,6 +102,7 @@ export default function AdForm(props) {
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
+              <AdDescriptionAdding title={"Dodaj opis oglasa"} />
               <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
               <RichTextEditor
                 visible={visible}
@@ -123,7 +150,7 @@ export default function AdForm(props) {
                     ))}
                   </Picker>
                 </View>
-                <Divider style={{ backgroundColor: "white" }} />
+                <Divider style={{ height: 1, backgroundColor: "white" }} />
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
                     selectedValue={formikProps.values.subCategory.id}
@@ -162,57 +189,20 @@ export default function AdForm(props) {
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Fotografija</Text>
-              <TouchableOpacity>
-                <View style={adCreationStyles.pickImageContainer}>
-                  <View style={adCreationStyles.pickImageAdditional}>
-                    <Text style={adCreationStyles.pickingImage}>
-                      Izaberi sliku
-                    </Text>
-                    <AntDesign
-                      name="pluscircleo"
-                      style={adCreationStyles.plusIcon}
-                    />
+                <TouchableOpacity onPress={pickImage}>
+                  <View style={adCreationStyles.pickImageContainer}>
+                    <View style={adCreationStyles.pickImageAdditional}>
+                      <Text style={adCreationStyles.pickingImage}>
+                        Izaberi sliku
+                      </Text>
+                      <AntDesign
+                        name="pluscircleo"
+                        style={adCreationStyles.plusIcon}
+                      />
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <View style={adCreationStyles.inputFieldAdditionalContainer}>
-                <Text style={adCreationStyles.fieldName}>
-                  Izaberi tip oglasa
-                </Text>
-                <FontAwesome
-                  name="question-circle-o"
-                  style={adCreationStyles.questionMarkIcon}
-                />
-              </View>
-              <View style={adCreationStyles.dropDownTypeContainer}>
-                <View style={adCreationStyles.dropDownSubContainer}>
-                  <Picker
-                    selectedValue={""}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("0.75%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      console.log(itemValue, itemIndex)
-                    }
-                  >
-                    <Picker.Item label="Basic" value="adType_id_1" />
-                    <Picker.Item label="VIP" value="adType_id_2" />
-                    <Picker.Item label="Gold" value="adType_id_3" />
-                  </Picker>
-                </View>
-              </View>
-              <TextInput
-                style={adCreationStyles.typeCodeInput}
-                placeholder="Unesite kod ovde"
-                placeholderTextColor="#ededed"
-              />
+                </TouchableOpacity>
+              }
             </View>
             <EditProfileButton title={"Postavi"} />
           </View>
