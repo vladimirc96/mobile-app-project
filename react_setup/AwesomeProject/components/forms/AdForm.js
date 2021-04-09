@@ -202,7 +202,6 @@ export default function AdForm(props) {
                     </View>
                   </View>
                 </TouchableOpacity>
-              }
             </View>
             <EditProfileButton title={"Postavi"} />
           </View>
