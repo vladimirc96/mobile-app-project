@@ -52,7 +52,7 @@ export default function LoginForm({ navigation }) {
                 placeholder="Korisničko ime"
                 placeholderTextColor={
                   props.errors.username && props.touched.username
-                    ? "red"
+                    ? "#ff102d"
                     : "#ededed"
                 }
                 onChangeText={props.handleChange("username")}
@@ -68,7 +68,7 @@ export default function LoginForm({ navigation }) {
                 placeholder="Lozinka"
                 placeholderTextColor={
                   props.errors.password && props.touched.password
-                    ? "red"
+                    ? "#ff102d"
                     : "#ededed"
                 }
                 onChangeText={props.handleChange("password")}

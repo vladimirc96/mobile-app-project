@@ -27,7 +27,7 @@ export const adsStyles = StyleSheet.create({
   },
   titleContainer: {
     alignContent: "center",
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: hp("2.5%"),
     marginBottom: hp("1%"),
     width: wp("75%"),
@@ -41,11 +41,11 @@ export const adsStyles = StyleSheet.create({
     height: 20,
   },
   titleText: {
-    paddingTop: hp("0.75%"), 
+    paddingTop: hp("0.75%"),
     color: "#ffffff",
     textAlign: "center",
     fontSize: hp("3.6%"),
-    fontFamily: 'Comfortaa-Bold'
+    fontFamily: "Comfortaa-Bold",
   },
   adContainer: {
     alignSelf: "center",
@@ -57,7 +57,7 @@ export const adsStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("0.5%"),
     width: wp("90%"),
-  }
+  },
 });
 
 export const buttonsStyles = StyleSheet.create({
@@ -238,14 +238,9 @@ export const categoryStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#d0d0d0",
     borderRadius: 25,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
+    shadowOffset: { width: hp("0.25%"), height: hp("0.25%") },
+    shadowRadius: 10,
+    opacity: 0.9,
   },
   categoryImageHeight: {
     alignSelf: "center",
@@ -328,7 +323,7 @@ export const loginStyles = StyleSheet.create({
     borderRadius: 20,
     marginTop: hp("1.5%"),
     opacity: 0.8,
-    borderColor: "red",
+    borderColor: "#ff102d",
     backgroundColor: "#1e1c24",
     color: "#ff102d",
     fontSize: hp("2.25%"),
@@ -433,7 +428,6 @@ export const signupStyles = StyleSheet.create({
     color: "#ededed",
     fontSize: hp("2.25%"),
     fontFamily: "Comfortaa-Light",
-
   },
 });
 
@@ -558,15 +552,6 @@ export const adStyles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 2,
     borderColor: "#565656",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
   },
   adMainContainer: {
     flexDirection: "row",
@@ -602,7 +587,7 @@ export const adStyles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#7d7d7d",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     backgroundColor: "white",
   },
   descriptionLarge: {
@@ -611,7 +596,7 @@ export const adStyles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#7d7d7d",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#f5f5f5",
   },
   descriptionText: {
@@ -619,7 +604,7 @@ export const adStyles = StyleSheet.create({
     marginLeft: wp("0.85%"),
     marginRight: wp("0.85%"),
     color: "black",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
   },
   descriptionDetails: {
     alignSelf: "center",
@@ -627,7 +612,7 @@ export const adStyles = StyleSheet.create({
   descriptionDetailsText: {
     fontSize: wp("2.25%"),
     fontWeight: "bold",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     textDecorationLine: "underline",
     color: "black",
   },
@@ -642,8 +627,8 @@ export const adStyles = StyleSheet.create({
   },
   ownerName: {
     fontSize: wp("2%"),
-    fontFamily: 'Roboto-Regular',
-    fontStyle: 'italic',
+    fontFamily: "Roboto-Regular",
+    fontStyle: "italic",
     color: "black",
   },
   adDetails: {
@@ -665,7 +650,7 @@ export const adStyles = StyleSheet.create({
     textAlign: "center",
     marginTop: wp("1%"),
     fontSize: wp("2.75%"),
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     color: "black",
   },
   publishDateContainer: {
@@ -678,7 +663,7 @@ export const adStyles = StyleSheet.create({
   },
   publishTitle: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   publishDate: {
@@ -695,7 +680,7 @@ export const adStyles = StyleSheet.create({
   },
   locationText: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Bold',
+    fontFamily: "Roboto-Bold",
     color: "black",
   },
   ratingStars: {
@@ -706,7 +691,7 @@ export const adStyles = StyleSheet.create({
   },
   likeText: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   like: {
@@ -722,7 +707,7 @@ export const adStyles = StyleSheet.create({
   dislikeText: {
     marginLeft: wp("1.3%"),
     fontSize: wp("2.75%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
 });
@@ -748,293 +733,294 @@ export const firstRunStyles = StyleSheet.create({
 });
 
 export const modalStyles = StyleSheet.create({
-    blurView: {
-      width:wp("100%"),
-      height:hp("100%")
-    },
-    modalWrap: {
-      alignSelf: "center",
-      marginTop: hp("1%")
-    },
-    modal: {
-      borderWidth:0,
-      borderColor:"#d6d6d6"
-    },
-    modalInnerWrap: {
-      backgroundColor:"#ededed",
-      alignSelf: "center",
-      width:wp("90%"),
-      height: hp("90%"),
-      borderRadius: 5
-    },
-    closeButtonContainer: {
-      flexDirection: "row",
-      justifyContent:"space-between"
-    },
-    closeButton: {
-      marginTop:hp("0.5%"),
-      marginRight:hp("0.5%")
-    },
-    titleContainer: {
-      borderColor:"#d6d6d6",
-      backgroundColor: "white",
-      borderWidth: 1,
-      borderRadius: 10,
-      width: wp("86%"),
-      height: hp("5%"),
-      marginLeft: wp("2.5%"),
-      marginRight: wp("2.5%"),
-      marginBottom: hp("5%"),
-      textAlign:"center",
-      flexDirection: "row",
-      flex:1,
-      justifyContent: "space-between"
-    },
-    title: {
-      fontSize: hp("2.5%"),
-      color: "black",
-      fontFamily: "Roboto-Bold",
-      marginTop: hp("0.8%")
-    },
-    priceContainer: {
-      height: hp("3%"),
-      width: wp("20%"),
-      backgroundColor: "black",
-      marginTop: hp("0.8%"),
-      marginRight: wp("1.5%"),
-      borderRadius: 5
-    },
-    price: {
-      marginTop: hp("0.5%"),
-      color:"white",
-      fontSize: hp("1.75%"),
-      fontFamily: "Roboto-Bold",
-      textAlign: "center"
-    },
-    centerdWrap :{
-      alignSelf:"center"
-    },
-    basicUserInfo: {
-      maxHeight: hp("50%"),
-      marginBottom: wp("1%"),
-      marginTop: hp("1%"),
-      marginLeft: wp("2.5%"),
-      marginRight: wp("2.5%"),
-      backgroundColor: "white",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#d6d6d6"
-    },
-    profileImageBorderHeight: {
-      alignSelf: "center",
-      marginTop: hp("1.5%"),
-      width: hp("16%"),
-      height: hp("16%"),
-      borderWidth: 1,
-      borderColor: "#747474"
-    },
-    profileImageBorderWidth:{
-      alignSelf: "center",
-      marginTop: wp("3%"),
-      width: wp("32%"),
-      height: wp("32%"),
-      borderWidth: 1,
-      borderColor: "#d6d6d6"
-    },  backgroundImageContainer: {
-      flex: 1,
-      resizeMode: "cover",
-    },
-    mainContainer: {
-      alignSelf: "center",
-      marginTop: hp("3%"),
-      width: wp("90%"),
-      height: wp("60%")
-    },
-    description: {
-      minHeight: hp("33%"),
-      marginBottom: hp("0.5%"),
-      marginTop: hp("1%"),
-      marginLeft: wp("2.5%"),
-      marginRight: wp("2.5%"),
-      paddingLeft: wp("2%"),
-      paddingLeft: wp("1%"),
-      paddingTop: wp("2%"),
-      paddingBottom: wp("2%"),
-      backgroundColor: "white",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#d6d6d6"
-    },
-    profileImageHeight: {
-      alignSelf: "center",
-      marginTop: hp("0.35%"),
-      width: hp("15%"),
-      height: hp("15%")
-    },
-    profileImageWidth:{
-      alignSelf: "center",
-      marginTop: wp("0.7%"),
-      width: wp("30%"),
-      height: wp("30%")
-    },
-    titleIconWidth: {
-      width: wp("12%"),
-      height: wp("12%"),
-      top: wp("4%"),
-      left: wp("2.5%"),
-    },
-    profileName: {
-      alignSelf: "center",
-      marginTop: hp("1.5%"),
-      marginBottom: hp("0.5%"),
-      fontSize: hp("3%"),
-      fontWeight: "bold",
-      fontFamily: "Roboto-Light",
-      color: "black",
-    },
-    userLocation: {
-      flexDirection: "row",
-      alignSelf: "center",
-      marginBottom: hp("0.25%"),
-    },
-    location: {
-      marginLeft: wp("1%"),
-      fontSize: wp("4%"),
-      fontFamily: "Roboto-Light",
-      color: "black",
-    },
-    userMail: {
-      flexDirection: "row",
-      alignSelf: "center",
-      marginBottom: hp("0.5%"),
-    },
-    userOntact: {
-      flexDirection: "row",
-      alignSelf: "center",
-      marginBottom: hp("0.5%"),
-    },
-    userRating: {
-      flexDirection: "row",
-      alignSelf: "center",
-      marginBottom: hp("1.5%"),
-    },
-    ratingText: {
-      fontSize: hp("2%"),
-      fontFamily: "Roboto-Light",
-      color: "black",
-      marginLeft: wp("1%"),
-      marginRight: wp("3%"),
-    },
-    likeComponent: {
-      color: "black",
-    },
-    like: {
-      fontSize: hp("2.75%"),
-      color: "black"
-    },
-    dislikeComponent: {
-      color: "black",
-    },
-    dislike: {
-      fontSize: hp("2.75%"),
-      color: "black",
-    },
-    userContact: {
-      flexDirection: "row",
-      alignSelf: "center",
-    },
-    userEmail: {
-      flexDirection: "row",
-      alignSelf: "center",
-    },
-    aboutUser: {
-      marginBottom: hp("0.5%"),
-      backgroundColor: "#1e1c24",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "black",
-    },
-    smallContainer: {
-      marginBottom: hp("0.5%"),
-      backgroundColor: "#1e1c24",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#ededed",
-    },
-    sectionName: {
-      left: wp("2%"),
-      marginTop: hp("1.5%"),
-      marginBottom: hp("1.5%"),
-      marginLeft: wp("2%"),
-      marginRight: wp("2%"),
-      fontSize: hp("2.5%"),
-      color: "#ededed",
-    },
-    dashContainer: {
-      marginLeft: wp("0.3%"),
-      flexDirection: "row",
-    },
-    line: {
-      textAlignVertical: "center",
-      fontSize: hp("3%"),
-      color: "#ededed",
-    },
-    userDetails: {
-      paddingHorizontal: hp("1.25%"),
-      paddingVertical: wp("2%"),
-      marginHorizontal: wp("1.5%"),
-      marginVertical: hp("0.5%"),
-      borderRadius: 10,
-      backgroundColor: "#1f1f2f",
-    },
-    details: {
-      fontSize: hp("2%"),
-      color: "#ededed",
-    },
-    commentTitle:{
-      fontSize: hp("2%"),
-      fontWeight: "bold",
-      color: "#ededed",
-    },
-    commentUser:{
-      fontSize: hp("2%"),
-      fontWeight: "bold",
-      marginTop: hp("0.5%"),
-      marginLeft: wp("2%"),
-      color: "#ededed",
-    },
-    commentTime:{
-      fontSize: hp("2%"),
-      marginTop: hp("0.5%"),
-      marginLeft: wp("1%"),
-      color: "#ededed",
-    },
-    commentText:{
-      fontSize: hp("2%"),
-      marginTop: hp("1%"),
-      color: "#ededed",
-    },
-    arrow: {
-      alignSelf: "center",
-      fontSize: hp("3%"),
-      color: "#ededed",
-    },
-    arrowSmall: {
-      alignSelf: "center",
-      marginTop: hp("0.5%"),
-      fontSize: hp("3%"),
-      color: "#ededed",
-    },
-    adText: {
-      marginLeft: 2,
-      marginRight: 2,
-      fontFamily: "Roboto-Light"
-    },
-    textInput: {
-      marginLeft: 2,
-      marginRight: 2,
-      fontFamily: "Roboto-Light"
-    }
+  blurView: {
+    width: wp("100%"),
+    height: hp("100%"),
+  },
+  modalWrap: {
+    alignSelf: "center",
+    marginTop: hp("1%"),
+  },
+  modal: {
+    borderWidth: 0,
+    borderColor: "#d6d6d6",
+  },
+  modalInnerWrap: {
+    backgroundColor: "#ededed",
+    alignSelf: "center",
+    width: wp("90%"),
+    height: hp("90%"),
+    borderRadius: 5,
+  },
+  closeButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  closeButton: {
+    marginTop: hp("0.5%"),
+    marginRight: hp("0.5%"),
+  },
+  titleContainer: {
+    borderColor: "#d6d6d6",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 10,
+    width: wp("86%"),
+    height: hp("5%"),
+    marginLeft: wp("2.5%"),
+    marginRight: wp("2.5%"),
+    marginBottom: hp("5%"),
+    textAlign: "center",
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  title: {
+    fontSize: hp("2.5%"),
+    color: "black",
+    fontFamily: "Roboto-Bold",
+    marginTop: hp("0.8%"),
+  },
+  priceContainer: {
+    height: hp("3%"),
+    width: wp("20%"),
+    backgroundColor: "black",
+    marginTop: hp("0.8%"),
+    marginRight: wp("1.5%"),
+    borderRadius: 5,
+  },
+  price: {
+    marginTop: hp("0.5%"),
+    color: "white",
+    fontSize: hp("1.75%"),
+    fontFamily: "Roboto-Bold",
+    textAlign: "center",
+  },
+  centerdWrap: {
+    alignSelf: "center",
+  },
+  basicUserInfo: {
+    maxHeight: hp("50%"),
+    marginBottom: wp("1%"),
+    marginTop: hp("1%"),
+    marginLeft: wp("2.5%"),
+    marginRight: wp("2.5%"),
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#d6d6d6",
+  },
+  profileImageBorderHeight: {
+    alignSelf: "center",
+    marginTop: hp("1.5%"),
+    width: hp("16%"),
+    height: hp("16%"),
+    borderWidth: 1,
+    borderColor: "#747474",
+  },
+  profileImageBorderWidth: {
+    alignSelf: "center",
+    marginTop: wp("3%"),
+    width: wp("32%"),
+    height: wp("32%"),
+    borderWidth: 1,
+    borderColor: "#d6d6d6",
+  },
+  backgroundImageContainer: {
+    flex: 1,
+    resizeMode: "cover",
+  },
+  mainContainer: {
+    alignSelf: "center",
+    marginTop: hp("3%"),
+    width: wp("90%"),
+    height: wp("60%"),
+  },
+  description: {
+    minHeight: hp("33%"),
+    marginBottom: hp("0.5%"),
+    marginTop: hp("1%"),
+    marginLeft: wp("2.5%"),
+    marginRight: wp("2.5%"),
+    paddingLeft: wp("2%"),
+    paddingLeft: wp("1%"),
+    paddingTop: wp("2%"),
+    paddingBottom: wp("2%"),
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#d6d6d6",
+  },
+  profileImageHeight: {
+    alignSelf: "center",
+    marginTop: hp("0.35%"),
+    width: hp("15%"),
+    height: hp("15%"),
+  },
+  profileImageWidth: {
+    alignSelf: "center",
+    marginTop: wp("0.7%"),
+    width: wp("30%"),
+    height: wp("30%"),
+  },
+  titleIconWidth: {
+    width: wp("12%"),
+    height: wp("12%"),
+    top: wp("4%"),
+    left: wp("2.5%"),
+  },
+  profileName: {
+    alignSelf: "center",
+    marginTop: hp("1.5%"),
+    marginBottom: hp("0.5%"),
+    fontSize: hp("3%"),
+    fontWeight: "bold",
+    fontFamily: "Roboto-Light",
+    color: "black",
+  },
+  userLocation: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("0.25%"),
+  },
+  location: {
+    marginLeft: wp("1%"),
+    fontSize: wp("4%"),
+    fontFamily: "Roboto-Light",
+    color: "black",
+  },
+  userMail: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("0.5%"),
+  },
+  userOntact: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("0.5%"),
+  },
+  userRating: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: hp("1.5%"),
+  },
+  ratingText: {
+    fontSize: hp("2%"),
+    fontFamily: "Roboto-Light",
+    color: "black",
+    marginLeft: wp("1%"),
+    marginRight: wp("3%"),
+  },
+  likeComponent: {
+    color: "black",
+  },
+  like: {
+    fontSize: hp("2.75%"),
+    color: "black",
+  },
+  dislikeComponent: {
+    color: "black",
+  },
+  dislike: {
+    fontSize: hp("2.75%"),
+    color: "black",
+  },
+  userContact: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  userEmail: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  aboutUser: {
+    marginBottom: hp("0.5%"),
+    backgroundColor: "#1e1c24",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  smallContainer: {
+    marginBottom: hp("0.5%"),
+    backgroundColor: "#1e1c24",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ededed",
+  },
+  sectionName: {
+    left: wp("2%"),
+    marginTop: hp("1.5%"),
+    marginBottom: hp("1.5%"),
+    marginLeft: wp("2%"),
+    marginRight: wp("2%"),
+    fontSize: hp("2.5%"),
+    color: "#ededed",
+  },
+  dashContainer: {
+    marginLeft: wp("0.3%"),
+    flexDirection: "row",
+  },
+  line: {
+    textAlignVertical: "center",
+    fontSize: hp("3%"),
+    color: "#ededed",
+  },
+  userDetails: {
+    paddingHorizontal: hp("1.25%"),
+    paddingVertical: wp("2%"),
+    marginHorizontal: wp("1.5%"),
+    marginVertical: hp("0.5%"),
+    borderRadius: 10,
+    backgroundColor: "#1f1f2f",
+  },
+  details: {
+    fontSize: hp("2%"),
+    color: "#ededed",
+  },
+  commentTitle: {
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    color: "#ededed",
+  },
+  commentUser: {
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    marginTop: hp("0.5%"),
+    marginLeft: wp("2%"),
+    color: "#ededed",
+  },
+  commentTime: {
+    fontSize: hp("2%"),
+    marginTop: hp("0.5%"),
+    marginLeft: wp("1%"),
+    color: "#ededed",
+  },
+  commentText: {
+    fontSize: hp("2%"),
+    marginTop: hp("1%"),
+    color: "#ededed",
+  },
+  arrow: {
+    alignSelf: "center",
+    fontSize: hp("3%"),
+    color: "#ededed",
+  },
+  arrowSmall: {
+    alignSelf: "center",
+    marginTop: hp("0.5%"),
+    fontSize: hp("3%"),
+    color: "#ededed",
+  },
+  adText: {
+    marginLeft: 2,
+    marginRight: 2,
+    fontFamily: "Roboto-Light",
+  },
+  textInput: {
+    marginLeft: 2,
+    marginRight: 2,
+    fontFamily: "Roboto-Light",
+  },
 });
 
 export const profileStyles = StyleSheet.create({
@@ -1046,7 +1032,7 @@ export const profileStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("3%"),
     width: wp("90%"),
-    minHeight: hp("80%")
+    minHeight: hp("80%"),
   },
   editButton: {
     height: hp("5%"),
@@ -1054,14 +1040,14 @@ export const profileStyles = StyleSheet.create({
     borderBottomRightRadius: 10,
     textAlign: "center",
     backgroundColor: "#03d5ff",
-    borderColor: "#ededed"
+    borderColor: "#ededed",
   },
   editButtonText: {
     marginTop: hp("1%"),
     color: "black",
     fontSize: hp("2%"),
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   basicUserInfo: {
     maxHeight: hp("50%"),
@@ -1069,7 +1055,7 @@ export const profileStyles = StyleSheet.create({
     backgroundColor: "#ededed",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#606060"
+    borderColor: "#606060",
   },
   profileImageHeight: {
     alignSelf: "center",
@@ -1077,7 +1063,7 @@ export const profileStyles = StyleSheet.create({
     width: hp("15%"),
     height: hp("15%"),
   },
-  profileImageWidth:{
+  profileImageWidth: {
     alignSelf: "center",
     marginTop: wp("3%"),
     width: wp("30%"),
@@ -1096,7 +1082,7 @@ export const profileStyles = StyleSheet.create({
     fontSize: hp("3%"),
     fontWeight: "bold",
     color: "black",
-    fontFamily: "Roboto-Bold"
+    fontFamily: "Roboto-Bold",
   },
   userLocation: {
     flexDirection: "row",
@@ -1138,7 +1124,7 @@ export const profileStyles = StyleSheet.create({
   },
   like: {
     fontSize: hp("2.75%"),
-    color: "black"
+    color: "black",
   },
   dislikeComponent: {
     color: "black",
@@ -1217,31 +1203,31 @@ export const profileStyles = StyleSheet.create({
     fontFamily: "Roboto-Light",
     color: "black",
   },
-  commentTitle:{
+  commentTitle: {
     fontSize: hp("2%"),
     fontWeight: "bold",
     color: "black",
   },
-  commentButtonText:{
+  commentButtonText: {
     fontSize: hp("2.5%"),
     textAlign: "center",
     fontWeight: "bold",
     color: "black",
   },
-  commentUser:{
+  commentUser: {
     fontSize: hp("2%"),
     fontWeight: "bold",
     marginTop: hp("0.5%"),
     marginLeft: wp("2%"),
     color: "black",
   },
-  commentTime:{
+  commentTime: {
     fontSize: hp("2%"),
     marginTop: hp("0.5%"),
     marginLeft: wp("1%"),
     color: "black",
   },
-  commentText:{
+  commentText: {
     fontSize: hp("2%"),
     marginTop: hp("1%"),
     color: "black",
@@ -1256,7 +1242,7 @@ export const profileStyles = StyleSheet.create({
     marginTop: hp("0.5%"),
     fontSize: hp("3%"),
     color: "black",
-  }
+  },
 });
 export const adCreationStyles = StyleSheet.create({
   backgroundImageContainer: {
@@ -1317,7 +1303,7 @@ export const adCreationStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "white",
-    height: hp("5%")
+    height: hp("5%"),
   },
   dropDownCatSubContainer: {
     marginTop: hp("0.75%"),
@@ -1371,7 +1357,7 @@ export const adCreationStyles = StyleSheet.create({
     fontSize: hp("2.25%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   plusIcon: {
     fontSize: hp("2.25%"),
@@ -1438,13 +1424,13 @@ export const aboutUsStyles = StyleSheet.create({
     width: wp("90%"),
   },
   subtitleNameContainer: {
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   subtitleText: {
     marginTop: hp("2%"),
     paddingLeft: wp("1.5%"),
     fontSize: hp("2.5%"),
-    fontFamily: 'Roboto-Black',
+    fontFamily: "Roboto-Black",
   },
   mainTextFirstPart: {
     marginTop: hp("1.25%"),
@@ -1472,7 +1458,7 @@ export const aboutUsStyles = StyleSheet.create({
     paddingLeft: wp("0.75%"),
     fontSize: hp("2.25%"),
     textAlign: "justify",
-    fontFamily: 'Roboto-LightItalic',
+    fontFamily: "Roboto-LightItalic",
     fontWeight: "400",
   },
   contactPartContainer: {
@@ -1481,8 +1467,8 @@ export const aboutUsStyles = StyleSheet.create({
   contactText: {
     marginBottom: hp("1.25%"),
     fontSize: hp("2%"),
-    fontFamily: 'Comfortaa-Regular',
-    fontWeight: "bold",
+    fontFamily: "Comfortaa-Regular",
+    fontWeight: "600",
     textAlign: "center",
   },
 });
@@ -1654,3 +1640,13 @@ export const contactUsStyles = StyleSheet.create({
     opacity: 0.8,
   },
 });
+
+export const errorStyle = {
+  error: {
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: "#ff102d",
+    backgroundColor: "#1e1c24",
+    color: "#ff102d",
+  },
+};

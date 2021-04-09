@@ -20,7 +20,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Dimensions } from "react-native";
-import { adCreationStyles } from "../../shared/Styles";
+import { adCreationStyles, errorStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import { WebView } from "react-native-webview";
@@ -95,11 +95,21 @@ export default function AdForm(props) {
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
               <TextInput
-                style={adCreationStyles.adNameField}
+                style={[
+                  adCreationStyles.adNameField,
+                  formikProps.errors.title && formikProps.touched.title
+                    ? errorStyle.error
+                    : null,
+                ]}
                 placeholder="Max. 50 karaktera."
-                placeholderTextColor="#ededed"
+                placeholderTextColor={
+                  formikProps.errors.title && formikProps.touched.title
+                    ? "#ff102d"
+                    : "#ededed"
+                }
                 value={formikProps.values.title}
                 onChangeText={formikProps.handleChange("title")}
+                onBlur={formikProps.handleBlur("title")}
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
@@ -153,6 +163,7 @@ export default function AdForm(props) {
                   </Picker>
                 </View>
                 <Divider style={{ height: 1, backgroundColor: "white" }} />
+                {/* <Divider style={{ backgroundColor: "white" }} /> */}
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
                     selectedValue={formikProps.values.subCategory.id}
