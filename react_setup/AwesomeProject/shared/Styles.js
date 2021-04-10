@@ -131,6 +131,15 @@ export const buttonsStyles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     opacity: 0.99,
   },
+  AdvButtonContainerProfile: {
+    alignSelf: "center",
+    width: wp("92%"),
+    marginTop: hp("0.25%"),
+    height: hp("9%"),
+    borderRadius: 20,
+    backgroundColor: "#1e1c24",
+    opacity: 0.99,
+  },
   AdvButtonText: {
     textAlign: "center",
     marginTop: hp("3%"),
@@ -992,7 +1001,8 @@ export const profileStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("3%"),
     width: wp("90%"),
-    minHeight: hp("80%")
+    minHeight: hp("80%"),
+    marginBottom: hp("3%")
   },
   editButton: {
     height: hp("5%"),
