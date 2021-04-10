@@ -26,7 +26,7 @@ export default class RichTextEditor extends React.Component {
   };
 
   handleConfirm = () => {
-    this.props.handleChangeVisible(false);
+    this.props.handleChangeVisible(false, this.props.formikProps);
     this.props.handleChangeRichText(this.props.formikProps, "");
   };
 
@@ -40,13 +40,13 @@ export default class RichTextEditor extends React.Component {
     if (this.props.html !== "") {
       showPopup("", CONFIRM_CHANGES_MESSAGE, buttons);
     } else {
-      this.props.handleChangeVisible(false);
+      this.props.handleChangeVisible(false, this.props.formikProps);
     }
   };
 
   onSave = () => {
     this.props.handleChangeRichText(this.props.formikProps, this.props.html);
-    this.props.handleChangeVisible(false);
+    this.props.handleChangeVisible(false, this.props.formikProps);
   };
 
   richText = React.createRef();

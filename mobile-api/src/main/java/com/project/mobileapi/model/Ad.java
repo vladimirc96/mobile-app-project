@@ -1,10 +1,10 @@
 package com.project.mobileapi.model;
 
+import com.project.mobileapi.util.Currency;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name="table_ads")
@@ -24,8 +24,11 @@ public class Ad {
     @Column(name = "ad_price")
     private double price;
 
-    @Column(name = "price_fixed")
-    private boolean priceFixed;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
+
+    @Column(name = "agreement")
+    private boolean agreement;
 
     @Column(name = "ad_description")
     private String description;

@@ -40,8 +40,12 @@ export default class RadioButton extends Component {
         <View style={styles.priceValueContainer}>
           <TextInput
             style={styles.priceInputField}
+            keyboardType="numeric"
             placeholder="Upišite iznos..."
             placeholderTextColor="#ededed"
+            editable={this.state.value !== prices[2].key}
+            onChangeText={this.props.handleChangePrice}
+            value={this.props.price}
           />
           <View style={styles.priceCurrency}>
             <Text style={styles.radioText}>{prices[0].text}</Text>
@@ -51,6 +55,7 @@ export default class RadioButton extends Component {
                 this.setState({
                   value: prices[0].key,
                 });
+                this.props.handleChangeAgreement(false);
               }}
             >
               {value === prices[0].key && <View style={styles.selectedRb} />}
@@ -62,6 +67,7 @@ export default class RadioButton extends Component {
                 this.setState({
                   value: prices[1].key,
                 });
+                this.props.handleChangeAgreement(false);
               }}
             >
               {value === prices[1].key && <View style={styles.selectedRb} />}
@@ -76,6 +82,7 @@ export default class RadioButton extends Component {
               this.setState({
                 value: prices[2].key,
               });
+              this.props.handleChangeAgreement(true);
             }}
           >
             {value === prices[2].key && <View style={styles.selectedRb} />}

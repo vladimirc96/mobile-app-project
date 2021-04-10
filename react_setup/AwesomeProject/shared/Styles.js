@@ -70,7 +70,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ?hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ffffff",
     fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
@@ -84,7 +84,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ?hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ffffff",
     fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
@@ -118,14 +118,14 @@ export const buttonsStyles = StyleSheet.create({
   },
   firstRunButtonTextHeight: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ? hp("2%") : hp("1%"),
+    paddingTop: Platform.OS === "ios" ? hp("2%") : hp("1%"),
     color: "#ededed",
     fontSize: wp("7%"),
     fontFamily: "Comfortaa-Bold",
   },
   firstRunButtonTextWidth: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ? hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     paddingTop: wp("3%"),
     color: "#ededed",
     fontSize: wp("6%"),
@@ -142,7 +142,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   AdvButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ? hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ededed",
     fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
@@ -151,8 +151,8 @@ export const buttonsStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("2%"),
     marginBottom: hp("2%"),
-    width: wp("40%"),
-    height: hp("4.25%"),
+    width: wp("82%"),
+    height: hp("6%"),
     borderRadius: 6,
     borderWidth: 1,
     borderColor: "white",
@@ -161,7 +161,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   adDescriptionButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ?hp("0.75%") : hp("0.25%"),
+    paddingTop: Platform.OS === "ios" ? hp("0.75%") : hp("0.25%"),
     color: "#ffffff",
     fontSize: wp("4%"),
     fontFamily: "Comfortaa-Bold",
@@ -195,13 +195,13 @@ export const buttonsStyles = StyleSheet.create({
   },
   aboutContactIcon: {
     marginLeft: wp("12%"),
-    paddingTop: Platform.OS === 'ios' ? hp("2.75%") : hp("2.75%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("2.75%"),
     fontSize: wp("5%"),
     color: "#ededed",
   },
   aboutContactText: {
     textAlign: "center",
-    paddingTop: Platform.OS === 'ios' ? hp("2.75%") : hp("1.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
     marginLeft: wp("2%"),
     color: "#ededed",
     fontSize: wp("5%"),
@@ -542,7 +542,7 @@ export const subCategoryStyles = StyleSheet.create({
   mainContainerText: {
     textAlign: "left",
     textAlignVertical: "center",
-    paddingTop: Platform.OS === 'ios' ?  hp("2.75%") : hp("1.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
     paddingLeft: wp("4%"),
     color: "#ededed",
     fontSize: wp("5.25%"),
@@ -581,7 +581,7 @@ export const adStyles = StyleSheet.create({
     marginBottom: hp("0.5%"),
   },
   adTitle: {
-    paddingTop: Platform.OS === 'ios' ?  hp("0.5%") : hp("0.25%"),
+    paddingTop: Platform.OS === "ios" ? hp("0.5%") : hp("0.25%"),
     textAlign: "center",
     fontSize: wp("3%"),
     fontFamily: "Comfortaa-Bold",
@@ -726,15 +726,15 @@ export const firstRunStyles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignSelf: "center",
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: Platform.OS === 'ios' ? hp("10.5%") : hp("10.5%")
+    marginTop: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginBottom: Platform.OS === 'ios' ? hp("10.5%") : hp("10.5%")
+    marginBottom: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
   },
 });
 
@@ -1442,7 +1442,7 @@ export const aboutUsStyles = StyleSheet.create({
     marginTop: hp("1.25%"),
     fontSize: wp("4%"),
     textAlign: "justify",
-    fontFamily: 'Roboto-LightItalic',
+    fontFamily: "Roboto-LightItalic",
     fontWeight: "400",
   },
   SecondPartTextContainer: {
@@ -1452,13 +1452,13 @@ export const aboutUsStyles = StyleSheet.create({
   mainTextSecondPart: {
     fontSize: wp("4%"),
     textAlign: "justify",
-    fontFamily: 'Roboto-LightItalic',
+    fontFamily: "Roboto-LightItalic",
     fontWeight: "400",
   },
   bulletIcon: {
     fontSize: wp("3.15%"),
     color: "black",
-    paddingTop: Platform.OS === 'ios' ? hp("2%") : hp("1%"),
+    paddingTop: Platform.OS === "ios" ? hp("2%") : hp("1%"),
   },
   mainTextThirdPart: {
     paddingLeft: wp("0.75%"),
@@ -1650,9 +1650,21 @@ export const contactUsStyles = StyleSheet.create({
 export const errorStyle = {
   error: {
     borderWidth: 2,
-    borderRadius: 20,
     borderColor: "#ff102d",
     backgroundColor: "#1e1c24",
+    color: "#ff102d",
+  },
+  adDescriptionButtonContainer: {
+    alignSelf: "center",
+    marginTop: hp("2%"),
+    marginBottom: hp("2%"),
+    width: wp("82%"),
+    height: hp("4.25%"),
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#ff102d",
+    backgroundColor: "#1e1c24",
+    opacity: 0.99,
     color: "#ff102d",
   },
 };

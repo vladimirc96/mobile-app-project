@@ -8,6 +8,7 @@ import AdForm from "../components/forms/AdForm";
 import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";
 import { getAllByCategoryId } from "../services/SubCategoryService";
+import { saveAd } from "../services/AdService";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -75,6 +76,25 @@ export class AdCreation extends React.Component {
     this.getSubCategories(categoryId);
   };
 
+  handleSubmit = async (ad) => {
+    try {
+      const formData = new FormData();
+      Object.keys(ad).forEach((key) => {
+        if (key === "category") {
+          return;
+        }
+        formData.append(key, ad[key]);
+      });
+      // const response = await fetch(ad.image);
+      // const blob = await response.blob();
+      // formData.append("image", blob);
+      formData.append("creationDate", new Date().toISOString().slice(0, 10));
+      await saveAd(ad);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
 
@@ -84,138 +104,11 @@ export class AdCreation extends React.Component {
           style={adCreationStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          {/* <View style={adCreationStyles.mainContainer}>
-            <View style={adCreationStyles.backForwardContainer}></View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
-              <TextInput
-                style={adCreationStyles.adNameField}
-                placeholder="Max. 50 karaktera."
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Opis oglasa</Text>
-              <TextInput
-                multiline={true}
-                numberOfLines={4}
-                style={adCreationStyles.adDescriptionField}
-                placeholder="Max. 500 karaktera."
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>
-                Izaberi kategoriju i potkategoriju
-              </Text>
-              <View style={adCreationStyles.dropDownCatSubContainer}>
-                <View style={adCreationStyles.dropDownCatContainer}>
-                  <Picker
-                    selectedCategory={this.state.selectedCategory}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("0.5%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedCategory: itemValue })
-                    }
-                  >
-                    <Picker.Item
-                      label="Majstori i zanati"
-                      value="category_id_1"
-                    />
-                    <Picker.Item label="Dizajn" value="category_id_2" />
-                    <Picker.Item label="Muzika" value="category_id_3" />
-                  </Picker>
-                </View>
-                <View style={adCreationStyles.dropDownSubContainer}>
-                  <Picker
-                    selectedSubcategory={this.state.selectedSubcategory}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("0.75%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedSubcategory: itemValue })
-                    }
-                  >
-                    <Picker.Item
-                      label="Majstori i zanati"
-                      value="subcategory_id_1"
-                    />
-                    <Picker.Item label="Dizajn" value="subcategory_id_2" />
-                    <Picker.Item label="Muzika" value="subcategory_id_3" />
-                  </Picker>
-                </View>
-              </View>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
-              <View style={adCreationStyles.priceRBContainer}>
-                <RadioButton />
-              </View>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>Fotografija</Text>
-              <TouchableOpacity onPress={this.pickImage}>
-                <View style={adCreationStyles.pickImageContainer}>
-                  <View style={adCreationStyles.pickImageAdditional}>
-                    <Text style={adCreationStyles.pickingImage}> Izaberi sliku</Text>
-                    <AntDesign name="pluscircleo" style={adCreationStyles.plusIcon} />
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View style={adCreationStyles.inputFieldContainer}>
-              <View style={adCreationStyles.inputFieldAdditionalContainer}>
-                <Text style={adCreationStyles.fieldName}>Izaberi tip oglasa</Text>
-                <FontAwesome
-                  name="question-circle-o"
-                  style={adCreationStyles.questionMarkIcon}
-                />
-              </View>
-              <View style={adCreationStyles.dropDownTypeContainer}>
-                <View style={adCreationStyles.dropDownSubContainer}>
-                  <Picker
-                    selectedSubcategory={this.state.selectedType}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("0.75%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) =>
-                      this.setState({ selectedType: itemValue })
-                    }
-                  >
-                    <Picker.Item label="Basic" value="adType_id_1" />
-                    <Picker.Item label="VIP" value="adType_id_2" />
-                    <Picker.Item label="Gold" value="adType_id_3" />
-                  </Picker>
-                </View>
-              </View>
-              <TextInput
-                style={adCreationStyles.typeCodeInput}
-                placeholder="Unesite kod ovde"
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <EditProfileButton title={"Postavi"} />
-          </View> */}
           <AdForm
             categories={this.props.categories}
             subCategories={this.state.subCategories}
             onChangeCategory={this.onChangeCategory}
+            handleSubmit={this.handleSubmit}
           ></AdForm>
         </ImageBackground>
       );

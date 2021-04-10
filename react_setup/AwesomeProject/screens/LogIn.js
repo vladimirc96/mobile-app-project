@@ -26,19 +26,6 @@ export default class LogIn extends React.Component {
     this._loadFontsAsync();
   }
 
-  handleLogin = async (user) => {
-    try {
-      const token = await login({
-        username: user.username,
-        password: user.password,
-      });
-      await LocalStorage.setItem("currentUser", token);
-      this.props.navigation.navigate("Home");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
-
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     if (this.state.fontsLoaded) {

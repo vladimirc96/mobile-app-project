@@ -1,6 +1,7 @@
 package com.project.mobileapi.ads;
 
 import com.project.mobileapi.subcategory.SubCategoryDTO;
+import com.project.mobileapi.util.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Builder(toBuilder = true)
@@ -26,7 +26,7 @@ public class AdDTO {
 
     private double price;
 
-    private boolean priceFixed;
+    private boolean agreement;
 
     @NotNull(message = "Opis oglasa ne sme da bude prazan.")
     @NotBlank(message = "Opis oglasa ne sme da bude prazan.")
@@ -37,5 +37,7 @@ public class AdDTO {
     private int views;
 
     private SubCategoryDTO subCategory;
+
+    private Currency currency;
 
 }
