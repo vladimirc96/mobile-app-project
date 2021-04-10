@@ -730,11 +730,11 @@ export const firstRunStyles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: Platform.OS === 'ios' ? hp("10.5%") : hp("10.5%")
+    marginTop: hp("14%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginBottom: Platform.OS === 'ios' ? hp("10.5%") : hp("10.5%")
+    marginBottom: hp("10.5%"),
   },
 });
 
@@ -1401,6 +1401,74 @@ export const adCreationStyles = StyleSheet.create({
     fontStyle: "italic",
     fontFamily: "Roboto-Light",
     opacity: 0.8,
+  },
+});
+
+export const radioButtonStyles = StyleSheet.create({
+  priceValueContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: hp("0.25%"),
+    alignSelf: "center",
+    width: wp("75%"),
+    borderBottomWidth: 1,
+    borderColor: "white",
+    backgroundColor: "#1e1c24",
+    height: hp("4%"),
+  },
+  priceInputField: {
+    alignSelf: "center",
+    width: wp("40%"),
+    paddingLeft: wp("1.5%"),
+    fontSize: wp("4%"),
+    fontFamily: "Roboto-Light",
+    fontStyle: "italic",
+    opacity: 0.8,
+  },
+  priceCurrency: {
+    flexDirection: "row",
+  },
+  radioText: {
+    marginLeft: wp("3%"),
+    paddingTop: hp("0.25%"),
+    width: wp("8%"),
+    fontSize: wp("3.5%"),
+    fontFamily: "Roboto-Bold",
+    opacity: 0.8,
+    color: "#ededed",
+  },
+  radioCircle: {
+    height: hp("2.25%"),
+    width: hp("2.25%"),
+    marginTop: hp("0.5%"),
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: "#87cefa",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  priceAgreementContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: hp("0.25%"),
+    alignSelf: "center",
+    width: wp("75%"),
+    backgroundColor: "#1e1c24",
+    height: hp("4%"),
+  },
+  agreementText: {
+    marginLeft: wp("1.5%"),
+    paddingTop: hp("0.25%"),
+    width: wp("20%"),
+    fontSize: wp("4%"),
+    fontWeight: "bold",
+    color: "#ededed",
+  },
+  selectedRb: {
+    width: hp("1.25%"),
+    height: hp("1.25%"),
+    borderRadius: 50,
+    backgroundColor: "#87cefa",
   },
 });
 
