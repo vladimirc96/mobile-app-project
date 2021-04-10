@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-} from "react-native";
+import { View, TouchableOpacity, Text, TextInput } from "react-native";
 
 import { radioButtonStyles } from "../shared/Styles";
 
@@ -35,7 +30,6 @@ export default class RadioButton extends Component {
 
   render() {
     const { value } = this.state;
-
     return (
       <View>
         <View style={radioButtonStyles.priceValueContainer}>
@@ -47,6 +41,7 @@ export default class RadioButton extends Component {
             editable={this.state.value !== prices[2].key}
             onChangeText={this.props.handleChangePrice}
             value={this.props.price}
+            onBlur={this.props.formikProps.handleBlur("price")}
           />
           <View style={radioButtonStyles.priceCurrency}>
             <Text style={radioButtonStyles.radioText}>{prices[0].text}</Text>
@@ -56,10 +51,13 @@ export default class RadioButton extends Component {
                 this.setState({
                   value: prices[0].key,
                 });
+                this.props.handleChangeCurrency(this.state.value);
                 this.props.handleChangeAgreement(false);
               }}
             >
-              {value === prices[0].key && <View style={radioButtonStyles.selectedRb} />}
+              {value === prices[0].key && (
+                <View style={radioButtonStyles.selectedRb} />
+              )}
             </TouchableOpacity>
             <Text style={radioButtonStyles.radioText}>{prices[1].text}</Text>
             <TouchableOpacity
@@ -68,10 +66,13 @@ export default class RadioButton extends Component {
                 this.setState({
                   value: prices[1].key,
                 });
+                this.props.handleChangeCurrency(this.state.value);
                 this.props.handleChangeAgreement(false);
               }}
             >
-              {value === prices[1].key && <View style={radioButtonStyles.selectedRb} />}
+              {value === prices[1].key && (
+                <View style={radioButtonStyles.selectedRb} />
+              )}
             </TouchableOpacity>
           </View>
         </View>
@@ -83,10 +84,13 @@ export default class RadioButton extends Component {
               this.setState({
                 value: prices[2].key,
               });
+              this.props.handleChangeCurrency("");
               this.props.handleChangeAgreement(true);
             }}
           >
-            {value === prices[2].key && <View style={radioButtonStyles.selectedRb} />}
+            {value === prices[2].key && (
+              <View style={radioButtonStyles.selectedRb} />
+            )}
           </TouchableOpacity>
         </View>
       </View>

@@ -1,5 +1,6 @@
 package com.project.mobileapi.ads;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.subcategory.SubCategoryDTO;
 import com.project.mobileapi.util.Currency;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class AdDTO {
     @NotBlank(message = "Opis oglasa ne sme da bude prazan.")
     private String description;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
 
     private int views;
@@ -40,4 +42,5 @@ public class AdDTO {
 
     private Currency currency;
 
+    private MultipartFile image;
 }

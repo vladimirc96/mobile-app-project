@@ -1424,6 +1424,7 @@ export const radioButtonStyles = StyleSheet.create({
     fontFamily: "Roboto-Light",
     fontStyle: "italic",
     opacity: 0.8,
+    color: "white"
   },
   priceCurrency: {
     flexDirection: "row",

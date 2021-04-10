@@ -19,10 +19,10 @@ import { ScrollView } from "react-native-gesture-handler";
 const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
   description: yup.string().required(),
-  category: yup.string(),
-  subCategory: yup.string(),
-  price: yup.number(),
-  agreement: yup.bool(),
+  category: yup.object().required(),
+  subCategory: yup.object().required(),
+  price: yup.number().required(),
+  agreement: yup.boolean().required(),
 });
 
 export default function AdForm(props) {
@@ -55,22 +55,38 @@ export default function AdForm(props) {
   }, []);
 
   const pickImage = async () => {
+    ImagePicker;
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      base64: true,
     });
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
 
-  const handleChangePrice = (formikProps, value) => {
-    formikProps.setFieldValue("price", value);
-  };
   const handleChangeAgreement = (formikProps, value) => {
     formikProps.setFieldValue("agreement", value);
+    formikProps.setFieldTouched("agreement", value);
+    formikProps.setFieldError("agreement", !value);
+    formikProps.setFieldValue("price", 0);
+    formikProps.setFieldTouched("price", false);
+    formikProps.setFieldError("price", false);
+  };
+
+  const handleChangePrice = (formikProps, text) => {
+    formikProps.setFieldValue("price", text);
+    formikProps.setFieldError("price", !text);
+    formikProps.setFieldValue("agreement", false);
+    formikProps.setFieldTouched("agreement", false);
+    formikProps.setFieldError("agreement", false);
+  };
+
+  const handleChangeCurrency = (formikProps, value) => {
+    value !== "" ? formikProps.setFieldValue("currency", value === "RSD" ? "EUR" : "RSD") : formikProps.setFieldValue("currency", value);
   };
 
   return (
@@ -82,9 +98,10 @@ export default function AdForm(props) {
         subCategory: { id: null, name: "" },
         price: "",
         agreement: false,
+        currency: "RSD",
       }}
       onSubmit={(values) => {
-        console.log("submit");
+        console.log(values);
         props.handleSubmit({ ...values, image });
       }}
       validationSchema={adSchema}
@@ -151,7 +168,6 @@ export default function AdForm(props) {
                       props.onChangeCategory(props.categories[itemIndex].id);
                     }}
                     value={formikProps.values.category}
-                    itemStyle={{ alignSelf: "center", marginLeft: 100 }}
                   >
                     {props.categories.map((category) => (
                       <Picker.Item
@@ -195,15 +211,29 @@ export default function AdForm(props) {
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
-              <View style={adCreationStyles.priceRBContainer}>
+              <View
+                style={[
+                  adCreationStyles.priceRBContainer,
+                  (formikProps.errors.price && formikProps.touched.price) ||
+                  (formikProps.errors.agreement &&
+                    formikProps.touched.agreement)
+                    ? errorStyle.error
+                    : null,
+                ]}
+              >
                 <RadioButton
                   handleChangePrice={(text) =>
                     handleChangePrice(formikProps, text)
                   }
-                  handleChangeAgreement={(text) =>
-                    handleChangeAgreement(formikProps, text)
+                  handleChangeAgreement={(value) =>
+                    handleChangeAgreement(formikProps, value)
                   }
+                  handleChangeCurrency={(value) =>
+                    handleChangeCurrency(formikProps, value)
+                  }
+                  formikProps={formikProps}
                   price={formikProps.values.price}
+                  agreement={formikProps.values.agreement}
                 />
               </View>
             </View>
@@ -235,7 +265,7 @@ export default function AdForm(props) {
             </View>
             <EditProfileButton
               title={"Postavi"}
-              onPress={() => props.handleSubmit(formikProps.values)}
+              onPress={formikProps.handleSubmit}
             />
           </View>
         </ScrollView>

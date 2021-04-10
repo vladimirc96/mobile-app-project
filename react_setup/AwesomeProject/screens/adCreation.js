@@ -23,11 +23,6 @@ const customFonts = {
 export class AdCreation extends React.Component {
   state = {
     fontsLoaded: false,
-    selectedCategory: "category_id_1",
-    selectedSubcategory: "subcategory_id_1",
-    checkedPrice: "price_id_1",
-    image: null,
-    selectedType: "adType_id_2",
     categories: [],
     subCategories: [],
   };
@@ -51,18 +46,6 @@ export class AdCreation extends React.Component {
     this.getSubCategories(1);
   }
 
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
-
   getSubCategories = async (categoryId) => {
     try {
       const data = await getAllByCategoryId(categoryId);
@@ -80,16 +63,23 @@ export class AdCreation extends React.Component {
     try {
       const formData = new FormData();
       Object.keys(ad).forEach((key) => {
-        if (key === "category") {
+        if (key === "category" || key === "image") {
           return;
         }
         formData.append(key, ad[key]);
       });
-      // const response = await fetch(ad.image);
-      // const blob = await response.blob();
-      // formData.append("image", blob);
+      if (ad.image) {
+        const response = await fetch(ad.image);
+        const blob = await response.blob();
+        const image = {
+          uri: ad.image,
+          type: blob.type,
+          name: blob.data.name,
+        };
+        formData.append("image", image);
+      }
       formData.append("creationDate", new Date().toISOString().slice(0, 10));
-      await saveAd(ad);
+      await saveAd(formData);
     } catch (err) {
       console.log(err);
     }

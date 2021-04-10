@@ -9,25 +9,27 @@ import org.mapstruct.factory.Mappers;
 public interface AdMapper {
     AdMapper INSTANCE = Mappers.getMapper(AdMapper.class);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "title", target = "title")
-    @Mapping(source = "price", target = "price")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "creationDate", target = "creationDate")
-    @Mapping(source = "views", target = "views")
-    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toModel(adDTO.getSubCategory()))")
-    @Mapping(source = "currency", target = "currency")
-    @Mapping(source = "agreement", target = "agreement")
-    Ad toModel(AdDTO adDTO);
-
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "title", target = "title")
-    @Mapping(source = "price", target = "price")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "creationDate", target = "creationDate")
-    @Mapping(source = "views", target = "views")
-    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toDto(ad.getSubCategory()))")
-    @Mapping(source = "currency", target = "currency")
-    @Mapping(source = "agreement", target = "agreement")
-    AdDTO toDto(Ad ad);
+//    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "title", target = "title")
+//    @Mapping(source = "price", target = "price")
+//    @Mapping(source = "description", target = "description")
+//    @Mapping(source = "creationDate", target = "creationDate")
+//    @Mapping(source = "views", target = "views")
+//    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toModel(adDTO.getSubCategory()))")
+//    @Mapping(source = "currency", target = "currency")
+//    @Mapping(source = "agreement", target = "agreement")
+//    @Mapping(source = "imageUri", target = "imageUri")
+//    Ad toModel(AdDTO adDTO);
+//
+//    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "title", target = "title")
+//    @Mapping(source = "price", target = "price")
+//    @Mapping(source = "description", target = "description")
+//    @Mapping(source = "creationDate", target = "creationDate")
+//    @Mapping(source = "views", target = "views")
+//    @Mapping(target = "subCategory", expression = "java(com.project.mobileapi.subcategory.SubCategoryMapper.INSTANCE.toDto(ad.getSubCategory()))")
+//    @Mapping(source = "currency", target = "currency")
+//    @Mapping(source = "agreement", target = "agreement")
+//    @Mapping(source = "imageUri", target = "imageUri")
+//    AdDTO toDto(Ad ad);
 }
