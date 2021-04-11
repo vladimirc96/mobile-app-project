@@ -527,8 +527,10 @@ export const headerStyles = StyleSheet.create({
     letterSpacing: 1,
   },
   headerLogo: {
-    height: hp("7%"),
-    width: hp("42%"),
+    alignSelf: 'center',
+    paddingTop: hp("3%"), 
+    height: hp("3.2%"),
+    width: hp("22%"),
     position: "absolute",
   },
   icon: {
