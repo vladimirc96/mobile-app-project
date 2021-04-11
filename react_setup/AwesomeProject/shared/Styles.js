@@ -159,21 +159,32 @@ export const buttonsStyles = StyleSheet.create({
   adDescriptionButtonContainer: {
     alignSelf: "center",
     marginTop: hp("2%"),
-    marginBottom: hp("2%"),
     width: wp("82%"),
     height: hp("6%"),
-    borderRadius: 6,
+    borderRadius: 8,
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    opacity: 0.99,
+    opacity: 0.8,
+  },
+  adDescriptionButtonAdditional: {
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: wp("75%"),
   },
   adDescriptionButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === "ios" ? hp("0.75%") : hp("0.25%"),
-    color: "#ffffff",
-    fontSize: wp("4%"),
-    fontFamily: "Comfortaa-Bold",
+    paddingTop: hp("1.25%"),
+    fontSize: wp("3.75%"),
+    color: "#ededed",
+    fontFamily: "Roboto-Light",
+    fontStyle: "italic",
+  },
+  plusIcon: {
+    fontSize: wp("3.75%"),
+    color: "#ededed",
+    paddingTop: hp("1.75%"),
   },
   editProfileButtonContainer: {
     alignSelf: "center",
@@ -540,6 +551,17 @@ export const headerStyles = StyleSheet.create({
     color: "#ededed",
     letterSpacing: 1,
   },
+  headerLogoMain: {
+    paddingTop: hp("3%"), 
+    height: hp("3.2%"),
+    width: hp("22%"),
+  },
+  headerLogo: {
+    paddingTop: hp("3%"), 
+    height: hp("3.2%"),
+    width: hp("22%"),
+    marginLeft: -60,
+  },
   icon: {
     position: "absolute",
     left: wp("2%"),
@@ -755,11 +777,11 @@ export const firstRunStyles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
+    marginTop: hp("14.5%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginBottom: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
+    marginBottom: hp("10.5%"),
   },
 });
 

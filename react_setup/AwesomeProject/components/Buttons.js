@@ -10,6 +10,8 @@ const customFonts = {
 
 import { Dimensions } from "react-native";
 import { View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -181,17 +183,23 @@ export class AdDescriptionAdding extends React.Component {
               : null,
           ]}
         >
-          <Text
-            style={[
-              buttonsStyles.adDescriptionButtonText,
-              this.props.formikProps.errors.description &&
-              this.props.formikProps.touched.description
-                ? { color: "#ff102d" }
-                : null,
-            ]}
-          >
-            {this.props.title}
-          </Text>
+          <View style={buttonsStyles.adDescriptionButtonAdditional}>
+            <Text
+              style={[
+                buttonsStyles.adDescriptionButtonText,
+                this.props.formikProps.errors.description &&
+                this.props.formikProps.touched.description
+                  ? { color: "#ff102d" }
+                  : null,
+              ]}
+            >
+              {this.props.title}
+            </Text>
+            <AntDesign
+              name="pluscircleo"
+              style={buttonsStyles.plusIcon}
+            />
+          </View>
         </TouchableOpacity>
       );
     } else {
