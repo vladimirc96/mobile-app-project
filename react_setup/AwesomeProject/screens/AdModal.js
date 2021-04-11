@@ -100,7 +100,8 @@ export default class AdModal extends React.Component {
                                     style={modalStyles.editButtonText}
                                     onPress={() =>
                                       this.props.navigation.navigate("Profile", {
-                                        username: "test"
+                                        username: "test",
+                                        toggleModal: this.props.toggleModal
                                       })
                                     }
                                   >

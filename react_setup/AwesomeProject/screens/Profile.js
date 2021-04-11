@@ -60,6 +60,10 @@ export class Profile extends React.Component {
   }
 
   async componentDidMount() {
+    if(this.props.navigation.state.params.toggleModal.length){
+      this.props.navigation.state.params.toggleModal()
+    }
+
     try {
       const data = await getUserInfo(
         this.props.navigation.getParam("username")
