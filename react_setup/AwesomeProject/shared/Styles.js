@@ -248,6 +248,22 @@ export const categoryStyles = StyleSheet.create({
     fontWeight: "bold",
     color: "#1e1c24",
   },
+  categoryNameHeightMultiline: {
+    textAlign: "center",
+    fontSize: hp("1.55%"),
+    lineHeight: wp("1.66%"),
+    fontFamily: "Comfortaa-Light",
+    fontWeight: "bold",
+    color: "#1e1c24",
+  },
+  categoryNameWidthMultiline: {
+    textAlign: "center",
+    fontSize: wp("2.5%"),
+    lineHeight: wp("2.5%"),
+    fontFamily: "Comfortaa-Light",
+    fontWeight: "bold",
+    color: "#1e1c24",
+  },
 });
 
 export const loginStyles = StyleSheet.create({
@@ -717,6 +733,7 @@ export const modalStyles = StyleSheet.create({
     },
     modalInnerWrap: {
       backgroundColor:"#ededed",
+      marginTop: hp("3%"),
       alignSelf: "center",
       width:wp("90%"),
       height: hp("90%"),
@@ -989,7 +1006,22 @@ export const modalStyles = StyleSheet.create({
       marginLeft: 2,
       marginRight: 2,
       fontFamily: "Roboto-Light"
-    }
+    },
+    editButton: {
+      height: hp("5%"),
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
+      textAlign: "center",
+      backgroundColor: "#03d5ff",
+      borderColor: "#ededed"
+    },
+    editButtonText: {
+      marginTop: hp("1%"),
+      color: "black",
+      fontSize: hp("2%"),
+      fontWeight: "bold",
+      textAlign: "center"
+    },
 });
 
 export const profileStyles = StyleSheet.create({

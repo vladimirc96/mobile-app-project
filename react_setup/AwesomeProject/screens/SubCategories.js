@@ -29,6 +29,7 @@ export default class SubCategories extends React.Component {
   }
 
   render() {
+    const props = this.props.navigation.state.params;
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
     const cameraIcon = require("./../assets/images/camera_icon.png");
     const subCategoryList = this.state.subCategories.map((subCategory) => (
@@ -56,9 +57,9 @@ export default class SubCategories extends React.Component {
                     ? subCategoriesStyles.titleIconHeight
                     : subCategoriesStyles.titleIconWidth
                 }
-                source={cameraIcon}
+                source={props.imagePath}
               />
-              <Text style={subCategoriesStyles.title}> #CATEGORY_NAME </Text>
+              <Text style={subCategoriesStyles.title}> {props.title} </Text>
             </View>
             {subCategoryList}
           </View>

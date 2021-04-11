@@ -51,6 +51,7 @@ export default class Ad extends React.Component {
               <View style={adStyles.adTitleContainer}>
                 <Text style={adStyles.adTitle}>{this.props.title}</Text>
               </View>
+              <TouchableOpacity onPress={this.props.onPress}>
               <View
                 style={
                   this.props.title.length < 15
@@ -73,6 +74,7 @@ export default class Ad extends React.Component {
                   />
                 </TouchableOpacity>
               </View>
+              </TouchableOpacity>
               <View style={adStyles.ownerNameContainer}>
                 <Text
                   style={adStyles.ownerName}

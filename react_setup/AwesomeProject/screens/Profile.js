@@ -228,9 +228,6 @@ async componentDidMount() {
                 </View>
                 <Text style={profileStyles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
               </View>
-              <TouchableOpacity style={profileStyles.comment} onPress={() => this.toggleModal()}>
-                <Text style={profileStyles.commentButtonText}>Oceni korisnika</Text>
-              </TouchableOpacity>
               <TouchableOpacity onPress={this.toggleComments}>
                 <FontAwesome
                       name="angle-double-up"
