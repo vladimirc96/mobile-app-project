@@ -841,7 +841,8 @@ export const modalStyles = StyleSheet.create({
       fontSize: hp("2.5%"),
       color: "black",
       fontFamily: "Roboto-Bold",
-      marginTop: hp("0.65%")
+      marginTop: hp("0.65%"),
+      marginLeft: wp("2%")
     },
     priceContainer: {
       height: hp("3%"),

@@ -54,7 +54,7 @@ export default class AdModal extends React.Component {
                             <View style={modalStyles.centeredWrap}>
                               <View style={modalStyles.titleContainer}>
                                 <View>
-                                  <Text style={modalStyles.title}> Casovi nemackog </Text>
+                                  <Text style={modalStyles.title}>{this.props.ad.title}</Text>
                                 </View> 
                                 <View style={modalStyles.priceContainer}>
                                   <Text style={modalStyles.price}>Dogovor</Text>
@@ -110,10 +110,7 @@ export default class AdModal extends React.Component {
                               </View>
                               <View style={modalStyles.description}>
                                 <Text style={modalStyles.adText}>
-                                  Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-                                  Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-                                  Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-                                  Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
+                                  {this.props.ad.description}
                                 </Text>
                               </View>
                             </View>

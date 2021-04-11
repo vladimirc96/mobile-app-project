@@ -19,6 +19,7 @@ export default class Ads extends React.Component {
     fontsLoaded: false,
 	  showModal: false,
     ads: [],
+    chosenAd: null
   };
 
   async _loadFontsAsync() {
@@ -42,8 +43,8 @@ export default class Ads extends React.Component {
     }
   }
 
-  toggleModal = () => {
-    this.setState(prevState => ({showModal:!prevState.showModal}))
+  toggleModal = (ad) => {
+    this.setState(prevState => ({showModal:!prevState.showModal, chosenAd: ad}))
   }
 
   render() {
@@ -55,7 +56,7 @@ export default class Ads extends React.Component {
       <Ad
         navigation={this.props.navigation}
         ad={ad}
-        onPress={() => this.toggleModal()}
+        onPress={() => this.toggleModal(ad)}
       />
     </View>
     ));
@@ -66,12 +67,12 @@ export default class Ads extends React.Component {
         source={backgroundImage}
       >
       {this.state.showModal ?
-        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} />
+        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} ad={this.state.chosenAd} />
         :
         <ScrollView>
           <View style={adsStyles.mainContainer}>
             <View style={adsStyles.titleContainer}>
-              <Text style={adsStyles.titleText}> Subcategory </Text>
+              <Text style={adsStyles.titleText}> {this.props.navigation.state.params.subCategoryName} </Text>
             </View>
                 <View>
                   <View style={adsStyles.numberOfAdsContainer}></View>
