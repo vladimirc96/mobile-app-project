@@ -10,3 +10,7 @@ export const saveAd = (ad) => {
   };
   return MobileApi.post(`${url}`, ad, config);
 };
+
+export const getAllBySubcategoryId = () => {
+  return MobileApi.get(`${url}`);
+};

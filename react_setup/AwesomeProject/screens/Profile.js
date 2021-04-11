@@ -23,6 +23,8 @@ import { adsStyles, profileStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
 import * as Font from "expo-font";
+import { connect } from "react-redux";
+import { AdvButton } from "./../components/Buttons";
 import AdModal from './AdModal';import CommentModal from "./CommentModal";
 9+
 60.
@@ -37,7 +39,7 @@ const customFonts = {
   "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
-export default class Profile extends React.Component {
+export class Profile extends React.Component {
   constructor(){
     super()
     this.state ={
@@ -162,34 +164,37 @@ async componentDidMount() {
                 </TouchableOpacity>
                 <Text style={profileStyles.ratingText}>69</Text>
               </View>
-              <View style={profileStyles.editButton}>
+                <View style={profileStyles.editButton}>
                 <Text
                   style={profileStyles.editButtonText}
-                  onPress={() =>
+                  onPress={this.props.token? () =>
                     this.props.navigation.navigate("EditProfile", {
                       user: this.state.user,
                       updateUser: this.updateUser,
-                    })
+                    }) : 
+                    () => this.toggleModal()
                   }
                 >
-                  Izmeni Profil
+                  {this.props.token? "Izmeni Profil" : "Oceni korisnika"}
+                </Text>
+              </View>          
+            </View>
+            <TouchableOpacity onPress={this.handlePress} >
+              <View style={profileStyles.aboutUser}>
+                <Text style={profileStyles.sectionName}>Detalji o korisniku</Text>
+              <View style={profileStyles.userDetails}>
+                <Text style={profileStyles.details}>
+                  {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
                 </Text>
               </View>
-            </View>
-          <View style={profileStyles.aboutUser}>
-              <Text style={profileStyles.sectionName}>Detalji o korisniku</Text>
-            <View style={profileStyles.userDetails}>
-              <Text style={profileStyles.details}>
-                {this.state.shortText? this.state.text.substr(0, 80) : this.state.text}
-              </Text>
-            </View>
-          <FontAwesome
-                    name={this.state.shortText? "angle-double-down" : "angle-double-up"}
-                    style={profileStyles.arrow}
-                    onPress={this.handlePress}
-                  />
-            </View>
-          <View style={profileStyles.smallContainer}>
+            <FontAwesome
+                      name={this.state.shortText? "angle-double-down" : "angle-double-up"}
+                      style={profileStyles.arrow}
+                    />
+              </View>
+            </TouchableOpacity>
+            <View style={profileStyles.smallContainer}>
+            <TouchableOpacity onPress={this.toggleComments}>
             <View style={{flexDirection: "row", alignSelf: "center"}}>
               <Text style={profileStyles.sectionName}>Komentari </Text>
               {
@@ -197,11 +202,10 @@ async componentDidMount() {
                 <FontAwesome
                 name="angle-double-down"
                 style={profileStyles.arrowSmall}
-                onPress={this.toggleComments}
               />
               }
             </View>
-
+            </TouchableOpacity>
             {
               this.state.showComments
               &&
@@ -224,18 +228,17 @@ async componentDidMount() {
                 </View>
                 <Text style={profileStyles.commentText}>"Bilo je zadovoljstvo raditi sa ovim covekom. Sve pohvale"</Text>
               </View>
-              <TouchableOpacity style={profileStyles.comment} onPress={() => this.toggleModal()}>
-                <Text style={profileStyles.commentButtonText}>Oceni korisnika</Text>
+              <TouchableOpacity onPress={this.toggleComments}>
+                <FontAwesome
+                      name="angle-double-up"
+                      style={profileStyles.arrow}
+                    />
               </TouchableOpacity>
-              <FontAwesome
-                    name="angle-double-up"
-                    style={profileStyles.arrow}
-                    onPress={this.toggleComments}
-                  />
             </View> 
             }
           </View>
           <View style={profileStyles.smallContainer}>
+            <TouchableOpacity onPress={this.toggleAds}>
             <View style={{flexDirection: "row", alignSelf: "center"}}>
               <Text style={profileStyles.sectionName}>Oglasi </Text>
               {
@@ -244,10 +247,10 @@ async componentDidMount() {
                 <FontAwesome
                 name="angle-double-down"
                 style={profileStyles.arrowSmall}
-                onPress={this.toggleAds}
               />
               }
             </View>
+            </TouchableOpacity>
             {
               this.state.showAds
               &&
@@ -258,14 +261,23 @@ async componentDidMount() {
               <View style={adsStyles.smallAdContainer}>
                <SmallAd title="CASOVI GITARE" />
               </View>
-              <FontAwesome
-                    name="angle-double-up"
-                    style={profileStyles.arrow}
-                    onPress={this.toggleAds}
-                  />
+              <TouchableOpacity onPress={this.toggleAds}>
+                <FontAwesome
+                      name="angle-double-up"
+                      style={profileStyles.arrow}
+                    />
+              </TouchableOpacity>
             </View> 
             }
           </View>
+          {this.props.token
+          &&
+          <AdvButton
+          profile={true}
+          title={"Postavite oglas"}
+          onPress={() => this.props.navigation.navigate("AdCreation")}
+        />
+          }
         </View>
         </ScrollView>
         }
@@ -279,3 +291,11 @@ async componentDidMount() {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    token: state.authenticationReducer.token
+  };
+};
+
+
+export default connect(mapStateToProps)(Profile);

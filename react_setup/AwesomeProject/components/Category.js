@@ -51,8 +51,8 @@ export default class Category extends React.Component {
           <Text
             style={
               windowHeight * 0.15 < windowWidth * 0.28
-                ? categoryStyles.categoryNameHeight
-                : categoryStyles.categoryNameWidth
+                ? this.props.multiLine? categoryStyles.categoryNameHeightMultiline : categoryStyles.categoryNameHeight
+                : this.props.multiLine? categoryStyles.categoryNameWidthMultiline : categoryStyles.categoryNameWidth
             }
           >
             {this.props.title}
