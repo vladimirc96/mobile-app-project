@@ -739,6 +739,14 @@ export const modalStyles = StyleSheet.create({
       height: hp("90%"),
       borderRadius: 5
     },
+    modalInnerWrapComment: {
+      backgroundColor:"#ededed",
+      marginTop: hp("3%"),
+      alignSelf: "center",
+      width:wp("90%"),
+      height: hp("89%"),
+      borderRadius: 5
+    },
     closeButtonContainer: {
       flexDirection: "row",
       justifyContent:"space-between"
@@ -1003,9 +1011,67 @@ export const modalStyles = StyleSheet.create({
       fontFamily: "Roboto-Light"
     },
     textInput: {
-      marginLeft: 2,
-      marginRight: 2,
+      padding: wp("5%"),
+      height: hp("33%"),
+      width: wp("85%"),
+      marginLeft: wp("2.5%"),
+      borderRadius: 10,
+      backgroundColor: "white",
+      fontSize: hp("2%"),
       fontFamily: "Roboto-Light"
+    },
+    nickname: {
+      paddingLeft: wp("5%"),
+      height: hp("7%"),
+      width: wp("85%"),
+      marginLeft: wp("2.5%"),
+      marginBottom: hp("2%"),
+      borderRadius: 10,
+      backgroundColor: "white",
+      fontSize: hp("2%"),
+      fontFamily: "Roboto-Light"
+    },
+    button: {
+      height: hp("7%"),
+      width: wp("85%"),
+      marginLeft: wp("2.5%"),
+      marginBottom: hp("2%"),
+      marginTop: hp("6%"),
+      borderRadius: 10,
+      backgroundColor: "#1e1c24",
+    },
+    buttonText:{
+      marginTop: hp("1%"),
+      textAlign: "center",
+      fontSize: hp("3%"),
+      fontFamily: "Roboto-Bold",
+      color: "#ededed"
+    },
+    commentHeadingContainer:{
+      marginLeft: wp("2.5%"),
+      marginBottom: hp("0.2%")
+    },
+    commentHeading:{
+      fontSize: hp("2.5%"),
+      fontFamily: "Roboto-Light"
+    },
+    innerText:{
+      fontSize: hp("1.5%"),
+      fontFamily: "Roboto-Light",
+      marginBottom: hp("0.2%")
+    },
+    ratingContainer:{
+      marginLeft: wp("25%"),
+      marginRight: wp("25%"),
+      marginBottom: hp("3%"),
+      flexDirection: "row",
+      justifyContent: "space-between"
+    },
+    reviewTitleText: {
+      marginBottom: hp("2%"),
+      fontSize: hp("4%"),
+      fontFamily: "Roboto-Bold",
+      textAlign: "center"
     },
     editButton: {
       height: hp("5%"),
