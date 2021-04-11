@@ -49,20 +49,19 @@ export default class Ad extends React.Component {
             </View>
             <View style={adStyles.adMainText}>
               <View style={adStyles.adTitleContainer}>
-                <Text style={adStyles.adTitle}>{this.props.title}</Text>
+                <Text style={adStyles.adTitle}>{this.props.ad.title}</Text>
               </View>
               <TouchableOpacity onPress={this.props.onPress}>
               <View
                 style={
-                  this.props.title.length < 15
+                  this.props.ad.title.length < 15
                     ? adStyles.descriptionSmall
                     : adStyles.descriptionLarge
                 }
               >
                 <Text style={adStyles.descriptionText}>
                   {" "}
-                  -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi
-                  zanrovi -svi
+                  {this.props.ad.description}
                 </Text>
                 <TouchableOpacity style={adStyles.descriptionDetails}>
                   <Text style={adStyles.descriptionDetailsText}>
@@ -90,11 +89,11 @@ export default class Ad extends React.Component {
             </View>
             <View style={adStyles.adDetails}>
               <View style={adStyles.priceContainer}>
-                <Text style={adStyles.priceValue}>Dogovor</Text>
+                <Text style={adStyles.priceValue}>{this.props.ad.price}</Text>
               </View>
               <View style={adStyles.publishDateContainer}>
                 <Text style={adStyles.publishTitle}>postavljen:</Text>
-                <Text style={adStyles.publishDate}>danas</Text>
+                <Text style={adStyles.publishDate}>{this.props.ad.creationDate}</Text>
               </View>
               <View style={adStyles.location}>
                 <Text style={adStyles.locationText}>Novi Sad</Text>

@@ -38,7 +38,11 @@ export default class SubCategories extends React.Component {
         key={subCategory.id}
       >
         <SubCategory
-          onPress={() => this.props.navigation.navigate("Ads")}
+          onPress={() =>
+            this.props.navigation.navigate("Ads", {
+              subCategoryId: subCategory.id,
+            })
+          }
           title={subCategory.name}
         />
       </View>
