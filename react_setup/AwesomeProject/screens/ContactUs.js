@@ -1,30 +1,19 @@
 import React from "react";
 import {
   ImageBackground,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
+  ActivityIndicator,
   Text,
   TextInput,
   View,
-  ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import * as Font from "expo-font";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
-import RadioButton from "../components/RadioButton";
 import * as ImagePicker from "expo-image-picker";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { EditProfileButton } from "../components/Buttons";
 import { contactUsStyles } from "./../shared/Styles";
-import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+import ContactUsForm from "../components/forms/ContactUsForm";
+import { EditProfileButton } from "../components/Buttons";
+import { AntDesign } from "@expo/vector-icons";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -38,11 +27,7 @@ const customFonts = {
 export default class ContactUs extends React.Component {
   state = {
     fontsLoaded: false,
-    selectedCategory: "category_id_1",
-    selectedSubcategory: "subcategory_id_1",
-    checkedPrice: "price_id_1",
     image: null,
-    selectedType: "adType_id_2",
   };
 
   async _loadFontsAsync() {
@@ -77,22 +62,19 @@ export default class ContactUs extends React.Component {
 
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
-    const cameraIcon = require("./../assets/images/camera_icon.png");
-    const hamburger = require("./../assets/images/hamburger.png");
-    const avatar = require("./../assets/images/avatar.png");
-
-    if(this.state.fontsLoaded){
+    console.log(this.state.fontsLoaded);
+    if (this.state.fontsLoaded) {
       return (
         <ImageBackground
           style={contactUsStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <ScrollView>
-            <View style={contactUsStyles.mainContainer}>
+            {/* <View style={contactUsStyles.mainContainer}>
               <View style={contactUsStyles.backForwardContainer}></View>
               <View style={contactUsStyles.inputFieldContainer}>
-                <Text style={contactUsStyles.fieldNameBold}>Imate pitanje, sugestiju ili želite da postanete deo tima? 
-                    Pošaljite nam poruku!
+                <Text style={contactUsStyles.fieldNameBold}>
+                  Imate pitanje, sugestiju ili želite da postanete deo tima?
+                  Pošaljite nam poruku!
                 </Text>
                 <Text style={contactUsStyles.fieldName}> Naslov poruke </Text>
                 <TextInput
@@ -112,15 +94,22 @@ export default class ContactUs extends React.Component {
                 />
               </View>
               <View style={contactUsStyles.inputFieldContainerWithMargin}>
-              <Text style={contactUsStyles.fieldNameBold}>Naišli ste na grešku?
-                Okačite screenshoot, kako bi naš tim mogao da je popravi
-              </Text>
+                <Text style={contactUsStyles.fieldNameBold}>
+                  Naišli ste na grešku? Okačite screenshoot, kako bi naš tim
+                  mogao da je popravi
+                </Text>
                 <Text style={contactUsStyles.fieldName}>Fotografija</Text>
                 <TouchableOpacity onPress={this.pickImage}>
                   <View style={contactUsStyles.pickImageContainer}>
                     <View style={contactUsStyles.pickImageAdditional}>
-                      <Text style={contactUsStyles.pickingImage}> Izaberi sliku</Text>
-                      <AntDesign name="pluscircleo" style={contactUsStyles.plusIcon} />
+                      <Text style={contactUsStyles.pickingImage}>
+                        {" "}
+                        Izaberi sliku
+                      </Text>
+                      <AntDesign
+                        name="pluscircleo"
+                        style={contactUsStyles.plusIcon}
+                      />
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -139,12 +128,11 @@ export default class ContactUs extends React.Component {
                 />
               </View>
               <EditProfileButton title={"Posalji"} />
-            </View>
-            </ScrollView>
+            </View> */}
+            <ContactUsForm />
         </ImageBackground>
       );
-    }
-    else{
+    } else {
       return <ActivityIndicator size="large" />;
     }
   }
