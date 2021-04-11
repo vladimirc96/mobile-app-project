@@ -18,7 +18,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => (
-          <Header title="#APPNAME" navigation={navigation} mainScreen={true} />
+          <Header title="Pronadji sam." navigation={navigation} mainScreen={true} />
         ),
         headerLeft: null,
       };
@@ -28,7 +28,7 @@ const screens = {
     screen: SubCategories,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },
@@ -36,7 +36,7 @@ const screens = {
     screen: Ads,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },
@@ -44,7 +44,7 @@ const screens = {
     screen: Profile,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },
@@ -52,7 +52,7 @@ const screens = {
     screen: EditProfile,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },
@@ -60,7 +60,7 @@ const screens = {
     screen: AdCreation,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },
@@ -68,7 +68,7 @@ const screens = {
     screen: AboutUs,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="" navigation={navigation} />,
       };
     },
   },
@@ -76,7 +76,7 @@ const screens = {
     screen: ContactUs,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="#APPNAME" navigation={navigation} />,
+        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
       };
     },
   },

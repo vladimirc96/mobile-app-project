@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import userReducer from "./reducers/userReducer";
 import authenticationReducer from "./reducers/authenticationReducer";
+import categoryReducer from "./reducers/categoryReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";
 import { persistStore, persistReducer } from "redux-persist";
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   userReducer: userReducer,
   authenticationReducer: authenticationReducer,
+  categoryReducer: categoryReducer,
 });
 
 // PERSISTOR CONFIG

@@ -1,12 +1,15 @@
 package com.project.mobileapi.model;
 
+import com.project.mobileapi.util.Currency;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name="table_ads")
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,14 +26,17 @@ public class Ad {
     @Column(name = "ad_price")
     private double price;
 
-    @Column(name = "price_fixed")
-    private boolean priceFixed;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
+
+    @Column(name = "agreement")
+    private boolean agreement;
 
     @Column(name = "ad_description")
     private String description;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "views")
     private int views;
@@ -42,4 +48,6 @@ public class Ad {
     @Lob
     private byte[] image;
 
+    @ManyToOne
+    private SubCategory subCategory;
 }

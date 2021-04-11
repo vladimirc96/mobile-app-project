@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, Text, Image, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 import { Fontisto } from "@expo/vector-icons";
-import { buttonsStyles } from "../shared/Styles";
+import { buttonsStyles, errorStyle } from "../shared/Styles";
 
 const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
@@ -134,9 +134,7 @@ export class FirstRunButton extends React.Component {
                 : buttonsStyles.inputImageWidth
             }
             source={
-              this.props.title == "Nudim uslugu"
-                ? sharingIcon
-                : searchingIcon
+              this.props.title == "Nudim uslugu" ? sharingIcon : searchingIcon
             }
           />
           <Text
@@ -145,6 +143,52 @@ export class FirstRunButton extends React.Component {
                 ? buttonsStyles.firstRunButtonTextHeight
                 : buttonsStyles.firstRunButtonTextWidth
             }
+          >
+            {this.props.title}
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
+
+export class AdDescriptionAdding extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.onPress}
+          style={[
+            buttonsStyles.adDescriptionButtonContainer,
+            this.props.formikProps.errors.description &&
+            this.props.formikProps.touched.description
+              ? errorStyle.error
+              : null,
+          ]}
+        >
+          <Text
+            style={[
+              buttonsStyles.adDescriptionButtonText,
+              this.props.formikProps.errors.description &&
+              this.props.formikProps.touched.description
+                ? { color: "#ff102d" }
+                : null,
+            ]}
           >
             {this.props.title}
           </Text>

@@ -4,6 +4,7 @@ import com.project.mobileapi.security.CustomUserDetailsService;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.security.auth.RestAuthenticationEntryPoint;
 import com.project.mobileapi.security.auth.TokenAuthenticationFilter;
+import com.project.mobileapi.util.DateConverter;
 import com.project.mobileapi.util.KeyValueConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -129,5 +130,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new KeyValueConverter());
+        registry.addConverter(new DateConverter());
     }
 }

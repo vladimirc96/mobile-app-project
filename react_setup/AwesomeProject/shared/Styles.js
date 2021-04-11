@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { withTheme } from "react-native-elements";
 import {
   widthPercentageToDP as wp,
@@ -27,7 +27,7 @@ export const adsStyles = StyleSheet.create({
   },
   titleContainer: {
     alignContent: "center",
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: hp("2.5%"),
     marginBottom: hp("1%"),
     width: wp("75%"),
@@ -41,11 +41,11 @@ export const adsStyles = StyleSheet.create({
     height: 20,
   },
   titleText: {
-    paddingTop: hp("0.75%"), 
+    paddingTop: hp("0.75%"),
     color: "#ffffff",
     textAlign: "center",
-    fontSize: hp("3.6%"),
-    fontFamily: 'Comfortaa-Bold'
+    fontSize: wp("6.3%"),
+    fontFamily: "Comfortaa-Bold",
   },
   adContainer: {
     alignSelf: "center",
@@ -57,7 +57,7 @@ export const adsStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("0.5%"),
     width: wp("90%"),
-  }
+  },
 });
 
 export const buttonsStyles = StyleSheet.create({
@@ -70,9 +70,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: hp("3%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ffffff",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
   },
   signUpButtonContainer: {
@@ -84,9 +84,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: hp("3%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ffffff",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
   },
   firstRunButtonContainer: {
@@ -95,6 +95,14 @@ export const buttonsStyles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#1e1c24",
     opacity: 0.9,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
   },
   inputImageHeight: {
     marginTop: hp("5%"),
@@ -110,13 +118,14 @@ export const buttonsStyles = StyleSheet.create({
   },
   firstRunButtonTextHeight: {
     textAlign: "center",
-    paddingTop: hp("2%"),
+    paddingTop: Platform.OS === "ios" ? hp("2%") : hp("1%"),
     color: "#ededed",
-    fontSize: hp("4%"),
+    fontSize: wp("7%"),
     fontFamily: "Comfortaa-Bold",
   },
   firstRunButtonTextWidth: {
     textAlign: "center",
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     paddingTop: wp("3%"),
     color: "#ededed",
     fontSize: wp("6%"),
@@ -142,16 +151,35 @@ export const buttonsStyles = StyleSheet.create({
   },
   AdvButtonText: {
     textAlign: "center",
-    marginTop: hp("3%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     color: "#ededed",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
+    fontFamily: "Comfortaa-Bold",
+  },
+  adDescriptionButtonContainer: {
+    alignSelf: "center",
+    marginTop: hp("2%"),
+    marginBottom: hp("2%"),
+    width: wp("82%"),
+    height: hp("6%"),
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "white",
+    backgroundColor: "#1e1c24",
+    opacity: 0.99,
+  },
+  adDescriptionButtonText: {
+    textAlign: "center",
+    paddingTop: Platform.OS === "ios" ? hp("0.75%") : hp("0.25%"),
+    color: "#ffffff",
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Bold",
   },
   editProfileButtonContainer: {
     alignSelf: "center",
     marginTop: hp("2%"),
     marginBottom: hp("2%"),
-    width: wp("25%"),
+    width: wp("30%"),
     height: hp("4.25%"),
     borderRadius: 6,
     backgroundColor: "#5fd2ff",
@@ -159,9 +187,9 @@ export const buttonsStyles = StyleSheet.create({
   },
   editProfileButtonText: {
     textAlign: "center",
-    marginTop: hp("1%"),
+    paddingTop: Platform.OS === 'ios' ?hp("0.75%") : hp("0.1%"),
     color: "#ffffff",
-    fontSize: hp("2.25%"),
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Bold",
   },
   aboutContactButtonContainer: {
@@ -176,13 +204,13 @@ export const buttonsStyles = StyleSheet.create({
   },
   aboutContactIcon: {
     marginLeft: wp("12%"),
-    paddingTop: hp("2.75%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("2.75%"),
     fontSize: wp("5%"),
     color: "#ededed",
   },
   aboutContactText: {
     textAlign: "center",
-    paddingTop: hp("2.75%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
     marginLeft: wp("2%"),
     color: "#ededed",
     fontSize: wp("5%"),
@@ -216,9 +244,17 @@ export const categoryStyles = StyleSheet.create({
   category: {
     width: "100%",
     height: "100%",
+    borderWidth: 1,
+    borderColor: "#d0d0d0",
     borderRadius: 25,
-    shadowOffset: {width: hp("0.25%"), height: hp("0.25%")},
-    shadowRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
     opacity: 0.9,
   },
   categoryImageHeight: {
@@ -235,7 +271,7 @@ export const categoryStyles = StyleSheet.create({
   },
   categoryNameHeight: {
     textAlign: "center",
-    fontSize: hp("1.55%"),
+    fontSize: wp("2.75%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
@@ -243,7 +279,7 @@ export const categoryStyles = StyleSheet.create({
   categoryNameWidth: {
     textAlign: "center",
     paddingTop: wp("0.3%"),
-    fontSize: wp("2.5%"),
+    fontSize: wp("2.75%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
@@ -283,13 +319,13 @@ export const loginStyles = StyleSheet.create({
   },
   firstText: {
     textAlign: "left",
-    fontSize: hp("5.5%"),
+    fontSize: wp("9.6%"),
     fontFamily: "Comfortaa-Regular",
   },
   secondText: {
     textAlign: "left",
     fontWeight: "bold",
-    fontSize: hp("5.5%"),
+    fontSize: wp("9.6%"),
     fontFamily: "Comfortaa-Regular",
   },
   inputContainer: {
@@ -301,7 +337,7 @@ export const loginStyles = StyleSheet.create({
     height: hp("10%"),
     paddingLeft: wp("5%"),
     marginTop: hp("1.5%"),
-    fontSize: hp("2.25%"),
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Light",
     borderRadius: 20,
     borderWidth: 2,
@@ -318,10 +354,10 @@ export const loginStyles = StyleSheet.create({
     borderRadius: 20,
     marginTop: hp("1.5%"),
     opacity: 0.8,
-    borderColor: "red",
+    borderColor: "#ff102d",
     backgroundColor: "#1e1c24",
-    color: "#ededed",
-    fontSize: hp("2.25%"),
+    color: "#ff102d",
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Light",
   },
   footerContainer: {
@@ -333,14 +369,14 @@ export const loginStyles = StyleSheet.create({
     justifyContent: "center",
   },
   footerText: {
-    paddingTop: hp("1.25%"),
-    fontSize: hp("2.5%"),
+    paddingTop: Platform.OS === 'ios' ?  hp("1.25%") : hp("0.35%"),
+    fontSize: wp("4.25%"),
     fontFamily: "Comfortaa-Regular",
   },
   boldText: {
     fontWeight: "bold",
     textDecorationLine: "underline",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
   },
 });
 
@@ -400,7 +436,7 @@ export const signupStyles = StyleSheet.create({
     paddingLeft: wp("5%"),
     borderRadius: 20,
     marginTop: hp("1.5%"),
-    fontSize: hp("2.25%"),
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Light",
     opacity: 0.8,
     borderColor: "#ededed",
@@ -421,9 +457,8 @@ export const signupStyles = StyleSheet.create({
     borderColor: "red",
     backgroundColor: "#1e1c24",
     color: "#ededed",
-    fontSize: hp("2.25%"),
+    fontSize: wp("4%"),
     fontFamily: "Comfortaa-Light",
-
   },
 });
 
@@ -450,7 +485,7 @@ export const subCategoriesStyles = StyleSheet.create({
   },
   title: {
     marginTop: hp("2.75%"),
-    fontSize: hp("2.5%"),
+    fontSize: wp("4.25%"),
     marginLeft: wp("3.5%"),
     marginRight: wp("1.5%"),
     color: "#ededed",
@@ -472,6 +507,15 @@ export const subCategoriesStyles = StyleSheet.create({
     marginTop: hp("1%"),
     width: wp("85%"),
     height: hp("9%"),
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });
 
@@ -484,15 +528,15 @@ export const headerStyles = StyleSheet.create({
     justifyContent: "center",
   },
   headerText: {
-    fontWeight: "bold",
-    fontSize: hp("3%"),
+    fontFamily: "Comfortaa-Bold",
+    fontSize: wp("5.25%"),
     color: "#ededed",
     letterSpacing: 1,
     marginLeft: -60,
   },
   headerTextMain: {
-    fontWeight: "bold",
-    fontSize: hp("3%"),
+    fontFamily: "Comfortaa-Bold",
+    fontSize: wp("5.25%"),
     color: "#ededed",
     letterSpacing: 1,
   },
@@ -500,7 +544,7 @@ export const headerStyles = StyleSheet.create({
     position: "absolute",
     left: wp("2%"),
     color: "#ededed",
-    fontSize: hp("4%"),
+    fontSize: wp("7%"),
   },
   avatar: {
     height: hp("7%"),
@@ -523,10 +567,10 @@ export const subCategoryStyles = StyleSheet.create({
   mainContainerText: {
     textAlign: "left",
     textAlignVertical: "center",
-    paddingTop: hp("2.75%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
     paddingLeft: wp("4%"),
     color: "#ededed",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
   },
 });
@@ -538,7 +582,7 @@ export const adStyles = StyleSheet.create({
     height: "100%",
     borderRadius: 7,
     borderWidth: 2,
-    borderColor: "#565656"
+    borderColor: "#565656",
   },
   adMainContainer: {
     flexDirection: "row",
@@ -562,7 +606,7 @@ export const adStyles = StyleSheet.create({
     marginBottom: hp("0.5%"),
   },
   adTitle: {
-    marginTop: wp("0.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("0.5%") : hp("0.25%"),
     textAlign: "center",
     fontSize: wp("3%"),
     fontFamily: "Comfortaa-Bold",
@@ -574,7 +618,7 @@ export const adStyles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#7d7d7d",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     backgroundColor: "white",
   },
   descriptionLarge: {
@@ -583,7 +627,7 @@ export const adStyles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#7d7d7d",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#f5f5f5",
   },
   descriptionText: {
@@ -591,7 +635,7 @@ export const adStyles = StyleSheet.create({
     marginLeft: wp("0.85%"),
     marginRight: wp("0.85%"),
     color: "black",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
   },
   descriptionDetails: {
     alignSelf: "center",
@@ -599,7 +643,7 @@ export const adStyles = StyleSheet.create({
   descriptionDetailsText: {
     fontSize: wp("2.25%"),
     fontWeight: "bold",
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     textDecorationLine: "underline",
     color: "black",
   },
@@ -614,8 +658,8 @@ export const adStyles = StyleSheet.create({
   },
   ownerName: {
     fontSize: wp("2%"),
-    fontFamily: 'Roboto-Regular',
-    fontStyle: 'italic',
+    fontFamily: "Roboto-Regular",
+    fontStyle: "italic",
     color: "black",
   },
   adDetails: {
@@ -637,7 +681,7 @@ export const adStyles = StyleSheet.create({
     textAlign: "center",
     marginTop: wp("1%"),
     fontSize: wp("2.75%"),
-    fontFamily: 'Roboto-Regular',
+    fontFamily: "Roboto-Regular",
     color: "black",
   },
   publishDateContainer: {
@@ -650,7 +694,7 @@ export const adStyles = StyleSheet.create({
   },
   publishTitle: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   publishDate: {
@@ -667,7 +711,7 @@ export const adStyles = StyleSheet.create({
   },
   locationText: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Bold',
+    fontFamily: "Roboto-Bold",
     color: "black",
   },
   ratingStars: {
@@ -678,7 +722,7 @@ export const adStyles = StyleSheet.create({
   },
   likeText: {
     fontSize: wp("2.5%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
   like: {
@@ -694,7 +738,7 @@ export const adStyles = StyleSheet.create({
   dislikeText: {
     marginLeft: wp("1.3%"),
     fontSize: wp("2.75%"),
-    fontFamily: 'Roboto-Light',
+    fontFamily: "Roboto-Light",
     color: "black",
   },
 });
@@ -707,14 +751,15 @@ export const firstRunStyles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignSelf: "center",
+    justifyContent: "space-between",
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: hp("10.5%"),
+    marginTop: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginTop: hp("5%"),
+    marginBottom: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
   },
 });
 
@@ -1108,14 +1153,14 @@ export const profileStyles = StyleSheet.create({
     borderBottomRightRadius: 10,
     textAlign: "center",
     backgroundColor: "#03d5ff",
-    borderColor: "#ededed"
+    borderColor: "#ededed",
   },
   editButtonText: {
     marginTop: hp("1%"),
     color: "black",
-    fontSize: hp("2%"),
+    fontSize: wp("3.5%"),
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   basicUserInfo: {
     maxHeight: hp("50%"),
@@ -1123,7 +1168,7 @@ export const profileStyles = StyleSheet.create({
     backgroundColor: "#ededed",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#606060"
+    borderColor: "#606060",
   },
   profileImageHeight: {
     alignSelf: "center",
@@ -1131,7 +1176,7 @@ export const profileStyles = StyleSheet.create({
     width: hp("15%"),
     height: hp("15%"),
   },
-  profileImageWidth:{
+  profileImageWidth: {
     alignSelf: "center",
     marginTop: wp("3%"),
     width: wp("30%"),
@@ -1147,10 +1192,10 @@ export const profileStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("1.5%"),
     marginBottom: hp("0.5%"),
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     fontWeight: "bold",
     color: "black",
-    fontFamily: "Roboto-Bold"
+    fontFamily: "Roboto-Bold",
   },
   userLocation: {
     flexDirection: "row",
@@ -1181,7 +1226,7 @@ export const profileStyles = StyleSheet.create({
     marginBottom: hp("1.5%"),
   },
   ratingText: {
-    fontSize: hp("2%"),
+    fontSize: wp("3.5%"),
     fontFamily: "Roboto-Light",
     color: "black",
     marginLeft: wp("1%"),
@@ -1191,14 +1236,14 @@ export const profileStyles = StyleSheet.create({
     color: "black",
   },
   like: {
-    fontSize: hp("2.75%"),
-    color: "black"
+    fontSize: wp("4.8%"),
+    color: "black",
   },
   dislikeComponent: {
     color: "black",
   },
   dislike: {
-    fontSize: hp("2.75%"),
+    fontSize: wp("4.8%"),
     color: "black",
   },
   userContact: {
@@ -1236,7 +1281,7 @@ export const profileStyles = StyleSheet.create({
     marginBottom: hp("1.5%"),
     marginLeft: wp("2%"),
     marginRight: wp("2%"),
-    fontSize: hp("2.5%"),
+    fontSize: wp("4.25%"),
     textAlign: "center",
     fontFamily: "Roboto-Bold",
     color: "black",
@@ -1247,7 +1292,7 @@ export const profileStyles = StyleSheet.create({
   },
   line: {
     textAlignVertical: "center",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     color: "black",
   },
   userDetails: {
@@ -1267,50 +1312,50 @@ export const profileStyles = StyleSheet.create({
     backgroundColor: "white",
   },
   details: {
-    fontSize: hp("2%"),
+    fontSize: wp("3.5%"),
     fontFamily: "Roboto-Light",
     color: "black",
   },
-  commentTitle:{
-    fontSize: hp("2%"),
+  commentTitle: {
+    fontSize: wp("3.5%"),
     fontWeight: "bold",
     color: "black",
   },
-  commentButtonText:{
-    fontSize: hp("2.5%"),
+  commentButtonText: {
+    fontSize: wp("4.25%"),
     textAlign: "center",
     fontWeight: "bold",
     color: "black",
   },
-  commentUser:{
-    fontSize: hp("2%"),
+  commentUser: {
+    fontSize: wp("3.5%"),
     fontWeight: "bold",
     marginTop: hp("0.5%"),
     marginLeft: wp("2%"),
     color: "black",
   },
-  commentTime:{
-    fontSize: hp("2%"),
+  commentTime: {
+    fontSize: wp("3.5%"),
     marginTop: hp("0.5%"),
     marginLeft: wp("1%"),
     color: "black",
   },
-  commentText:{
-    fontSize: hp("2%"),
+  commentText: {
+    fontSize: wp("3.5%"),
     marginTop: hp("1%"),
     color: "black",
   },
   arrow: {
     alignSelf: "center",
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     color: "black",
   },
   arrowSmall: {
     alignSelf: "center",
     marginTop: hp("0.5%"),
-    fontSize: hp("3%"),
+    fontSize: wp("5.25%"),
     color: "black",
-  }
+  },
 });
 export const adCreationStyles = StyleSheet.create({
   backgroundImageContainer: {
@@ -1339,19 +1384,19 @@ export const adCreationStyles = StyleSheet.create({
   fieldName: {
     marginLeft: wp("1%"),
     marginTop: hp("1.25%"),
-    fontSize: hp("1.55%"),
+    fontSize: wp("3.15%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
   },
   adNameField: {
     marginTop: hp("0.75%"),
     width: wp("82%"),
-    height: hp("4.5%"),
+    height: hp("6%"),
     paddingLeft: wp("1.5%"),
-    fontSize: hp("1.9%"),
+    fontSize: wp("3.75%"),
     fontFamily: "Roboto-Light",
     fontStyle: "italic",
-    color: "#ededed",
+    color: "white",
     opacity: 0.8,
     backgroundColor: "#1e1c24",
     borderRadius: 8,
@@ -1362,7 +1407,7 @@ export const adCreationStyles = StyleSheet.create({
     width: wp("82%"),
     marginTop: hp("0.75%"),
     paddingLeft: wp("1.5%"),
-    fontSize: hp("1.9%"),
+    fontSize: wp("3.45%"),
     fontFamily: "Roboto-Light",
     fontStyle: "italic",
     color: "#ededed",
@@ -1371,6 +1416,7 @@ export const adCreationStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "white",
+    height: hp("5%"),
   },
   dropDownCatSubContainer: {
     marginTop: hp("0.75%"),
@@ -1378,22 +1424,20 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("9%"),
+    height: hp("18%"),
   },
   dropDownCatContainer: {
     marginTop: hp("0.25%"),
     alignSelf: "center",
     width: wp("75%"),
-    borderBottomWidth: 1,
-    borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("4%"),
+    height: hp("8.5%"),
   },
   dropDownSubContainer: {
     alignSelf: "center",
     width: wp("75%"),
     backgroundColor: "#1e1c24",
-    height: hp("4%"),
+    height: hp("6%"),
     fontWeight: "bold",
   },
   priceRBContainer: {
@@ -1413,7 +1457,7 @@ export const adCreationStyles = StyleSheet.create({
     borderColor: "white",
     backgroundColor: "#1e1c24",
     opacity: 0.8,
-    height: hp("4.5%"),
+    height: hp("6%"),
   },
   pickImageAdditional: {
     alignSelf: "center",
@@ -1422,23 +1466,23 @@ export const adCreationStyles = StyleSheet.create({
     width: wp("75%"),
   },
   pickingImage: {
-    paddingTop: hp("0.75%"),
-    fontSize: hp("1.9%"),
+    paddingTop: hp("1.25%"),
+    fontSize: wp("3.75%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   plusIcon: {
-    fontSize: hp("2.25%"),
+    fontSize: wp("3.75%"),
     color: "#ededed",
-    paddingTop: hp("0.85%"),
+    paddingTop: hp("1.75%"),
   },
   inputFieldAdditionalContainer: {
     flexDirection: "row",
   },
   questionMarkIcon: {
     marginLeft: wp("1%"),
-    fontSize: hp("2.25%"),
+    fontSize: wp("3.5%"),
     color: "#ededed",
     paddingTop: hp("1.25%"),
   },
@@ -1448,7 +1492,7 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("4.5%"),
+    height: hp("7%"),
   },
   typeCodeInput: {
     alignSelf: "center",
@@ -1460,10 +1504,79 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: "#ededed",
-    fontSize: hp("2%"),
+    fontSize: wp("3.25%"),
     fontStyle: "italic",
     fontFamily: "Roboto-Light",
     opacity: 0.8,
+  },
+});
+
+export const radioButtonStyles = StyleSheet.create({
+  priceValueContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: hp("0.25%"),
+    alignSelf: "center",
+    width: wp("75%"),
+    borderBottomWidth: 1,
+    borderColor: "white",
+    backgroundColor: "#1e1c24",
+    height: hp("4%"),
+  },
+  priceInputField: {
+    alignSelf: "center",
+    width: wp("40%"),
+    paddingLeft: wp("1.5%"),
+    fontSize: wp("4%"),
+    fontFamily: "Roboto-Light",
+    fontStyle: "italic",
+    opacity: 0.8,
+    color: "white"
+  },
+  priceCurrency: {
+    flexDirection: "row",
+  },
+  radioText: {
+    marginLeft: wp("3%"),
+    paddingTop: hp("0.25%"),
+    width: wp("8%"),
+    fontSize: wp("3.5%"),
+    fontFamily: "Roboto-Bold",
+    opacity: 0.8,
+    color: "#ededed",
+  },
+  radioCircle: {
+    height: hp("2.25%"),
+    width: hp("2.25%"),
+    marginTop: hp("0.5%"),
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: "#87cefa",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  priceAgreementContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: hp("0.25%"),
+    alignSelf: "center",
+    width: wp("75%"),
+    backgroundColor: "#1e1c24",
+    height: hp("4%"),
+  },
+  agreementText: {
+    marginLeft: wp("1.5%"),
+    paddingTop: hp("0.25%"),
+    width: wp("20%"),
+    fontSize: wp("4%"),
+    fontWeight: "bold",
+    color: "#ededed",
+  },
+  selectedRb: {
+    width: hp("1.25%"),
+    height: hp("1.25%"),
+    borderRadius: 50,
+    backgroundColor: "#87cefa",
   },
 });
 
@@ -1484,7 +1597,7 @@ export const aboutUsStyles = StyleSheet.create({
   },
   titleText: {
     alignSelf: "center",
-    fontSize: hp("5%"),
+    fontSize: wp("8.5%"),
     fontWeight: "600",
   },
   subtitleContainer: {
@@ -1493,19 +1606,41 @@ export const aboutUsStyles = StyleSheet.create({
     width: wp("90%"),
   },
   subtitleNameContainer: {
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   subtitleText: {
     marginTop: hp("2%"),
     paddingLeft: wp("1.5%"),
-    fontSize: hp("2.5%"),
-    fontFamily: 'Roboto-Black',
+    fontSize: wp("4.25%"),
+    fontFamily: "Roboto-Black",
   },
-  mainText: {
+  mainTextFirstPart: {
     marginTop: hp("1.25%"),
-    fontSize: hp("2.25%"),
+    fontSize: wp("4%"),
     textAlign: "justify",
-    fontFamily: 'Roboto-LightItalic',
+    fontFamily: "Roboto-LightItalic",
+    fontWeight: "400",
+  },
+  SecondPartTextContainer: {
+    flexDirection: "row",
+    marginTop: hp("1.25%"),
+  },
+  mainTextSecondPart: {
+    fontSize: wp("4%"),
+    textAlign: "justify",
+    fontFamily: "Roboto-LightItalic",
+    fontWeight: "400",
+  },
+  bulletIcon: {
+    fontSize: wp("3.15%"),
+    color: "black",
+    paddingTop: Platform.OS === "ios" ? hp("2%") : hp("1%"),
+  },
+  mainTextThirdPart: {
+    paddingLeft: wp("0.75%"),
+    fontSize: wp("4%"),
+    textAlign: "justify",
+    fontFamily: "Roboto-LightItalic",
     fontWeight: "400",
   },
   contactPartContainer: {
@@ -1513,9 +1648,9 @@ export const aboutUsStyles = StyleSheet.create({
   },
   contactText: {
     marginBottom: hp("1.25%"),
-    fontSize: hp("2%"),
-    fontFamily: 'Comfortaa-Regular',
-    fontWeight: "600",
+    fontSize: wp("3.5%"),
+    fontFamily: "Comfortaa-Regular",
+    fontWeight: "bold",
     textAlign: "center",
   },
 });
@@ -1554,14 +1689,14 @@ export const contactUsStyles = StyleSheet.create({
   fieldName: {
     marginLeft: wp("1%"),
     marginTop: hp("1.25%"),
-    fontSize: hp("1.55%"),
+    fontSize: wp("3.15%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
   },
   fieldNameBold: {
     marginLeft: wp("1%"),
     marginTop: hp("1%"),
-    fontSize: hp("1.75%"),
+    fontSize: wp("3.5%"),
     fontFamily: "Roboto-Bold",
     color: "#ededed",
   },
@@ -1570,7 +1705,7 @@ export const contactUsStyles = StyleSheet.create({
     width: wp("82%"),
     height: hp("4.5%"),
     paddingLeft: wp("1.5%"),
-    fontSize: hp("1.9%"),
+    fontSize: wp("3.75%"),
     fontFamily: "Roboto-Light",
     fontStyle: "italic",
     color: "#ededed",
@@ -1584,8 +1719,7 @@ export const contactUsStyles = StyleSheet.create({
     width: wp("82%"),
     marginTop: hp("0.75%"),
     paddingLeft: wp("1.5%"),
-    paddingTop: hp("0.35%"),
-    fontSize: hp("1.9%"),
+    fontSize: wp("3.75%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
     fontStyle: "italic",
@@ -1646,13 +1780,13 @@ export const contactUsStyles = StyleSheet.create({
   },
   pickingImage: {
     paddingTop: hp("0.65%"),
-    fontSize: hp("1.9%"),
+    fontSize: wp("3.75%"),
     fontFamily: "Roboto-Light",
     color: "#ededed",
     fontStyle: "italic",
   },
   plusIcon: {
-    fontSize: hp("2.25%"),
+    fontSize: wp("3.75%"),
     color: "#ededed",
     paddingTop: hp("0.85%"),
   },
@@ -1661,7 +1795,7 @@ export const contactUsStyles = StyleSheet.create({
   },
   questionMarkIcon: {
     marginLeft: wp("1%"),
-    fontSize: hp("2.25%"),
+    fontSize: wp("3.75%"),
     color: "#ededed",
     paddingTop: hp("1.25%"),
   },
@@ -1683,8 +1817,30 @@ export const contactUsStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: "#ededed",
-    fontSize: hp("2%"),
+    fontSize: wp("3.5%"),
     fontStyle: "italic",
     opacity: 0.8,
   },
 });
+
+export const errorStyle = {
+  error: {
+    borderWidth: 2,
+    borderColor: "#ff102d",
+    backgroundColor: "#1e1c24",
+    color: "#ff102d",
+  },
+  adDescriptionButtonContainer: {
+    alignSelf: "center",
+    marginTop: hp("2%"),
+    marginBottom: hp("2%"),
+    width: wp("82%"),
+    height: hp("4.25%"),
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#ff102d",
+    backgroundColor: "#1e1c24",
+    opacity: 0.99,
+    color: "#ff102d",
+  },
+};

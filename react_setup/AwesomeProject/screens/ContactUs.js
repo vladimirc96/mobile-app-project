@@ -21,6 +21,7 @@ import {
 import { EditProfileButton } from "../components/Buttons";
 import { contactUsStyles } from "./../shared/Styles";
 import { Dimensions } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -86,58 +87,60 @@ export default class ContactUs extends React.Component {
           style={contactUsStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <View style={contactUsStyles.mainContainer}>
-            <View style={contactUsStyles.backForwardContainer}></View>
-            <View style={contactUsStyles.inputFieldContainer}>
-              <Text style={contactUsStyles.fieldNameBold}>Imate pitanje, sugestiju ili želite da postanete deo tima? 
-                  Pošaljite nam poruku!
+          <ScrollView>
+            <View style={contactUsStyles.mainContainer}>
+              <View style={contactUsStyles.backForwardContainer}></View>
+              <View style={contactUsStyles.inputFieldContainer}>
+                <Text style={contactUsStyles.fieldNameBold}>Imate pitanje, sugestiju ili želite da postanete deo tima? 
+                    Pošaljite nam poruku!
+                </Text>
+                <Text style={contactUsStyles.fieldName}> Naslov poruke </Text>
+                <TextInput
+                  style={contactUsStyles.adNameField}
+                  placeholder="Max. 50 karaktera."
+                  placeholderTextColor="#ededed"
+                />
+              </View>
+              <View style={contactUsStyles.inputFieldContainer}>
+                <Text style={contactUsStyles.fieldName}>Vaša poruka</Text>
+                <TextInput
+                  multiline={true}
+                  numberOfLines={6}
+                  style={contactUsStyles.adDescriptionField}
+                  placeholder="Max. 1000 karaktera."
+                  placeholderTextColor="#ededed"
+                />
+              </View>
+              <View style={contactUsStyles.inputFieldContainerWithMargin}>
+              <Text style={contactUsStyles.fieldNameBold}>Naišli ste na grešku?
+                Okačite screenshoot, kako bi naš tim mogao da je popravi
               </Text>
-              <Text style={contactUsStyles.fieldName}> Naslov poruke </Text>
-              <TextInput
-                style={contactUsStyles.adNameField}
-                placeholder="Max. 50 karaktera."
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <View style={contactUsStyles.inputFieldContainer}>
-              <Text style={contactUsStyles.fieldName}>Vaša poruka</Text>
-              <TextInput
-                multiline={true}
-                numberOfLines={6}
-                style={contactUsStyles.adDescriptionField}
-                placeholder="Max. 1000 karaktera."
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <View style={contactUsStyles.inputFieldContainerWithMargin}>
-            <Text style={contactUsStyles.fieldNameBold}>Naišli ste na grešku?
-              Okačite screenshoot, kako bi naš tim mogao da je popravi
-            </Text>
-              <Text style={contactUsStyles.fieldName}>Fotografija</Text>
-              <TouchableOpacity onPress={this.pickImage}>
-                <View style={contactUsStyles.pickImageContainer}>
-                  <View style={contactUsStyles.pickImageAdditional}>
-                    <Text style={contactUsStyles.pickingImage}> Izaberi sliku</Text>
-                    <AntDesign name="pluscircleo" style={contactUsStyles.plusIcon} />
+                <Text style={contactUsStyles.fieldName}>Fotografija</Text>
+                <TouchableOpacity onPress={this.pickImage}>
+                  <View style={contactUsStyles.pickImageContainer}>
+                    <View style={contactUsStyles.pickImageAdditional}>
+                      <Text style={contactUsStyles.pickingImage}> Izaberi sliku</Text>
+                      <AntDesign name="pluscircleo" style={contactUsStyles.plusIcon} />
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
+                </TouchableOpacity>
+              </View>
+              <View style={contactUsStyles.inputFieldContainerWithMargin}>
+                <Text style={contactUsStyles.fieldName}> Vaši podaci </Text>
+                <TextInput
+                  style={contactUsStyles.adNameField}
+                  placeholder="Ime"
+                  placeholderTextColor="#ededed"
+                />
+                <TextInput
+                  style={contactUsStyles.adNameField}
+                  placeholder="E-mail adresa"
+                  placeholderTextColor="#ededed"
+                />
+              </View>
+              <EditProfileButton title={"Posalji"} />
             </View>
-            <View style={contactUsStyles.inputFieldContainerWithMargin}>
-              <Text style={contactUsStyles.fieldName}> Vaši podaci </Text>
-              <TextInput
-                style={contactUsStyles.adNameField}
-                placeholder="Ime"
-                placeholderTextColor="#ededed"
-              />
-              <TextInput
-                style={contactUsStyles.adNameField}
-                placeholder="E-mail adresa"
-                placeholderTextColor="#ededed"
-              />
-            </View>
-            <EditProfileButton title={"Posalji"} />
-          </View>
+            </ScrollView>
         </ImageBackground>
       );
     }

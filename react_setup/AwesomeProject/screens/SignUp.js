@@ -13,7 +13,7 @@ import LocalStorage from "../localStorage";
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
 export default function SignUp(props) {
@@ -22,11 +22,22 @@ export default function SignUp(props) {
   const signupCallback = async (user) => {
     try {
       const formData = new FormData();
-      Object.keys(user).forEach((key) => formData.append(key, user[key]));
-      const response = await fetch(user.image);
-      const blob = await response.blob();
-      formData.append("image", blob);
-
+      Object.keys(user).forEach((key) => {
+        if (key === "image") {
+          return;
+        }
+        formData.append(key, user[key]);
+      });
+      if (user.image) {
+        const response = await fetch(user.image);
+        const blob = await response.blob();
+        const image = {
+          uri: user.image,
+          type: blob.type,
+          name: blob.data.name,
+        }
+        formData.append("image", image);
+      }
       await signup(formData);
       redirect(user);
     } catch (err) {

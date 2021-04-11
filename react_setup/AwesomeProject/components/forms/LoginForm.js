@@ -16,7 +16,7 @@ export default function LoginForm({ navigation }) {
   const dispatch = useDispatch();
 
   const loginUser = (credentials) => dispatch(login(credentials));
-  
+
   const handleLogin = (credentials) => {
     return new Promise((resolve, reject) => {
       loginUser(credentials);
@@ -41,11 +41,7 @@ export default function LoginForm({ navigation }) {
         validationSchema={loginSchema}
       >
         {(props) => (
-          <View style={loginStyles.mainContainer}>
-            <View style={loginStyles.welcomeTextContainer}>
-              <Text style={loginStyles.firstText}>Dobrodošli</Text>
-              <Text style={loginStyles.secondText}>Ulogujte se.</Text>
-            </View>
+          <View>
             <View style={loginStyles.inputContainer}>
               <TextInput
                 style={
@@ -56,7 +52,7 @@ export default function LoginForm({ navigation }) {
                 placeholder="Korisničko ime"
                 placeholderTextColor={
                   props.errors.username && props.touched.username
-                    ? "red"
+                    ? "#ff102d"
                     : "#ededed"
                 }
                 onChangeText={props.handleChange("username")}
@@ -72,7 +68,7 @@ export default function LoginForm({ navigation }) {
                 placeholder="Lozinka"
                 placeholderTextColor={
                   props.errors.password && props.touched.password
-                    ? "red"
+                    ? "#ff102d"
                     : "#ededed"
                 }
                 onChangeText={props.handleChange("password")}
