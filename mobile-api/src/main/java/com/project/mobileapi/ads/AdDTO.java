@@ -3,6 +3,7 @@ package com.project.mobileapi.ads;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.subcategory.SubCategoryDTO;
 import com.project.mobileapi.util.Currency;
+import com.project.mobileapi.util.KeyValue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +39,8 @@ public class AdDTO {
 
     private int views;
 
-    private SubCategoryDTO subCategory;
+    @NotNull(message = "Morate izabrati potkategoriju kojoj pripada oglas.")
+    private KeyValue subCategory;
 
     private Currency currency;
 

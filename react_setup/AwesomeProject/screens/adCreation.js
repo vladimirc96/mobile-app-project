@@ -41,7 +41,6 @@ export class AdCreation extends React.Component {
         alert("Sorry, we need camera roll permissions to make this work!");
       }
     })();
-
     this._loadFontsAsync();
     this.getSubCategories(1);
   }

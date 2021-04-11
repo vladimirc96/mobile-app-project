@@ -20,7 +20,7 @@ const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
   description: yup.string().required(),
   category: yup.object().required(),
-  subCategory: yup.object().required(),
+  subCategory: yup.string().required(),
   price: yup.number().required(),
   agreement: yup.boolean().required(),
 });
@@ -86,7 +86,9 @@ export default function AdForm(props) {
   };
 
   const handleChangeCurrency = (formikProps, value) => {
-    value !== "" ? formikProps.setFieldValue("currency", value === "RSD" ? "EUR" : "RSD") : formikProps.setFieldValue("currency", value);
+    value !== ""
+      ? formikProps.setFieldValue("currency", value === "RSD" ? "EUR" : "RSD")
+      : formikProps.setFieldValue("currency", value);
   };
 
   return (
@@ -95,13 +97,12 @@ export default function AdForm(props) {
         title: "",
         description: "",
         category: props.categories[0],
-        subCategory: { id: null, name: "" },
+        subCategory: "",
         price: "",
         agreement: false,
         currency: "RSD",
       }}
       onSubmit={(values) => {
-        console.log(values);
         props.handleSubmit({ ...values, image });
       }}
       validationSchema={adSchema}
@@ -163,7 +164,7 @@ export default function AdForm(props) {
                     onValueChange={(itemValue, itemIndex) => {
                       formikProps.setFieldValue("category", {
                         id: props.categories[itemIndex].id,
-                        name: props.categories[itemIndex].name,
+                        value: props.categories[itemIndex].name,
                       });
                       props.onChangeCategory(props.categories[itemIndex].id);
                     }}
@@ -193,7 +194,10 @@ export default function AdForm(props) {
                     onValueChange={(itemValue, itemIndex) => {
                       formikProps.setFieldValue(
                         "subCategory",
-                        props.subCategories[itemIndex]
+                        JSON.stringify({
+                          id: props.subCategories[itemIndex].id,
+                          value: props.subCategories[itemIndex].name,
+                        })
                       );
                     }}
                     value={formikProps.values.subCategory}

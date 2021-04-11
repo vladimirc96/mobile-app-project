@@ -25,4 +25,9 @@ public class SubCategory {
 
     @OneToMany(mappedBy = "subCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ad> ads;
+
+    public SubCategory(Long id, String value) {
+        this.id = id;
+        this.name = value;
+    }
 }

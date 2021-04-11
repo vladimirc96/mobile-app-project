@@ -6,4 +6,5 @@ public interface AdService {
     List<AdDTO> findAll();
     AdDTO save(AdDTO adDTO) throws IOException;
     AdDTO findOneById(Long adId);
+    List<AdDTO> findBySubCategoryId(Long subCategoryId);
 }

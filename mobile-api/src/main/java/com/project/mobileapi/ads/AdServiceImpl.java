@@ -32,4 +32,9 @@ public class AdServiceImpl implements AdService{
     public AdDTO findOneById(Long adId) {
         return AdAdapter.toDto(adRepository.findOneById(adId));
     }
+
+    @Override
+    public List<AdDTO> findBySubCategoryId(Long subCategoryId) {
+        return adRepository.findAllBySubCategoryId(subCategoryId).stream().map(AdAdapter::toDto).collect(Collectors.toList());
+    }
 }

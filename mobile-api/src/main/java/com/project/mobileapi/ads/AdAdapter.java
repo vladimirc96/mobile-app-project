@@ -1,8 +1,10 @@
 package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.Ad;
+import com.project.mobileapi.model.SubCategory;
 import com.project.mobileapi.subcategory.SubCategoryMapper;
 import com.project.mobileapi.util.CustomMultipartFile;
+import com.project.mobileapi.util.KeyValue;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import java.io.IOException;
@@ -25,7 +27,7 @@ public class AdAdapter {
                 .description(ad.getDescription())
                 .creationDate(ad.getCreationDate())
                 .views(ad.getViews())
-                .subCategory(SubCategoryMapper.INSTANCE.toDto(ad.getSubCategory()))
+                .subCategory(new KeyValue(ad.getSubCategory().getId(), ad.getSubCategory().getName()))
                 .currency(ad.getCurrency())
 //                .image(new CustomMultipartFile(ad.getImage()))
                 .build();
@@ -45,7 +47,7 @@ public class AdAdapter {
                 .creationDate(adDTO.getCreationDate())
                 .views(adDTO.getViews())
                 .image(adDTO.getImage() != null ? adDTO.getImage().getBytes() : null)
-                .subCategory(SubCategoryMapper.INSTANCE.toModel(adDTO.getSubCategory()))
+                .subCategory(new SubCategory(adDTO.getSubCategory().getId(), adDTO.getSubCategory().getValue()))
                 .build();
     }
 
