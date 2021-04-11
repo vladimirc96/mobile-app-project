@@ -44,9 +44,18 @@ export default function Header({ title, navigation, mainScreen }) {
           />
         )}
           <Image
-              style={ headerStyles.headerLogo}
-              source={inLineLogo}
-            /> 
+            style={
+              mainScreen ? headerStyles.headerLogoMain : headerStyles.headerLogo
+            }
+            source={inLineLogo}
+          /> 
+          {/* <Text
+            style={
+              mainScreen ? headerStyles.headerTextMain : headerStyles.headerText
+            }
+          >
+            {title}
+          </Text> */}
         {token ? (
           <View
             style={{

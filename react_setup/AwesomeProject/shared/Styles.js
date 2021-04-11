@@ -526,12 +526,16 @@ export const headerStyles = StyleSheet.create({
     color: "#ededed",
     letterSpacing: 1,
   },
-  headerLogo: {
-    alignSelf: 'center',
+  headerLogoMain: {
     paddingTop: hp("3%"), 
     height: hp("3.2%"),
     width: hp("22%"),
-    position: "absolute",
+  },
+  headerLogo: {
+    paddingTop: hp("3%"), 
+    height: hp("3.2%"),
+    width: hp("22%"),
+    marginLeft: -60,
   },
   icon: {
     position: "absolute",
@@ -748,11 +752,11 @@ export const firstRunStyles = StyleSheet.create({
   },
   userContainer: {
     alignSelf: "center",
-    marginTop: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
+    marginTop: hp("14.5%"),
   },
   guestContainer: {
     alignSelf: "center",
-    marginBottom: Platform.OS === "ios" ? hp("10.5%") : hp("10.5%"),
+    marginBottom: hp("10.5%"),
   },
 });
 
