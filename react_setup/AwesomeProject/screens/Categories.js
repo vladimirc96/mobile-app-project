@@ -43,7 +43,7 @@ export class Categories extends React.Component {
         <View style={categoriesStyles.mainContainer}>
           {rows}
           <AdvButton
-            title={this.props.token? "Postavite oglas" : "Registurj se da postaviš oglas"}
+            title={this.props.token? "Postavite oglas" : "Registurj se da postaviÅ¡ oglas"}
             onPress={() => this.props.token? this.props.navigation.navigate("AdCreation") : this.props.navigation.navigate("SignUp")}
           />
         </View>
@@ -55,6 +55,7 @@ export class Categories extends React.Component {
 const mapStateToProps = (state) => {
   return {
     categories: state.categoryReducer.categories,
+    token: state.authenticationReducer.token
   };
 };
 
