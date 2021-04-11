@@ -249,6 +249,34 @@ export const categoriesStyles = StyleSheet.create({
     width: wp("28%"),
     height: hp("15%"),
   },
+  footerContainer: {
+    alignSelf: "center",
+  },
+  footerSmallContainer: {
+    flexDirection: "row",
+    marginTop: hp("3%"),
+    justifyContent: "center",
+  },
+  footerSmallContainerSecondPart:{
+    justifyContent: "center",
+  },
+  footerTextFirstPart: {
+    paddingTop: Platform.OS === 'ios' ?  hp("1.25%") : hp("0.55%"),
+    paddingLeft: wp("1%"), 
+    fontSize: wp("4.25%"),
+    fontWeight: "600"
+  },
+  footerTextSecondPart: {
+    alignSelf: "center",
+    paddingTop: Platform.OS === 'ios' ?  hp("1.25%") : hp("0.35%"),
+    fontSize: wp("4.25%"),
+    fontWeight: "600"
+  },
+  boldText: {
+    textDecorationLine: "underline",
+    fontSize: wp("5%"),
+    fontWeight: "bold",
+  },
 });
 
 export const categoryStyles = StyleSheet.create({
@@ -282,7 +310,7 @@ export const categoryStyles = StyleSheet.create({
   },
   categoryNameHeight: {
     textAlign: "center",
-    fontSize: wp("2.75%"),
+    fontSize: wp("2.85%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
@@ -290,23 +318,23 @@ export const categoryStyles = StyleSheet.create({
   categoryNameWidth: {
     textAlign: "center",
     paddingTop: wp("0.3%"),
-    fontSize: wp("2.75%"),
+    fontSize: wp("2.85%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
   categoryNameHeightMultiline: {
     textAlign: "center",
-    fontSize: hp("1.55%"),
-    lineHeight: wp("1.66%"),
+    fontSize: wp("2.85%"),
+    lineHeight: wp("2.75%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
   categoryNameWidthMultiline: {
     textAlign: "center",
-    fontSize: wp("2.5%"),
-    lineHeight: wp("2.5%"),
+    fontSize: wp("2.85%"),
+    lineHeight: wp("2.75%"),
     fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
@@ -495,16 +523,17 @@ export const subCategoriesStyles = StyleSheet.create({
     borderColor: "#ededed",
   },
   title: {
-    marginTop: hp("2.75%"),
-    fontSize: wp("4.25%"),
-    marginLeft: wp("3.5%"),
+    marginTop: hp("2.25%"),
+    fontSize: wp("4.5%"),
+    marginLeft: wp("0.75%"),
     marginRight: wp("1.5%"),
     color: "#ededed",
+    fontFamily: "Comfortaa-Bold",
   },
   titleIconHeight: {
-    width: hp("5%"),
-    height: hp("5%"),
-    top: hp("2%"),
+    width: hp("7.5%"),
+    height: hp("7.5%"),
+    top: hp("0.5%"),
     left: wp("2.5%"),
   },
   titleIconWidth: {
@@ -517,16 +546,16 @@ export const subCategoriesStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("1%"),
     width: wp("85%"),
-    height: hp("9%"),
+    height: hp("7.5%"),
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    
+    elevation: 10
   },
 });
 
@@ -592,7 +621,7 @@ export const subCategoryStyles = StyleSheet.create({
     paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
     paddingLeft: wp("4%"),
     color: "#ededed",
-    fontSize: wp("5.25%"),
+    fontSize: wp("4.25%"),
     fontFamily: "Comfortaa-Bold",
   },
 });

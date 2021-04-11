@@ -1,6 +1,7 @@
 import React from "react";
-import { ImageBackground, Text, View, Image, ScrollView } from "react-native";
+import { ImageBackground, Text, View, Image, ScrollView, ActivityIndicator } from "react-native";
 import SubCategory from "./../components/SubCategory";
+import * as Font from "expo-font";
 import { subCategoriesStyles } from "../shared/Styles";
 import { Dimensions } from "react-native";
 import { getAllByCategoryId } from "../services/SubCategoryService";
@@ -8,13 +9,25 @@ import { getAllByCategoryId } from "../services/SubCategoryService";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+};
 export default class SubCategories extends React.Component {
   state = {
+    fontsLoaded: false,
     subCategories: [],
   };
 
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
   componentDidMount() {
     this.getAllByCategoryId();
+    this._loadFontsAsync();
   }
 
   async getAllByCategoryId() {
@@ -43,28 +56,32 @@ export default class SubCategories extends React.Component {
         />
       </View>
     ));
-    return (
-      <ImageBackground
-        style={subCategoriesStyles.backgroundImageContainer}
-        source={backgroundImage}
-      >
-        <ScrollView>
-          <View style={subCategoriesStyles.mainContainer}>
-            <View style={subCategoriesStyles.titleContainer}>
-              <Image
-                style={
-                  windowHeight * 0.37 < windowWidth * 0.7
-                    ? subCategoriesStyles.titleIconHeight
-                    : subCategoriesStyles.titleIconWidth
-                }
-                source={props.imagePath}
-              />
-              <Text style={subCategoriesStyles.title}> {props.title} </Text>
+    if (this.state.fontsLoaded) {
+      return (
+        <ImageBackground
+          style={subCategoriesStyles.backgroundImageContainer}
+          source={backgroundImage}
+        >
+          <ScrollView>
+            <View style={subCategoriesStyles.mainContainer}>
+              <View style={subCategoriesStyles.titleContainer}>
+                <Image
+                  style={
+                    windowHeight * 0.37 < windowWidth * 0.7
+                      ? subCategoriesStyles.titleIconHeight
+                      : subCategoriesStyles.titleIconWidth
+                  }
+                  source={props.imagePath}
+                />
+                <Text style={subCategoriesStyles.title}> {props.title} </Text>
+              </View>
+              {subCategoryList}
             </View>
-            {subCategoryList}
-          </View>
-        </ScrollView>
-      </ImageBackground>
-    );
+          </ScrollView>
+        </ImageBackground>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
   }
 }
