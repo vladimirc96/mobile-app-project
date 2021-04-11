@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { headerStyles } from "./Styles";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,8 @@ import {
 import { logout } from "../store/actions/authentication/authenticationActions";
 
 export default function Header({ title, navigation, mainScreen }) {
+  const inLineLogo = require("../assets/images/in_line_logo.png");
+
   const openDrawer = () => {
     navigation.openDrawer();
   };
@@ -42,13 +44,17 @@ export default function Header({ title, navigation, mainScreen }) {
           />
         )}
         <View>
-          <Text
+        <Image
+            style={ headerStyles.headerLogo}
+            source={inLineLogo}
+          /> 
+          {/* <Text
             style={
               mainScreen ? headerStyles.headerTextMain : headerStyles.headerText
             }
           >
             {title}
-          </Text>
+          </Text> */}
         </View>
         {token ? (
           <View

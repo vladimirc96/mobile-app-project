@@ -170,6 +170,7 @@ export const buttonsStyles = StyleSheet.create({
     fontSize: wp("3.75%"),
     color: "#ededed",
     fontFamily: "Roboto-Light",
+    fontStyle: "italic",
   },
   plusIcon: {
     fontSize: wp("3.75%"),
@@ -524,6 +525,11 @@ export const headerStyles = StyleSheet.create({
     fontSize: wp("5.25%"),
     color: "#ededed",
     letterSpacing: 1,
+  },
+  headerLogo: {
+    height: hp("7%"),
+    width: hp("42%"),
+    position: "absolute",
   },
   icon: {
     position: "absolute",
