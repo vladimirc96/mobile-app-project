@@ -254,7 +254,7 @@ export const categoriesStyles = StyleSheet.create({
   },
   footerSmallContainer: {
     flexDirection: "row",
-    marginTop: hp("3%"),
+    marginTop: hp("5%"),
     justifyContent: "center",
   },
   footerSmallContainerSecondPart:{
@@ -524,7 +524,7 @@ export const subCategoriesStyles = StyleSheet.create({
   },
   title: {
     marginTop: hp("2.25%"),
-    fontSize: wp("4.5%"),
+    fontSize: wp("4.4%"),
     marginLeft: wp("0.75%"),
     marginRight: wp("1.5%"),
     color: "#ededed",
