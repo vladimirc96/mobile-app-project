@@ -15,7 +15,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/racunari.png"),
       color: "#dbc59e",
       imagePathSub: require("../../assets/images/kat_ikonice/racunari.png"),
-      multiLine: true
+      multiLine: true,
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/prevodjenje.png"),
       color: "#b9a17a",
       imagePathSub: require("../../assets/images/kat_ikonice/prevodjenje.png"),
-      multiLine: true
+      multiLine: true,
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/foto.png"),
       color: "#faf4da",
       imagePathSub: require("../../assets/images/kat_ikonice/foto.png"),
-      multiLine: true
+      multiLine: true,
     },
     {
       id: 8,
@@ -60,6 +60,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/dizajn.png"),
       color: "#dbc59e",
       imagePathSub: require("../../assets/images/kat_ikonice/dizajn.png"),
+      multiLine: true
     },
     {
       id: 9,
@@ -67,7 +68,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/lepota.png"),
       color: "#f4e7c5",
       imagePathSub: require("../../assets/images/kat_ikonice/lepota.png"),
-      multiLine: true
+      multiLine: true,
     },
     {
       id: 10,
@@ -75,7 +76,7 @@ const initialState = {
       imagePath: require("../../assets/images/kat_ikonice_krug/kucniPoslovi.png"),
       color: "#dbc59e",
       imagePathSub: require("../../assets/images/kat_ikonice/kucniPoslovi.png"),
-      multiLine: true
+      multiLine: true,
     },
     {
       id: 11,
@@ -97,9 +98,7 @@ const initialState = {
 const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case CATEGORY_ACTIONS.GET_CATEGORIES:
-      return {
-        initialState,
-      };
+      return initialState;
     default:
       return state;
   }
