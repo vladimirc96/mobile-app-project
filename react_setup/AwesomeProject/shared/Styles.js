@@ -753,10 +753,10 @@ export const modalStyles = StyleSheet.create({
       borderWidth: 1,
       borderRadius: 10,
       width: wp("86%"),
-      height: hp("5%"),
+      minHeight: hp("5.25%"),
       marginLeft: wp("2.5%"),
       marginRight: wp("2.5%"),
-      marginBottom: hp("5%"),
+      marginBottom: hp("0.25%"),
       textAlign:"center",
       flexDirection: "row",
       flex:1,
@@ -766,18 +766,18 @@ export const modalStyles = StyleSheet.create({
       fontSize: hp("2.5%"),
       color: "black",
       fontFamily: "Roboto-Bold",
-      marginTop: hp("0.8%")
+      marginTop: hp("0.65%")
     },
     priceContainer: {
       height: hp("3%"),
       width: wp("20%"),
       backgroundColor: "black",
-      marginTop: hp("0.8%"),
+      marginTop: hp("0.9%"),
       marginRight: wp("1.5%"),
       borderRadius: 5
     },
     price: {
-      marginTop: hp("0.5%"),
+      marginTop: hp("0.25%"),
       color:"white",
       fontSize: hp("1.75%"),
       fontFamily: "Roboto-Bold",
