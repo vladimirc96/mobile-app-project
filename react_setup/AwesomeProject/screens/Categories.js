@@ -7,6 +7,10 @@ import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";
 
 export class Categories extends React.Component {
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
     const categoryList = this.props.categories.map((category) => (
@@ -15,11 +19,14 @@ export class Categories extends React.Component {
           onPress={() =>
             this.props.navigation.navigate("SubCategories", {
               categoryId: category.id,
+              title: category.name.replace(/(\r\n|\n|\r)/gm, " "),
+              imagePath: category.imagePathSub,
             })
           }
           title={category.name}
           imagePath={category.imagePath}
           color={category.color}
+          multiLine={category.multiLine}
         />
       </View>
     ));
@@ -39,8 +46,16 @@ export class Categories extends React.Component {
         <View style={categoriesStyles.mainContainer}>
           {rows}
           <AdvButton
-            title={"Postavite oglas"}
-            onPress={() => this.props.navigation.navigate("AdCreation")}
+            title={
+              this.props.token
+                ? "Postavite oglas"
+                : "Registurj se da postaviš oglas"
+            }
+            onPress={() =>
+              this.props.token
+                ? this.props.navigation.navigate("AdCreation")
+                : this.props.navigation.navigate("SignUp")
+            }
           />
         </View>
       </ImageBackground>
@@ -51,6 +66,7 @@ export class Categories extends React.Component {
 const mapStateToProps = (state) => {
   return {
     categories: state.categoryReducer.categories,
+    token: state.authenticationReducer.token,
   };
 };
 

@@ -9,6 +9,7 @@ import EditProfile from "./../screens/EditPtofile";
 import AdCreation from "./../screens/adCreation";
 import AboutUs from "./../screens/AboutUs";
 import ContactUs from "./../screens/ContactUs";
+import SignUp from "./../screens/SignUp";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -79,6 +80,9 @@ const screens = {
       };
     },
   },
+  SignUp: {
+    screen: SignUp
+  }
 };
 
 // home stack navigator screens

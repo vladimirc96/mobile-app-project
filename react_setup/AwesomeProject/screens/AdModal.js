@@ -95,6 +95,18 @@ export default class AdModal extends React.Component {
                                   </TouchableOpacity>
                                   <Text style={modalStyles.ratingText}>69</Text>
                                 </View>
+                                <View style={modalStyles.editButton}>
+                                  <Text
+                                    style={modalStyles.editButtonText}
+                                    onPress={() =>
+                                      this.props.navigation.navigate("Profile", {
+                                        username: "test"
+                                      })
+                                    }
+                                  >
+                                     Pogledaj profil
+                                  </Text>
+                                </View>          
                               </View>
                               <View style={modalStyles.description}>
                                 <Text style={modalStyles.adText}>

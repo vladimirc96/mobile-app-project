@@ -33,119 +33,114 @@ const customFonts = {
 export default function EditProfileForm({ updateUser, locations, user }) {
   const avatar = require("../../assets/images/avatar.png");
 
-  if(this.state.fontsLoaded){
-    return (
-      <View>
-        <Formik
-          initialValues={{
-            id: user.id,
-            username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            phoneNumber: user.phoneNumber,
-            email: user.email,
-            location: user.location,
-            details: user.details ? user.details : "",
-          }}
-          onSubmit={(values) => {
-            updateUser(values);
-          }}
-          validationSchema={editProfileSchema}
-        >
-          {(props) => (
-            <View style={styles.mainContainer}>
-              <Image
-                style={
-                  windowHeight * 0.15 < windowWidth * 0.28
-                    ? styles.inputImageHeight
-                    : styles.inputImageWidth
-                }
-                source={avatar}
-              />
-              <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
-              <View style={styles.userDetailsContainer}>
-                <View style={styles.inputFieldContainer}>
-                  <Text style={styles.fieldName}>Korisničko ime</Text>
-                  <TextInput
-                    style={styles.inputField}
-                    onChangeText={props.handleChange("username")}
-                    value={props.values.username}
-                  />
-                </View>
-                <View style={styles.inputFieldContainer}>
-                  <Text style={styles.fieldName}>Ime i prezime</Text>
-                  <TextInput
-                    style={styles.inputField}
-                    onChangeText={props.handleChange("firstName")}
-                    value={props.values.firstName}
-                  />
-                </View>
-                <View style={styles.inputFieldContainer}>
-                  <Text style={styles.fieldName}>Kontakt telefon</Text>
-                  <TextInput
-                    style={styles.inputField}
-                    onChangeText={props.handleChange("phoneNumber")}
-                    value={props.values.phoneNumber}
-                  />
-                </View>
-                <View style={styles.inputFieldContainer}>
-                  <Text style={styles.fieldName}>E-mail adresa</Text>
-                  <TextInput
-                    style={styles.inputField}
-                    onChangeText={props.handleChange("email")}
-                    value={props.values.email}
-                  />
-                </View>
-
-                <View style={styles.inputFieldContainer}>
-                  <Picker
-                    selectedValue={props.values.location.id}
-                    style={{
-                      fontSize: hp("2%"),
-                      backgroundColor: "#1e1c24",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("0.5%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      props.setFieldValue("location", locations[itemIndex]);
-                    }}
-                  >
-                    {locations.map((location) => (
-                      <Picker.Item
-                        label={location.value}
-                        value={location.id}
-                        key={location.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-                <View style={styles.inputFieldContainer}>
-                  <Text style={styles.fieldName}>Pol</Text>
-                  <TextInput
-                    style={styles.inputField}
-                    placeholder="Ženski"
-                    placeholderTextColor="#ededed"
-                  />
-                </View>
+  return (
+    <View>
+      <Formik
+        initialValues={{
+          id: user.id,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phoneNumber: user.phoneNumber,
+          email: user.email,
+          location: user.location,
+          details: user.details ? user.details : "",
+        }}
+        onSubmit={(values) => {
+          updateUser(values);
+        }}
+        validationSchema={editProfileSchema}
+      >
+        {(props) => (
+          <View style={styles.mainContainer}>
+            <Image
+              style={
+                windowHeight * 0.15 < windowWidth * 0.28
+                  ? styles.inputImageHeight
+                  : styles.inputImageWidth
+              }
+              source={avatar}
+            />
+            <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
+            <View style={styles.userDetailsContainer}>
+              <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Korisničko ime</Text>
+                <TextInput
+                  style={styles.inputField}
+                  onChangeText={props.handleChange("username")}
+                  value={props.values.username}
+                />
               </View>
-              <TextInput
-                multiline={true}
-                numberOfLines={5}
-                style={styles.detailsInputField}
-                onChangeText={props.handleChange("details")}
-                value={props.values.details}
-              />
-              <EditProfileButton title={"Sačuvaj"} onPress={props.handleSubmit} />
+              <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Ime i prezime</Text>
+                <TextInput
+                  style={styles.inputField}
+                  onChangeText={props.handleChange("firstName")}
+                  value={props.values.firstName}
+                />
+              </View>
+              <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Kontakt telefon</Text>
+                <TextInput
+                  style={styles.inputField}
+                  onChangeText={props.handleChange("phoneNumber")}
+                  value={props.values.phoneNumber}
+                />
+              </View>
+              <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>E-mail adresa</Text>
+                <TextInput
+                  style={styles.inputField}
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
+                />
+              </View>
+
+              <View style={styles.inputFieldContainer}>
+                <Picker
+                  selectedValue={props.values.location.id}
+                  style={{
+                    fontSize: hp("2%"),
+                    backgroundColor: "#1e1c24",
+                    color: "white",
+                    borderColor: "transparent",
+                    paddingTop: hp("0.5%"),
+                  }}
+                  onValueChange={(itemValue, itemIndex) => {
+                    props.setFieldValue("location", locations[itemIndex]);
+                  }}
+                >
+                  {locations.map((location) => (
+                    <Picker.Item
+                      label={location.value}
+                      value={location.id}
+                      key={location.id}
+                    />
+                  ))}
+                </Picker>
+              </View>
+              <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Pol</Text>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Ženski"
+                  placeholderTextColor="#ededed"
+                />
+              </View>
             </View>
-          )}
-        </Formik>
-      </View>
-    );
-  }
-  else{
-    return <ActivityIndicator size="large" />;
-  }
+            <TextInput
+              multiline={true}
+              numberOfLines={5}
+              style={styles.detailsInputField}
+              onChangeText={props.handleChange("details")}
+              value={props.values.details}
+            />
+            <EditProfileButton title={"Sačuvaj"} onPress={props.handleSubmit} />
+          </View>
+        )}
+      </Formik>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

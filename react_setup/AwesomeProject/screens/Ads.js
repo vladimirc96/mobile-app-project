@@ -4,6 +4,7 @@ import Ad from "../components/Ad";
 import AdModal from './AdModal';
 import { adsStyles } from "../shared/Styles";
 import * as Font from "expo-font";
+import { getAllBySubcategoryId } from "../services/AdService";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -16,7 +17,8 @@ const customFonts = {
 export default class Ads extends React.Component {
   state = {
     fontsLoaded: false,
-	  showModal: false
+	  showModal: false,
+    ads: [],
   };
 
   async _loadFontsAsync() {
@@ -26,6 +28,17 @@ export default class Ads extends React.Component {
 
   componentDidMount() {
     this._loadFontsAsync();
+
+    this.getAllBySubcategoryId();
+  }
+
+  async getAllBySubcategoryId() {
+    try {
+      const data = await getAllBySubcategoryId();
+      this.setState({ ads: data });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   toggleModal = () => {
@@ -41,12 +54,12 @@ export default class Ads extends React.Component {
         source={backgroundImage}
       >
       {this.state.showModal ?
-        <AdModal toggleModal={this.toggleModal} />
+        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} />
         :
         <ScrollView>
           <View style={adsStyles.mainContainer}>
             <View style={adsStyles.titleContainer}>
-              <Text style={adsStyles.titleText}> Privatni casovi </Text>
+              <Text style={adsStyles.titleText}> Subcategory </Text>
             </View>
                 <View>
                   <View style={adsStyles.numberOfAdsContainer}></View>
