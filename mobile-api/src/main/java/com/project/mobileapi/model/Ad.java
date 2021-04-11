@@ -50,4 +50,8 @@ public class Ad {
 
     @ManyToOne
     private SubCategory subCategory;
+
+    @ManyToOne
+    private User user;
+
 }

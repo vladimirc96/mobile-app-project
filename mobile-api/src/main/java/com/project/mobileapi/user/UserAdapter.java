@@ -4,6 +4,8 @@ import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.util.KeyValue;
 
+import java.util.stream.Collectors;
+
 public class UserAdapter {
 
     public UserAdapter(){
@@ -24,6 +26,7 @@ public class UserAdapter {
                 .phoneNumber(user.getPhoneNumber())
                 .details(user.getDetails())
                 .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : null)
+                .ratings(user.getRatings().isEmpty() && user.getRatings() != null ? user.getRatings().stream().map(RatingMapper.INSTANCE::toDto).collect(Collectors.toList()) : null)
                 .build();
     }
 
@@ -41,7 +44,7 @@ public class UserAdapter {
                 .phoneNumber(userDTO.getPhoneNumber())
                 .details(userDTO.getDetails())
                 .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
+                .ratings(userDTO.getRatings().isEmpty() && userDTO.getRatings() != null ? userDTO.getRatings().stream().map(RatingMapper.INSTANCE::toModel).collect(Collectors.toList()) : null)
                 .build();
     }
-
 }

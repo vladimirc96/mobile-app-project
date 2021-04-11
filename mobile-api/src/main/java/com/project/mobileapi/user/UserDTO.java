@@ -11,6 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Builder(toBuilder = true)
@@ -46,4 +47,6 @@ public class UserDTO implements Serializable {
     private KeyValue location;
 
     private MultipartFile image;
+
+    private List<RatingDTO> ratings;
 }

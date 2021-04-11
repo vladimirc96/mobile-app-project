@@ -2,6 +2,7 @@ package com.project.mobileapi.ads;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.subcategory.SubCategoryDTO;
+import com.project.mobileapi.user.UserDTO;
 import com.project.mobileapi.util.Currency;
 import com.project.mobileapi.util.KeyValue;
 import lombok.AllArgsConstructor;
@@ -45,4 +46,6 @@ public class AdDTO {
     private Currency currency;
 
     private MultipartFile image;
+
+    private UserDTO user;
 }

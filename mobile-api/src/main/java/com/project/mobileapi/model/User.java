@@ -58,7 +58,7 @@ public class User implements UserDetails {
     private byte[] cv;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Rating> rating;
+    private List<Rating> ratings;
 
     @ManyToOne
     private Location location;
@@ -68,6 +68,9 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "username"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     protected List<Role> roles;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Ad> ads;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -100,6 +103,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
     }
 
 }
