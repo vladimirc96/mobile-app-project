@@ -28,8 +28,9 @@ public class MailService {
         helper.setTo(environment.getProperty("spring.mail.username"));
         helper.setSubject(mail.getTitle());
         helper.setText(String.valueOf(content.append(mail.getMessage())));
-        helper.addAttachment(mail.getImage().getOriginalFilename(), mail.getImage());
-
+        if(mail.getImage() != null){
+            helper.addAttachment(mail.getImage().getOriginalFilename(), mail.getImage());
+        }
         javaMailSender.send(message);
     }
 }

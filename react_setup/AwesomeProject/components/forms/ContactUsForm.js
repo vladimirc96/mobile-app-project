@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { EditProfileButton } from "../Buttons";
@@ -11,10 +11,14 @@ import {
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
 import * as ImagePicker from "expo-image-picker";
+import { MEDIA_LIBRARY_PERMISSION_ERROR } from "../../constants/Messages";
+
+const TITLE_MAX_LENGTH = 50;
+const MESSAGE_MAX_LENGTH = 1000;
 
 const contactSchema = yup.object({
-  title: yup.string().required("Naslov je obavezan.").max(50),
-  message: yup.string().required().max(1000),
+  title: yup.string().required("Naslov je obavezan.").max(TITLE_MAX_LENGTH),
+  message: yup.string().required().max(MESSAGE_MAX_LENGTH),
   senderName: yup.string().required(),
   senderEmail: yup.string().required().email(),
 });
@@ -22,18 +26,20 @@ const contactSchema = yup.object({
 export default function ContactUsForm(props) {
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
-  }, []);
+  const getPermission = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR, Toast.LONG);
+      return false;
+    }
+    return true;
+  };
 
   const pickImage = async () => {
+    const permissionGranted = await getPermission();
+    if (!permissionGranted) {
+      return;
+    }
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -84,6 +90,7 @@ export default function ContactUsForm(props) {
                 onChangeText={formikProps.handleChange("title")}
                 onBlur={formikProps.handleBlur("title")}
                 value={formikProps.values.title}
+                maxLength={TITLE_MAX_LENGTH}
               />
             </View>
             <View style={contactUsStyles.inputFieldContainer}>
@@ -107,6 +114,7 @@ export default function ContactUsForm(props) {
                 onChangeText={formikProps.handleChange("message")}
                 onBlur={formikProps.handleBlur("message")}
                 value={formikProps.values.message}
+                maxLength={MESSAGE_MAX_LENGTH}
               />
             </View>
             <View style={contactUsStyles.inputFieldContainerWithMargin}>
@@ -174,6 +182,7 @@ export default function ContactUsForm(props) {
                 onChangeText={formikProps.handleChange("senderEmail")}
                 onBlur={formikProps.handleBlur("senderEmail")}
                 value={formikProps.values.senderEmail}
+                autoCapitalize="none"
               />
             </View>
             <EditProfileButton

@@ -4,6 +4,9 @@ import * as Font from "expo-font";
 import { contactUsStyles } from "./../shared/Styles";
 import ContactUsForm from "../components/forms/ContactUsForm";
 import { sendMail } from "../services/MailService";
+import Toast from "react-native-simple-toast";
+import { CONTACT_US_SUCCESS } from "../constants/Messages";
+
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
@@ -44,6 +47,8 @@ export default class ContactUs extends React.Component {
         formData.append("image", image);
       }
       await sendMail(formData);
+      Toast.show(CONTACT_US_SUCCESS, Toast.LONG);
+      this.props.navigation.navigate("Categories");
     } catch (err) {
       console.log(err);
     }
