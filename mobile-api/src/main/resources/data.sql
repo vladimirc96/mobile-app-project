@@ -235,4 +235,6 @@ INSERT INTO table_ads VALUES ('2', 1, '2021-04-11', NULL, 0, '<div>Povoljan vodo
 INSERT INTO table_ads VALUES ('3', 0, '2021-04-11', 'RSD', 0, '<div>Zovite me 062266123. Povoljno sve.</div>', null, '1500', 'Najjaci vodoinstalater', '0', '1', '1');
 
 
-
+INSERT INTO table_ratings VALUES (1, 'Odlican', 1, 'ferika', 1);
+INSERT INTO table_ratings VALUES (2, 'Odlican 5', 1, '', 1);
+INSERT INTO table_ratings VALUES (3, 'Ocajan', 0, '', 1);

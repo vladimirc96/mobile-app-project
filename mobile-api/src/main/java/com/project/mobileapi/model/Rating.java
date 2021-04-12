@@ -28,7 +28,7 @@ public class Rating {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "user")
+    @Column(name = "username")
     private String username;
 
     @Column(name = "positive")

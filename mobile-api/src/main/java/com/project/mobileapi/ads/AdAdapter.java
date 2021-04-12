@@ -22,6 +22,7 @@ public class AdAdapter {
         }
 
         return AdDTO.builder()
+                .id(ad.getId())
                 .title(ad.getTitle())
                 .price(ad.getPrice())
                 .agreement(ad.isAgreement())
