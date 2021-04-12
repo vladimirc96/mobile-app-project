@@ -49,13 +49,6 @@ export default function Header({ title, navigation, mainScreen }) {
             }
             source={inLineLogo}
           /> 
-          {/* <Text
-            style={
-              mainScreen ? headerStyles.headerTextMain : headerStyles.headerText
-            }
-          >
-            {title}
-          </Text> */}
         {token ? (
           <View
             style={{
