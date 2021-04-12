@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   TouchableOpacity,
@@ -51,7 +50,6 @@ export default class Ad extends React.Component {
               <View style={adStyles.adTitleContainer}>
                 <Text style={adStyles.adTitle}>{this.props.ad.title}</Text>
               </View>
-              <TouchableOpacity onPress={this.props.onPress}>
               <View
                 style={
                   this.props.ad.title.length < 15
@@ -59,11 +57,10 @@ export default class Ad extends React.Component {
                     : adStyles.descriptionLarge
                 }
               >
-                <Text style={adStyles.descriptionText}>
-                  {" "}
-                  {this.props.ad.description}
+                <Text numberOfLines={this.props.ad.title.length < 15 ? 4 : 3} style={adStyles.descriptionText}>
+                  {this.props.ad.description.replace(/(<([^>]+)>)/ig, '')}
                 </Text>
-                <TouchableOpacity style={adStyles.descriptionDetails}>
+                <TouchableOpacity style={adStyles.descriptionDetails} onPress={this.props.onPress}>
                   <Text style={adStyles.descriptionDetailsText}>
                     Detaljnije
                   </Text>
@@ -73,17 +70,9 @@ export default class Ad extends React.Component {
                   />
                 </TouchableOpacity>
               </View>
-              </TouchableOpacity>
               <View style={adStyles.ownerNameContainer}>
-                <Text
-                  style={adStyles.ownerName}
-                  onPress={() =>
-                    this.props.navigation.navigate("Profile", {
-                      username: "test",
-                    })
-                  }
-                >
-                  Vlasnik: Slobodanka Jakovljevic{" "}
+                <Text style={adStyles.ownerName}>
+                  Vlasnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName} {" "}
                 </Text>
               </View>
             </View>
@@ -96,7 +85,7 @@ export default class Ad extends React.Component {
                 <Text style={adStyles.publishDate}>{this.props.ad.creationDate}</Text>
               </View>
               <View style={adStyles.location}>
-                <Text style={adStyles.locationText}>Novi Sad</Text>
+                <Text style={adStyles.locationText}>{this.props.ad.user.location.value}</Text>
               </View>
               <View>
                 <View style={adStyles.ratingStars}>

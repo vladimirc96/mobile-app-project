@@ -888,9 +888,6 @@ export const modalStyles = StyleSheet.create({
       height: wp("32%"),
       borderWidth: 1,
       borderColor: "#d6d6d6"
-    },  backgroundImageContainer: {
-      flex: 1,
-      resizeMode: "cover",
     },
     mainContainer: {
       alignSelf: "center",
@@ -924,12 +921,6 @@ export const modalStyles = StyleSheet.create({
       marginTop: wp("0.7%"),
       width: wp("30%"),
       height: wp("30%")
-    },
-    titleIconWidth: {
-      width: wp("12%"),
-      height: wp("12%"),
-      top: wp("4%"),
-      left: wp("2.5%"),
     },
     profileName: {
       alignSelf: "center",
@@ -986,92 +977,6 @@ export const modalStyles = StyleSheet.create({
     dislike: {
       fontSize: hp("2.75%"),
       color: "black",
-    },
-    userContact: {
-      flexDirection: "row",
-      alignSelf: "center",
-    },
-    userEmail: {
-      flexDirection: "row",
-      alignSelf: "center",
-    },
-    aboutUser: {
-      marginBottom: hp("0.5%"),
-      backgroundColor: "#1e1c24",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "black",
-    },
-    smallContainer: {
-      marginBottom: hp("0.5%"),
-      backgroundColor: "#1e1c24",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#ededed",
-    },
-    sectionName: {
-      left: wp("2%"),
-      marginTop: hp("1.5%"),
-      marginBottom: hp("1.5%"),
-      marginLeft: wp("2%"),
-      marginRight: wp("2%"),
-      fontSize: hp("2.5%"),
-      color: "#ededed",
-    },
-    dashContainer: {
-      marginLeft: wp("0.3%"),
-      flexDirection: "row",
-    },
-    line: {
-      textAlignVertical: "center",
-      fontSize: hp("3%"),
-      color: "#ededed",
-    },
-    userDetails: {
-      paddingHorizontal: hp("1.25%"),
-      paddingVertical: wp("2%"),
-      marginHorizontal: wp("1.5%"),
-      marginVertical: hp("0.5%"),
-      borderRadius: 10,
-      backgroundColor: "#1f1f2f",
-    },
-    details: {
-      fontSize: hp("2%"),
-      color: "#ededed",
-    },
-    commentTitle:{
-      fontSize: hp("2%"),
-      fontWeight: "bold",
-      color: "#ededed",
-    },
-    commentUser:{
-      fontSize: hp("2%"),
-      fontWeight: "bold",
-      marginTop: hp("0.5%"),
-      marginLeft: wp("2%"),
-      color: "#ededed",
-    },
-    commentTime:{
-      fontSize: hp("2%"),
-      marginTop: hp("0.5%"),
-      marginLeft: wp("1%"),
-      color: "#ededed",
-    },
-    commentText:{
-      fontSize: hp("2%"),
-      marginTop: hp("1%"),
-      color: "#ededed",
-    },
-    arrow: {
-      alignSelf: "center",
-      fontSize: hp("3%"),
-      color: "#ededed",
-    },
-    arrowSmall: {
-      alignSelf: "center",
-      marginTop: hp("0.5%"),
-      fontSize: hp("3%"),
-      color: "#ededed",
     },
     adText: {
       marginLeft: 2,

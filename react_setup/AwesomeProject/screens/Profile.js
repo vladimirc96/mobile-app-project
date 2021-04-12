@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 import { AdvButton } from "./../components/Buttons";
 import AdModal from "./AdModal";
 import CommentModal from "./CommentModal";
-9 + 60;
+import Comment from "./../components/Comment";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -227,56 +227,8 @@ export class Profile extends React.Component {
                   </TouchableOpacity>
                   {this.state.showComments && (
                     <View>
-                      <View style={profileStyles.userDetails}>
-                        <Text style={profileStyles.commentTitle}>
-                          Casovi iz pythona
-                        </Text>
-                        <View
-                          style={{
-                            flexDirection: "row",
-                            marginTop: hp("0.25%"),
-                            marginLeft: wp("1%"),
-                          }}
-                        >
-                          <SimpleLineIcons
-                            name="like"
-                            style={profileStyles.like}
-                          />
-                          <Text style={profileStyles.commentUser}>Fedor96</Text>
-                          <Text style={profileStyles.commentTime}>
-                            30 Jul 2020 - 30 Avg 2020
-                          </Text>
-                        </View>
-                        <Text style={profileStyles.commentText}>
-                          "Bilo je zadovoljstvo raditi sa ovim covekom. Sve
-                          pohvale"
-                        </Text>
-                      </View>
-                      <View style={profileStyles.userDetails}>
-                        <Text style={profileStyles.commentTitle}>
-                          Casovi iz pythona
-                        </Text>
-                        <View
-                          style={{
-                            flexDirection: "row",
-                            marginTop: hp("0.25%"),
-                            marginLeft: wp("1%"),
-                          }}
-                        >
-                          <SimpleLineIcons
-                            name="like"
-                            style={profileStyles.like}
-                          />
-                          <Text style={profileStyles.commentUser}>Fedor96</Text>
-                          <Text style={profileStyles.commentTime}>
-                            30 Jul 2020 - 30 Avg 2020
-                          </Text>
-                        </View>
-                        <Text style={profileStyles.commentText}>
-                          "Bilo je zadovoljstvo raditi sa ovim covekom. Sve
-                          pohvale"
-                        </Text>
-                      </View>
+                      <Comment />
+                      <Comment />
                       <TouchableOpacity onPress={this.toggleComments}>
                         <FontAwesome
                           name="angle-double-up"

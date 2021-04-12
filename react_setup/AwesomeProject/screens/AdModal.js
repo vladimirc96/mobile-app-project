@@ -7,6 +7,8 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { BlurView } from 'expo-blur';
 import { Dimensions } from "react-native";
 import * as Font from "expo-font";
+import { ThemeConsumer } from "react-native-elements";
+import HTMLView from 'react-native-htmlview';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -57,7 +59,7 @@ export default class AdModal extends React.Component {
                                   <Text style={modalStyles.title}>{this.props.ad.title}</Text>
                                 </View> 
                                 <View style={modalStyles.priceContainer}>
-                                  <Text style={modalStyles.price}>Dogovor</Text>
+                                  <Text style={modalStyles.price}>{this.props.ad.price}</Text>
                                 </View>
                               </View>
                               <View style={modalStyles.basicUserInfo}>
@@ -72,24 +74,24 @@ export default class AdModal extends React.Component {
                                           : modalStyles.profileImageWidth
                                       } source={avatar} />
                                 </View>
-                                <Text style={modalStyles.profileName}>Vladimir Cvetanovic</Text>
+                                <Text style={modalStyles.profileName}>{this.props.ad.user.firstName+" "+this.props.ad.user.lastName}</Text>
                                 <View style={modalStyles.userLocation}>
                                   <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>Novi Sad, Srbija</Text>
+                                  <Text style={modalStyles.location}>{this.props.ad.user.location.value}</Text>
                                 </View>
                                 <View style={modalStyles.userMail}>
                                   <Fontisto name="email" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>dovla.car@gmail.com</Text>
+                                  <Text style={modalStyles.location}>{this.props.ad.user.email}</Text>
                                 </View>
                                 <View style={modalStyles.userOntact}>
                                   <Feather name="phone" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>+381 62 266 021</Text>
+                                  <Text style={modalStyles.location}>{this.props.ad.user.phoneNumber}</Text>
                                 </View>
                                 <View style={modalStyles.userRating}>
                                   <TouchableOpacity style={modalStyles.likeComponent}>
                                     <SimpleLineIcons name="like" style={modalStyles.like} />
                                   </TouchableOpacity>
-                                  <Text style={modalStyles.ratingText}>6969</Text>
+                                  <Text style={modalStyles.ratingText}>6469</Text>
                                   <TouchableOpacity style={modalStyles.dislikeComponent}>
                                     <SimpleLineIcons name="dislike" style={modalStyles.dislike} />
                                   </TouchableOpacity>
@@ -100,8 +102,8 @@ export default class AdModal extends React.Component {
                                     style={modalStyles.editButtonText}
                                     onPress={() =>
                                       this.props.navigation.navigate("Profile", {
-                                        username: "test",
-                                        toggleModal: this.props.toggleModal
+                                        username: this.props.ad.user.username,
+                                        toggleModal: this.props.toggleModal,
                                       })
                                     }
                                   >
@@ -110,9 +112,10 @@ export default class AdModal extends React.Component {
                                 </View>          
                               </View>
                               <View style={modalStyles.description}>
-                                <Text style={modalStyles.adText}>
-                                  {this.props.ad.description}
-                                </Text>
+                                <HTMLView
+                                  value={this.props.ad.description}
+                                  stylesheet={modalStyles.adText}
+                                />
                               </View>
                             </View>
                           </View>
