@@ -7,4 +7,5 @@ public interface AdService {
     AdDTO save(AdDTO adDTO) throws IOException;
     AdDTO findOneById(Long adId);
     List<AdDTO> findBySubCategoryId(Long subCategoryId);
+    List<AdInfoDTO> getByUsername(String username);
 }

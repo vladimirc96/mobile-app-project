@@ -37,4 +37,9 @@ public class AdServiceImpl implements AdService{
     public List<AdDTO> findBySubCategoryId(Long subCategoryId) {
         return adRepository.findAllBySubCategoryId(subCategoryId).stream().map(AdAdapter::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<AdInfoDTO> getByUsername(String username) {
+        return adRepository.findAllByUserUsername(username).stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
+    }
 }

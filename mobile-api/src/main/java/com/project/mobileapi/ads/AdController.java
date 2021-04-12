@@ -46,4 +46,9 @@ public class AdController {
         return new ResponseEntity<>((List<AdDTO>) ObjectUtils.isEmpty(adService.findBySubCategoryId(subCategoryId)), HttpStatus.OK);
     }
 
+    @GetMapping("/get-by-username")
+    public ResponseEntity<List<AdInfoDTO>> getByUsername(@RequestParam String username){
+        return new ResponseEntity<>(adService.getByUsername(username), HttpStatus.OK);
+    }
+
 }

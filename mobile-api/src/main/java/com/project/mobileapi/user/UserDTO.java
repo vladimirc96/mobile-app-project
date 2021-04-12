@@ -48,5 +48,8 @@ public class UserDTO implements Serializable {
 
     private MultipartFile image;
 
-    private List<RatingDTO> ratings;
+    private int positiveRatings;
+
+    private int negativeRatings;
+
 }
