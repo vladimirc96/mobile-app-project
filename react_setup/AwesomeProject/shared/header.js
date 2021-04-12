@@ -49,27 +49,27 @@ export default function Header({ title, navigation, mainScreen }) {
             }
             source={inLineLogo}
           /> 
-        {token ? (
-          <View
-            style={{
-              height: hp("7%"),
-              width: hp("7%"),
-              position: "absolute",
-              right: wp("2%"),
-            }}
-          >
-            <Menu
-              visible={visible}
-              onDismiss={closeMenu}
-              anchor={
-                <TouchableOpacity
-                  style={{ padding: 5 }}
-                  onPress={() => setVisible(true)}
-                >
-                  <Avatar.Image size={40} source={avatar} />
-                </TouchableOpacity>
-              }
+          {token ? (
+            <View
+              style={{
+                height: hp("7%"),
+                width: hp("7%"),
+                position: "absolute",
+                right: Platform.OS === "ios" ? -wp("10%") : wp("2%"),
+              }}
             >
+              <Menu
+                visible={visible}
+                onDismiss={closeMenu}
+                anchor={
+                  <TouchableOpacity
+                    style={{ padding: 5 }}
+                    onPress={() => setVisible(true)}
+                  >
+                    <Avatar.Image size={35} source={avatar} />
+                  </TouchableOpacity>
+                }
+              >
               <Menu.Item
                 onPress={() => {
                   navigation.navigate("Profile", { username: user.username });

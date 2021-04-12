@@ -300,7 +300,7 @@ export const categoryStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("0.8%"),
     width: hp("10%"),
-    height: hp("10%"),
+    height:  hp("10%"),
   },
   categoryImageWidth: {
     alignSelf: "center",
@@ -518,7 +518,7 @@ export const subCategoriesStyles = StyleSheet.create({
     borderColor: "#ededed",
   },
   title: {
-    marginTop: hp("2.25%"),
+    marginTop:  Platform.OS === "ios" ? hp("3.25%") : hp("2.25%"),
     fontSize: wp("4.4%"),
     marginLeft: wp("0.75%"),
     marginRight: wp("1.5%"),
@@ -613,7 +613,7 @@ export const subCategoryStyles = StyleSheet.create({
   mainContainerText: {
     textAlign: "left",
     textAlignVertical: "center",
-    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("1.6%") : hp("1.35%"),
     paddingLeft: wp("4%"),
     color: "#ededed",
     fontSize: wp("4.25%"),
