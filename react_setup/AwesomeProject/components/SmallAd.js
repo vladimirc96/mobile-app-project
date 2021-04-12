@@ -49,18 +49,14 @@ export default class SmallAd extends React.Component {
               <Image style={smallAdStyles.adImage} source={gitara} />
             </View>
             <View style={smallAdStyles.adMainText}>
-              <Text style={smallAdStyles.adTitle}>{this.props.title}</Text>
+              <Text numberOfLines={1} style={smallAdStyles.adTitle}>{this.props.ad.title}</Text>
               <View style={smallAdStyles.descriptionSmall}>
-                <Text style={smallAdStyles.descriptionText}>
-                  -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi
-                  zanrovi -svi -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi
-                  zanrovi -svi -svi zanrovi
-                </Text>
+                <Text numberOfLines={3} style={smallAdStyles.descriptionText}>{this.props.ad.description.replace(/(<([^>]+)>)/ig, '')}</Text>
             </View>
             </View>
             <View style={smallAdStyles.adDetails}>
               <View style={smallAdStyles.priceContainer}>
-                <Text style={smallAdStyles.priceValue}>Dogovor</Text>
+                <Text style={smallAdStyles.priceValue}>{this.props.ad.price}</Text>
               </View>
               <View>
                 <View style={smallAdStyles.ratingStars}>
@@ -72,7 +68,7 @@ export default class SmallAd extends React.Component {
               </View>
               <View style={smallAdStyles.publishDateContainer}>
                 <Text style={smallAdStyles.publishTitle}>postavljen:</Text>
-                <Text style={smallAdStyles.publishDate}>danas</Text>
+                <Text style={smallAdStyles.publishDate}>{this.props.ad.creationDate}</Text>
               </View>
             </View>
           </View>

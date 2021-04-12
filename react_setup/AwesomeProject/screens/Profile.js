@@ -25,9 +25,10 @@ import SmallAd from "../components/SmallAd";
 import * as Font from "expo-font";
 import { connect } from "react-redux";
 import { AdvButton } from "./../components/Buttons";
-import AdModal from "./AdModal";
+import AdModalProfile from "./AdModalProfile";
 import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
+import { getByUsername } from "../services/AdService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -49,13 +50,26 @@ export class Profile extends React.Component {
       showAds: false,
       user: null,
       showModal: false,
-      showAdModal: false
+      showAdModal: false,
+      ads: [],
+      chosenAd: null
     };
   }
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
     this.setState({ fontsLoaded: true });
+  }
+
+  async getByUsername() {
+    try {
+      const data = await getByUsername(
+        this.state.user.username
+      );
+      this.setState({ ads: data});
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   async componentDidMount() {
@@ -86,6 +100,9 @@ export class Profile extends React.Component {
   };
 
   toggleAds = () => {
+    if(!this.state.ads.length){
+      this.getByUsername();
+    }
     this.setState((prevState) => ({
       showAds: !prevState.showAds,
     }));
@@ -102,17 +119,23 @@ export class Profile extends React.Component {
   };
 
   toggleModal = () => {
-    this.setState((prevState) => ({ showModal: !prevState.showModal }));
+    this.setState((prevState) => ({showModal: !prevState.showModal}));
   };
 
-  toggleAdModal = () => {
-    this.setState((prevState) => ({ showAdModal: !prevState.showAdModal }));
+  toggleAdModal = (ad) => {
+    this.setState((prevState) => ({showAdModal: !prevState.showAdModal, chosenAd: ad}));
   };
 
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
     const avatar = require("./../assets/images/avatar.png");
-
+    const adsList = this.state.ads.map((ad) => (
+      <View key={ad.id} style={adsStyles.smallAdContainer}>
+        <SmallAd ad={ad}
+        onPress={() => this.toggleAdModal(ad)}
+        />
+      </View>
+    ));
     if (!this.state.user) {
       return <View></View>;
     }
@@ -124,7 +147,7 @@ export class Profile extends React.Component {
             style={profileStyles.backgroundImageContainer}
             source={backgroundImage}
           >
-            {/* <AdModal toggleModal={this.toggleAdModal} navigation={this.props.navigation} ad={this.state.chosenAd} /> */}
+          <AdModalProfile toggleModal={this.toggleAdModal} ad={this.state.chosenAd} user={this.state.user} />
         </ImageBackground>
         )
       }else{
@@ -176,14 +199,14 @@ export class Profile extends React.Component {
                       <TouchableOpacity style={profileStyles.likeComponent}>
                         <SimpleLineIcons name="like" style={profileStyles.like} />
                       </TouchableOpacity>
-                      <Text style={profileStyles.ratingText}>6969</Text>
+                      <Text style={profileStyles.ratingText}>{this.state.user.positiveRatings}</Text>
                       <TouchableOpacity style={profileStyles.dislikeComponent}>
                         <SimpleLineIcons
                           name="dislike"
                           style={profileStyles.dislike}
                         />
                       </TouchableOpacity>
-                      <Text style={profileStyles.ratingText}>69</Text>
+                      <Text style={profileStyles.ratingText}>{this.state.user.negativeRatings}</Text>
                     </View>
                     <View style={profileStyles.editButton}>
                       <Text
@@ -202,6 +225,7 @@ export class Profile extends React.Component {
                       </Text>
                     </View>
                   </View>
+                  {this.state.user.details &&
                   <TouchableOpacity onPress={this.handlePress}>
                     <View style={profileStyles.aboutUser}>
                       <Text style={profileStyles.sectionName}>
@@ -222,6 +246,7 @@ export class Profile extends React.Component {
                       />
                     </View>
                   </TouchableOpacity>
+                  }
                   <View style={profileStyles.smallContainer}>
                     <TouchableOpacity onPress={this.toggleComments}>
                       <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -261,12 +286,7 @@ export class Profile extends React.Component {
                     </TouchableOpacity>
                     {this.state.showAds && (
                       <View>
-                        <View style={adsStyles.smallAdContainer}>
-                          <SmallAd title="CASOVI GITARE" />
-                        </View>
-                        <View style={adsStyles.smallAdContainer}>
-                          <SmallAd title="CASOVI GITARE" />
-                        </View>
+                        {adsList}
                         <TouchableOpacity onPress={this.toggleAds}>
                           <FontAwesome
                             name="angle-double-up"

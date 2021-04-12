@@ -54,7 +54,6 @@ export default class Ads extends React.Component {
         key={ad.id}
       >
       <Ad
-        navigation={this.props.navigation}
         ad={ad}
         onPress={() => this.toggleModal(ad)}
       />

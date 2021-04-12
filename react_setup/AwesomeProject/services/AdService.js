@@ -19,3 +19,12 @@ export const getAllBySubcategoryId = (subCategoryId) => {
   };
   return MobileApi.get(`${url}/get-by-subcategory-id`, config);
 };
+
+export const getByUsername = (username) => {
+  const config = {
+    params: {
+      username,
+    },
+  };
+  return MobileApi.get(`${url}/get-by-username`, config);
+};

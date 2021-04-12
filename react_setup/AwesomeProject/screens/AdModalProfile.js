@@ -20,7 +20,7 @@ const customFonts = {
   "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
-export default class AdModal extends React.Component {
+export default class AdModalProfile extends React.Component {
   state = {
     fontsLoaded: false
   };
@@ -73,18 +73,18 @@ export default class AdModal extends React.Component {
                                           : modalStyles.profileImageWidth
                                       } source={avatar} />
                                 </View>
-                                <Text style={modalStyles.profileName}>{this.props.ad.user.firstName+" "+this.props.ad.user.lastName}</Text>
+                                <Text style={modalStyles.profileName}>{this.props.user.firstName+" "+this.props.user.lastName}</Text>
                                 <View style={modalStyles.userLocation}>
                                   <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>{this.props.ad.user.location.value}</Text>
+                                  <Text style={modalStyles.location}>{this.props.user.location.value}</Text>
                                 </View>
                                 <View style={modalStyles.userMail}>
                                   <Fontisto name="email" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>{this.props.ad.user.email}</Text>
+                                  <Text style={modalStyles.location}>{this.props.user.email}</Text>
                                 </View>
                                 <View style={modalStyles.userOntact}>
                                   <Feather name="phone" size={hp("2.5%")} color="black" />
-                                  <Text style={modalStyles.location}>{this.props.ad.user.phoneNumber}</Text>
+                                  <Text style={modalStyles.location}>{this.props.user.phoneNumber}</Text>
                                 </View>
                                 <View style={modalStyles.userRating}>
                                   <TouchableOpacity style={modalStyles.likeComponent}>
@@ -99,12 +99,7 @@ export default class AdModal extends React.Component {
                                 <View style={modalStyles.editButton}>
                                   <Text
                                     style={modalStyles.editButtonText}
-                                    onPress={() =>
-                                      this.props.navigation.navigate("Profile", {
-                                        username: this.props.ad.user.username,
-                                        toggleModal: this.props.toggleModal,
-                                      })
-                                    }
+                                    onPress={() => this.props.toggleModal()}
                                   >
                                      Pogledaj profil
                                   </Text>
