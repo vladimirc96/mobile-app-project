@@ -1,4 +1,4 @@
-package com.project.mobileapi.user;
+package com.project.mobileapi.rating;
 
 import com.project.mobileapi.model.Rating;
 import org.mapstruct.Mapper;
