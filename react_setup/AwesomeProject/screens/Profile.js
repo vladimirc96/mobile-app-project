@@ -29,6 +29,7 @@ import AdModalProfile from "./AdModalProfile";
 import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
+import { getCommentsByUsername } from "../services/CommentService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -52,6 +53,7 @@ export class Profile extends React.Component {
       showModal: false,
       showAdModal: false,
       ads: [],
+      comments: [],
       chosenAd: null
     };
   }
@@ -66,7 +68,18 @@ export class Profile extends React.Component {
       const data = await getByUsername(
         this.state.user.username
       );
-      this.setState({ ads: data});
+      this.setState({ads: data});
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async getCommentsByUsername() {
+    try {
+      const data = await getCommentsByUsername(
+        this.state.user.username
+      );
+      this.setState({comments: data});
     } catch (err) {
       console.log(err.message);
     }
@@ -94,6 +107,9 @@ export class Profile extends React.Component {
   };
 
   toggleComments = () => {
+    if(!this.state.comments.length){
+      this.getCommentsByUsername();
+    }
     this.setState((prevState) => ({
       showComments: !prevState.showComments,
     }));
@@ -135,6 +151,9 @@ export class Profile extends React.Component {
         onPress={() => this.toggleAdModal(ad)}
         />
       </View>
+    ));
+    const commentsList = this.state.comments.map((comment) => (
+      <Comment key={comment.id} comment={comment} />
     ));
     if (!this.state.user) {
       return <View></View>;
@@ -261,8 +280,7 @@ export class Profile extends React.Component {
                     </TouchableOpacity>
                     {this.state.showComments && (
                       <View>
-                        <Comment />
-                        <Comment />
+                        {commentsList}
                         <TouchableOpacity onPress={this.toggleComments}>
                           <FontAwesome
                             name="angle-double-up"

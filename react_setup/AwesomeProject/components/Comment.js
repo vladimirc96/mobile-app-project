@@ -10,14 +10,14 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from "react-native-responsive-screen";
-  import { SimpleLineIcons } from "@expo/vector-icons";
-  const customFonts = {
-    "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
-    "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-    "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Bold.ttf"),
-    "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
-    "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
-  };
+import { SimpleLineIcons } from "@expo/vector-icons";
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+};
 
 const gitara = require("./../assets/images/gitara.jpg");
 
@@ -50,17 +50,16 @@ export default class Comment extends React.Component {
             }}
           >
             <SimpleLineIcons
-              name="like"
+              name={this.props.comment.positive? "like" : "dislike"}
               style={profileStyles.like}
             />
-            <Text style={profileStyles.commentUser}>Fedor96</Text>
+            <Text style={profileStyles.commentUser}>{this.props.comment.username.length? this.props.comment.username : "Anoniman korisnik"}</Text>
             <Text style={profileStyles.commentTime}>
               30 Jul 2020 - 30 Avg 2020
             </Text>
           </View>
           <Text style={profileStyles.commentText}>
-            "Bilo je zadovoljstvo raditi sa ovim covekom. Sve
-            pohvale"
+            {this.props.comment.comment}
           </Text>
         </View>
       );
