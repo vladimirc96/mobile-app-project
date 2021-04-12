@@ -1,4 +1,4 @@
-package com.project.mobileapi.user;
+package com.project.mobileapi.rating;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
