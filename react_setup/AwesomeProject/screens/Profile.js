@@ -44,13 +44,12 @@ export class Profile extends React.Component {
     super();
     this.state = {
       fontsLoaded: false,
-      text:
-        "Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad, Srbija Novi Sad,Srbija Novi Sad, Srbija",
       shortText: true,
       showComments: false,
       showAds: false,
       user: null,
       showModal: false,
+      showAdModal: false
     };
   }
 
@@ -60,10 +59,6 @@ export class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    if(this.props.navigation.state.params.toggleModal.length){
-      this.props.navigation.state.params.toggleModal()
-    }
-
     try {
       const data = await getUserInfo(
         this.props.navigation.getParam("username")
@@ -72,7 +67,9 @@ export class Profile extends React.Component {
     } catch (err) {
       console.log(err.message);
     }
-
+    if(this.props.navigation.state.params.toggleModal.length){
+      this.props.navigation.state.params.toggleModal()
+    }
     this._loadFontsAsync();
   }
 
@@ -108,6 +105,10 @@ export class Profile extends React.Component {
     this.setState((prevState) => ({ showModal: !prevState.showModal }));
   };
 
+  toggleAdModal = () => {
+    this.setState((prevState) => ({ showAdModal: !prevState.showAdModal }));
+  };
+
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
     const avatar = require("./../assets/images/avatar.png");
@@ -117,168 +118,177 @@ export class Profile extends React.Component {
     }
 
     if (this.state.fontsLoaded) {
-      return (
-        <ImageBackground
-          style={profileStyles.backgroundImageContainer}
-          source={backgroundImage}
-        >
-          {this.state.showModal ? (
-            <CommentModal toggleModal={this.toggleModal} />
-          ) : (
-            <ScrollView>
-              <View style={profileStyles.mainContainer}>
-                <View style={profileStyles.basicUserInfo}>
-                  <Image
-                    style={
-                      windowHeight * 0.37 < windowWidth * 0.7
-                        ? profileStyles.profileImageHeight
-                        : profileStyles.profileImageWidth
-                    }
-                    source={avatar}
-                  />
-                  <Text style={profileStyles.profileName}>
-                    {this.state.user.firstName + " " + this.state.user.lastName}
-                  </Text>
-                  <View style={profileStyles.userLocation}>
-                    <SimpleLineIcons
-                      name="location-pin"
-                      size={hp("2.5%")}
-                      color="black"
-                    />
-                    <Text style={profileStyles.location}>
-                      {this.state.user.location.value + ", Novi Sad"}
-                    </Text>
-                  </View>
-                  <View style={profileStyles.userMail}>
-                    <Fontisto name="email" size={hp("2.5%")} color="black" />
-                    <Text style={profileStyles.location}>
-                      {this.state.user.email}
-                    </Text>
-                  </View>
-                  <View style={profileStyles.userOntact}>
-                    <Feather name="phone" size={hp("2.5%")} color="black" />
-                    <Text style={profileStyles.location}>
-                      {this.state.user.phoneNumber}
-                    </Text>
-                  </View>
-                  <View style={profileStyles.userRating}>
-                    <TouchableOpacity style={profileStyles.likeComponent}>
-                      <SimpleLineIcons name="like" style={profileStyles.like} />
-                    </TouchableOpacity>
-                    <Text style={profileStyles.ratingText}>6969</Text>
-                    <TouchableOpacity style={profileStyles.dislikeComponent}>
-                      <SimpleLineIcons
-                        name="dislike"
-                        style={profileStyles.dislike}
-                      />
-                    </TouchableOpacity>
-                    <Text style={profileStyles.ratingText}>69</Text>
-                  </View>
-                  <View style={profileStyles.editButton}>
-                    <Text
-                      style={profileStyles.editButtonText}
-                      onPress={
-                        this.props.token
-                          ? () =>
-                              this.props.navigation.navigate("EditProfile", {
-                                user: this.state.user,
-                                updateUser: this.updateUser,
-                              })
-                          : () => this.toggleModal()
+      if(this.state.showAdModal){
+        return (
+          <ImageBackground
+            style={profileStyles.backgroundImageContainer}
+            source={backgroundImage}
+          >
+            {/* <AdModal toggleModal={this.toggleAdModal} navigation={this.props.navigation} ad={this.state.chosenAd} /> */}
+        </ImageBackground>
+        )
+      }else{
+        return (
+          <ImageBackground
+            style={profileStyles.backgroundImageContainer}
+            source={backgroundImage}
+          >
+            {this.state.showModal ? (
+              <CommentModal toggleModal={this.toggleModal} />
+            ) : (
+              <ScrollView>
+                <View style={profileStyles.mainContainer}>
+                  <View style={profileStyles.basicUserInfo}>
+                    <Image
+                      style={
+                        windowHeight * 0.37 < windowWidth * 0.7
+                          ? profileStyles.profileImageHeight
+                          : profileStyles.profileImageWidth
                       }
-                    >
-                      {this.props.token ? "Izmeni Profil" : "Oceni korisnika"}
+                      source={avatar}
+                    />
+                    <Text style={profileStyles.profileName}>
+                      {this.state.user.firstName + " " + this.state.user.lastName}
                     </Text>
-                  </View>
-                </View>
-                <TouchableOpacity onPress={this.handlePress}>
-                  <View style={profileStyles.aboutUser}>
-                    <Text style={profileStyles.sectionName}>
-                      Detalji o korisniku
-                    </Text>
-                    <View style={profileStyles.userDetails}>
-                      <Text style={profileStyles.details}>
-                        {this.state.shortText
-                          ? this.state.text.substr(0, 80)
-                          : this.state.text}
+                    <View style={profileStyles.userLocation}>
+                      <SimpleLineIcons
+                        name="location-pin"
+                        size={hp("2.5%")}
+                        color="black"
+                      />
+                      <Text style={profileStyles.location}>
+                        {this.state.user.location.value + ", Novi Sad"}
                       </Text>
                     </View>
-                    <FontAwesome
-                      name={
-                        this.state.shortText
-                          ? "angle-double-down"
-                          : "angle-double-up"
-                      }
-                      style={profileStyles.arrow}
-                    />
+                    <View style={profileStyles.userMail}>
+                      <Fontisto name="email" size={hp("2.5%")} color="black" />
+                      <Text style={profileStyles.location}>
+                        {this.state.user.email}
+                      </Text>
+                    </View>
+                    <View style={profileStyles.userOntact}>
+                      <Feather name="phone" size={hp("2.5%")} color="black" />
+                      <Text style={profileStyles.location}>
+                        {this.state.user.phoneNumber}
+                      </Text>
+                    </View>
+                    <View style={profileStyles.userRating}>
+                      <TouchableOpacity style={profileStyles.likeComponent}>
+                        <SimpleLineIcons name="like" style={profileStyles.like} />
+                      </TouchableOpacity>
+                      <Text style={profileStyles.ratingText}>6969</Text>
+                      <TouchableOpacity style={profileStyles.dislikeComponent}>
+                        <SimpleLineIcons
+                          name="dislike"
+                          style={profileStyles.dislike}
+                        />
+                      </TouchableOpacity>
+                      <Text style={profileStyles.ratingText}>69</Text>
+                    </View>
+                    <View style={profileStyles.editButton}>
+                      <Text
+                        style={profileStyles.editButtonText}
+                        onPress={
+                          this.props.token
+                            ? () =>
+                                this.props.navigation.navigate("EditProfile", {
+                                  user: this.state.user,
+                                  updateUser: this.updateUser,
+                                })
+                            : () => this.toggleModal()
+                        }
+                      >
+                        {this.props.token ? "Izmeni Profil" : "Oceni korisnika"}
+                      </Text>
+                    </View>
                   </View>
-                </TouchableOpacity>
-                <View style={profileStyles.smallContainer}>
-                  <TouchableOpacity onPress={this.toggleComments}>
-                    <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                      <Text style={profileStyles.sectionName}>Komentari </Text>
-                      {!this.state.showComments && (
-                        <FontAwesome
-                          name="angle-double-down"
-                          style={profileStyles.arrowSmall}
-                        />
-                      )}
+                  <TouchableOpacity onPress={this.handlePress}>
+                    <View style={profileStyles.aboutUser}>
+                      <Text style={profileStyles.sectionName}>
+                        Detalji o korisniku
+                      </Text>
+                      <View style={profileStyles.userDetails}>
+                        <Text numberOfLines={this.state.shortText && 3} style={profileStyles.details}>
+                          {this.state.user.details}
+                        </Text>
+                      </View>
+                      <FontAwesome
+                        name={
+                          this.state.shortText
+                            ? "angle-double-down"
+                            : "angle-double-up"
+                        }
+                        style={profileStyles.arrow}
+                      />
                     </View>
                   </TouchableOpacity>
-                  {this.state.showComments && (
-                    <View>
-                      <Comment />
-                      <Comment />
-                      <TouchableOpacity onPress={this.toggleComments}>
-                        <FontAwesome
-                          name="angle-double-up"
-                          style={profileStyles.arrow}
-                        />
-                      </TouchableOpacity>
-                    </View>
+                  <View style={profileStyles.smallContainer}>
+                    <TouchableOpacity onPress={this.toggleComments}>
+                      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                        <Text style={profileStyles.sectionName}>Komentari </Text>
+                        {!this.state.showComments && (
+                          <FontAwesome
+                            name="angle-double-down"
+                            style={profileStyles.arrowSmall}
+                          />
+                        )}
+                      </View>
+                    </TouchableOpacity>
+                    {this.state.showComments && (
+                      <View>
+                        <Comment />
+                        <Comment />
+                        <TouchableOpacity onPress={this.toggleComments}>
+                          <FontAwesome
+                            name="angle-double-up"
+                            style={profileStyles.arrow}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  </View>
+                  <View style={profileStyles.smallContainer}>
+                    <TouchableOpacity onPress={this.toggleAds}>
+                      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                        <Text style={profileStyles.sectionName}>Oglasi </Text>
+                        {!this.state.showAds && (
+                          <FontAwesome
+                            name="angle-double-down"
+                            style={profileStyles.arrowSmall}
+                          />
+                        )}
+                      </View>
+                    </TouchableOpacity>
+                    {this.state.showAds && (
+                      <View>
+                        <View style={adsStyles.smallAdContainer}>
+                          <SmallAd title="CASOVI GITARE" />
+                        </View>
+                        <View style={adsStyles.smallAdContainer}>
+                          <SmallAd title="CASOVI GITARE" />
+                        </View>
+                        <TouchableOpacity onPress={this.toggleAds}>
+                          <FontAwesome
+                            name="angle-double-up"
+                            style={profileStyles.arrow}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  </View>
+                  {this.props.token && (
+                    <AdvButton
+                      profile={true}
+                      title={"Postavite oglas"}
+                      onPress={() => this.props.navigation.navigate("AdCreation")}
+                    />
                   )}
                 </View>
-                <View style={profileStyles.smallContainer}>
-                  <TouchableOpacity onPress={this.toggleAds}>
-                    <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                      <Text style={profileStyles.sectionName}>Oglasi </Text>
-                      {!this.state.showAds && (
-                        <FontAwesome
-                          name="angle-double-down"
-                          style={profileStyles.arrowSmall}
-                        />
-                      )}
-                    </View>
-                  </TouchableOpacity>
-                  {this.state.showAds && (
-                    <View>
-                      <View style={adsStyles.smallAdContainer}>
-                        <SmallAd title="CASOVI GITARE" />
-                      </View>
-                      <View style={adsStyles.smallAdContainer}>
-                        <SmallAd title="CASOVI GITARE" />
-                      </View>
-                      <TouchableOpacity onPress={this.toggleAds}>
-                        <FontAwesome
-                          name="angle-double-up"
-                          style={profileStyles.arrow}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                </View>
-                {this.props.token && (
-                  <AdvButton
-                    profile={true}
-                    title={"Postavite oglas"}
-                    onPress={() => this.props.navigation.navigate("AdCreation")}
-                  />
-                )}
-              </View>
-            </ScrollView>
-          )}
-        </ImageBackground>
-      );
+              </ScrollView>
+            )}
+          </ImageBackground>
+        );
+      }
     } else {
       return <ActivityIndicator size="large" />;
     }
