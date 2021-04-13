@@ -9,12 +9,14 @@ import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../RadioButton";
-import { TouchableOpacity, Text, TextInput, View } from "react-native";
+import { TouchableOpacity, Text, TextInput, View, FlatList, Platform  } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
 
 const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
@@ -149,7 +151,7 @@ export default function AdForm(props) {
               <Text style={adCreationStyles.fieldName}>
                 Izaberi kategoriju i potkategoriju
               </Text>
-              <View style={adCreationStyles.dropDownCatSubContainer}>
+              {/* <View style={adCreationStyles.dropDownCatSubContainer}>
                 <View style={adCreationStyles.dropDownCatContainer}>
                   <Picker
                     selectedValue={formikProps.values.category.id}
@@ -177,8 +179,34 @@ export default function AdForm(props) {
                         value={category.id}
                       />
                     ))}
-                  </Picker>
-                </View>
+                  </Picker> */}
+                  <View
+                    style={{
+
+                      // The solution: Apply zIndex to any device except Android
+                      ...(Platform.OS !== 'android' && {
+                        zIndex: 10
+                      })
+                      
+                    }}
+                  >
+                    <DropDownPicker
+                      items={[
+                        { label: 'UK', value: 'uk' },
+                        { label: 'France', value: 'france' },
+                        { label: 'Germany', value: 'germany' },
+                        { label: 'UKs', value: 'ukdfg' },
+                        { label: 'Frances', value: 'frsfefgce' },
+                        { label: 'Germanys', value: 'esfy' },
+                      ]}
+                      placeholder="Select a country"
+                      containerStyle={{height: 40}}
+                      style={{ backgroundColor: '#ffffff' }}
+                      dropDownStyle={{ backgroundColor: 'white' }}
+                    />
+                  </View>
+
+                {/* </View>
                 <Divider style={{ height: 1, backgroundColor: "white" }} />
                 <View style={adCreationStyles.dropDownSubContainer}>
                   <Picker
@@ -211,7 +239,7 @@ export default function AdForm(props) {
                     ))}
                   </Picker>
                 </View>
-              </View>
+              </View> */}
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
