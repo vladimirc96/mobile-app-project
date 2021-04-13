@@ -50,7 +50,7 @@ export default class AdModalProfile extends React.Component {
                           <View style={modalStyles.modalInnerWrap}>
                             <View style={modalStyles.closeButtonContainer}>
                               <View></View>
-                              <Ionicons name="md-close" size={26} onPress={() => this.props.toggleModal()} style={modalStyles.closeButton} color="black" />
+                              <Ionicons name="md-close" size={26} onPress={() => this.props.toggleModal()} style={modalStyles.closeButton} color="#ededed" />
                             </View>
                             <View style={modalStyles.centeredWrap}>
                               <View style={modalStyles.titleContainer}>
@@ -75,40 +75,33 @@ export default class AdModalProfile extends React.Component {
                                 </View>
                                 <Text style={modalStyles.profileName}>{this.props.user.firstName+" "+this.props.user.lastName}</Text>
                                 <View style={modalStyles.userLocation}>
-                                  <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="black" />
+                                  <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.user.location.value}</Text>
                                 </View>
                                 <View style={modalStyles.userMail}>
-                                  <Fontisto name="email" size={hp("2.5%")} color="black" />
+                                  <Fontisto name="email" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.user.email}</Text>
                                 </View>
                                 <View style={modalStyles.userOntact}>
-                                  <Feather name="phone" size={hp("2.5%")} color="black" />
+                                  <Feather name="phone" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.user.phoneNumber}</Text>
                                 </View>
-                                <View style={modalStyles.userRating}>
-                                  <TouchableOpacity style={modalStyles.likeComponent}>
-                                    <SimpleLineIcons name="like" style={modalStyles.like} />
-                                  </TouchableOpacity>
-                                  <Text style={modalStyles.ratingText}>6469</Text>
-                                  <TouchableOpacity style={modalStyles.dislikeComponent}>
-                                    <SimpleLineIcons name="dislike" style={modalStyles.dislike} />
-                                  </TouchableOpacity>
-                                  <Text style={modalStyles.ratingText}>69</Text>
-                                </View>
+                                <TouchableOpacity  onPress={() => this.props.toggleModal()}>
                                 <View style={modalStyles.editButton}>
                                   <Text
-                                    style={modalStyles.editButtonText}
-                                    onPress={() => this.props.toggleModal()}
-                                  >
+                                    style={modalStyles.editButtonText}>
                                      Pogledaj profil
                                   </Text>
                                 </View>          
+                                </TouchableOpacity> 
                               </View>
                               <View style={modalStyles.description}>
                                 <HTMLView
                                   value={this.props.ad.description}
-                                  stylesheet={modalStyles.adText}
+                                  stylesheet={{ div: {
+                                    color: '#ededed',
+                                    paddingHorizontal: 5
+                                  }}}
                                 />
                               </View>
                             </View>

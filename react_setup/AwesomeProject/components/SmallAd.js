@@ -82,11 +82,13 @@ export default class SmallAd extends React.Component {
 
 const smallAdStyles = StyleSheet.create({
     mainContainer: {
-        backgroundColor: "white",
+        backgroundColor: "#1e1c24",
         height:wp("18.72%"),
         marginHorizontal: wp("1.5%"),
         marginVertical: hp("0.15%"),
         borderRadius: 5,
+        borderWidth: wp("0.1%"),
+        borderColor: "#9f9f9f"
     },
     adMainContainer: {
       flexDirection: "row",
@@ -96,8 +98,8 @@ const smallAdStyles = StyleSheet.create({
       width: wp("16%"),
       top: wp("1.36%"),
       left: wp("1.36%"),
-      borderWidth: 2,
-      borderColor: "#606060",
+      borderWidth: 1,
+      borderColor: "#ffffff",
     },
     adMainText: {
       marginTop: wp("1%"),
@@ -107,14 +109,14 @@ const smallAdStyles = StyleSheet.create({
     adTitle: {
       textAlign: "left",
       fontSize: wp("3%"),
-      marginTop: wp("1%"),
+      lineHeight: wp("4.4%"),
       fontFamily: "Comfortaa-Bold",
-      color: "black",
+      color: "#ededed",
     },
     descriptionSmall: {
         width: "100%",
         borderTopWidth: 1,
-        borderTopColor: "#606060",
+        borderTopColor: "#2d2d2d",
         height: wp("12%")
       },
       descriptionText: {
@@ -122,7 +124,7 @@ const smallAdStyles = StyleSheet.create({
         marginTop: wp("1%"),
         marginLeft: wp("0.85%"),
         marginRight: wp("0.85%"),
-        color: "black",
+        color: "#ededed",
       },
     leftDashContainer: {
       marginLeft: wp("0.3%"),
@@ -131,7 +133,7 @@ const smallAdStyles = StyleSheet.create({
     line: {
       textAlignVertical: "center",
       fontSize: 5,
-      color: "black",
+      color: "#ededed",
     },
     adDetails: {
       marginTop: wp("1.36%"),
@@ -144,13 +146,13 @@ const smallAdStyles = StyleSheet.create({
       height: wp("4%"),
       width: wp("15%"),
       borderRadius: 5,
-      backgroundColor: "black",
+      backgroundColor: "#03d5ff",
     },
     priceValue: {
       textAlign: "center",
       marginTop: wp("1%"),
       fontSize: wp("1.75%"),
-      color: "white",
+      color: "#ededed",
     },
     publishDateContainer: {
       alignContent: "center",
@@ -161,15 +163,15 @@ const smallAdStyles = StyleSheet.create({
     },
     publishTitle: {
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
     publishDate: {
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
     locationText: {
       fontSize: wp("2.25%"),
-      color: "black",
+      color: "#ededed",
     },
     ratingStars: {
       flexDirection: "row",
@@ -180,21 +182,21 @@ const smallAdStyles = StyleSheet.create({
     likeText: {
       marginLeft:wp("1%"),
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
     like: {
       marginLeft: wp("1.36%"),
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
     dislike: {
       marginLeft: wp("1.36%"),
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
     dislikeText: {
       marginLeft: wp("1.36%"),
       fontSize: wp("2%"),
-      color: "black",
+      color: "#ededed",
     },
   });

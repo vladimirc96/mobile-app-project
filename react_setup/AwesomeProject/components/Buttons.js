@@ -240,6 +240,38 @@ export class EditProfileButton extends React.Component {
   }
 }
 
+export class AdButtonProfile extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.onPress}
+          style={buttonsStyles.adButtonProfileContainer}
+        >
+          <Text style={buttonsStyles.editProfileButtonText}>
+            {this.props.title}
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
+
 export class AboutUsContact extends React.Component {
   state = {
     fontsLoaded: false,

@@ -50,7 +50,9 @@ export default class AdModal extends React.Component {
                           <View style={modalStyles.modalInnerWrap}>
                             <View style={modalStyles.closeButtonContainer}>
                               <View></View>
-                              <Ionicons name="md-close" size={26} onPress={() => this.props.toggleModal()} style={modalStyles.closeButton} color="black" />
+                              <TouchableOpacity onPress={() => this.props.toggleModal()}>
+                                <Ionicons name="md-close" size={26} style={modalStyles.closeButton} color="#ededed" />
+                              </TouchableOpacity>
                             </View>
                             <View style={modalStyles.centeredWrap}>
                               <View style={modalStyles.titleContainer}>
@@ -75,45 +77,39 @@ export default class AdModal extends React.Component {
                                 </View>
                                 <Text style={modalStyles.profileName}>{this.props.ad.user.firstName+" "+this.props.ad.user.lastName}</Text>
                                 <View style={modalStyles.userLocation}>
-                                  <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="black" />
+                                  <SimpleLineIcons name="location-pin" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.ad.user.location.value}</Text>
                                 </View>
                                 <View style={modalStyles.userMail}>
-                                  <Fontisto name="email" size={hp("2.5%")} color="black" />
+                                  <Fontisto name="email" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.ad.user.email}</Text>
                                 </View>
                                 <View style={modalStyles.userOntact}>
-                                  <Feather name="phone" size={hp("2.5%")} color="black" />
+                                  <Feather name="phone" size={hp("2.5%")} color="#ededed" />
                                   <Text style={modalStyles.location}>{this.props.ad.user.phoneNumber}</Text>
                                 </View>
-                                <View style={modalStyles.userRating}>
-                                  <TouchableOpacity style={modalStyles.likeComponent}>
-                                    <SimpleLineIcons name="like" style={modalStyles.like} />
-                                  </TouchableOpacity>
-                                  <Text style={modalStyles.ratingText}>6469</Text>
-                                  <TouchableOpacity style={modalStyles.dislikeComponent}>
-                                    <SimpleLineIcons name="dislike" style={modalStyles.dislike} />
-                                  </TouchableOpacity>
-                                  <Text style={modalStyles.ratingText}>69</Text>
-                                </View>
-                                <View style={modalStyles.editButton}>
-                                  <Text
-                                    style={modalStyles.editButtonText}
-                                    onPress={() =>
+                                <TouchableOpacity onPress={() =>
                                       this.props.navigation.navigate("Profile", {
                                         username: this.props.ad.user.username,
                                         toggleModal: this.props.toggleModal,
                                       })
                                     }
                                   >
+                                <View style={modalStyles.editButton}>
+                                  <Text
+                                    style={modalStyles.editButtonText}>
                                      Pogledaj profil
                                   </Text>
                                 </View>          
+                                </TouchableOpacity>
                               </View>
                               <View style={modalStyles.description}>
                                 <HTMLView
                                   value={this.props.ad.description}
-                                  stylesheet={modalStyles.adText}
+                                  stylesheet={{ div: {
+                                    color: '#ededed',
+                                    paddingHorizontal: 5
+                                  }}}
                                 />
                               </View>
                             </View>

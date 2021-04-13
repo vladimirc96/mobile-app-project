@@ -24,7 +24,7 @@ import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
 import * as Font from "expo-font";
 import { connect } from "react-redux";
-import { AdvButton } from "./../components/Buttons";
+import { AdButtonProfile } from "./../components/Buttons";
 import AdModalProfile from "./AdModalProfile";
 import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
@@ -196,20 +196,20 @@ export class Profile extends React.Component {
                       <SimpleLineIcons
                         name="location-pin"
                         size={hp("2.5%")}
-                        color="black"
+                        color="#ededed"
                       />
                       <Text style={profileStyles.location}>
                         {this.state.user.location.value + ", Novi Sad"}
                       </Text>
                     </View>
                     <View style={profileStyles.userMail}>
-                      <Fontisto name="email" size={hp("2.5%")} color="black" />
+                      <Fontisto name="email" size={hp("2.5%")} color="#ededed" />
                       <Text style={profileStyles.location}>
                         {this.state.user.email}
                       </Text>
                     </View>
                     <View style={profileStyles.userOntact}>
-                      <Feather name="phone" size={hp("2.5%")} color="black" />
+                      <Feather name="phone" size={hp("2.5%")} color="#ededed" />
                       <Text style={profileStyles.location}>
                         {this.state.user.phoneNumber}
                       </Text>
@@ -227,10 +227,7 @@ export class Profile extends React.Component {
                       </TouchableOpacity>
                       <Text style={profileStyles.ratingText}>{this.state.user.negativeRatings}</Text>
                     </View>
-                    <View style={profileStyles.editButton}>
-                      <Text
-                        style={profileStyles.editButtonText}
-                        onPress={
+                    <TouchableOpacity onPress={
                           this.props.token
                             ? () =>
                                 this.props.navigation.navigate("EditProfile", {
@@ -240,18 +237,21 @@ export class Profile extends React.Component {
                             : () => this.toggleModal()
                         }
                       >
+                    <View style={profileStyles.editButton}>
+                      <Text
+                        style={profileStyles.editButtonText}>
                         {this.props.token ? "Izmeni Profil" : "Oceni korisnika"}
                       </Text>
                     </View>
+                    </TouchableOpacity> 
                   </View>
-                  {this.state.user.details &&
                   <TouchableOpacity onPress={this.handlePress}>
                     <View style={profileStyles.aboutUser}>
                       <Text style={profileStyles.sectionName}>
                         Detalji o korisniku
                       </Text>
                       <View style={profileStyles.userDetails}>
-                        <Text numberOfLines={this.state.shortText && 3} style={profileStyles.details}>
+                        <Text numberOfLines={this.state.shortText? 3 : 40} style={profileStyles.details}>
                           {this.state.user.details}
                         </Text>
                       </View>
@@ -265,7 +265,6 @@ export class Profile extends React.Component {
                       />
                     </View>
                   </TouchableOpacity>
-                  }
                   <View style={profileStyles.smallContainer}>
                     <TouchableOpacity onPress={this.toggleComments}>
                       <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -315,11 +314,12 @@ export class Profile extends React.Component {
                     )}
                   </View>
                   {this.props.token && (
-                    <AdvButton
-                      profile={true}
-                      title={"Postavite oglas"}
-                      onPress={() => this.props.navigation.navigate("AdCreation")}
-                    />
+                    <AdButtonProfile title={"Postavite oglas"} onPress={() => this.props.navigation.navigate("AdCreation")} />
+                    // <AdvButton
+                    //   profile={true}
+                    //   title={"Postavite oglas"}
+                    //   onPress={() => this.props.navigation.navigate("AdCreation")}
+                    // />
                   )}
                 </View>
               </ScrollView>

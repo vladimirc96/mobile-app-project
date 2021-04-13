@@ -143,7 +143,7 @@ export const buttonsStyles = StyleSheet.create({
   AdvButtonContainerProfile: {
     alignSelf: "center",
     width: wp("92%"),
-    marginTop: hp("0.25%"),
+    marginTop: hp("0.5%"),
     height: hp("9%"),
     borderRadius: 20,
     backgroundColor: "#1e1c24",
@@ -202,6 +202,16 @@ export const buttonsStyles = StyleSheet.create({
     color: "#ffffff",
     fontSize: wp("4%"),
     fontFamily: "Comfortaa-Bold",
+  },
+  adButtonProfileContainer:{
+    alignSelf: "center",
+    marginTop: hp("2%"),
+    marginBottom: hp("2%"),
+    width: wp("40%"),
+    height: hp("4.25%"),
+    borderRadius: 6,
+    backgroundColor: "#5fd2ff",
+    opacity: 0.99,
   },
   aboutContactButtonContainer: {
     flexDirection: "row",
@@ -799,7 +809,7 @@ export const modalStyles = StyleSheet.create({
       borderColor:"#d6d6d6"
     },
     modalInnerWrap: {
-      backgroundColor:"#ededed",
+      backgroundColor:"#2d2d2d",
       marginTop: hp("3%"),
       alignSelf: "center",
       width:wp("90%"),
@@ -823,9 +833,7 @@ export const modalStyles = StyleSheet.create({
       marginRight:hp("0.5%")
     },
     titleContainer: {
-      borderColor:"#d6d6d6",
-      backgroundColor: "white",
-      borderWidth: 1,
+      backgroundColor: "#1e1c24",
       borderRadius: 10,
       width: wp("86%"),
       minHeight: hp("5.25%"),
@@ -839,7 +847,7 @@ export const modalStyles = StyleSheet.create({
     },
     title: {
       fontSize: hp("2.5%"),
-      color: "black",
+      color: "#ededed",
       fontFamily: "Roboto-Bold",
       marginTop: hp("0.65%"),
       marginLeft: wp("2%")
@@ -847,14 +855,14 @@ export const modalStyles = StyleSheet.create({
     priceContainer: {
       height: hp("3%"),
       width: wp("20%"),
-      backgroundColor: "black",
+      backgroundColor: "#03d5ff",
       marginTop: hp("0.9%"),
       marginRight: wp("1.5%"),
       borderRadius: 5
     },
     price: {
       marginTop: hp("0.25%"),
-      color:"white",
+      color:"#ededed",
       fontSize: hp("1.75%"),
       fontFamily: "Roboto-Bold",
       textAlign: "center"
@@ -868,10 +876,8 @@ export const modalStyles = StyleSheet.create({
       marginTop: hp("1%"),
       marginLeft: wp("2.5%"),
       marginRight: wp("2.5%"),
-      backgroundColor: "white",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#d6d6d6"
+      backgroundColor: "#1e1c24",
+      borderRadius: 10
     },
     profileImageBorderHeight: {
       alignSelf: "center",
@@ -879,7 +885,7 @@ export const modalStyles = StyleSheet.create({
       width: hp("16%"),
       height: hp("16%"),
       borderWidth: 1,
-      borderColor: "#747474"
+      borderColor: "#ffffff"
     },
     profileImageBorderWidth:{
       alignSelf: "center",
@@ -887,7 +893,7 @@ export const modalStyles = StyleSheet.create({
       width: wp("32%"),
       height: wp("32%"),
       borderWidth: 1,
-      borderColor: "#d6d6d6"
+      borderColor: "#ffffff"
     },
     mainContainer: {
       alignSelf: "center",
@@ -896,7 +902,7 @@ export const modalStyles = StyleSheet.create({
       height: wp("60%")
     },
     description: {
-      minHeight: hp("33%"),
+      minHeight: hp("37%"),
       marginBottom: hp("0.5%"),
       marginTop: hp("1%"),
       marginLeft: wp("2.5%"),
@@ -905,10 +911,8 @@ export const modalStyles = StyleSheet.create({
       paddingLeft: wp("1%"),
       paddingTop: wp("2%"),
       paddingBottom: wp("2%"),
-      backgroundColor: "white",
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: "#d6d6d6"
+      backgroundColor: "#1e1c24",
+      borderRadius: 10
     },
     profileImageHeight: {
       alignSelf: "center",
@@ -924,12 +928,12 @@ export const modalStyles = StyleSheet.create({
     },
     profileName: {
       alignSelf: "center",
-      marginTop: hp("1.5%"),
+      marginTop: hp("0.25%"),
       marginBottom: hp("0.5%"),
-      fontSize: hp("3%"),
+      fontSize: hp("2.75%"),
       fontWeight: "bold",
       fontFamily: "Roboto-Light",
-      color: "black",
+      color: "#ededed"
     },
     userLocation: {
       flexDirection: "row",
@@ -940,7 +944,7 @@ export const modalStyles = StyleSheet.create({
       marginLeft: wp("1%"),
       fontSize: wp("4%"),
       fontFamily: "Roboto-Light",
-      color: "black",
+      color: "#ededed",
     },
     userMail: {
       flexDirection: "row",
@@ -950,7 +954,7 @@ export const modalStyles = StyleSheet.create({
     userOntact: {
       flexDirection: "row",
       alignSelf: "center",
-      marginBottom: hp("0.5%"),
+      marginBottom: hp("1.5%"),
     },
     userRating: {
       flexDirection: "row",
@@ -960,28 +964,23 @@ export const modalStyles = StyleSheet.create({
     ratingText: {
       fontSize: hp("2%"),
       fontFamily: "Roboto-Light",
-      color: "black",
+      color: "#ededed",
       marginLeft: wp("1%"),
       marginRight: wp("3%"),
     },
     likeComponent: {
-      color: "black",
+      color: "#ededed",
     },
     like: {
       fontSize: hp("2.75%"),
-      color: "black"
+      color: "#ededed"
     },
     dislikeComponent: {
-      color: "black",
+      color: "#ededed",
     },
     dislike: {
       fontSize: hp("2.75%"),
-      color: "black",
-    },
-    adText: {
-      marginLeft: 2,
-      marginRight: 2,
-      fontFamily: "Roboto-Light"
+      color: "#ededed",
     },
     textInput: {
       padding: wp("5%"),
@@ -1056,7 +1055,7 @@ export const modalStyles = StyleSheet.create({
     },
     editButtonText: {
       marginTop: hp("1%"),
-      color: "black",
+      color: "#ededed",
       fontSize: hp("2%"),
       fontWeight: "bold",
       textAlign: "center"
@@ -1085,18 +1084,27 @@ export const profileStyles = StyleSheet.create({
   },
   editButtonText: {
     marginTop: hp("1%"),
-    color: "black",
-    fontSize: wp("3.5%"),
+    color: "#ededed",
+    fontSize: wp("4%"),
     fontWeight: "bold",
     textAlign: "center",
   },
   basicUserInfo: {
     maxHeight: hp("50%"),
-    marginBottom: wp("1%"),
-    backgroundColor: "#ededed",
+    marginBottom: hp("1%"),
+    backgroundColor: "#2d2d2d",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#606060",
+    borderColor: "#ededed",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   profileImageHeight: {
     alignSelf: "center",
@@ -1118,11 +1126,11 @@ export const profileStyles = StyleSheet.create({
   },
   profileName: {
     alignSelf: "center",
-    marginTop: hp("1.5%"),
-    marginBottom: hp("0.5%"),
-    fontSize: wp("5.25%"),
+    marginTop: hp("0.25%"),
+    marginBottom: hp("0.25%"),
+    fontSize: wp("4.75%"),
     fontWeight: "bold",
-    color: "black",
+    color: "#ededed",
     fontFamily: "Roboto-Bold",
   },
   userLocation: {
@@ -1134,7 +1142,7 @@ export const profileStyles = StyleSheet.create({
     marginLeft: wp("1%"),
     fontSize: wp("4%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    color: "#ededed",
   },
   userMail: {
     flexDirection: "row",
@@ -1151,28 +1159,29 @@ export const profileStyles = StyleSheet.create({
   userRating: {
     flexDirection: "row",
     alignSelf: "center",
+    justifyContent: "space-between",
     marginBottom: hp("1.5%"),
   },
   ratingText: {
     fontSize: wp("3.5%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    color: "#ededed",
     marginLeft: wp("1%"),
     marginRight: wp("3%"),
   },
   likeComponent: {
-    color: "black",
+    color: "#ededed",
   },
   like: {
     fontSize: wp("4.8%"),
-    color: "black",
+    color: "#ededed",
   },
   dislikeComponent: {
-    color: "black",
+    color: "#ededed",
   },
   dislike: {
     fontSize: wp("4.8%"),
-    color: "black",
+    color: "#ededed",
   },
   userContact: {
     flexDirection: "row",
@@ -1183,18 +1192,36 @@ export const profileStyles = StyleSheet.create({
     alignSelf: "center",
   },
   aboutUser: {
-    marginBottom: hp("0.5%"),
-    backgroundColor: "#ededed",
+    marginBottom: hp("1%"),
+    backgroundColor: "#2d2d2d",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#606060",
+    borderColor: "#ededed",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5
   },
   smallContainer: {
-    marginBottom: hp("0.5%"),
-    backgroundColor: "#ededed",
+    marginBottom: hp("1%"),
+    backgroundColor: "#2d2d2d",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#606060",
+    borderColor: "#ededed",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+elevation: 5,
   },
   smallContainerBottom: {
     marginBottom: hp("5%"),
@@ -1212,7 +1239,7 @@ export const profileStyles = StyleSheet.create({
     fontSize: wp("4.25%"),
     textAlign: "center",
     fontFamily: "Roboto-Bold",
-    color: "black",
+    color: "#ededed",
   },
   dashContainer: {
     marginLeft: wp("0.3%"),
@@ -1229,7 +1256,9 @@ export const profileStyles = StyleSheet.create({
     marginHorizontal: wp("1.5%"),
     marginVertical: hp("0.5%"),
     borderRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: "#1e1c24",
+    borderWidth: wp("0.1%"),
+    borderColor: "#9f9f9f"
   },
   comment: {
     paddingHorizontal: hp("1.25%"),
@@ -1242,12 +1271,13 @@ export const profileStyles = StyleSheet.create({
   details: {
     fontSize: wp("3.5%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    lineHeight: wp("4%"),
+    color: "#ededed",
   },
   commentTitle: {
     fontSize: wp("3.5%"),
     fontWeight: "bold",
-    color: "black",
+    color: "#ededed",
   },
   commentButtonText: {
     fontSize: wp("4.25%"),
@@ -1260,29 +1290,29 @@ export const profileStyles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: hp("0.5%"),
     marginLeft: wp("2%"),
-    color: "black",
+    color: "#ededed",
   },
   commentTime: {
     fontSize: wp("3.5%"),
     marginTop: hp("0.5%"),
     marginLeft: wp("1%"),
-    color: "black",
+    color: "#ededed",
   },
   commentText: {
     fontSize: wp("3.5%"),
     marginTop: hp("1%"),
-    color: "black",
+    color: "#ededed",
   },
   arrow: {
     alignSelf: "center",
     fontSize: wp("5.25%"),
-    color: "black",
+    color: "#ededed",
   },
   arrowSmall: {
     alignSelf: "center",
     marginTop: hp("0.5%"),
     fontSize: wp("5.25%"),
-    color: "black",
+    color: "#ededed",
   },
 });
 export const adCreationStyles = StyleSheet.create({
