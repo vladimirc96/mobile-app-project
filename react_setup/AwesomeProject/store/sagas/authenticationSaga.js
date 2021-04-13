@@ -5,6 +5,7 @@ import {
 } from "../actions/authentication/types";
 import { login, logout } from "../../services/AuthService";
 import { getUser } from "../../services/UserService";
+import Toast from "react-native-simple-toast";
 
 export function* loginUser() {
   yield takeLatest(AUTHENTICATION_ACTIONS_ASYNC.LOGIN, loginUserAsync);
@@ -16,8 +17,11 @@ function* loginUserAsync(action) {
     yield put({ type: AUTHENTICATION_ACTIONS.LOGIN, token: token });
     const user = yield call(getUser);
     yield put({ type: "GET_USER_INFO", data: user });
+    action.navigation.navigate("Home");
   } catch (err) {
-    console.log(err);
+    if (err.message !== "") {
+      Toast.show(err.message, Toast.SHORT);
+    }
   }
 }
 

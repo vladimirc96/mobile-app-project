@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import { StyleSheet, Image, Text, TextInput, View } from "react-native";
 import { EditProfileButton } from "../Buttons";
-import * as Font from "expo-font";
 
 import { Dimensions } from "react-native";
 import {
@@ -11,30 +10,31 @@ import {
 } from "react-native-responsive-screen";
 import * as yup from "yup";
 import { Picker } from "@react-native-picker/picker";
+import {
+  getEditProfileError,
+  getFieldNameError,
+} from "../../shared/ValidationUtil";
+import { ScrollView } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const editProfileSchema = yup.object({
-  username: yup.string(),
-  password: yup.string(),
+  username: yup.string().required(),
+  password: yup.string().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  phoneNumber: yup.string().required(),
+  email: yup.string().required(),
+  location: yup.object(),
+  details: yup.string(),
 });
-
-const customFonts = {
-  "Comfortaa-Regular": require("../../assets/fonts/Comfortaa-Regular.ttf"),
-  "Comfortaa-Light": require("../../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../../assets/fonts/Comfortaa-Bold.ttf"),
-  "Roboto-Thin": require("../../assets/fonts/Roboto-Thin.ttf"),
-  "Roboto-Bold": require("../../assets/fonts/Roboto-Bold.ttf"),
-  "Roboto-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
-  "Roboto-Light": require("../../assets/fonts/Roboto-Light.ttf"),
-};
 
 export default function EditProfileForm({ updateUser, locations, user }) {
   const avatar = require("../../assets/images/avatar.png");
 
   return (
-    <View>
+    <ScrollView>
       <Formik
         initialValues={{
           id: user.id,
@@ -51,7 +51,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
         }}
         validationSchema={editProfileSchema}
       >
-        {(props) => (
+        {(formikProps) => (
           <View style={styles.mainContainer}>
             <Image
               style={
@@ -63,42 +63,146 @@ export default function EditProfileForm({ updateUser, locations, user }) {
             />
             <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
             <View style={styles.userDetailsContainer}>
-              <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Korisničko ime</Text>
+              <View
+                style={[
+                  styles.inputFieldContainer,
+                  getEditProfileError(
+                    formikProps.errors.username,
+                    formikProps.touched.username
+                  ),
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.fieldName,
+                    getFieldNameError(
+                      formikProps.errors.username,
+                      formikProps.touched.username
+                    ),
+                  ]}
+                >
+                  Korisničko ime
+                </Text>
                 <TextInput
                   style={styles.inputField}
-                  onChangeText={props.handleChange("username")}
-                  value={props.values.username}
+                  onChangeText={formikProps.handleChange("username")}
+                  value={formikProps.values.username}
+                  onBlur={formikProps.handleBlur("username")}
                 />
               </View>
-              <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Ime i prezime</Text>
+              <View
+                style={[
+                  styles.inputFieldContainer,
+                  getEditProfileError(
+                    formikProps.errors.firstName,
+                    formikProps.touched.firstName
+                  ),
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.fieldName,
+                    getFieldNameError(
+                      formikProps.errors.firstName,
+                      formikProps.touched.firstName
+                    ),
+                  ]}
+                >
+                  Ime
+                </Text>
                 <TextInput
                   style={styles.inputField}
-                  onChangeText={props.handleChange("firstName")}
-                  value={props.values.firstName}
+                  onChangeText={formikProps.handleChange("firstName")}
+                  value={formikProps.values.firstName}
+                  onBlur={formikProps.handleBlur("firstName")}
                 />
               </View>
-              <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Kontakt telefon</Text>
+              <View
+                style={[
+                  styles.inputFieldContainer,
+                  getEditProfileError(
+                    formikProps.errors.lastName,
+                    formikProps.touched.lastName
+                  ),
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.fieldName,
+                    getFieldNameError(
+                      formikProps.errors.lastName,
+                      formikProps.touched.lastName
+                    ),
+                  ]}
+                >
+                  Prezime
+                </Text>
                 <TextInput
                   style={styles.inputField}
-                  onChangeText={props.handleChange("phoneNumber")}
-                  value={props.values.phoneNumber}
+                  onChangeText={formikProps.handleChange("lastName")}
+                  value={formikProps.values.lastName}
+                  onBlur={formikProps.handleBlur("lastName")}
                 />
               </View>
-              <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>E-mail adresa</Text>
+              <View
+                style={[
+                  styles.inputFieldContainer,
+                  getEditProfileError(
+                    formikProps.errors.phoneNumber,
+                    formikProps.touched.phoneNumber
+                  ),
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.fieldName,
+                    getFieldNameError(
+                      formikProps.errors.phoneNumber,
+                      formikProps.touched.phoneNumber
+                    ),
+                  ]}
+                >
+                  Kontakt telefon
+                </Text>
                 <TextInput
                   style={styles.inputField}
-                  onChangeText={props.handleChange("email")}
-                  value={props.values.email}
+                  onChangeText={formikProps.handleChange("phoneNumber")}
+                  value={formikProps.values.phoneNumber}
+                  onBlur={formikProps.handleBlur("phoneNumber")}
+                  keyboardType="numeric"
+                />
+              </View>
+              <View
+                style={[
+                  styles.inputFieldContainer,
+                  getEditProfileError(
+                    formikProps.errors.email,
+                    formikProps.touched.email
+                  ),
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.fieldName,
+                    getFieldNameError(
+                      formikProps.errors.email,
+                      formikProps.touched.email
+                    ),
+                  ]}
+                >
+                  E-mail adresa
+                </Text>
+                <TextInput
+                  style={styles.inputField}
+                  onChangeText={formikProps.handleChange("email")}
+                  value={formikProps.values.email}
+                  onBlur={formikProps.handleBlur("email")}
                 />
               </View>
 
               <View style={styles.inputFieldContainer}>
                 <Picker
-                  selectedValue={props.values.location.id}
+                  selectedValue={formikProps.values.location.id}
                   style={{
                     fontSize: hp("2%"),
                     backgroundColor: "#1e1c24",
@@ -107,7 +211,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                     paddingTop: hp("0.5%"),
                   }}
                   onValueChange={(itemValue, itemIndex) => {
-                    props.setFieldValue("location", locations[itemIndex]);
+                    formikProps.setFieldValue("location", locations[itemIndex]);
                   }}
                 >
                   {locations.map((location) => (
@@ -119,27 +223,25 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                   ))}
                 </Picker>
               </View>
-              <View style={styles.inputFieldContainer}>
-                <Text style={styles.fieldName}>Pol</Text>
-                <TextInput
-                  style={styles.inputField}
-                  placeholder="Ženski"
-                  placeholderTextColor="#ededed"
-                />
-              </View>
             </View>
             <TextInput
+              placeholder="Detalji"
               multiline={true}
+              textAlignVertical="top"
               numberOfLines={5}
               style={styles.detailsInputField}
-              onChangeText={props.handleChange("details")}
-              value={props.values.details}
+              onChangeText={formikProps.handleChange("details")}
+              value={formikProps.values.details}
+              onBlur={formikProps.handleBlur("details")}
             />
-            <EditProfileButton title={"Sačuvaj"} onPress={props.handleSubmit} />
+            <EditProfileButton
+              title={"Sačuvaj"}
+              onPress={formikProps.handleSubmit}
+            />
           </View>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 }
 

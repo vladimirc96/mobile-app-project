@@ -7,6 +7,10 @@ import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
 import * as yup from "yup";
 import { Dimensions } from "react-native";
+import {
+  getErrorStyle,
+  getErrorPlaceholder,
+} from "../../shared/ValidationUtil";
 
 const signUpSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
@@ -20,11 +24,6 @@ const signUpSchema = yup.object({
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-
-const customFonts = {
-  "Comfortaa-Regular": require("../../assets/fonts/Comfortaa-Regular.ttf"),
-  "Comfortaa-Light": require("../../assets/fonts/Comfortaa-Light.ttf"),
-};
 
 export default function SignUpForm({ signup }) {
   const cameraIcon = require("../../assets/images/camera_icon.png");
@@ -68,7 +67,7 @@ export default function SignUpForm({ signup }) {
         }}
         validationSchema={signUpSchema}
       >
-        {(props) => (
+        {(formikProps) => (
           <ScrollView>
             <View
               style={
@@ -96,72 +95,79 @@ export default function SignUpForm({ signup }) {
             </View>
             <View style={signupStyles.inputContainer}>
               <TextInput
-                style={
-                  props.errors.username && props.touched.username
-                    ? signupStyles.inputErrorField
-                    : signupStyles.inputField
-                }
+                style={[
+                  signupStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.username,
+                    formikProps.touched.username
+                  ),
+                ]}
                 placeholder="Korisničko ime"
-                placeholderTextColor={
-                  props.errors.username && props.touched.username
-                    ? "red"
-                    : "#ededed"
-                }
-                onChangeText={props.handleChange("username")}
-                value={props.values.username}
-                onBlur={props.handleBlur("username")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.username,
+                  formikProps.touched.username
+                )}
+                onChangeText={formikProps.handleChange("username")}
+                value={formikProps.values.username}
+                onBlur={formikProps.handleBlur("username")}
               />
               <TextInput
-                style={
-                  props.errors.password && props.touched.password
-                    ? signupStyles.inputErrorField
-                    : signupStyles.inputField
-                }
+                style={[
+                  signupStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.password,
+                    formikProps.touched.password
+                  ),
+                ]}
                 placeholder="Lozinka"
-                placeholderTextColor={
-                  props.errors.password && props.touched.password
-                    ? "red"
-                    : "#ededed"
-                }
-                onChangeText={props.handleChange("password")}
-                value={props.values.password}
-                onBlur={props.handleBlur("password")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.password,
+                  formikProps.touched.password
+                )}
+                onChangeText={formikProps.handleChange("password")}
+                value={formikProps.values.password}
+                onBlur={formikProps.handleBlur("password")}
                 secureTextEntry={true}
               />
               <TextInput
-                style={
-                  props.errors.email && props.touched.email
-                    ? signupStyles.inputErrorField
-                    : signupStyles.inputField
-                }
+                style={[
+                  signupStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.email,
+                    formikProps.touched.email
+                  ),
+                ]}
                 placeholder="Email"
-                placeholderTextColor={
-                  props.errors.email && props.touched.email ? "red" : "#ededed"
-                }
-                onChangeText={props.handleChange("email")}
-                value={props.values.email}
-                onBlur={props.handleBlur("email")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.email,
+                  formikProps.touched.email
+                )}
+                onChangeText={formikProps.handleChange("email")}
+                value={formikProps.values.email}
+                onBlur={formikProps.handleBlur("email")}
               />
               <TextInput
-                style={
-                  props.errors.phoneNumber && props.touched.phoneNumber
-                    ? signupStyles.inputErrorField
-                    : signupStyles.inputField
-                }
+                style={[
+                  signupStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.phoneNumber,
+                    formikProps.touched.phoneNumber
+                  ),
+                ]}
                 placeholder="Broj telefona"
-                placeholderTextColor={
-                  props.errors.phoneNumber && props.touched.phoneNumber
-                    ? "red"
-                    : "#ededed"
-                }
-                onChangeText={props.handleChange("phoneNumber")}
-                value={props.values.phoneNumber}
-                onBlur={props.handleBlur("phoneNumber")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.phoneNumber,
+                  formikProps.touched.phoneNumber
+                )}
+                onChangeText={formikProps.handleChange("phoneNumber")}
+                value={formikProps.values.phoneNumber}
+                onBlur={formikProps.handleBlur("phoneNumber")}
+                keyboardType="numeric"
               />
             </View>
             <View style={signupStyles.buttonContainer}>
               <SignUpButton
-                onPress={props.handleSubmit}
+                onPress={formikProps.handleSubmit}
                 title={"Registrujte se"}
               />
             </View>

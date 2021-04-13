@@ -257,20 +257,20 @@ export const categoriesStyles = StyleSheet.create({
     marginTop: hp("5%"),
     justifyContent: "center",
   },
-  footerSmallContainerSecondPart:{
+  footerSmallContainerSecondPart: {
     justifyContent: "center",
   },
   footerTextFirstPart: {
-    paddingTop: Platform.OS === 'ios' ?  hp("1.25%") : hp("0.55%"),
-    paddingLeft: wp("1%"), 
+    paddingTop: Platform.OS === "ios" ? hp("1.25%") : hp("0.55%"),
+    paddingLeft: wp("1%"),
     fontSize: wp("4.25%"),
-    fontWeight: "600"
+    fontWeight: "600",
   },
   footerTextSecondPart: {
     alignSelf: "center",
-    paddingTop: Platform.OS === 'ios' ?  hp("1.25%") : hp("0.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("1.25%") : hp("0.35%"),
     fontSize: wp("4.25%"),
-    fontWeight: "600"
+    fontWeight: "600",
   },
   boldText: {
     textDecorationLine: "underline",
@@ -385,20 +385,6 @@ export const loginStyles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     opacity: 0.8,
   },
-  inputErrorField: {
-    borderWidth: 2,
-    width: wp("90%"),
-    height: hp("10%"),
-    paddingLeft: wp("5%"),
-    borderRadius: 20,
-    marginTop: hp("1.5%"),
-    opacity: 0.8,
-    borderColor: "#ff102d",
-    backgroundColor: "#1e1c24",
-    color: "#ff102d",
-    fontSize: wp("4%"),
-    fontFamily: "Comfortaa-Light",
-  },
   footerContainer: {
     alignSelf: "center",
   },
@@ -485,20 +471,6 @@ export const signupStyles = StyleSheet.create({
   buttonContainer: {
     alignSelf: "center",
   },
-  inputErrorField: {
-    borderWidth: 2,
-    width: wp("90%"),
-    height: hp("10%"),
-    paddingLeft: wp("5%"),
-    borderRadius: 20,
-    marginTop: hp("1.5%"),
-    opacity: 0.8,
-    borderColor: "red",
-    backgroundColor: "#1e1c24",
-    color: "#ededed",
-    fontSize: wp("4%"),
-    fontFamily: "Comfortaa-Light",
-  },
 });
 
 export const subCategoriesStyles = StyleSheet.create({
@@ -554,8 +526,8 @@ export const subCategoriesStyles = StyleSheet.create({
     },
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
-    
-    elevation: 10
+
+    elevation: 10,
   },
 });
 
@@ -1899,4 +1871,11 @@ export const errorStyle = {
   errorPlaceholder: {
     color: "#ff102d",
   },
+  editProfileError: { 
+    borderBottomColor: "#ff102d",
+    borderBottomWidth: 1,
+  },
+  fieldNameError: {
+    color: "#ff102d",
+  }
 };
