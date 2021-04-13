@@ -10,6 +10,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.mail.MessagingException;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -37,6 +39,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException ex){
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, "Pogrešno korisničko ime ili šifra", ex));
+    }
+
+    @ExceptionHandler(MessagingException.class)
+    public ResponseEntity<Object> handleBadEmailException(MessagingException ex){
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, "Email nije moguće poslati.", ex));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

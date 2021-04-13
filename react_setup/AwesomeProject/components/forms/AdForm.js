@@ -15,6 +15,10 @@ import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import * as ImagePicker from "expo-image-picker";
 import { ScrollView } from "react-native-gesture-handler";
+import {
+  getErrorStyle,
+  getErrorPlaceholder,
+} from "../../shared/ValidationUtil";
 
 const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
@@ -116,16 +120,16 @@ export default function AdForm(props) {
               <TextInput
                 style={[
                   adCreationStyles.adNameField,
-                  formikProps.errors.title && formikProps.touched.title
-                    ? errorStyle.error
-                    : null,
+                  getErrorStyle(
+                    formikProps.errors.title,
+                    formikProps.touched.title
+                  ),
                 ]}
                 placeholder="Max. 50 karaktera."
-                placeholderTextColor={
-                  formikProps.errors.title && formikProps.touched.title
-                    ? "#ff102d"
-                    : "#ededed"
-                }
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.title,
+                  formikProps.touched.title
+                )}
                 value={formikProps.values.title}
                 onChangeText={formikProps.handleChange("title")}
                 onBlur={formikProps.handleBlur("title")}

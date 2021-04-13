@@ -1,30 +1,11 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  View,
-  ActivityIndicator,
-} from "react-native";
+import { ImageBackground, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
-import RadioButton from "../components/RadioButton";
-import * as ImagePicker from "expo-image-picker";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { EditProfileButton } from "../components/Buttons";
 import { contactUsStyles } from "./../shared/Styles";
-import { Dimensions } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+import ContactUsForm from "../components/forms/ContactUsForm";
+import { sendMail } from "../services/MailService";
+import Toast from "react-native-simple-toast";
+import { CONTACT_US_SUCCESS } from "../constants/Messages";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -38,11 +19,7 @@ const customFonts = {
 export default class ContactUs extends React.Component {
   state = {
     fontsLoaded: false,
-    selectedCategory: "category_id_1",
-    selectedSubcategory: "subcategory_id_1",
-    checkedPrice: "price_id_1",
     image: null,
-    selectedType: "adType_id_2",
   };
 
   async _loadFontsAsync() {
@@ -50,101 +27,50 @@ export default class ContactUs extends React.Component {
     this.setState({ fontsLoaded: true });
   }
 
-  componentDidMount() {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
+  handleSubmit = async (mail) => {
+    try {
+      const formData = new FormData();
+      Object.keys(mail).forEach((key) => {
+        if (key === "image") {
+          return;
+        }
+        formData.append(key, mail[key]);
+      });
+      if (mail.image) {
+        const response = await fetch(mail.image);
+        const blob = await response.blob();
+        const image = {
+          uri: mail.image,
+          type: blob.type,
+          name: blob.data.name,
+        };
+        formData.append("image", image);
       }
-    })();
-
-    this._loadFontsAsync();
-  }
-
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      await sendMail(formData);
+      Toast.show(CONTACT_US_SUCCESS, Toast.LONG);
+      this.props.navigation.navigate("Categories");
+    } catch (err) {
+      console.log(err);
     }
   };
 
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
-    const cameraIcon = require("./../assets/images/camera_icon.png");
-    const hamburger = require("./../assets/images/hamburger.png");
-    const avatar = require("./../assets/images/avatar.png");
-
-    if(this.state.fontsLoaded){
+    console.log(this.state.fontsLoaded);
+    if (this.state.fontsLoaded) {
       return (
         <ImageBackground
           style={contactUsStyles.backgroundImageContainer}
           source={backgroundImage}
         >
-          <ScrollView>
-            <View style={contactUsStyles.mainContainer}>
-              <View style={contactUsStyles.backForwardContainer}></View>
-              <View style={contactUsStyles.inputFieldContainer}>
-                <Text style={contactUsStyles.fieldNameBold}>Imate pitanje, sugestiju ili želite da postanete deo tima? 
-                    Pošaljite nam poruku!
-                </Text>
-                <Text style={contactUsStyles.fieldName}> Naslov poruke </Text>
-                <TextInput
-                  style={contactUsStyles.adNameField}
-                  placeholder="Max. 50 karaktera."
-                  placeholderTextColor="#ededed"
-                />
-              </View>
-              <View style={contactUsStyles.inputFieldContainer}>
-                <Text style={contactUsStyles.fieldName}>Vaša poruka</Text>
-                <TextInput
-                  multiline={true}
-                  numberOfLines={6}
-                  style={contactUsStyles.adDescriptionField}
-                  placeholder="Max. 1000 karaktera."
-                  placeholderTextColor="#ededed"
-                />
-              </View>
-              <View style={contactUsStyles.inputFieldContainerWithMargin}>
-              <Text style={contactUsStyles.fieldNameBold}>Naišli ste na grešku?
-                Okačite screenshoot, kako bi naš tim mogao da je popravi
-              </Text>
-                <Text style={contactUsStyles.fieldName}>Fotografija</Text>
-                <TouchableOpacity onPress={this.pickImage}>
-                  <View style={contactUsStyles.pickImageContainer}>
-                    <View style={contactUsStyles.pickImageAdditional}>
-                      <Text style={contactUsStyles.pickingImage}> Izaberi sliku</Text>
-                      <AntDesign name="pluscircleo" style={contactUsStyles.plusIcon} />
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={contactUsStyles.inputFieldContainerWithMargin}>
-                <Text style={contactUsStyles.fieldName}> Vaši podaci </Text>
-                <TextInput
-                  style={contactUsStyles.adNameField}
-                  placeholder="Ime"
-                  placeholderTextColor="#ededed"
-                />
-                <TextInput
-                  style={contactUsStyles.adNameField}
-                  placeholder="E-mail adresa"
-                  placeholderTextColor="#ededed"
-                />
-              </View>
-              <EditProfileButton title={"Posalji"} />
-            </View>
-            </ScrollView>
+          <ContactUsForm handleSubmit={this.handleSubmit} />
         </ImageBackground>
       );
-    }
-    else{
+    } else {
       return <ActivityIndicator size="large" />;
     }
   }
