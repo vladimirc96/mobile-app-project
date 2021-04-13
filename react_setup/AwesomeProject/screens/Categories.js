@@ -63,12 +63,25 @@ export class Categories extends React.Component {
         >
           <View style={categoriesStyles.mainContainer}>
             {rows}
-
+            {!this.props.token ? (
+              <View style={categoriesStyles.footerContainer}>
+                <View style={categoriesStyles.footerSmallContainer}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate("SignUp")}>
+                    <Text style={categoriesStyles.boldText}>Registrujte se</Text>
+                  </TouchableOpacity>
+                    <Text style={categoriesStyles.footerTextFirstPart}>ukoliko i Vi imate</Text>
+                </View>
+                <View style={categoriesStyles.footerSmallContainerSecondPart}>
+                  <Text style={categoriesStyles.footerTextSecondPart}>oglas koji želite da postavite </Text>
+                </View>
+              </View>
+            ) : (
               <AdvButton
                 title="Postavite oglas"
                 onPress={() => this.props.navigation.navigate("AdCreation") }
               />
-          </View>
+              )}
+            </View>
         </ImageBackground>
       );
     } else {

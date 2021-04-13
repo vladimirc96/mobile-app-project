@@ -12,6 +12,9 @@ import { Dimensions } from "react-native";
 import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
+Text.defaultProps = {}
+Text.defaultProps.allowFontScaling = false
+Text.defaultProps.adjustsFontSizeToFit
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
