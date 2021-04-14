@@ -39,9 +39,6 @@ export default class Comment extends React.Component {
     if (this.state.fontsLoaded) {
       return (
         <View style={profileStyles.userDetails}>
-          <Text style={profileStyles.commentTitle}>
-            Casovi iz pythona
-          </Text>
           <View
             style={{
               flexDirection: "row",
@@ -55,7 +52,7 @@ export default class Comment extends React.Component {
             />
             <Text style={profileStyles.commentUser}>{this.props.comment.username.length? this.props.comment.username : "Anoniman korisnik"}</Text>
             <Text style={profileStyles.commentTime}>
-              30 Jul 2020 - 30 Avg 2020
+              {this.props.comment.creationDate}
             </Text>
           </View>
           <Text style={profileStyles.commentText}>

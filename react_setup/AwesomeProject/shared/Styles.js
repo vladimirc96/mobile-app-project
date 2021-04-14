@@ -41,10 +41,11 @@ export const adsStyles = StyleSheet.create({
     height: 20,
   },
   titleText: {
-    paddingTop: hp("0.75%"),
     color: "#ffffff",
     textAlign: "center",
+    paddingTop: Platform.OS === "ios" ? hp("1.6%") : hp("0.8%"),
     fontSize: wp("6.3%"),
+    lineHeight: wp("7%"),
     fontFamily: "Comfortaa-Bold",
   },
   adContainer: {
@@ -140,15 +141,6 @@ export const buttonsStyles = StyleSheet.create({
     backgroundColor: "#1e1c24",
     opacity: 0.99,
   },
-  AdvButtonContainerProfile: {
-    alignSelf: "center",
-    width: wp("92%"),
-    marginTop: hp("0.5%"),
-    height: hp("9%"),
-    borderRadius: 20,
-    backgroundColor: "#1e1c24",
-    opacity: 0.99,
-  },
   AdvButtonText: {
     textAlign: "center",
     paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
@@ -207,11 +199,18 @@ export const buttonsStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("2%"),
     marginBottom: hp("2%"),
-    width: wp("40%"),
-    height: hp("4.25%"),
+    width: wp("50%"),
+    height: hp("5.5%"),
     borderRadius: 6,
     backgroundColor: "#5fd2ff",
     opacity: 0.99,
+  },
+  adButtonProfileText: {
+    textAlign: "center",
+    paddingTop: Platform.OS === 'ios' ?hp("0.75%") : hp("0.1%"),
+    color: "#ffffff",
+    fontSize: wp("5.2%"),
+    fontFamily: "Comfortaa-Bold",
   },
   aboutContactButtonContainer: {
     flexDirection: "row",
@@ -609,12 +608,21 @@ export const subCategoryStyles = StyleSheet.create({
 
 export const adStyles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#eee8e8",
+    backgroundColor: "#2d2d2d",
     width: "100%",
     height: "100%",
     borderRadius: 7,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#565656",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5
   },
   adMainContainer: {
     flexDirection: "row",
@@ -625,16 +633,16 @@ export const adStyles = StyleSheet.create({
     top: wp("0.68%"),
     left: wp("0.68%"),
     borderWidth: 2,
-    borderColor: "#7d7d7d",
+    borderColor: "#ededed",
   },
   adMainText: {
     marginLeft: wp("2.72%"),
     width: wp("36.6%"),
-    backgroundColor: "#eee8e8",
+    backgroundColor: "#2d2d2d",
   },
   adTitleContainer: {
     borderBottomWidth: 0.5,
-    borderColor: "#7d7d7d",
+    borderColor: "#9f9f9f",
     marginBottom: hp("0.5%"),
   },
   adTitle: {
@@ -642,31 +650,31 @@ export const adStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: wp("3%"),
     fontFamily: "Comfortaa-Bold",
-    color: "black",
+    color: "#ededed",
   },
   descriptionSmall: {
     width: "100%",
     height: wp("19%"),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#7d7d7d",
+    borderColor: "#9f9f9f",
     fontFamily: "Roboto-Regular",
-    backgroundColor: "white",
+    backgroundColor: "#1e1c24",
   },
   descriptionLarge: {
     width: "100%",
     height: wp("15.5%"),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#7d7d7d",
+    borderColor: "#9f9f9f",
     fontFamily: "Roboto-Regular",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#1e1c24",
   },
   descriptionText: {
     fontSize: wp("2.5%"),
     marginLeft: wp("0.85%"),
     marginRight: wp("0.85%"),
-    color: "black",
+    color: "#ededed",
     fontFamily: "Roboto-Regular",
   },
   descriptionDetails: {
@@ -677,12 +685,12 @@ export const adStyles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Roboto-Regular",
     textDecorationLine: "underline",
-    color: "black",
+    color: "#ededed",
   },
   detailsArrow: {
     alignSelf: "center",
     fontSize: wp("2.75%"),
-    color: "black",
+    color: "#ededed",
   },
   ownerNameContainer: {
     alignSelf: "flex-start",
@@ -692,13 +700,13 @@ export const adStyles = StyleSheet.create({
     fontSize: wp("2%"),
     fontFamily: "Roboto-Regular",
     fontStyle: "italic",
-    color: "black",
+    color: "#ededed",
   },
   adDetails: {
     marginTop: wp("1%"),
     marginLeft: wp("1.5%"),
     width: wp("20.4%"),
-    backgroundColor: "#eee8e8",
+    backgroundColor: "#2d2d2d",
   },
   priceContainer: {
     alignSelf: "center",
@@ -707,44 +715,44 @@ export const adStyles = StyleSheet.create({
     width: wp("17.7%"),
     borderRadius: 5,
     borderColor: "#7d7d7d",
-    backgroundColor: "#7d7d7d",
+    backgroundColor: "#03d5ff",
   },
   priceValue: {
     textAlign: "center",
     marginTop: wp("1%"),
     fontSize: wp("2.75%"),
     fontFamily: "Roboto-Regular",
-    color: "black",
+    color: "#ededed",
   },
   publishDateContainer: {
     alignContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    marginTop: wp("2%"),
+    marginTop: wp("5%"),
     width: wp("16.4%"),
-    backgroundColor: "#eee8e8",
+    backgroundColor: "#2d2d2d",
   },
   publishTitle: {
     fontSize: wp("2.5%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    color: "#ededed",
   },
   publishDate: {
     fontSize: wp("2.5%"),
-    color: "black",
+    color: "#ededed",
   },
   location: {
     alignContent: "center",
     alignItems: "center",
     alignSelf: "center",
     width: wp("16.4%"),
-    marginTop: wp("2%"),
-    backgroundColor: "#eee8e8",
+    marginTop: wp("5%"),
+    backgroundColor: "#2d2d2d",
   },
   locationText: {
     fontSize: wp("2.5%"),
     fontFamily: "Roboto-Bold",
-    color: "black",
+    color: "#ededed",
   },
   ratingStars: {
     flexDirection: "row",
@@ -1071,8 +1079,8 @@ export const profileStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("3%"),
     width: wp("90%"),
-    minHeight: hp("80%"),
-    marginBottom: hp("3%")
+    minHeight: hp("70%"),
+    marginBottom: hp("1%")
   },
   editButton: {
     height: hp("5%"),
@@ -1301,6 +1309,7 @@ elevation: 5,
   commentText: {
     fontSize: wp("3.5%"),
     marginTop: hp("1%"),
+    marginLeft: wp("2%"),
     color: "#ededed",
   },
   arrow: {
@@ -1802,3 +1811,126 @@ export const errorStyle = {
     color: "#ff102d",
   },
 };
+
+export const smallAdStyles = StyleSheet.create({
+  mainContainer: {
+      backgroundColor: "#1e1c24",
+      height:wp("18.72%"),
+      marginHorizontal: wp("1.5%"),
+      marginVertical: hp("0.15%"),
+      borderRadius: 5,
+      borderWidth: wp("0.1%"),
+      borderColor: "#9f9f9f"
+  },
+  adMainContainer: {
+    flexDirection: "row",
+  },
+  adImage: {
+    height: wp("16%"),
+    width: wp("16%"),
+    top: wp("1.36%"),
+    left: wp("1.36%"),
+    borderWidth: 1,
+    borderColor: "#ffffff",
+  },
+  adMainText: {
+    marginTop: wp("1%"),
+    marginLeft: wp("2.72%"),
+    width: wp("50%"),
+  },
+  adTitle: {
+    textAlign: "left",
+    fontSize: wp("3%"),
+    lineHeight: wp("4.4%"),
+    fontFamily: "Comfortaa-Bold",
+    color: "#ededed",
+  },
+  descriptionSmall: {
+      width: "100%",
+      borderTopWidth: 1,
+      borderTopColor: "#2d2d2d",
+      height: wp("12%")
+    },
+    descriptionText: {
+      fontSize: wp("2.25%"),
+      marginTop: wp("1%"),
+      marginLeft: wp("0.85%"),
+      marginRight: wp("0.85%"),
+      color: "#ededed",
+    },
+  leftDashContainer: {
+    marginLeft: wp("0.3%"),
+    flexDirection: "row",
+  },
+  line: {
+    textAlignVertical: "center",
+    fontSize: 5,
+    color: "#ededed",
+  },
+  adDetails: {
+    marginTop: wp("1.36%"),
+    marginLeft: wp("1%"),
+    width: wp("16%"),
+  },
+  priceContainer: {
+    alignSelf: "center",
+    marginTop: wp("0.3%"),
+    marginBottom: wp("5%"),
+    height: wp("4%"),
+    width: wp("15%"),
+    borderRadius: 5,
+    backgroundColor: "#03d5ff",
+  },
+  priceValue: {
+    textAlign: "center",
+    marginTop: wp("1%"),
+    fontSize: wp("1.75%"),
+    color: "#ededed",
+  },
+  publishDateContainer: {
+    alignContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    marginTop: wp("1%"),
+    width: wp("16.4%"),
+    paddingLeft: wp("4%")
+  },
+  publishTitle: {
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+  publishDate: {
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+  locationText: {
+    fontSize: wp("2.25%"),
+    color: "#ededed",
+  },
+  ratingStars: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: wp("15%"),
+    marginTop: wp("3%"),
+  },
+  likeText: {
+    marginLeft:wp("1%"),
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+  like: {
+    marginLeft: wp("1.36%"),
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+  dislike: {
+    marginLeft: wp("1.36%"),
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+  dislikeText: {
+    marginLeft: wp("1.36%"),
+    fontSize: wp("2%"),
+    color: "#ededed",
+  },
+});

@@ -54,7 +54,9 @@ export class Profile extends React.Component {
       showAdModal: false,
       ads: [],
       comments: [],
-      chosenAd: null
+      chosenAd: null,
+      adsLoaded: false,
+      commentsLoaded: false
     };
   }
 
@@ -68,7 +70,7 @@ export class Profile extends React.Component {
       const data = await getByUsername(
         this.state.user.username
       );
-      this.setState({ads: data});
+      this.setState({ads: data, adsLoaded: true});
     } catch (err) {
       console.log(err.message);
     }
@@ -79,7 +81,7 @@ export class Profile extends React.Component {
       const data = await getCommentsByUsername(
         this.state.user.username
       );
-      this.setState({comments: data});
+      this.setState({comments: data, commentsLoaded: true});
     } catch (err) {
       console.log(err.message);
     }
@@ -199,7 +201,7 @@ export class Profile extends React.Component {
                         color="#ededed"
                       />
                       <Text style={profileStyles.location}>
-                        {this.state.user.location.value + ", Novi Sad"}
+                        {this.state.user.location.value}
                       </Text>
                     </View>
                     <View style={profileStyles.userMail}>
@@ -251,8 +253,8 @@ export class Profile extends React.Component {
                         Detalji o korisniku
                       </Text>
                       <View style={profileStyles.userDetails}>
-                        <Text numberOfLines={this.state.shortText? 3 : 40} style={profileStyles.details}>
-                          {this.state.user.details}
+                        <Text numberOfLines={this.state.shortText? 3 : 100} style={profileStyles.details}>
+                          {this.state.user.details != null? this.state.user.details.length : "Korisnik jos nije uneo detalje o sebi!"} 
                         </Text>
                       </View>
                       <FontAwesome
@@ -280,6 +282,12 @@ export class Profile extends React.Component {
                     {this.state.showComments && (
                       <View>
                         {commentsList}
+                        {
+                          this.state.commentsLoaded && !this.state.comments.length? 
+                          <View style={profileStyles.userDetails}>
+                            <Text style={profileStyles.details}>Korisnik nema nijedan komentar!</Text>
+                          </View> : null
+                        }
                         <TouchableOpacity onPress={this.toggleComments}>
                           <FontAwesome
                             name="angle-double-up"
@@ -304,6 +312,12 @@ export class Profile extends React.Component {
                     {this.state.showAds && (
                       <View>
                         {adsList}
+                        {
+                          this.state.adsLoaded && !this.state.ads.length?
+                          <View style={profileStyles.userDetails}>
+                            <Text style={profileStyles.details}>Korisnik trenutno nema nijedan oglas!</Text>
+                          </View> : null
+                        }
                         <TouchableOpacity onPress={this.toggleAds}>
                           <FontAwesome
                             name="angle-double-up"
@@ -313,15 +327,10 @@ export class Profile extends React.Component {
                       </View>
                     )}
                   </View>
-                  {this.props.token && (
-                    <AdButtonProfile title={"Postavite oglas"} onPress={() => this.props.navigation.navigate("AdCreation")} />
-                    // <AdvButton
-                    //   profile={true}
-                    //   title={"Postavite oglas"}
-                    //   onPress={() => this.props.navigation.navigate("AdCreation")}
-                    // />
-                  )}
                 </View>
+                {this.props.token && (
+                    <AdButtonProfile title={"Postavite oglas"} onPress={() => this.props.navigation.navigate("AdCreation")} />
+                  )}
               </ScrollView>
             )}
           </ImageBackground>

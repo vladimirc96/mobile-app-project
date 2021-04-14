@@ -48,7 +48,7 @@ export default class Ad extends React.Component {
             </View>
             <View style={adStyles.adMainText}>
               <View style={adStyles.adTitleContainer}>
-                <Text style={adStyles.adTitle}>{this.props.ad.title}</Text>
+                <Text numberOfLines={this.props.ad.title.length < 15? 1 : 2} style={adStyles.adTitle}>{this.props.ad.title.toUpperCase()}</Text>
               </View>
               <View
                 style={
@@ -86,14 +86,6 @@ export default class Ad extends React.Component {
               </View>
               <View style={adStyles.location}>
                 <Text style={adStyles.locationText}>{this.props.ad.user.location.value}</Text>
-              </View>
-              <View>
-                <View style={adStyles.ratingStars}>
-                  <Text style={adStyles.likeText}>6969</Text>
-                  <Fontisto name="like" style={adStyles.like} />
-                  <Fontisto name="dislike" style={adStyles.dislike} />
-                  <Text style={adStyles.dislikeText}>69</Text>
-                </View>
               </View>
             </View>
           </View>

@@ -64,7 +64,7 @@ export class AdvButton extends React.Component {
       return (
         <TouchableOpacity
           onPress={this.props.onPress}
-          style={this.props.profile? buttonsStyles.AdvButtonContainerProfile :  buttonsStyles.AdvButtonContainer}
+          style={buttonsStyles.AdvButtonContainer}
         >
           <Text style={buttonsStyles.AdvButtonText}>{this.props.title}</Text>
         </TouchableOpacity>
@@ -261,7 +261,7 @@ export class AdButtonProfile extends React.Component {
           onPress={this.props.onPress}
           style={buttonsStyles.adButtonProfileContainer}
         >
-          <Text style={buttonsStyles.editProfileButtonText}>
+          <Text style={buttonsStyles.adButtonProfileText}>
             {this.props.title}
           </Text>
         </TouchableOpacity>
