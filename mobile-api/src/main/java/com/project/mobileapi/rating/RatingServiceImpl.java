@@ -1,5 +1,6 @@
 package com.project.mobileapi.rating;
 
+import com.project.mobileapi.model.Rating;
 import com.project.mobileapi.repository.RatingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,11 @@ public class RatingServiceImpl implements RatingService{
     @Override
     public List<RatingDTO> getByUsername(String username) {
         return ratingRepository.findAllByUserUsername(username).stream().map(RatingMapper.INSTANCE::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public RatingDTO saveRating(RatingDTO ratingDTO) {
+        Rating rating = ratingRepository.save(RatingMapper.INSTANCE.toModel(ratingDTO));
+        return RatingMapper.INSTANCE.toDto(rating);
     }
 }

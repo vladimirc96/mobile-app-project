@@ -35,7 +35,7 @@ public class AdDTO {
     @NotBlank(message = "Opis oglasa ne sme da bude prazan.")
     private String description;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate creationDate;
 
     private int views;
