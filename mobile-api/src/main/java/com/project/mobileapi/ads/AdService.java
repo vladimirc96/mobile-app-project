@@ -1,4 +1,6 @@
 package com.project.mobileapi.ads;
+import com.project.mobileapi.user.UserDTO;
+
 import java.io.IOException;
 import java.util.List;
 

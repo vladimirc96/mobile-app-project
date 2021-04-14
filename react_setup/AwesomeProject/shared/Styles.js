@@ -1871,11 +1871,93 @@ export const errorStyle = {
   errorPlaceholder: {
     color: "#ff102d",
   },
-  editProfileError: { 
+  editProfileError: {
     borderBottomColor: "#ff102d",
     borderBottomWidth: 1,
   },
   fieldNameError: {
     color: "#ff102d",
-  }
+  },
+};
+
+export const pickerStyle = {
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    height: hp("40%"),
+    width: wp("60%"),
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    marginBottom: hp("1%")
+  },
+  fieldWrapper: {
+    alignSelf: "center",
+    marginTop: hp("1%"),
+    width: wp("82%"),
+    height: hp("6%"),
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "white",
+    backgroundColor: "#1e1c24",
+    opacity: 0.8,
+  },
+  field: {
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: wp("75%"),
+  },
+  fieldText: {
+    textAlign: "center",
+    paddingTop: hp("1.25%"),
+    fontSize: wp("3.75%"),
+    color: "#ededed",
+    fontFamily: "Roboto-Light",
+    fontStyle: "italic",
+  },
+  closeIcon: {
+    position: "absolute",
+    right: 5,
+    top: 5,
+  },
+  caretIcon: {
+    fontSize: wp("3.75%"),
+    color: "#ededed",
+    paddingTop: hp("1.75%"),
+  },
+  fieldName: {
+    marginLeft: wp("1%"),
+    marginTop: hp("1.25%"),
+    fontSize: wp("3.15%"),
+    fontFamily: "Roboto-Light",
+    color: "#ededed",
+  },
 };

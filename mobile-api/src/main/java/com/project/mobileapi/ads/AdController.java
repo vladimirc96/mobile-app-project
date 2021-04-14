@@ -1,5 +1,9 @@
 package com.project.mobileapi.ads;
 
+import com.project.mobileapi.model.User;
+import com.project.mobileapi.security.TokenUtils;
+import com.project.mobileapi.user.UserDTO;
+import com.project.mobileapi.user.UserService;
 import com.project.mobileapi.util.ObjectUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -23,10 +28,11 @@ import java.util.List;
 public class AdController {
 
     private final AdService adService;
+    private final TokenUtils tokenUtils;
 
     @PostMapping(value = "", consumes = "multipart/form-data")
     @PreAuthorize("hasAuthority('POST_AD')")
-    public ResponseEntity<AdDTO> save(@Valid @ModelAttribute AdDTO adDTO) throws IOException {
+    public ResponseEntity<AdDTO> save(@Valid @ModelAttribute AdDTO adDTO, HttpServletRequest request) throws IOException {
         AdDTO saved = adService.save(adDTO);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }

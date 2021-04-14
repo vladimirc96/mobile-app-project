@@ -2,8 +2,8 @@ package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.Ad;
 import com.project.mobileapi.repository.AdRepository;
+import com.project.mobileapi.user.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.codec.AbstractDataBufferDecoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

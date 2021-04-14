@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
+// import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../RadioButton";
 import { TouchableOpacity, Text, TextInput, View } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
@@ -19,6 +19,7 @@ import {
   getErrorStyle,
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
+import Picker from "../Picker";
 
 const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
@@ -101,7 +102,7 @@ export default function AdForm(props) {
         title: "",
         description: "",
         category: props.categories[0],
-        subCategory: "",
+        subCategory: props.subCategories[0],
         price: "",
         agreement: false,
         currency: "RSD",
@@ -150,72 +151,27 @@ export default function AdForm(props) {
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
-              <Text style={adCreationStyles.fieldName}>
-                Izaberi kategoriju i potkategoriju
-              </Text>
-              <View style={adCreationStyles.dropDownCatSubContainer}>
-                <View style={adCreationStyles.dropDownCatContainer}>
-                  <Picker
-                    selectedValue={formikProps.values.category.id}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("8%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      formikProps.setFieldValue("category", {
-                        id: props.categories[itemIndex].id,
-                        value: props.categories[itemIndex].name,
-                      });
-                      props.onChangeCategory(props.categories[itemIndex].id);
-                    }}
-                    value={formikProps.values.category}
-                  >
-                    {props.categories.map((category) => (
-                      <Picker.Item
-                        key={category.id}
-                        label={category.name}
-                        value={category.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-                <Divider style={{ height: 1, backgroundColor: "white" }} />
-                <View style={adCreationStyles.dropDownSubContainer}>
-                  <Picker
-                    selectedValue={formikProps.values.subCategory.id}
-                    style={{
-                      fontSize: hp("1.9%"),
-                      backgroundColor: "#1e1c24",
-                      fontFamily: "Roboto-Bold",
-                      color: "white",
-                      borderColor: "transparent",
-                      paddingTop: hp("8%"),
-                    }}
-                    onValueChange={(itemValue, itemIndex) => {
-                      formikProps.setFieldValue(
-                        "subCategory",
-                        JSON.stringify({
-                          id: props.subCategories[itemIndex].id,
-                          value: props.subCategories[itemIndex].name,
-                        })
-                      );
-                    }}
-                    value={formikProps.values.subCategory}
-                  >
-                    {props.subCategories.map((subCategory) => (
-                      <Picker.Item
-                        key={subCategory.id}
-                        label={subCategory.name}
-                        value={subCategory.id}
-                      />
-                    ))}
-                  </Picker>
-                </View>
-              </View>
+              <Picker
+                label="Kategorija"
+                selectedValue={formikProps.values.category}
+                handleChangeValue={async (value) => {
+                  formikProps.setFieldValue("category", value);
+                  props.onChangeCategory(value.id);
+                  formikProps.setFieldValue("subCategory", {
+                    id: null,
+                    name: "",
+                  });
+                }}
+                items={props.categories}
+              ></Picker>
+              <Picker
+                label="Potkategorija"
+                selectedValue={formikProps.values.subCategory}
+                handleChangeValue={(value) => {
+                  formikProps.setFieldValue("subCategory", value);
+                }}
+                items={props.subCategories}
+              ></Picker>
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
