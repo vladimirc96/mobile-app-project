@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, Image, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 import { Fontisto } from "@expo/vector-icons";
 import { buttonsStyles, errorStyle } from "../shared/Styles";
+import { getErrorStyle } from "../shared/ValidationUtil";
 
 const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
@@ -11,7 +12,6 @@ const customFonts = {
 import { Dimensions } from "react-native";
 import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -177,10 +177,10 @@ export class AdDescriptionAdding extends React.Component {
           onPress={this.props.onPress}
           style={[
             buttonsStyles.adDescriptionButtonContainer,
-            this.props.formikProps.errors.description &&
-            this.props.formikProps.touched.description
-              ? errorStyle.error
-              : null,
+            getErrorStyle(
+              this.props.formikProps.errors.description,
+              this.props.formikProps.touched.description
+            ),
           ]}
         >
           <View style={buttonsStyles.adDescriptionButtonAdditional}>
@@ -195,10 +195,7 @@ export class AdDescriptionAdding extends React.Component {
             >
               {this.props.title}
             </Text>
-            <AntDesign
-              name="pluscircleo"
-              style={buttonsStyles.plusIcon}
-            />
+            <AntDesign name="pluscircleo" style={buttonsStyles.plusIcon} />
           </View>
         </TouchableOpacity>
       );
