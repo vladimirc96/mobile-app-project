@@ -7,7 +7,6 @@ import {
 } from "react-native-responsive-screen";
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
-// import { Picker } from "@react-native-picker/picker";
 import RadioButton from "../RadioButton";
 import { TouchableOpacity, Text, TextInput, View } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
@@ -151,28 +150,36 @@ export default function AdForm(props) {
               />
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
-              <Picker
-                label="Kategorija"
-                selectedValue={formikProps.values.category}
-                handleChangeValue={async (value) => {
-                  formikProps.setFieldValue("category", value);
-                  props.onChangeCategory(value.id);
-                  formikProps.setFieldValue("subCategory", {
-                    id: null,
-                    name: "",
-                  });
-                }}
-                items={props.categories}
-              ></Picker>
-              <Picker
-                label="Potkategorija"
-                selectedValue={formikProps.values.subCategory}
-                handleChangeValue={(value) => {
-                  formikProps.setFieldValue("subCategory", value);
-                }}
-                items={props.subCategories}
-              ></Picker>
-            </View>
+              <Text style={adCreationStyles.fieldName}>
+                Izaberi kategoriju i potkategoriju
+              </Text>
+              <View style={adCreationStyles.dropDownCatSubContainer}>
+                <View style={adCreationStyles.dropDownCatContainer}>
+                  <Picker
+                    selectedValue={formikProps.values.category}
+                    handleChangeValue={async (value) => {
+                      formikProps.setFieldValue("category", value);
+                      props.onChangeCategory(value.id);
+                      formikProps.setFieldValue("subCategory", {
+                        id: null,
+                        name: "",
+                      });
+                    }}
+                    items={props.categories}
+                  ></Picker>
+                  </View>
+                  <Divider style={{ backgroundColor: "white" }} />
+                  <View style={adCreationStyles.dropDownSubContainer}>
+                    <Picker
+                      selectedValue={formikProps.values.subCategory}
+                      handleChangeValue={(value) => {
+                        formikProps.setFieldValue("subCategory", value);
+                      }}
+                      items={props.subCategories}
+                    ></Picker>
+                  </View>
+                </View>
+              </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
               <View

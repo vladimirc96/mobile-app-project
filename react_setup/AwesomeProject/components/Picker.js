@@ -4,19 +4,23 @@ import { pickerStyle } from "../shared/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 export default function Picker(props) {
   const [visible, setVisible] = useState(false);
 
   return (
     <View>
-      <Text style={pickerStyle.fieldName}>{props.label}</Text>
       <TouchableOpacity onPress={() => setVisible(true)}>
         <View style={pickerStyle.fieldWrapper}>
           <View style={pickerStyle.field}>
             <Text style={pickerStyle.fieldText}>
               {props.items.find((item) => item.id === props.selectedValue.id)
                 ? props.items.find((item) => item.id === props.selectedValue.id)
-                    .name
+                    .name.replace(/(\r\n|\n|\r)/gm, " ")
                 : ""}
             </Text>
             <AntDesign name="downcircleo" style={pickerStyle.caretIcon} />
@@ -28,7 +32,7 @@ export default function Picker(props) {
           <View style={pickerStyle.modalView}>
             <Ionicons
               name="md-close"
-              size={26}
+              size={wp("6.75%")}
               onPress={() => setVisible(false)}
               style={pickerStyle.closeIcon}
               color="black"
@@ -43,7 +47,7 @@ export default function Picker(props) {
                       setVisible(false);
                     }}
                   >
-                    <Text style={pickerStyle.textStyle}>{item.name}</Text>
+                    <Text style={pickerStyle.textStyle}>{item.name.replace(/\n/g,' ')}</Text>
                   </TouchableOpacity>
                 );
               }}

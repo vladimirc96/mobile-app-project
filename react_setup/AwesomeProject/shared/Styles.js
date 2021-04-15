@@ -1448,20 +1448,21 @@ export const adCreationStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#1e1c24",
-    height: hp("18%"),
+    height: hp("16%"),
   },
   dropDownCatContainer: {
     marginTop: hp("0.25%"),
     alignSelf: "center",
     width: wp("75%"),
     backgroundColor: "#1e1c24",
-    height: hp("8.5%"),
+    height: hp("7.5%"),
   },
   dropDownSubContainer: {
+    marginTop: hp("0.25%"),
     alignSelf: "center",
     width: wp("75%"),
     backgroundColor: "#1e1c24",
-    height: hp("6%"),
+    height: hp("7.5%"),
     fontWeight: "bold",
   },
   priceRBContainer: {
@@ -1916,7 +1917,8 @@ export const pickerStyle = {
     backgroundColor: "#2196F3",
   },
   textStyle: {
-    marginBottom: hp("1%")
+    marginBottom: hp("1%"),
+    fontSize: wp("4.25%"),
   },
   fieldWrapper: {
     alignSelf: "center",
@@ -1924,9 +1926,6 @@ export const pickerStyle = {
     width: wp("82%"),
     height: hp("6%"),
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "#1e1c24",
     opacity: 0.8,
   },
   field: {
@@ -1940,7 +1939,7 @@ export const pickerStyle = {
     paddingTop: hp("1.25%"),
     fontSize: wp("3.75%"),
     color: "#ededed",
-    fontFamily: "Roboto-Light",
+    fontFamily: "Roboto-Bold",
     fontStyle: "italic",
   },
   closeIcon: {
