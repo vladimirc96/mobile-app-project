@@ -29,7 +29,7 @@ export default function ContactUsForm(props) {
   const getPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR, Toast.LONG);
+      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR);
       return false;
     }
     return true;
@@ -186,7 +186,7 @@ export default function ContactUsForm(props) {
               />
             </View>
             <EditProfileButton
-              title={"Posalji"}
+              title={"Pošalji"}
               onPress={formikProps.handleSubmit}
             />
           </View>

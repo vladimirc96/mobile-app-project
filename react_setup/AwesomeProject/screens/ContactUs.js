@@ -47,7 +47,7 @@ export default class ContactUs extends React.Component {
         formData.append("image", image);
       }
       await sendMail(formData);
-      Toast.show(CONTACT_US_SUCCESS, Toast.LONG);
+      Toast.show(CONTACT_US_SUCCESS);
       this.props.navigation.navigate("Categories");
     } catch (err) {
       console.log(err);
