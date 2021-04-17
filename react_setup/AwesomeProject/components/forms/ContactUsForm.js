@@ -29,7 +29,7 @@ export default function ContactUsForm(props) {
   const getPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR);
+      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR, Toast.LONG);
       return false;
     }
     return true;
