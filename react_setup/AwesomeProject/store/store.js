@@ -22,11 +22,10 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const configureStore = () => {
-  const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-  const persistor = persistStore(store);
-  sagaMiddleware.run(rootSaga);
-  return { store, persistor };
-};
+const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+const persistor = persistStore(store);
+sagaMiddleware.run(rootSaga);
+const persistedStore = { store, persistor };
 
-export default configureStore;
+
+export default persistedStore;

@@ -11,7 +11,7 @@ export function* loginUser() {
   yield takeLatest(AUTHENTICATION_ACTIONS_ASYNC.LOGIN, loginUserAsync);
 }
 
-function* loginUserAsync(action) {
+export function* loginUserAsync(action) {
   try {
     const token = yield call(login, action.credentials);
     yield put({ type: AUTHENTICATION_ACTIONS.LOGIN, token: token });

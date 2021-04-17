@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name="table_users")
+@Table(name="table_users", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}, name = "username_unique_constraint"))
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username", unique = true)
+    @Column(name = "username")
     private String username;
 
     @Column(name = "first_name")

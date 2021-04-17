@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
                 .location(userDTO.getLocation() != null ? new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()) : null)
                 .roles(new ArrayList<Role>() { { add(role); } })
                 .entryDate(LocalDate.now())
-                .image(userDTO.getImage().getBytes())
+                .image(userDTO.getImage() != null ? userDTO.getImage().getBytes() : null)
                 .build();
         return userRepository.save(user);
     }

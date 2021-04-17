@@ -8,3 +8,10 @@ export const updateUser = (user) => ({
 export const getUserInfo = () => ({
   type: USER_ACTIONS_ASYNC.GET_USER_INFO,
 });
+
+export const registerUser = (user, credentials, navigation) => ({
+  type: USER_ACTIONS_ASYNC.REGISTER_USER,
+  data: user,
+  credentials: credentials,
+  navigation: navigation,
+});

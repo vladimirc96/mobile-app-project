@@ -4,9 +4,9 @@ import Navigator from "./routes/firstRunStack";
 import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import configureStore from "./store/store";
+import persistedStore from "./store/store";
 import Entry from "./screens/Entry";
-const persistStore = configureStore();
+
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
 };
@@ -27,8 +27,8 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <Provider store={persistStore.store}>
-          <PersistGate loading={null} persistor={persistStore.persistor}>
+        <Provider store={persistedStore.store}>
+          <PersistGate loading={null} persistor={persistedStore.persistor}>
             <Entry />
           </PersistGate>
         </Provider>
