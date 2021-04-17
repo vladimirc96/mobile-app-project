@@ -109,7 +109,10 @@ public class User implements UserDetails {
     }
 
     public int getPositiveRatings() {
-        if(ratings.isEmpty() || ratings == null){
+        if(ratings == null){
+            return 0;
+        }
+        if(ratings.isEmpty()){
             return 0;
         }
         List<Rating> positives = ratings.stream().filter(rating -> rating.isPositive()).collect(Collectors.toList());
@@ -117,7 +120,10 @@ public class User implements UserDetails {
     }
 
     public int getNegativeRatings(){
-        if(ratings.isEmpty() || ratings == null){
+        if(ratings == null){
+            return 0;
+        }
+        if(ratings.isEmpty()){
             return 0;
         }
         List<Rating> negatives = ratings.stream().filter(rating -> !rating.isPositive()).collect(Collectors.toList());

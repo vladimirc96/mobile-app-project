@@ -24,7 +24,7 @@ const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
   description: yup.string().required(),
   category: yup.object().required(),
-  subCategory: yup.string().required(),
+  subCategory: yup.object().required(),
   price: yup.number().required(),
   agreement: yup.boolean().required(),
 });
@@ -107,6 +107,7 @@ export default function AdForm(props) {
         currency: "RSD",
       }}
       onSubmit={(values) => {
+        console.log(values);
         props.handleSubmit({ ...values, image });
       }}
       validationSchema={adSchema}
@@ -167,19 +168,22 @@ export default function AdForm(props) {
                     }}
                     items={props.categories}
                   ></Picker>
-                  </View>
-                  <Divider style={{ backgroundColor: "white" }} />
-                  <View style={adCreationStyles.dropDownSubContainer}>
-                    <Picker
-                      selectedValue={formikProps.values.subCategory}
-                      handleChangeValue={(value) => {
-                        formikProps.setFieldValue("subCategory", value);
-                      }}
-                      items={props.subCategories}
-                    ></Picker>
-                  </View>
+                </View>
+                <Divider style={{ backgroundColor: "white" }} />
+                <View style={adCreationStyles.dropDownSubContainer}>
+                  <Picker
+                    selectedValue={formikProps.values.subCategory}
+                    handleChangeValue={(value) => {
+                      formikProps.setFieldValue("subCategory", {
+                        id: value.id,
+                        value: value.name,
+                      });
+                    }}
+                    items={props.subCategories}
+                  ></Picker>
                 </View>
               </View>
+            </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Izaberi cenu</Text>
               <View

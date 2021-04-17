@@ -2,6 +2,7 @@ package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.security.TokenUtils;
+import com.project.mobileapi.user.UserAdapter;
 import com.project.mobileapi.user.UserDTO;
 import com.project.mobileapi.user.UserService;
 import com.project.mobileapi.util.ObjectUtils;
@@ -29,10 +30,14 @@ public class AdController {
 
     private final AdService adService;
     private final TokenUtils tokenUtils;
+    private final UserService userService;
 
     @PostMapping(value = "", consumes = "multipart/form-data")
     @PreAuthorize("hasAuthority('POST_AD')")
     public ResponseEntity<AdDTO> save(@Valid @ModelAttribute AdDTO adDTO, HttpServletRequest request) throws IOException {
+        String username = tokenUtils.getUsernameFromToken(tokenUtils.getToken(request));
+        UserDTO user = userService.findOneByUsername(username);
+        adDTO.setUser(user);
         AdDTO saved = adService.save(adDTO);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }

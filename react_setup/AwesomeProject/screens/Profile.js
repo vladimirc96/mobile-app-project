@@ -29,7 +29,7 @@ import AdModalProfile from "./AdModalProfile";
 import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
-import { getCommentsByUsername } from "../services/CommentService";
+import { getCommentsByUsername } from "../services/commentService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
