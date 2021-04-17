@@ -4,6 +4,7 @@ import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.util.KeyValue;
 
+
 public class UserAdapter {
 
     public UserAdapter(){
@@ -14,7 +15,6 @@ public class UserAdapter {
         if(user == null){
             return null;
         }
-
         return UserDTO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
@@ -24,6 +24,9 @@ public class UserAdapter {
                 .phoneNumber(user.getPhoneNumber())
                 .details(user.getDetails())
                 .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : null)
+                .positiveRatings(user.getPositiveRatings())
+                .negativeRatings(user.getNegativeRatings())
+                .entryDate(user.getEntryDate())
                 .build();
     }
 
@@ -31,7 +34,6 @@ public class UserAdapter {
         if(userDTO == null){
             return null;
         }
-
         return User.builder()
                 .id(userDTO.getId())
                 .username(userDTO.getUsername())
@@ -41,7 +43,7 @@ public class UserAdapter {
                 .phoneNumber(userDTO.getPhoneNumber())
                 .details(userDTO.getDetails())
                 .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
+                .entryDate(userDTO.getEntryDate())
                 .build();
     }
-
 }

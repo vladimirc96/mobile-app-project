@@ -1,7 +1,5 @@
 package com.project.mobileapi.model;
 
-import com.project.mobileapi.user.UserDTO;
-import com.project.mobileapi.util.KeyValue;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="table_users")
@@ -58,7 +57,7 @@ public class User implements UserDetails {
     private byte[] cv;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Rating> rating;
+    private List<Rating> ratings;
 
     @ManyToOne
     private Location location;
@@ -68,6 +67,9 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "username"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     protected List<Role> roles;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Ad> ads;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -100,6 +102,32 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
+    public int getPositiveRatings() {
+        if(ratings == null){
+            return 0;
+        }
+        if(ratings.isEmpty()){
+            return 0;
+        }
+        List<Rating> positives = ratings.stream().filter(rating -> rating.isPositive()).collect(Collectors.toList());
+        return positives.size();
+    }
+
+    public int getNegativeRatings(){
+        if(ratings == null){
+            return 0;
+        }
+        if(ratings.isEmpty()){
+            return 0;
+        }
+        List<Rating> negatives = ratings.stream().filter(rating -> !rating.isPositive()).collect(Collectors.toList());
+        return negatives.size();
     }
 
 }

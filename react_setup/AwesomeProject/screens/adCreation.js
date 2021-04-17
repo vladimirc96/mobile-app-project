@@ -42,7 +42,7 @@ export class AdCreation extends React.Component {
       }
     })();
     this._loadFontsAsync();
-    this.getSubCategories(1);
+    this.getSubCategories(this.props.categories[0].id);
   }
 
   getSubCategories = async (categoryId) => {
@@ -63,6 +63,13 @@ export class AdCreation extends React.Component {
       const formData = new FormData();
       Object.keys(ad).forEach((key) => {
         if (key === "category" || key === "image") {
+          return;
+        }
+        if (key === "subCategory") {
+          formData.append(
+            key,
+            JSON.stringify({ id: ad[key].id, name: ad[key].name })
+          );
           return;
         }
         formData.append(key, ad[key]);
@@ -87,7 +94,7 @@ export class AdCreation extends React.Component {
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
 
-    if (this.state.fontsLoaded) {
+    if (this.state.fontsLoaded && this.state.subCategories.length !== 0) {
       return (
         <ImageBackground
           style={adCreationStyles.backgroundImageContainer}

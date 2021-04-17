@@ -17,7 +17,7 @@ import java.util.Date;
 public class Ad {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
@@ -50,4 +50,8 @@ public class Ad {
 
     @ManyToOne
     private SubCategory subCategory;
+
+    @ManyToOne
+    private User user;
+
 }

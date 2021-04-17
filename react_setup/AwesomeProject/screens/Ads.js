@@ -19,6 +19,7 @@ export default class Ads extends React.Component {
     fontsLoaded: false,
 	  showModal: false,
     ads: [],
+    chosenAd: null
   };
 
   async _loadFontsAsync() {
@@ -28,25 +29,36 @@ export default class Ads extends React.Component {
 
   componentDidMount() {
     this._loadFontsAsync();
-
-    this.getAllBySubcategoryId();
+    this.getAllBySubCategoryId();
   }
 
-  async getAllBySubcategoryId() {
+  async getAllBySubCategoryId() {
     try {
-      const data = await getAllBySubcategoryId();
+      const data = await getAllBySubcategoryId(
+        this.props.navigation.state.params.subCategoryId
+      );
       this.setState({ ads: data });
     } catch (err) {
       console.log(err.message);
     }
   }
 
-  toggleModal = () => {
-    this.setState(prevState => ({showModal:!prevState.showModal}))
+  toggleModal = (ad) => {
+    this.setState(prevState => ({showModal:!prevState.showModal, chosenAd: ad}))
   }
 
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
+    const adsList = this.state.ads.map((ad) => (
+      <View style={adsStyles.adContainer}
+        key={ad.id}
+      >
+      <Ad
+        ad={ad}
+        onPress={() => this.toggleModal(ad)}
+      />
+    </View>
+    ));
     if(this.state.fontsLoaded){
     return (
       <ImageBackground
@@ -54,37 +66,16 @@ export default class Ads extends React.Component {
         source={backgroundImage}
       >
       {this.state.showModal ?
-        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} />
+        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} ad={this.state.chosenAd} />
         :
         <ScrollView>
           <View style={adsStyles.mainContainer}>
             <View style={adsStyles.titleContainer}>
-              <Text style={adsStyles.titleText}> Subcategory </Text>
+              <Text style={adsStyles.titleText}> {this.props.navigation.state.params.subCategoryName} </Text>
             </View>
                 <View>
                   <View style={adsStyles.numberOfAdsContainer}></View>
-                <View style={adsStyles.adContainer}>
-                  <Ad
-                    navigation={this.props.navigation}
-                    title="CASOVI GITARE DUZI NASLOV"
-                    onPress={() => this.toggleModal()}
-                  />
-                </View>
-                <View style={adsStyles.adContainer}>
-                  <Ad title="CASOVI GITARE" />
-                </View>
-                <View style={adsStyles.adContainer}>
-                  <Ad title="Casovi gitare" />
-                </View>
-                <View style={adsStyles.adContainer}>
-                  <Ad title="Casovi gitare" />
-                </View>
-                <View style={adsStyles.adContainer}>
-                  <Ad title="Casovi gitare" />
-                </View>
-                <View style={adsStyles.adContainer}>
-                  <Ad title="Casovi gitare" />
-                </View>
+                  {adsList}
                 </View>
           </View>
         </ScrollView>

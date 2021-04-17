@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   TouchableOpacity,
@@ -49,22 +48,19 @@ export default class Ad extends React.Component {
             </View>
             <View style={adStyles.adMainText}>
               <View style={adStyles.adTitleContainer}>
-                <Text style={adStyles.adTitle}>{this.props.title}</Text>
+                <Text numberOfLines={this.props.ad.title.length < 15? 1 : 2} style={adStyles.adTitle}>{this.props.ad.title.toUpperCase()}</Text>
               </View>
-              <TouchableOpacity onPress={this.props.onPress}>
               <View
                 style={
-                  this.props.title.length < 15
+                  this.props.ad.title.length < 15
                     ? adStyles.descriptionSmall
                     : adStyles.descriptionLarge
                 }
               >
-                <Text style={adStyles.descriptionText}>
-                  {" "}
-                  -svi zanrovi -svi zanrovi -svi zanrovi -svi zanrovi -svi
-                  zanrovi -svi
+                <Text numberOfLines={this.props.ad.title.length < 15 ? 4 : 3} style={adStyles.descriptionText}>
+                  {this.props.ad.description.replace(/(<([^>]+)>)/ig, '')}
                 </Text>
-                <TouchableOpacity style={adStyles.descriptionDetails}>
+                <TouchableOpacity style={adStyles.descriptionDetails} onPress={this.props.onPress}>
                   <Text style={adStyles.descriptionDetailsText}>
                     Detaljnije
                   </Text>
@@ -74,38 +70,22 @@ export default class Ad extends React.Component {
                   />
                 </TouchableOpacity>
               </View>
-              </TouchableOpacity>
               <View style={adStyles.ownerNameContainer}>
-                <Text
-                  style={adStyles.ownerName}
-                  onPress={() =>
-                    this.props.navigation.navigate("Profile", {
-                      username: "test",
-                    })
-                  }
-                >
-                  Vlasnik: Slobodanka Jakovljevic{" "}
+                <Text style={adStyles.ownerName}>
+                  Vlasnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName} {" "}
                 </Text>
               </View>
             </View>
             <View style={adStyles.adDetails}>
               <View style={adStyles.priceContainer}>
-                <Text style={adStyles.priceValue}>Dogovor</Text>
+                <Text style={adStyles.priceValue}>{this.props.ad.price}</Text>
               </View>
               <View style={adStyles.publishDateContainer}>
                 <Text style={adStyles.publishTitle}>postavljen:</Text>
-                <Text style={adStyles.publishDate}>danas</Text>
+                <Text style={adStyles.publishDate}>{this.props.ad.creationDate}</Text>
               </View>
               <View style={adStyles.location}>
-                <Text style={adStyles.locationText}>Novi Sad</Text>
-              </View>
-              <View>
-                <View style={adStyles.ratingStars}>
-                  <Text style={adStyles.likeText}>6969</Text>
-                  <Fontisto name="like" style={adStyles.like} />
-                  <Fontisto name="dislike" style={adStyles.dislike} />
-                  <Text style={adStyles.dislikeText}>69</Text>
-                </View>
+                <Text style={adStyles.locationText}>{this.props.ad.user.location.value}</Text>
               </View>
             </View>
           </View>

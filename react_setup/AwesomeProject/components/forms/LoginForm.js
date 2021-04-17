@@ -6,6 +6,10 @@ import { loginStyles } from "../../shared/Styles";
 import { LogInButton } from "../Buttons";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/actions/authentication/authenticationActions";
+import {
+  getErrorStyle,
+  getErrorPlaceholder,
+} from "../../shared/ValidationUtil";
 
 const loginSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
@@ -17,9 +21,9 @@ export default function LoginForm({ navigation }) {
 
   const loginUser = (credentials) => dispatch(login(credentials));
 
-  const handleLogin = (credentials) => {
+  const handleLogin = (credentials, navigation) => {
     return new Promise((resolve, reject) => {
-      loginUser(credentials);
+      loginUser(credentials, navigation);
       resolve();
     });
   };
@@ -32,49 +36,56 @@ export default function LoginForm({ navigation }) {
           password: "",
         }}
         onSubmit={async (values) => {
-          await handleLogin({
-            username: values.username,
-            password: values.password,
-          });
-          navigation.navigate("Home");
+          await handleLogin(
+            {
+              username: values.username,
+              password: values.password,
+            },
+            navigation
+          );
+          // navigation.navigate("Home");
         }}
         validationSchema={loginSchema}
       >
-        {(props) => (
+        {(formikProps) => (
           <View>
             <View style={loginStyles.inputContainer}>
               <TextInput
-                style={
-                  props.errors.username && props.touched.username
-                    ? loginStyles.inputErrorField
-                    : loginStyles.inputField
-                }
+                style={[
+                  loginStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.username,
+                    formikProps.touched.username
+                  ),
+                ]}
                 placeholder="Korisničko ime"
-                placeholderTextColor={
-                  props.errors.username && props.touched.username
-                    ? "#ff102d"
-                    : "#ededed"
-                }
-                onChangeText={props.handleChange("username")}
-                value={props.values.username}
-                onBlur={props.handleBlur("username")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.username,
+                  formikProps.touched.username
+                )}
+                onChangeText={formikProps.handleChange("username")}
+                value={formikProps.values.username}
+                onBlur={formikProps.handleBlur("username")}
+                autoCapitalize="none"
               />
               <TextInput
-                style={
-                  props.errors.password && props.touched.password
-                    ? loginStyles.inputErrorField
-                    : loginStyles.inputField
-                }
+                style={[
+                  loginStyles.inputField,
+                  getErrorStyle(
+                    formikProps.errors.password,
+                    formikProps.touched.password
+                  ),
+                ]}
                 placeholder="Lozinka"
-                placeholderTextColor={
-                  props.errors.password && props.touched.password
-                    ? "#ff102d"
-                    : "#ededed"
-                }
-                onChangeText={props.handleChange("password")}
-                value={props.values.password}
-                onBlur={props.handleBlur("password")}
+                placeholderTextColor={getErrorPlaceholder(
+                  formikProps.errors.password,
+                  formikProps.touched.password
+                )}
+                onChangeText={formikProps.handleChange("password")}
+                value={formikProps.values.password}
+                onBlur={formikProps.handleBlur("password")}
                 secureTextEntry={true}
+                autoCapitalize="none"
               />
             </View>
             <View style={loginStyles.footerContainer}>
@@ -86,7 +97,10 @@ export default function LoginForm({ navigation }) {
                   <Text style={loginStyles.boldText}>Registruj se</Text>
                 </TouchableOpacity>
               </View>
-              <LogInButton onPress={props.handleSubmit} title={"Ulogujte se"} />
+              <LogInButton
+                onPress={formikProps.handleSubmit}
+                title={"Ulogujte se"}
+              />
             </View>
           </View>
         )}

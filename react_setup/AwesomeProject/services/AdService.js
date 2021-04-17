@@ -11,6 +11,20 @@ export const saveAd = (ad) => {
   return MobileApi.post(`${url}`, ad, config);
 };
 
-export const getAllBySubcategoryId = () => {
-  return MobileApi.get(`${url}`);
+export const getAllBySubcategoryId = (subCategoryId) => {
+  const config = {
+    params: {
+      subCategoryId,
+    },
+  };
+  return MobileApi.get(`${url}/get-by-subcategory-id`, config);
+};
+
+export const getByUsername = (username) => {
+  const config = {
+    params: {
+      username,
+    },
+  };
+  return MobileApi.get(`${url}/get-by-username`, config);
 };

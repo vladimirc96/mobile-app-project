@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, Image, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 import { Fontisto } from "@expo/vector-icons";
 import { buttonsStyles, errorStyle } from "../shared/Styles";
+import { getErrorStyle } from "../shared/ValidationUtil";
 
 const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
@@ -67,7 +68,7 @@ export class AdvButton extends React.Component {
       return (
         <TouchableOpacity
           onPress={this.props.onPress}
-          style={this.props.profile? buttonsStyles.AdvButtonContainerProfile :  buttonsStyles.AdvButtonContainer}
+          style={buttonsStyles.AdvButtonContainer}
         >
           <Text style={buttonsStyles.AdvButtonText}>{this.props.title}</Text>
         </TouchableOpacity>
@@ -180,10 +181,10 @@ export class AdDescriptionAdding extends React.Component {
           onPress={this.props.onPress}
           style={[
             buttonsStyles.adDescriptionButtonContainer,
-            this.props.formikProps.errors.description &&
-            this.props.formikProps.touched.description
-              ? errorStyle.error
-              : null,
+            getErrorStyle(
+              this.props.formikProps.errors.description,
+              this.props.formikProps.touched.description
+            ),
           ]}
         >
           <View style={buttonsStyles.adDescriptionButtonAdditional}>
@@ -198,10 +199,7 @@ export class AdDescriptionAdding extends React.Component {
             >
               {this.props.title}
             </Text>
-            <AntDesign
-              name="pluscircleo"
-              style={buttonsStyles.plusIcon}
-            />
+            <AntDesign name="pluscircleo" style={buttonsStyles.plusIcon} />
           </View>
         </TouchableOpacity>
       );
@@ -233,6 +231,38 @@ export class EditProfileButton extends React.Component {
           style={buttonsStyles.editProfileButtonContainer}
         >
           <Text style={buttonsStyles.editProfileButtonText}>
+            {this.props.title}
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
+
+export class AdButtonProfile extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.onPress}
+          style={buttonsStyles.adButtonProfileContainer}
+        >
+          <Text style={buttonsStyles.adButtonProfileText}>
             {this.props.title}
           </Text>
         </TouchableOpacity>

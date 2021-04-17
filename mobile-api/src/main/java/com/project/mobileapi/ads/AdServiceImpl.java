@@ -2,8 +2,8 @@ package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.Ad;
 import com.project.mobileapi.repository.AdRepository;
+import com.project.mobileapi.user.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.codec.AbstractDataBufferDecoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -36,5 +36,10 @@ public class AdServiceImpl implements AdService{
     @Override
     public List<AdDTO> findBySubCategoryId(Long subCategoryId) {
         return adRepository.findAllBySubCategoryId(subCategoryId).stream().map(AdAdapter::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AdInfoDTO> getByUsername(String username) {
+        return adRepository.findAllByUserUsername(username).stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
     }
 }
