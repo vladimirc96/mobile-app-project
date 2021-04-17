@@ -8,7 +8,7 @@ import {
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
 import RadioButton from "../RadioButton";
-import { TouchableOpacity, Text, TextInput, View } from "react-native";
+import { TouchableOpacity, Text, TextInput, View, FlatList, Platform  } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
