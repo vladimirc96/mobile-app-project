@@ -1,5 +1,6 @@
 package com.project.mobileapi.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.util.KeyValue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder(toBuilder = true)
@@ -46,4 +49,12 @@ public class UserDTO implements Serializable {
     private KeyValue location;
 
     private MultipartFile image;
+
+    private int positiveRatings;
+
+    private int negativeRatings;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate entryDate;
+
 }

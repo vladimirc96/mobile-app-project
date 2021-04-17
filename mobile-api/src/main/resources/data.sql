@@ -230,9 +230,11 @@ INSERT INTO categories_subcategories VALUES (12, 66);
 INSERT INTO categories_subcategories VALUES (12, 67);
 INSERT INTO categories_subcategories VALUES (12, 68);
 
-INSERT INTO AD table_ads VALUES ('1', '1', '2021-04-11', NULL, '0', '<div>Zovite me da vam sredim sve</div>', null, '0', 'Vodoinstalater', '0', '1');
-INSERT INTO AD table_ads VALUES ('2', '1', '2021-04-11', NULL, '0', '<div>Povoljan vodoinstalater</div>', null, '0', 'Odlican vodoinstalater', '0', '1');
-INSERT INTO AD table_ads VALUES ('3', '0', '2021-04-11', 'RSD', '0', '<div>Zovite me 062266123. Povoljno sve.</div>', null, '1500', 'Najjaci vodoinstalater', '0', '1');
+INSERT INTO table_ads VALUES ('1', 1, '2021-04-11', null, 0, '<div>Zovite me da vam sredim sve</div>', null, '0', 'Vodoinstalater', '0', '1', '1');
+INSERT INTO table_ads VALUES ('2', 1, '2021-04-11', NULL, 0, '<div>Povoljan vodoinstalater</div>', null, '0', 'Odlican vodoinstalater', '0', '1', '1');
+INSERT INTO table_ads VALUES ('3', 0, '2021-04-11', 'RSD', 0, '<div>Zovite me 062266123. Povoljno sve.</div>', null, '1500', 'Najjaci vodoinstalater', '0', '1', '1');
 
 
-
+INSERT INTO table_ratings VALUES (1, 'Odlican', '2021-04-11', 1, 'ferika', 1);
+INSERT INTO table_ratings VALUES (2, 'Odlican 5', '2021-04-11',1, '', 1);
+INSERT INTO table_ratings VALUES (3, 'Ocajan', '2021-04-11',0, '', 1);

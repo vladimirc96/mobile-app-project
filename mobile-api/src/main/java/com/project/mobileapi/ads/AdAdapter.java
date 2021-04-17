@@ -3,6 +3,7 @@ package com.project.mobileapi.ads;
 import com.project.mobileapi.model.Ad;
 import com.project.mobileapi.model.SubCategory;
 import com.project.mobileapi.subcategory.SubCategoryMapper;
+import com.project.mobileapi.user.UserAdapter;
 import com.project.mobileapi.util.CustomMultipartFile;
 import com.project.mobileapi.util.KeyValue;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
@@ -21,6 +22,7 @@ public class AdAdapter {
         }
 
         return AdDTO.builder()
+                .id(ad.getId())
                 .title(ad.getTitle())
                 .price(ad.getPrice())
                 .agreement(ad.isAgreement())
@@ -29,6 +31,7 @@ public class AdAdapter {
                 .views(ad.getViews())
                 .subCategory(new KeyValue(ad.getSubCategory().getId(), ad.getSubCategory().getName()))
                 .currency(ad.getCurrency())
+                .user(ad.getUser() != null ? UserAdapter.toDto(ad.getUser()) : null)
 //                .image(new CustomMultipartFile(ad.getImage()))
                 .build();
     }
@@ -48,6 +51,7 @@ public class AdAdapter {
                 .views(adDTO.getViews())
                 .image(adDTO.getImage() != null ? adDTO.getImage().getBytes() : null)
                 .subCategory(new SubCategory(adDTO.getSubCategory().getId(), adDTO.getSubCategory().getValue()))
+                .user(adDTO.getUser() != null ? UserAdapter.toModel(adDTO.getUser()) : null)
                 .build();
     }
 

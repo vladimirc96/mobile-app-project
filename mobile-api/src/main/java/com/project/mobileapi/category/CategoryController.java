@@ -19,7 +19,7 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll(){
-        return new ResponseEntity<>((List<CategoryDTO>) ObjectUtils.isEmpty(categoryService.findAll()), HttpStatus.OK);
+        return new ResponseEntity(ObjectUtils.isEmpty(categoryService.findAll()), HttpStatus.OK);
     }
 
 }

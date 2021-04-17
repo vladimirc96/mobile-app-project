@@ -39,7 +39,7 @@ public class AdController {
 
     @GetMapping
     public ResponseEntity<List<AdDTO>> findAll(){
-        return new ResponseEntity<>((List<AdDTO>) ObjectUtils.isEmpty(adService.findAll()), HttpStatus.OK);
+        return new ResponseEntity(ObjectUtils.isEmpty(adService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{adId}")
@@ -49,7 +49,12 @@ public class AdController {
 
     @GetMapping("/get-by-subcategory-id")
     public ResponseEntity<List<AdDTO>> findBySubCategoryId(@RequestParam Long subCategoryId){
-        return new ResponseEntity<>((List<AdDTO>) ObjectUtils.isEmpty(adService.findBySubCategoryId(subCategoryId)), HttpStatus.OK);
+        return new ResponseEntity(ObjectUtils.isEmpty(adService.findBySubCategoryId(subCategoryId)), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-by-username")
+    public ResponseEntity<List<AdInfoDTO>> getByUsername(@RequestParam String username){
+        return new ResponseEntity<>(adService.getByUsername(username), HttpStatus.OK);
     }
 
 }
