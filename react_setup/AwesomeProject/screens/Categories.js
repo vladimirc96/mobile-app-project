@@ -80,8 +80,8 @@ export class Categories extends React.Component {
                 title="Postavite oglas"
                 onPress={() => this.props.navigation.navigate("AdCreation") }
               />
-            )}
-          </View>
+              )}
+            </View>
         </ImageBackground>
       );
     } else {

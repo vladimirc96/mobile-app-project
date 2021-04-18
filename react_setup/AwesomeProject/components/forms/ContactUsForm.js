@@ -186,7 +186,7 @@ export default function ContactUsForm(props) {
               />
             </View>
             <EditProfileButton
-              title={"Posalji"}
+              title={"Pošalji"}
               onPress={formikProps.handleSubmit}
             />
           </View>

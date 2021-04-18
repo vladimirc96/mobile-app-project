@@ -71,7 +71,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   logInButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.75%"),
     color: "#ffffff",
     fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
@@ -85,7 +85,7 @@ export const buttonsStyles = StyleSheet.create({
   },
   signUpButtonText: {
     textAlign: "center",
-    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
+    paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.75%"),
     color: "#ffffff",
     fontSize: wp("5.25%"),
     fontFamily: "Comfortaa-Bold",
@@ -129,7 +129,7 @@ export const buttonsStyles = StyleSheet.create({
     paddingTop: Platform.OS === "ios" ? hp("3%") : hp("1.5%"),
     paddingTop: wp("3%"),
     color: "#ededed",
-    fontSize: wp("6%"),
+    fontSize: wp("7%"),
     fontFamily: "Comfortaa-Bold",
   },
   AdvButtonContainer: {
@@ -224,13 +224,13 @@ export const buttonsStyles = StyleSheet.create({
   },
   aboutContactIcon: {
     marginLeft: wp("12%"),
-    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("2.75%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("2.8%"),
     fontSize: wp("5%"),
     color: "#ededed",
   },
   aboutContactText: {
     textAlign: "center",
-    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.7%"),
     marginLeft: wp("2%"),
     color: "#ededed",
     fontSize: wp("5%"),
@@ -270,14 +270,14 @@ export const categoriesStyles = StyleSheet.create({
     justifyContent: "center",
   },
   footerTextFirstPart: {
-    paddingTop: Platform.OS === "ios" ? hp("1.25%") : hp("0.55%"),
-    paddingLeft: wp("1%"),
+    paddingTop: hp("0.5%"),
+    paddingLeft: wp("1%"), 
     fontSize: wp("4.25%"),
     fontWeight: "600",
   },
   footerTextSecondPart: {
     alignSelf: "center",
-    paddingTop: Platform.OS === "ios" ? hp("1.25%") : hp("0.35%"),
+    paddingTop: Platform.OS === 'ios' ?  hp("0.55%") : hp("0.35%"),
     fontSize: wp("4.25%"),
     fontWeight: "600",
   },
@@ -309,7 +309,7 @@ export const categoryStyles = StyleSheet.create({
     alignSelf: "center",
     marginTop: hp("0.8%"),
     width: hp("10%"),
-    height: hp("10%"),
+    height:  hp("10%"),
   },
   categoryImageWidth: {
     alignSelf: "center",
@@ -320,7 +320,6 @@ export const categoryStyles = StyleSheet.create({
   categoryNameHeight: {
     textAlign: "center",
     fontSize: wp("2.85%"),
-    fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
@@ -328,7 +327,6 @@ export const categoryStyles = StyleSheet.create({
     textAlign: "center",
     paddingTop: wp("0.3%"),
     fontSize: wp("2.85%"),
-    fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
@@ -336,7 +334,6 @@ export const categoryStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: wp("2.85%"),
     lineHeight: wp("2.75%"),
-    fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
@@ -344,7 +341,6 @@ export const categoryStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: wp("2.85%"),
     lineHeight: wp("2.75%"),
-    fontFamily: "Comfortaa-Light",
     fontWeight: "bold",
     color: "#1e1c24",
   },
@@ -374,7 +370,6 @@ export const loginStyles = StyleSheet.create({
     textAlign: "left",
     fontWeight: "bold",
     fontSize: wp("9.6%"),
-    fontFamily: "Comfortaa-Regular",
   },
   inputContainer: {
     alignSelf: "center",
@@ -403,7 +398,7 @@ export const loginStyles = StyleSheet.create({
     justifyContent: "center",
   },
   footerText: {
-    paddingTop: Platform.OS === "ios" ? hp("1.25%") : hp("0.35%"),
+    paddingTop: Platform.OS === 'ios' ?  hp("0.7%") : hp("0.2%"),
     fontSize: wp("4.25%"),
     fontFamily: "Comfortaa-Regular",
   },
@@ -504,7 +499,7 @@ export const subCategoriesStyles = StyleSheet.create({
     borderColor: "#ededed",
   },
   title: {
-    marginTop: hp("2.25%"),
+    marginTop:  Platform.OS === "ios" ? hp("3.25%") : hp("2.45%"),
     fontSize: wp("4.4%"),
     marginLeft: wp("0.75%"),
     marginRight: wp("1.5%"),
@@ -520,7 +515,7 @@ export const subCategoriesStyles = StyleSheet.create({
   titleIconWidth: {
     width: wp("12%"),
     height: wp("12%"),
-    top: wp("4%"),
+    top: wp("2.5%"),
     left: wp("2.5%"),
   },
   subcategoryContainer: {
@@ -570,11 +565,11 @@ export const headerStyles = StyleSheet.create({
     paddingTop: hp("3%"),
     height: hp("3.2%"),
     width: hp("22%"),
-    marginLeft: -60,
+    marginLeft:  Platform.OS === "ios" ? 0 : -60,
   },
   icon: {
     position: "absolute",
-    left: wp("2%"),
+    left: Platform.OS === "ios" ? -wp("10%") : wp("2%"),
     color: "#ededed",
     fontSize: wp("7%"),
   },
@@ -599,7 +594,7 @@ export const subCategoryStyles = StyleSheet.create({
   mainContainerText: {
     textAlign: "left",
     textAlignVertical: "center",
-    paddingTop: Platform.OS === "ios" ? hp("2.75%") : hp("1.35%"),
+    paddingTop: Platform.OS === "ios" ? hp("1.6%") : hp("1.6%"),
     paddingLeft: wp("4%"),
     color: "#ededed",
     fontSize: wp("4.25%"),
@@ -1603,7 +1598,7 @@ export const aboutUsStyles = StyleSheet.create({
   bulletIcon: {
     fontSize: wp("3.15%"),
     color: "black",
-    paddingTop: Platform.OS === "ios" ? hp("2%") : hp("1%"),
+    paddingTop: hp("0.8%"),
   },
   mainTextThirdPart: {
     paddingLeft: wp("0.75%"),
@@ -1618,7 +1613,6 @@ export const aboutUsStyles = StyleSheet.create({
   contactText: {
     marginBottom: hp("1.25%"),
     fontSize: wp("3.5%"),
-    fontFamily: "Comfortaa-Regular",
     fontWeight: "bold",
     textAlign: "center",
   },
