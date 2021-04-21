@@ -1,6 +1,7 @@
 package com.project.mobileapi.ads;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.mobileapi.model.CustomMultipartFile;
 import com.project.mobileapi.subcategory.SubCategoryDTO;
 import com.project.mobileapi.user.UserDTO;
 import com.project.mobileapi.util.Currency;
@@ -9,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
@@ -48,4 +50,6 @@ public class AdDTO {
     private MultipartFile image;
 
     private UserDTO user;
+
+    private byte[] imageBytes;
 }

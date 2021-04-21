@@ -1,12 +1,10 @@
 package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.Ad;
+import com.project.mobileapi.model.CustomMultipartFile;
 import com.project.mobileapi.model.SubCategory;
-import com.project.mobileapi.subcategory.SubCategoryMapper;
 import com.project.mobileapi.user.UserAdapter;
-import com.project.mobileapi.util.CustomMultipartFile;
 import com.project.mobileapi.util.KeyValue;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ public class AdAdapter {
                 .subCategory(new KeyValue(ad.getSubCategory().getId(), ad.getSubCategory().getName()))
                 .currency(ad.getCurrency())
                 .user(ad.getUser() != null ? UserAdapter.toDto(ad.getUser()) : null)
-//                .image(new CustomMultipartFile(ad.getImage()))
+                .imageBytes(ad.getImage())
                 .build();
     }
 

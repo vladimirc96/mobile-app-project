@@ -25,5 +25,5 @@ public class AdInfoDTO {
     private int views;
     private KeyValue subCategory;
     private Currency currency;
-    private MultipartFile image;
+    private byte[] image;
 }
