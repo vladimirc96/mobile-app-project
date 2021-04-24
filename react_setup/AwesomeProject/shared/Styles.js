@@ -1141,12 +1141,14 @@ export const profileStyles = StyleSheet.create({
     marginTop: hp("1.5%"),
     width: hp("15%"),
     height: hp("15%"),
+    borderRadius: 100,
   },
   profileImageWidth: {
     alignSelf: "center",
     marginTop: wp("3%"),
     width: wp("30%"),
     height: wp("30%"),
+    borderRadius: 100,
   },
   titleIconWidth: {
     width: wp("12%"),

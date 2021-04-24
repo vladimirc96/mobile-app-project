@@ -88,7 +88,7 @@ export class Profile extends React.Component {
       const data = await getUserInfo(
         this.props.navigation.getParam("username")
       );
-      this.setState({ user: data });
+      await this.setState({ user: data });
     } catch (err) {
       console.log(err.message);
     }
@@ -113,7 +113,7 @@ export class Profile extends React.Component {
     }));
   };
 
-  toggleAds = () => {
+  toggleAds = async () => {
     if (!this.state.ads.length) {
       this.getByUsername();
     }
@@ -190,14 +190,29 @@ export class Profile extends React.Component {
               <ScrollView>
                 <View style={profileStyles.mainContainer}>
                   <View style={profileStyles.basicUserInfo}>
-                    <Image
-                      style={
-                        windowHeight * 0.37 < windowWidth * 0.7
-                          ? profileStyles.profileImageHeight
-                          : profileStyles.profileImageWidth
-                      }
-                      source={avatar}
-                    />
+                    {this.state.user.imageBytes ? (
+                      <Image
+                        style={
+                          windowHeight * 0.37 < windowWidth * 0.7
+                            ? profileStyles.profileImageHeight
+                            : profileStyles.profileImageWidth
+                        }
+                        source={{
+                          uri:
+                            "data:image/jpeg;base64," +
+                            this.state.user.imageBytes,
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        style={
+                          windowHeight * 0.37 < windowWidth * 0.7
+                            ? profileStyles.profileImageHeight
+                            : profileStyles.profileImageWidth
+                        }
+                        source={avatar}
+                      />
+                    )}
                     <Text style={profileStyles.profileName}>
                       {this.state.user.firstName +
                         " " +

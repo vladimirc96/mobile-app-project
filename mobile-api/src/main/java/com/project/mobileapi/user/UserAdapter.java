@@ -23,10 +23,11 @@ public class UserAdapter {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .details(user.getDetails())
-                .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : null)
+                .location(user.getLocation() != null ? new KeyValue(user.getLocation().getId(), user.getLocation().getCityPart()) : new KeyValue(null, ""))
                 .positiveRatings(user.getPositiveRatings())
                 .negativeRatings(user.getNegativeRatings())
                 .entryDate(user.getEntryDate())
+                .imageBytes(user.getImage() != null ? user.getImage() : null)
                 .build();
     }
 
@@ -42,8 +43,9 @@ public class UserAdapter {
                 .email(userDTO.getEmail())
                 .phoneNumber(userDTO.getPhoneNumber())
                 .details(userDTO.getDetails())
-                .location(new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()))
+                .location(userDTO.getLocation() != null ? new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()) : null)
                 .entryDate(userDTO.getEntryDate())
+                .image(userDTO.getImageBytes() != null ? userDTO.getImageBytes() : null)
                 .build();
     }
 }

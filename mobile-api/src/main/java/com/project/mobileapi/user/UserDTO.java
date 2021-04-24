@@ -54,7 +54,8 @@ public class UserDTO implements Serializable {
 
     private int negativeRatings;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate entryDate;
 
+    private byte[] imageBytes;
 }
