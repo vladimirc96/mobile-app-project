@@ -14,7 +14,13 @@ import {
 
 const signUpSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
-  password: yup.string().required("Šifra je obavezna."),
+  password: yup
+    .string()
+    .required("Šifra je obavezna.")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
   email: yup
     .string()
     .required("Email je obavezan.")

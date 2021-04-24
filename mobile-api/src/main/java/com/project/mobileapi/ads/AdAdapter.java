@@ -1,7 +1,6 @@
 package com.project.mobileapi.ads;
 
 import com.project.mobileapi.model.Ad;
-import com.project.mobileapi.model.CustomMultipartFile;
 import com.project.mobileapi.model.SubCategory;
 import com.project.mobileapi.user.UserAdapter;
 import com.project.mobileapi.util.KeyValue;

@@ -1,10 +1,12 @@
 package com.project.mobileapi.user;
 
+import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.Role;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.repository.RoleRepository;
 import com.project.mobileapi.repository.UserRepository;
+import com.project.mobileapi.util.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDTO userDTO) throws IOException {
+        if(!PasswordValidator.isValid(userDTO.getPassword())){
+            throw new InvalidPasswordException(InvalidPasswordException.INVALID_PASSWORD_MESSAGE);
+        }
         String salt = BCrypt.gensalt();
         Role role = roleRepository.findOneById(USER_ROLE_ID);
         User user = User.builder()

@@ -1,11 +1,9 @@
 package com.project.mobileapi.model;
 
-import com.project.mobileapi.util.Currency;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name="table_ads")

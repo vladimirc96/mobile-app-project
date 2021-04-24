@@ -1,8 +1,10 @@
 package com.project.mobileapi.user;
 
+import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.util.ObjectUtils;
+import com.project.mobileapi.util.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
