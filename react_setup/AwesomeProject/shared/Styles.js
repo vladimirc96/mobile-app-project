@@ -724,7 +724,7 @@ export const adStyles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    marginTop: wp("5%"),
+    marginTop: wp("1%"),
     width: wp("16.4%"),
     backgroundColor: "#2d2d2d",
   },
@@ -742,7 +742,7 @@ export const adStyles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     width: wp("16.4%"),
-    marginTop: wp("5%"),
+    marginTop: wp("2.75%"),
     backgroundColor: "#2d2d2d",
   },
   locationText: {
@@ -754,28 +754,28 @@ export const adStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     width: wp("20.4%"),
-    marginTop: wp("3%"),
+    marginTop: wp("3.5%"),
   },
   likeText: {
     fontSize: wp("2.5%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    color: "#ededed",
   },
   like: {
     marginLeft: wp("1.3%"),
     fontSize: wp("3%"),
-    color: "black",
+    color: "#ededed",
   },
   dislike: {
     marginLeft: wp("1.25%"),
     fontSize: wp("3%"),
-    color: "black",
+    color: "#ededed",
   },
   dislikeText: {
     marginLeft: wp("1.3%"),
     fontSize: wp("2.75%"),
     fontFamily: "Roboto-Light",
-    color: "black",
+    color: "#ededed",
   },
 });
 

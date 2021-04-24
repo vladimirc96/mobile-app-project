@@ -87,6 +87,14 @@ export default class Ad extends React.Component {
               <View style={adStyles.location}>
                 <Text style={adStyles.locationText}>{this.props.ad.user.location.value}</Text>
               </View>
+              <View>
+                <View style={adStyles.ratingStars}>
+                  <Text style={adStyles.likeText}>{this.props.ad.user.positiveRatings}</Text>
+                  <Fontisto name="like" style={adStyles.like} />
+                  <Fontisto name="dislike" style={adStyles.dislike} />
+                  <Text style={adStyles.dislikeText}>{this.props.ad.user.negativeRatings}</Text>
+                </View>
+              </View>
             </View>
           </View>
         </TouchableOpacity>
