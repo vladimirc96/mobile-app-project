@@ -50,7 +50,6 @@ export default function SignUpForm({ signup }) {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
@@ -75,30 +74,37 @@ export default function SignUpForm({ signup }) {
       >
         {(formikProps) => (
           <ScrollView>
-            <View
-              style={
-                windowHeight * 0.37 < windowWidth * 0.7
-                  ? signupStyles.imageContainerHeight
-                  : signupStyles.imageContainerWidth
-              }
-            >
+            {image ? (
               <TouchableOpacity onPress={pickImage}>
                 <Image
+                  source={{ uri: image }}
                   style={
                     windowHeight * 0.37 < windowWidth * 0.7
-                      ? signupStyles.inputImageHeight
-                      : signupStyles.inputImageWidth
+                      ? signupStyles.pickedImageHeight
+                      : signupStyles.pickedImageWidth
                   }
-                  source={cameraIcon}
                 />
-                {image && (
-                  <Image
-                    source={{ uri: image }}
-                    style={{ width: 200, height: 200 }}
-                  />
-                )}
               </TouchableOpacity>
-            </View>
+            ) : (
+              <View
+                style={
+                  windowHeight * 0.37 < windowWidth * 0.7
+                    ? signupStyles.imageContainerHeight
+                    : signupStyles.imageContainerWidth
+                }
+              >
+                <TouchableOpacity onPress={pickImage}>
+                  <Image
+                    style={
+                      windowHeight * 0.37 < windowWidth * 0.7
+                        ? signupStyles.inputImageHeight
+                        : signupStyles.inputImageWidth
+                    }
+                    source={cameraIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
             <View style={signupStyles.inputContainer}>
               <TextInput
                 style={[
