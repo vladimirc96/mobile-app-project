@@ -92,7 +92,10 @@ export class Profile extends React.Component {
     } catch (err) {
       console.log(err.message);
     }
-    if (this.props.navigation.state.params.toggleModal.length) {
+    if (
+      this.props.navigation.state.params.toggleModal &&
+      this.props.navigation.state.params.toggleModal.length
+    ) {
       this.props.navigation.state.params.toggleModal();
     }
     this._loadFontsAsync();
@@ -123,8 +126,26 @@ export class Profile extends React.Component {
   };
 
   updateUser = async (user) => {
+    const formData = new FormData();
+    Object.keys(user).forEach((key) => {
+      if (key === "image") {
+        return;
+      }
+      formData.append(key, user[key]);
+    });
+    if (user.image) {
+      const response = await fetch(user.image);
+      const blob = await response.blob();
+      const image = {
+        uri: user.image,
+        type: blob.type,
+        name: blob.data.name,
+      };
+      formData.append("image", image);
+    }
+    console.log('update');
     try {
-      const data = await saveUser(user);
+      const data = await saveUser(formData);
       this.setState({ user: data });
       alert("Uspesno ste sacuvali izmene");
     } catch (err) {
@@ -163,7 +184,6 @@ export class Profile extends React.Component {
     if (!this.state.user) {
       return <View></View>;
     }
-
     if (this.state.fontsLoaded) {
       if (this.state.showAdModal) {
         return (

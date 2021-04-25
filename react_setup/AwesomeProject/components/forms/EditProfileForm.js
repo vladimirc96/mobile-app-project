@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
-import { StyleSheet, Image, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { EditProfileButton } from "../Buttons";
+import * as ImagePicker from "expo-image-picker";
 
 import { Dimensions } from "react-native";
 import {
@@ -15,13 +23,14 @@ import {
   getFieldNameError,
 } from "../../shared/ValidationUtil";
 import { ScrollView } from "react-native-gesture-handler";
+import PermissionService from "../../services/PermissionService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const editProfileSchema = yup.object({
   username: yup.string().required(),
-  password: yup.string().required(),
+  // password: yup.string().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   phoneNumber: yup.string().required(),
@@ -31,7 +40,26 @@ const editProfileSchema = yup.object({
 });
 
 export default function EditProfileForm({ updateUser, locations, user }) {
+  const [image, setImage] = useState(null);
+
   const avatar = require("../../assets/images/avatar.png");
+
+  const pickImage = async (formikProps) => {
+    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    if (!permissionGranted) {
+      return;
+    }
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
+    });
+    if (!result.cancelled) {
+      await formikProps.setFieldValue("image", result.base64);
+      setImage(result.uri);
+    }
+  };
 
   return (
     <ScrollView>
@@ -45,23 +73,40 @@ export default function EditProfileForm({ updateUser, locations, user }) {
           email: user.email,
           location: user.location,
           details: user.details ? user.details : "",
+          image: user.imageBytes,
         }}
         onSubmit={(values) => {
-          updateUser(values);
+          delete values.image;
+          updateUser({ ...values, image });
         }}
         validationSchema={editProfileSchema}
       >
         {(formikProps) => (
           <View style={styles.mainContainer}>
-            <Image
-              style={
-                windowHeight * 0.15 < windowWidth * 0.28
-                  ? styles.inputImageHeight
-                  : styles.inputImageWidth
-              }
-              source={avatar}
-            />
-            <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
+            {formikProps.values.image ? (
+              <Image
+                style={
+                  windowHeight * 0.15 < windowWidth * 0.28
+                    ? styles.inputImageHeight
+                    : styles.inputImageWidth
+                }
+                source={{
+                  uri: "data:image/png;base64," + formikProps.values.image,
+                }}
+              />
+            ) : (
+              <Image
+                style={
+                  windowHeight * 0.15 < windowWidth * 0.28
+                    ? styles.inputImageHeight
+                    : styles.inputImageWidth
+                }
+                source={avatar}
+              />
+            )}
+            <TouchableOpacity onPress={() => pickImage(formikProps)}>
+              <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
+            </TouchableOpacity>
             <View style={styles.userDetailsContainer}>
               <View
                 style={[

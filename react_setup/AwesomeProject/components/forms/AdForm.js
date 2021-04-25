@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
 import RadioButton from "../RadioButton";
-import { TouchableOpacity, Text, TextInput, View, FlatList, Platform  } from "react-native";
+import { TouchableOpacity, Text, TextInput, View } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
@@ -19,6 +15,7 @@ import {
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
 import Picker from "../Picker";
+import PermissionService from "../../services/PermissionService";
 
 const adSchema = yup.object({
   title: yup.string().required("Naslov je obavezan."),
@@ -47,19 +44,11 @@ export default function AdForm(props) {
 
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
-  }, []);
-
   const pickImage = async () => {
-    ImagePicker;
+    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    if (!permissionGranted) {
+      return;
+    }
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,

@@ -1,6 +1,5 @@
 import React from "react";
 import { ImageBackground, ActivityIndicator } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import * as Font from "expo-font";
 
 import { adCreationStyles } from "./../shared/Styles";
@@ -33,14 +32,6 @@ export class AdCreation extends React.Component {
   }
 
   componentDidMount() {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
     this._loadFontsAsync();
     this.getSubCategories(this.props.categories[0].id);
   }
