@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     // Definisemo prava pristupa odredjenim URL-ovima
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
 
                 // komunikacija izmedju klijenta i servera je stateless
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -91,7 +91,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 // presretni svaki zahtev filterom
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService), BasicAuthenticationFilter.class);
 
-        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
+//        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
     }
 
 

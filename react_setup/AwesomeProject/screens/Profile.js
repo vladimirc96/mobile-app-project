@@ -30,7 +30,7 @@ import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
-
+import Toast from "react-native-simple-toast";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const customFonts = {
@@ -131,10 +131,16 @@ export class Profile extends React.Component {
       if (key === "image") {
         return;
       }
+      if (key === "location") {
+        formData.append(key, JSON.stringify(user[key]));
+        return;
+      }
       formData.append(key, user[key]);
     });
     if (user.image) {
+      console.log("fetch", user);
       const response = await fetch(user.image);
+      console.log("fetch");
       const blob = await response.blob();
       const image = {
         uri: user.image,
@@ -143,11 +149,14 @@ export class Profile extends React.Component {
       };
       formData.append("image", image);
     }
-    console.log('update');
     try {
+      console.log("UPDATE: ", formData);
       const data = await saveUser(formData);
       this.setState({ user: data });
-      alert("Uspesno ste sacuvali izmene");
+      Toast.show("Uspešno ste sačuval izmene!", Toast.LONG);
+      this.props.navigation.navigate("Profile", {
+        username: this.state.user.username,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -314,8 +323,9 @@ export class Profile extends React.Component {
                           numberOfLines={this.state.shortText ? 3 : 100}
                           style={profileStyles.details}
                         >
-                          {this.state.user.details != null
-                            ? this.state.user.details.length
+                          {this.state.user.details != null &&
+                          this.state.user.details.length
+                            ? this.state.user.details
                             : "Korisnik jos nije uneo detalje o sebi!"}
                         </Text>
                       </View>

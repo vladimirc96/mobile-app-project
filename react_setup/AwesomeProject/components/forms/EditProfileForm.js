@@ -40,7 +40,7 @@ const editProfileSchema = yup.object({
 });
 
 export default function EditProfileForm({ updateUser, locations, user }) {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(user.imageBytes);
 
   const avatar = require("../../assets/images/avatar.png");
 
@@ -56,8 +56,8 @@ export default function EditProfileForm({ updateUser, locations, user }) {
       base64: true,
     });
     if (!result.cancelled) {
-      await formikProps.setFieldValue("image", result.base64);
-      setImage(result.uri);
+      await formikProps.setFieldValue("image", result.uri);
+      setImage(result.base64);
     }
   };
 
@@ -67,6 +67,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
         initialValues={{
           id: user.id,
           username: user.username,
+          password: user.password,
           firstName: user.firstName,
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
@@ -76,8 +77,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
           image: user.imageBytes,
         }}
         onSubmit={(values) => {
-          delete values.image;
-          updateUser({ ...values, image });
+          updateUser(values);
         }}
         validationSchema={editProfileSchema}
       >
@@ -91,7 +91,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                     : styles.inputImageWidth
                 }
                 source={{
-                  uri: "data:image/png;base64," + formikProps.values.image,
+                  uri: "data:image/png;base64," + image,
                 }}
               />
             ) : (

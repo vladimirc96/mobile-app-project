@@ -1,10 +1,8 @@
 package com.project.mobileapi.user;
 
-import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.util.ObjectUtils;
-import com.project.mobileapi.util.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,9 +48,9 @@ public class UserController {
         return new ResponseEntity<>(ObjectUtils.isEmpty(user), HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
-        return new ResponseEntity<>(userService.saveUser(userDTO), HttpStatus.CREATED);
+    @PutMapping(consumes = {"multipart/form-data"})
+    public ResponseEntity<UserDTO> saveUser(@ModelAttribute UserDTO userDTO) throws IOException {
+        return new ResponseEntity<>(userService.saveUser(userDTO), HttpStatus.OK);
     }
 
 }

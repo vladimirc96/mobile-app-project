@@ -4,6 +4,8 @@ import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.util.KeyValue;
 
+import java.io.IOException;
+
 
 public class UserAdapter {
 
@@ -18,6 +20,7 @@ public class UserAdapter {
         return UserDTO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
+                .password(user.getPassword())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
@@ -31,13 +34,14 @@ public class UserAdapter {
                 .build();
     }
 
-    public static User toModel(UserDTO userDTO){
+    public static User toModel(UserDTO userDTO) throws IOException {
         if(userDTO == null){
             return null;
         }
         return User.builder()
                 .id(userDTO.getId())
                 .username(userDTO.getUsername())
+                .password(userDTO.getPassword())
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
                 .email(userDTO.getEmail())
@@ -45,7 +49,7 @@ public class UserAdapter {
                 .details(userDTO.getDetails())
                 .location(userDTO.getLocation() != null ? new Location(userDTO.getLocation().getId(), userDTO.getLocation().getValue()) : null)
                 .entryDate(userDTO.getEntryDate())
-                .image(userDTO.getImageBytes() != null ? userDTO.getImageBytes() : null)
+                .image(userDTO.getImageBytes() != null ? userDTO.getImageBytes() : userDTO.getImage() != null ? userDTO.getImage().getBytes() : null)
                 .build();
     }
 }

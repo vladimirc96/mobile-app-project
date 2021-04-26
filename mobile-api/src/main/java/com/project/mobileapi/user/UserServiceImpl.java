@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO saveUser(UserDTO userDTO) {
+    public UserDTO saveUser(UserDTO userDTO) throws IOException {
         return UserAdapter.toDto(userRepository.save(UserAdapter.toModel(userDTO)));
     }
 }
