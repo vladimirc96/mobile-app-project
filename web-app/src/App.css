@@ -1,38 +1,217 @@
-.App {
+/*CSS reset section*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*CSS reset section ended*/
+
+.submit_bt a{
+  color: #ffffff;
+  text-decoration: none;
+  outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #060608;
+  font-size: 16pt;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 0.8rem;
+  padding-left: .7rem;
+}
+
+.custom-navigation-menu{
+  background-color: #ffffff!important;
+}
+
+.logo {width: 100%; float: left;}
+
+.header-nav-part{
+  padding-right: 500px!important;
+}
+
+.search_main{ width: 78%; float: right; }
+
+.submit_bt{
+  font-size: 14pt; 
+  color: #ffffff!important;
+  background-color: #D6BF74;
+  border: 0px;
+  height: 50px;
+  padding: 0px 20px;
+}
+.submit_bt a:hover{
+  color: #000;
+  text-decoration: none;
+  outline: none;
+}
+
+.doctor{ padding-right: 10px; }
+
+.layout_padding {
+  padding-bottom: 80px;
+  padding-top: 120px;
+}
+
+.banner_section{ 
+  width: 100%; 
+  float: left;
+  background-image: url(./assets/images/banner.png);
+  height: 600px;  
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.banner_taital{
+  width: 100%;
+  float: left;
+  color: #ffffff;
+  font-size: 44pt;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.browse_text{
+  width: 100%;
+  float: left;
+  font-size: 16pt;
+  color: #cbcbcb;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font-weight: 500;
+  margin-left: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.banner_bt{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.read_bt{
+  width: 20%;
+  height: 50px;
+  background-color: #D6BF74;
+  color: #ffffff;
+  border: 0px;
+  font-size: 17pt;
+  margin-bottom: 100px;
 }
 
-.App-link {
-  color: #61dafb;
+.search_box {
+  width: 100%;
+  float: left;
+  background-color: #ffffff;
+  height: auto;
+  padding: 60px 20px;
+  top: -125px;
+  position: relative;
+  box-shadow: 0px 0px 8px 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.picker_text{
+  width: 100%;
+  float: left;
+  font-size: 13pt;
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+}
+
+.custom-select{
+  width: 100%;
+  float: left;
+  border: 1px solid #D6BF74;
+  padding: 10px 15px;
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: #fff;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(214, 191, 116, 0.9) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #fff;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(214, 191, 116, 0.9);
+}
+
+.search_bt{
+  width: 90%;
+  float: left;
+  color: #ffffff;
+  background-color: #D6BF74;
+  font-size: 14pt;
+  border: 0px;
+  height: 55px;
 }
