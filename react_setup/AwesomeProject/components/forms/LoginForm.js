@@ -19,7 +19,8 @@ const loginSchema = yup.object({
 export default function LoginForm({ navigation }) {
   const dispatch = useDispatch();
 
-  const loginUser = (credentials) => dispatch(login(credentials));
+  const loginUser = (credentials, navigation) =>
+    dispatch(login(credentials, navigation));
 
   const handleLogin = (credentials, navigation) => {
     return new Promise((resolve, reject) => {
@@ -43,7 +44,6 @@ export default function LoginForm({ navigation }) {
             },
             navigation
           );
-          // navigation.navigate("Home");
         }}
         validationSchema={loginSchema}
       >
