@@ -30,7 +30,6 @@ import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
-import { logout } from "../store/actions/user/userActions";
 import Toast from "react-native-simple-toast";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -58,6 +57,7 @@ export class Profile extends React.Component {
       chosenAd: null,
       adsLoaded: false,
       commentsLoaded: false,
+      locations: [],
     };
   }
 

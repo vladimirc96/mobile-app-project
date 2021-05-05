@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import {
   StyleSheet,
@@ -17,7 +17,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as yup from "yup";
-import { Picker } from "@react-native-picker/picker";
+import Picker from "../Picker";
 import {
   getEditProfileError,
   getFieldNameError,
@@ -43,7 +43,9 @@ export default function EditProfileForm({ updateUser, locations, user }) {
   const [image, setImage] = useState(user.imageBytes);
 
   const avatar = require("../../assets/images/avatar.png");
-
+  useEffect(() => {
+    console.log("edit", locations);
+  });
   const pickImage = async (formikProps) => {
     const permissionGranted = await PermissionService.requestMediaLibraryPermission();
     if (!permissionGranted) {
@@ -72,7 +74,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
           email: user.email,
-          location: user.location,
+          location: { id: user.location.id, name: user.location.value },
           details: user.details ? user.details : "",
           image: user.imageBytes,
         }}
@@ -247,26 +249,13 @@ export default function EditProfileForm({ updateUser, locations, user }) {
 
               <View style={styles.inputFieldContainer}>
                 <Picker
-                  selectedValue={formikProps.values.location.id}
-                  style={{
-                    fontSize: hp("2%"),
-                    backgroundColor: "#1e1c24",
-                    color: "white",
-                    borderColor: "transparent",
-                    paddingTop: hp("0.5%"),
+                  selectedValue={formikProps.values.location}
+                  handleChangeValue={async (value) => {
+                    console.log(value);
+                    formikProps.setFieldValue("location", value);
                   }}
-                  onValueChange={(itemValue, itemIndex) => {
-                    formikProps.setFieldValue("location", locations[itemIndex]);
-                  }}
-                >
-                  {locations.map((location) => (
-                    <Picker.Item
-                      label={location.value}
-                      value={location.id}
-                      key={location.id}
-                    />
-                  ))}
-                </Picker>
+                  items={locations}
+                ></Picker>
               </View>
             </View>
             <TextInput
