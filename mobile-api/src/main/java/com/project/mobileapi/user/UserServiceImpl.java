@@ -52,6 +52,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) throws IOException {
+        User user = userRepository.findOneById(userDTO.getId());
+        if(user.getImage() != null && userDTO.getImage() == null){
+            userDTO.setImageBytes(user.getImage());
+        }
         return UserAdapter.toDto(userRepository.save(UserAdapter.toModel(userDTO)));
     }
 }

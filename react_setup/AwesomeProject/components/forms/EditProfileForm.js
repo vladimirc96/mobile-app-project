@@ -34,7 +34,7 @@ const editProfileSchema = yup.object({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   phoneNumber: yup.string().required(),
-  email: yup.string().required(),
+  email: yup.string().email().required(),
   location: yup.object(),
   details: yup.string(),
 });

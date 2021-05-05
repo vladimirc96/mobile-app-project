@@ -30,6 +30,7 @@ import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
+import { logout } from "../store/actions/user/userActions";
 import Toast from "react-native-simple-toast";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -137,10 +138,8 @@ export class Profile extends React.Component {
       }
       formData.append(key, user[key]);
     });
-    if (user.image) {
-      console.log("fetch", user);
+    if (user.image.indexOf("file:/") !== -1) {
       const response = await fetch(user.image);
-      console.log("fetch");
       const blob = await response.blob();
       const image = {
         uri: user.image,
@@ -150,10 +149,10 @@ export class Profile extends React.Component {
       formData.append("image", image);
     }
     try {
-      console.log("UPDATE: ", formData);
       const data = await saveUser(formData);
       this.setState({ user: data });
-      Toast.show("Uspešno ste sačuval izmene!", Toast.LONG);
+      this.props.setUserInfo(this.state.user);
+      Toast.show("Uspešno ste sačuvali izmene!", Toast.LONG);
       this.props.navigation.navigate("Profile", {
         username: this.state.user.username,
       });
@@ -429,7 +428,14 @@ export class Profile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     token: state.authenticationReducer.token,
+    user: state.userReducer.user,
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUserInfo: (user) => dispatch({ type: "SET_USER_INFO", data: user }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
