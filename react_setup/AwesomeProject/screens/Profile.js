@@ -118,12 +118,12 @@ export class Profile extends React.Component {
   };
 
   toggleAds = async () => {
-    if (!this.state.ads.length) {
-      this.getByUsername();
-    }
-    this.setState((prevState) => ({
+    await this.setState((prevState) => ({
       showAds: !prevState.showAds,
     }));
+    if (!this.state.ads.length || this.state.showAds) {
+      this.getByUsername();
+    }
   };
 
   updateUser = async (user) => {
