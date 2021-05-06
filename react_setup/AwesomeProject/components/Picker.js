@@ -15,9 +15,9 @@ export default function Picker(props) {
   return (
     <View>
       <TouchableOpacity onPress={() => setVisible(true)}>
-        <View style={pickerStyle.fieldWrapper}>
-          <View style={pickerStyle.field}>
-            <Text style={pickerStyle.fieldText}>
+        <View style={[pickerStyle.fieldWrapper, props.fieldWrapperStyle]}>
+          <View style={[pickerStyle.field, props.fieldStyle]}>
+            <Text style={[pickerStyle.fieldText, props.fieldTextStyle]}>
               {props.items.find((item) => item.id === props.selectedValue.id)
                 ? props.items
                     .find((item) => item.id === props.selectedValue.id)

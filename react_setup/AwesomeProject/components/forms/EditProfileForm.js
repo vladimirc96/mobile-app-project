@@ -43,9 +43,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
   const [image, setImage] = useState(user.imageBytes);
 
   const avatar = require("../../assets/images/avatar.png");
-  useEffect(() => {
-    console.log("edit", locations);
-  });
+
   const pickImage = async (formikProps) => {
     const permissionGranted = await PermissionService.requestMediaLibraryPermission();
     if (!permissionGranted) {
@@ -79,6 +77,10 @@ export default function EditProfileForm({ updateUser, locations, user }) {
           image: user.imageBytes,
         }}
         onSubmit={(values) => {
+          values.location = {
+            id: values.location.id,
+            value: values.location.name,
+          };
           updateUser(values);
         }}
         validationSchema={editProfileSchema}
@@ -248,6 +250,7 @@ export default function EditProfileForm({ updateUser, locations, user }) {
               </View>
 
               <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Lokacija</Text>
                 <Picker
                   selectedValue={formikProps.values.location}
                   handleChangeValue={async (value) => {
@@ -255,11 +258,15 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                     formikProps.setFieldValue("location", value);
                   }}
                   items={locations}
+                  fieldTextStyle={{ fontStyle: "normal", color: "#ffffff" }}
+                  fieldStyle={{ width: wp("80%") }}
+                  fieldWrapperStyle={{ marginTop: hp("0%") }}
                 ></Picker>
               </View>
             </View>
             <TextInput
               placeholder="Detalji"
+              placeholderTextColor="#ededed"
               multiline={true}
               textAlignVertical="top"
               numberOfLines={5}
