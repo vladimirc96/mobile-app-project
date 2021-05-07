@@ -16,6 +16,7 @@ import { BlurView } from "expo-blur";
 import { Dimensions } from "react-native";
 import * as Font from "expo-font";
 import HTMLView from "react-native-htmlview";
+import { connect } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -28,7 +29,7 @@ const customFonts = {
   "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
 };
 
-export default class AdModal extends React.Component {
+export class AdModal extends React.Component {
   state = {
     fontsLoaded: false,
   };
@@ -146,16 +147,24 @@ export default class AdModal extends React.Component {
                           </Text>
                         </View>
                         <TouchableOpacity
-                          onPress={() =>
-                            this.props.navigation.navigate("Profile", {
-                              username: this.props.ad.user.username,
-                              toggleModal: this.props.toggleModal,
-                            })
-                          }
+                          onPress={() => {
+                            if (this.props.token) {
+                              this.props.navigation.navigate("AdCreation", {
+                                ad: this.props.ad,
+                              });
+                            } else {
+                              this.props.navigation.navigate("Profile", {
+                                username: this.props.ad.user.username,
+                                toggleModal: this.props.toggleModal,
+                              });
+                            }
+                          }}
                         >
                           <View style={modalStyles.editButton}>
                             <Text style={modalStyles.editButtonText}>
-                              Pogledaj profil
+                              {this.props.token
+                                ? "Izmeni profil"
+                                : "Pogledaj profil"}
                             </Text>
                           </View>
                         </TouchableOpacity>
@@ -184,3 +193,11 @@ export default class AdModal extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.authenticationReducer.token,
+  };
+};
+
+export default connect(mapStateToProps)(AdModal);

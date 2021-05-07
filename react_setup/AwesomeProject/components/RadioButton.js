@@ -27,7 +27,9 @@ export default class RadioButton extends Component {
   state = {
     value: "RSD",
   };
-
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     const { value } = this.state;
     return (

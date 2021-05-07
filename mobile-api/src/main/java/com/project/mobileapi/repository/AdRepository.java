@@ -9,4 +9,5 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     Ad findOneById(Long id);
     List<Ad> findAllBySubCategoryId(Long subCategoryId);
     List<Ad> findAllByUserUsername(String username);
+    void deleteAdById(Long id);
 }

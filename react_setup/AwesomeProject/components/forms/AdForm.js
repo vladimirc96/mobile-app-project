@@ -87,16 +87,22 @@ export default function AdForm(props) {
   return (
     <Formik
       initialValues={{
-        title: "",
-        description: "",
-        category: props.categories[0],
-        subCategory: props.subCategories[0],
-        price: "",
-        agreement: false,
-        currency: "RSD",
+        id: props.ad ? props.ad.id : null,
+        title: props.ad ? props.ad.title : "",
+        description: props.ad ? props.ad.description : "",
+        category: props.ad ? props.categories[0] : props.categories[0],
+        subCategory: props.ad
+          ? {
+              id: props.ad.subCategory.id,
+              name: props.ad.subCategory.value,
+            }
+          : props.subCategories[0],
+        price: props.ad ? props.ad.price.toString() : "",
+        agreement: props.ad ? props.ad.agreement : false,
+        currency: props.ad && props.ad.currency ? props.ad.currency : "RSD",
+        creationDate: new Date().toISOString().slice(0, 10),
       }}
       onSubmit={(values) => {
-        console.log(values);
         props.handleSubmit({ ...values, image });
       }}
       validationSchema={adSchema}

@@ -3,12 +3,7 @@ import MobileApi from "./MobileApi";
 const url = "/ads";
 
 export const saveAd = (ad) => {
-  const config = {
-    headers: {
-      "content-type": "multipart/form-data"
-    }
-  };
-  return MobileApi.post(`${url}`, ad, config);
+  return MobileApi.post(`${url}`, ad);
 };
 
 export const getAllBySubcategoryId = (subCategoryId) => {
@@ -27,4 +22,12 @@ export const getByUsername = (username) => {
     },
   };
   return MobileApi.get(`${url}/get-by-username`, config);
+};
+
+export const updateAd = (ad) => {
+  return MobileApi.put(`${url}`, ad);
+};
+
+export const deleteAdById = (id) => {
+  return MobileApi.delete(`${url}`, id);
 };

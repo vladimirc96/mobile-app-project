@@ -19,15 +19,25 @@ import {
 } from "react-native";
 import { showPopup, confirmButton, rejectButton } from "../shared/AlertPopup";
 import { CONFIRM_CHANGES_MESSAGE } from "../constants/AlertPopup";
-
+import { isEqual } from "lodash";
 export default class RichTextEditor extends React.Component {
+  state = {
+    html: "",
+  };
+
+  componentDidMount() {
+    if (this.props.html) {
+      this.setState({ html: this.props.html });
+    }
+  }
+
   handleChangeHtml = (html) => {
     this.props.handleChangeRichText(this.props.formikProps, html);
   };
 
   handleConfirm = () => {
     this.props.handleChangeVisible(false, this.props.formikProps);
-    this.props.handleChangeRichText(this.props.formikProps, "");
+    this.props.handleChangeRichText(this.props.formikProps, this.state.html);
   };
 
   handleReject = () => {};
@@ -37,7 +47,7 @@ export default class RichTextEditor extends React.Component {
       confirmButton(this.handleConfirm),
       rejectButton(this.handleReject),
     ];
-    if (this.props.html !== "") {
+    if (!isEqual(this.props.html, this.state.html)) {
       showPopup("", CONFIRM_CHANGES_MESSAGE, buttons);
     } else {
       this.props.handleChangeVisible(false, this.props.formikProps);
@@ -47,6 +57,7 @@ export default class RichTextEditor extends React.Component {
   onSave = () => {
     this.props.handleChangeRichText(this.props.formikProps, this.props.html);
     this.props.handleChangeVisible(false, this.props.formikProps);
+    this.setState({ html: this.props.html });
   };
 
   richText = React.createRef();

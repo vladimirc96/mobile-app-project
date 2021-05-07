@@ -42,4 +42,9 @@ public class AdServiceImpl implements AdService{
     public List<AdInfoDTO> getByUsername(String username) {
         return adRepository.findAllByUserUsername(username).stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteById(Long id) {
+        adRepository.deleteById(id);
+    }
 }

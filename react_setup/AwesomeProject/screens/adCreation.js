@@ -59,7 +59,7 @@ export class AdCreation extends React.Component {
         if (key === "subCategory") {
           formData.append(
             key,
-            JSON.stringify({ id: ad[key].id, name: ad[key].name })
+            JSON.stringify({ id: ad[key].id, value: ad[key].name })
           );
           return;
         }
@@ -75,7 +75,6 @@ export class AdCreation extends React.Component {
         };
         formData.append("image", image);
       }
-      formData.append("creationDate", new Date().toISOString().slice(0, 10));
       await saveAd(formData);
     } catch (err) {
       console.log(err);
@@ -96,6 +95,7 @@ export class AdCreation extends React.Component {
             subCategories={this.state.subCategories}
             onChangeCategory={this.onChangeCategory}
             handleSubmit={this.handleSubmit}
+            ad={this.props.navigation.getParam("ad")}
           ></AdForm>
         </ImageBackground>
       );
