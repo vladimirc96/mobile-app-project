@@ -29,7 +29,7 @@ public class AdAdapter {
                 .subCategory(new KeyValue(ad.getSubCategory().getId(), ad.getSubCategory().getName()))
                 .currency(ad.getCurrency())
                 .user(ad.getUser() != null ? UserAdapter.toDto(ad.getUser()) : null)
-                .imageBytes(ad.getImage())
+                .imageBytes(ad.getImage() != null ? ad.getImage() : null)
                 .build();
     }
 
@@ -46,7 +46,7 @@ public class AdAdapter {
                 .description(adDTO.getDescription())
                 .creationDate(adDTO.getCreationDate())
                 .views(adDTO.getViews())
-                .image(adDTO.getImage() != null ? adDTO.getImage().getBytes() : null)
+                .image(adDTO.getImageBytes() != null ? adDTO.getImageBytes() : adDTO.getImage() != null ? adDTO.getImage().getBytes() : null)
                 .subCategory(new SubCategory(adDTO.getSubCategory().getId(), adDTO.getSubCategory().getValue()))
                 .user(adDTO.getUser() != null ? UserAdapter.toModel(adDTO.getUser()) : null)
                 .build();

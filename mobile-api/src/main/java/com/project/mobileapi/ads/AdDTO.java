@@ -26,7 +26,7 @@ public class AdDTO {
     @NotBlank(message = "Naslov oglasa ne sme da bude prazan.")
     private String title;
 
-    private double price;
+    private Double price;
 
     private boolean agreement;
 

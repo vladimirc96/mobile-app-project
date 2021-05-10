@@ -1,4 +1,4 @@
-package com.project.mobileapi.util;
+package com.project.mobileapi.config;
 
 import org.springframework.core.convert.converter.Converter;
 

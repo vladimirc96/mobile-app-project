@@ -28,7 +28,11 @@ export default class RadioButton extends Component {
     value: "RSD",
   };
   componentDidMount() {
-    console.log(this.props);
+    if (this.props.agreement) {
+      this.setState({ value: prices[2].key });
+    } else if (this.props.price) {
+      this.setState({ value: this.props.currency });
+    }
   }
   render() {
     const { value } = this.state;
@@ -42,7 +46,7 @@ export default class RadioButton extends Component {
             placeholderTextColor="#ededed"
             editable={this.state.value !== prices[2].key}
             onChangeText={this.props.handleChangePrice}
-            value={this.props.price}
+            value={this.props.price != 0 ? this.props.price : ""}
             onBlur={this.props.formikProps.handleBlur("price")}
           />
           <View style={radioButtonStyles.priceCurrency}>

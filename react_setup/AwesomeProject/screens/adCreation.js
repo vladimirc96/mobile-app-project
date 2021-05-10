@@ -65,7 +65,7 @@ export class AdCreation extends React.Component {
         }
         formData.append(key, ad[key]);
       });
-      if (ad.image) {
+      if (ad.image.indexOf("file:/") !== -1) {
         const response = await fetch(ad.image);
         const blob = await response.blob();
         const image = {
