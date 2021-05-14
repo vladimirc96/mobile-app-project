@@ -11,10 +11,17 @@ import {
   getErrorStyle,
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
+import PermissionService from "../../services/PermissionService";
 
 const signUpSchema = yup.object({
   username: yup.string().required("Korisničko ime je obavezno."),
-  password: yup.string().required("Šifra je obavezna."),
+  password: yup
+    .string()
+    .required("Šifra je obavezna.")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
   email: yup
     .string()
     .required("Email je obavezan.")
@@ -30,21 +37,13 @@ export default function SignUpForm({ signup }) {
 
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
-  }, []);
-
   const pickImage = async () => {
+    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    if (!permissionGranted) {
+      return;
+    }
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
@@ -69,30 +68,37 @@ export default function SignUpForm({ signup }) {
       >
         {(formikProps) => (
           <ScrollView>
-            <View
-              style={
-                windowHeight * 0.37 < windowWidth * 0.7
-                  ? signupStyles.imageContainerHeight
-                  : signupStyles.imageContainerWidth
-              }
-            >
+            {image ? (
               <TouchableOpacity onPress={pickImage}>
                 <Image
+                  source={{ uri: image }}
                   style={
                     windowHeight * 0.37 < windowWidth * 0.7
-                      ? signupStyles.inputImageHeight
-                      : signupStyles.inputImageWidth
+                      ? signupStyles.pickedImageHeight
+                      : signupStyles.pickedImageWidth
                   }
-                  source={cameraIcon}
                 />
-                {image && (
-                  <Image
-                    source={{ uri: image }}
-                    style={{ width: 200, height: 200 }}
-                  />
-                )}
               </TouchableOpacity>
-            </View>
+            ) : (
+              <View
+                style={
+                  windowHeight * 0.37 < windowWidth * 0.7
+                    ? signupStyles.imageContainerHeight
+                    : signupStyles.imageContainerWidth
+                }
+              >
+                <TouchableOpacity onPress={pickImage}>
+                  <Image
+                    style={
+                      windowHeight * 0.37 < windowWidth * 0.7
+                        ? signupStyles.inputImageHeight
+                        : signupStyles.inputImageWidth
+                    }
+                    source={cameraIcon}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
             <View style={signupStyles.inputContainer}>
               <TextInput
                 style={[

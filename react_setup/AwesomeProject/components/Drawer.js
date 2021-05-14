@@ -51,6 +51,15 @@ export class Drawer extends React.Component {
         },
       },
     ];
+    if (!this.props.token) {
+      items.push({
+        navigate: (navigation) => navigation.navigate("ContactUs"),
+        routeName: "ContactUs",
+        drawerIcon: () => {
+          return this.props.descriptors["ContactUs"].options.drawerIcon();
+        },
+      });
+    }
     this.setState({ drawerItems: items });
   }
 
@@ -102,7 +111,24 @@ export class Drawer extends React.Component {
               <Text style={styles.menuText}>Odjavi se</Text>
             </View>
           </TouchableOpacity>
-        ) : null}
+        ) : (
+          <TouchableOpacity
+            style={styles.logoutContainer}
+            onPress={() => {
+              this.props.navigation.navigate("LogIn");
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <MaterialIcons name="login" size={24} color="white" />
+              <Text style={styles.menuText}>Prijavi se</Text>
+            </View>
+          </TouchableOpacity>
+        )}
       </SafeAreaView>
     );
   }

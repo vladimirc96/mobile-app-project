@@ -30,7 +30,7 @@ import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
-
+import Toast from "react-native-simple-toast";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const customFonts = {
@@ -56,7 +56,8 @@ export class Profile extends React.Component {
       comments: [],
       chosenAd: null,
       adsLoaded: false,
-      commentsLoaded: false
+      commentsLoaded: false,
+      locations: [],
     };
   }
 
@@ -67,10 +68,8 @@ export class Profile extends React.Component {
 
   async getByUsername() {
     try {
-      const data = await getByUsername(
-        this.state.user.username
-      );
-      this.setState({ads: data, adsLoaded: true});
+      const data = await getByUsername(this.state.user.username);
+      this.setState({ ads: data, adsLoaded: true });
     } catch (err) {
       console.log(err.message);
     }
@@ -78,10 +77,8 @@ export class Profile extends React.Component {
 
   async getCommentsByUsername() {
     try {
-      const data = await getCommentsByUsername(
-        this.state.user.username
-      );
-      this.setState({comments: data, commentsLoaded: true});
+      const data = await getCommentsByUsername(this.state.user.username);
+      this.setState({ comments: data, commentsLoaded: true });
     } catch (err) {
       console.log(err.message);
     }
@@ -92,12 +89,15 @@ export class Profile extends React.Component {
       const data = await getUserInfo(
         this.props.navigation.getParam("username")
       );
-      this.setState({ user: data });
+      await this.setState({ user: data });
     } catch (err) {
       console.log(err.message);
     }
-    if(this.props.navigation.state.params.toggleModal.length){
-      this.props.navigation.state.params.toggleModal()
+    if (
+      this.props.navigation.state.params.toggleModal &&
+      this.props.navigation.state.params.toggleModal.length
+    ) {
+      this.props.navigation.state.params.toggleModal();
     }
     this._loadFontsAsync();
   }
@@ -109,7 +109,7 @@ export class Profile extends React.Component {
   };
 
   toggleComments = () => {
-    if(!this.state.comments.length){
+    if (!this.state.comments.length) {
       this.getCommentsByUsername();
     }
     this.setState((prevState) => ({
@@ -117,61 +117,96 @@ export class Profile extends React.Component {
     }));
   };
 
-  toggleAds = () => {
-    if(!this.state.ads.length){
-      this.getByUsername();
-    }
-    this.setState((prevState) => ({
+  toggleAds = async () => {
+    await this.setState((prevState) => ({
       showAds: !prevState.showAds,
     }));
+    if (!this.state.ads.length || this.state.showAds) {
+      this.getByUsername();
+    }
   };
 
   updateUser = async (user) => {
+    const formData = new FormData();
+    Object.keys(user).forEach((key) => {
+      if (key === "image") {
+        return;
+      }
+      if (key === "location") {
+        formData.append(key, JSON.stringify(user[key]));
+        return;
+      }
+      formData.append(key, user[key]);
+    });
+    if (user.image.indexOf("file:/") !== -1) {
+      const response = await fetch(user.image);
+      const blob = await response.blob();
+      const image = {
+        uri: user.image,
+        type: blob.type,
+        name: blob.data.name,
+      };
+      formData.append("image", image);
+    }
     try {
-      const data = await saveUser(user);
+      const data = await saveUser(formData);
       this.setState({ user: data });
-      alert("Uspesno ste sacuvali izmene");
+      this.props.setUserInfo(this.state.user);
+      Toast.show("Uspešno ste sačuvali izmene!", Toast.LONG);
+      this.props.navigation.navigate("Profile", {
+        username: this.state.user.username,
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
   toggleModal = () => {
-    this.setState((prevState) => ({showModal: !prevState.showModal}));
+    this.setState((prevState) => ({ showModal: !prevState.showModal }));
   };
 
   toggleAdModal = (ad) => {
-    this.setState((prevState) => ({showAdModal: !prevState.showAdModal, chosenAd: ad}));
+    this.setState((prevState) => ({
+      showAdModal: !prevState.showAdModal,
+      chosenAd: ad,
+    }));
   };
 
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
     const avatar = require("./../assets/images/avatar.png");
-    const adsList = this.state.ads.map((ad) => (
-      <View key={ad.id} style={adsStyles.smallAdContainer}>
-        <SmallAd ad={ad}
-        onPress={() => this.toggleAdModal(ad)}
-        />
-      </View>
-    ));
+    const adsList = this.state.ads.map((ad) => {
+      // convert to uri
+      if (ad.image) {
+        ad.image = "data:image/jpeg;base64," + ad.image;
+      }
+      return (
+        <View key={ad.id} style={adsStyles.smallAdContainer}>
+          <SmallAd ad={ad} onPress={() => this.toggleAdModal(ad)} />
+        </View>
+      );
+    });
     const commentsList = this.state.comments.map((comment) => (
       <Comment key={comment.id} comment={comment} />
     ));
     if (!this.state.user) {
       return <View></View>;
     }
-
     if (this.state.fontsLoaded) {
-      if(this.state.showAdModal){
+      if (this.state.showAdModal) {
         return (
           <ImageBackground
             style={profileStyles.backgroundImageContainer}
             source={backgroundImage}
           >
-          <AdModalProfile toggleModal={this.toggleAdModal} ad={this.state.chosenAd} user={this.state.user} />
-        </ImageBackground>
-        )
-      }else{
+            <AdModalProfile
+              toggleModal={this.toggleAdModal}
+              ad={this.state.chosenAd}
+              user={this.state.user}
+            />
+          </ImageBackground>
+        );
+      } else {
         return (
           <ImageBackground
             style={profileStyles.backgroundImageContainer}
@@ -183,16 +218,33 @@ export class Profile extends React.Component {
               <ScrollView>
                 <View style={profileStyles.mainContainer}>
                   <View style={profileStyles.basicUserInfo}>
-                    <Image
-                      style={
-                        windowHeight * 0.37 < windowWidth * 0.7
-                          ? profileStyles.profileImageHeight
-                          : profileStyles.profileImageWidth
-                      }
-                      source={avatar}
-                    />
+                    {this.state.user.imageBytes ? (
+                      <Image
+                        style={
+                          windowHeight * 0.37 < windowWidth * 0.7
+                            ? profileStyles.profileImageHeight
+                            : profileStyles.profileImageWidth
+                        }
+                        source={{
+                          uri:
+                            "data:image/jpeg;base64," +
+                            this.state.user.imageBytes,
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        style={
+                          windowHeight * 0.37 < windowWidth * 0.7
+                            ? profileStyles.profileImageHeight
+                            : profileStyles.profileImageWidth
+                        }
+                        source={avatar}
+                      />
+                    )}
                     <Text style={profileStyles.profileName}>
-                      {this.state.user.firstName + " " + this.state.user.lastName}
+                      {this.state.user.firstName +
+                        " " +
+                        this.state.user.lastName}
                     </Text>
                     <View style={profileStyles.userLocation}>
                       <SimpleLineIcons
@@ -205,7 +257,11 @@ export class Profile extends React.Component {
                       </Text>
                     </View>
                     <View style={profileStyles.userMail}>
-                      <Fontisto name="email" size={hp("2.5%")} color="#ededed" />
+                      <Fontisto
+                        name="email"
+                        size={hp("2.5%")}
+                        color="#ededed"
+                      />
                       <Text style={profileStyles.location}>
                         {this.state.user.email}
                       </Text>
@@ -218,34 +274,43 @@ export class Profile extends React.Component {
                     </View>
                     <View style={profileStyles.userRating}>
                       <TouchableOpacity style={profileStyles.likeComponent}>
-                        <SimpleLineIcons name="like" style={profileStyles.like} />
+                        <SimpleLineIcons
+                          name="like"
+                          style={profileStyles.like}
+                        />
                       </TouchableOpacity>
-                      <Text style={profileStyles.ratingText}>{this.state.user.positiveRatings}</Text>
+                      <Text style={profileStyles.ratingText}>
+                        {this.state.user.positiveRatings}
+                      </Text>
                       <TouchableOpacity style={profileStyles.dislikeComponent}>
                         <SimpleLineIcons
                           name="dislike"
                           style={profileStyles.dislike}
                         />
                       </TouchableOpacity>
-                      <Text style={profileStyles.ratingText}>{this.state.user.negativeRatings}</Text>
-                    </View>
-                    <TouchableOpacity onPress={
-                          this.props.token
-                            ? () =>
-                                this.props.navigation.navigate("EditProfile", {
-                                  user: this.state.user,
-                                  updateUser: this.updateUser,
-                                })
-                            : () => this.toggleModal()
-                        }
-                      >
-                    <View style={profileStyles.editButton}>
-                      <Text
-                        style={profileStyles.editButtonText}>
-                        {this.props.token ? "Izmeni Profil" : "Oceni korisnika"}
+                      <Text style={profileStyles.ratingText}>
+                        {this.state.user.negativeRatings}
                       </Text>
                     </View>
-                    </TouchableOpacity> 
+                    <TouchableOpacity
+                      onPress={
+                        this.props.token
+                          ? () =>
+                              this.props.navigation.navigate("EditProfile", {
+                                user: this.state.user,
+                                updateUser: this.updateUser,
+                              })
+                          : () => this.toggleModal()
+                      }
+                    >
+                      <View style={profileStyles.editButton}>
+                        <Text style={profileStyles.editButtonText}>
+                          {this.props.token
+                            ? "Izmeni Profil"
+                            : "Oceni korisnika"}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                   <TouchableOpacity onPress={this.handlePress}>
                     <View style={profileStyles.aboutUser}>
@@ -253,8 +318,14 @@ export class Profile extends React.Component {
                         Detalji o korisniku
                       </Text>
                       <View style={profileStyles.userDetails}>
-                        <Text numberOfLines={this.state.shortText? 3 : 100} style={profileStyles.details}>
-                          {this.state.user.details != null? this.state.user.details.length : "Korisnik jos nije uneo detalje o sebi!"} 
+                        <Text
+                          numberOfLines={this.state.shortText ? 3 : 100}
+                          style={profileStyles.details}
+                        >
+                          {this.state.user.details != null &&
+                          this.state.user.details.length
+                            ? this.state.user.details
+                            : "Korisnik jos nije uneo detalje o sebi!"}
                         </Text>
                       </View>
                       <FontAwesome
@@ -269,8 +340,12 @@ export class Profile extends React.Component {
                   </TouchableOpacity>
                   <View style={profileStyles.smallContainer}>
                     <TouchableOpacity onPress={this.toggleComments}>
-                      <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                        <Text style={profileStyles.sectionName}>Komentari </Text>
+                      <View
+                        style={{ flexDirection: "row", alignSelf: "center" }}
+                      >
+                        <Text style={profileStyles.sectionName}>
+                          Komentari{" "}
+                        </Text>
                         {!this.state.showComments && (
                           <FontAwesome
                             name="angle-double-down"
@@ -282,12 +357,14 @@ export class Profile extends React.Component {
                     {this.state.showComments && (
                       <View>
                         {commentsList}
-                        {
-                          this.state.commentsLoaded && !this.state.comments.length? 
+                        {this.state.commentsLoaded &&
+                        !this.state.comments.length ? (
                           <View style={profileStyles.userDetails}>
-                            <Text style={profileStyles.details}>Korisnik nema nijedan komentar!</Text>
-                          </View> : null
-                        }
+                            <Text style={profileStyles.details}>
+                              Korisnik nema nijedan komentar!
+                            </Text>
+                          </View>
+                        ) : null}
                         <TouchableOpacity onPress={this.toggleComments}>
                           <FontAwesome
                             name="angle-double-up"
@@ -299,7 +376,9 @@ export class Profile extends React.Component {
                   </View>
                   <View style={profileStyles.smallContainer}>
                     <TouchableOpacity onPress={this.toggleAds}>
-                      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                      <View
+                        style={{ flexDirection: "row", alignSelf: "center" }}
+                      >
                         <Text style={profileStyles.sectionName}>Oglasi </Text>
                         {!this.state.showAds && (
                           <FontAwesome
@@ -312,12 +391,13 @@ export class Profile extends React.Component {
                     {this.state.showAds && (
                       <View>
                         {adsList}
-                        {
-                          this.state.adsLoaded && !this.state.ads.length?
+                        {this.state.adsLoaded && !this.state.ads.length ? (
                           <View style={profileStyles.userDetails}>
-                            <Text style={profileStyles.details}>Korisnik trenutno nema nijedan oglas!</Text>
-                          </View> : null
-                        }
+                            <Text style={profileStyles.details}>
+                              Korisnik trenutno nema nijedan oglas!
+                            </Text>
+                          </View>
+                        ) : null}
                         <TouchableOpacity onPress={this.toggleAds}>
                           <FontAwesome
                             name="angle-double-up"
@@ -329,8 +409,11 @@ export class Profile extends React.Component {
                   </View>
                 </View>
                 {this.props.token && (
-                    <AdButtonProfile title={"Postavite oglas"} onPress={() => this.props.navigation.navigate("AdCreation")} />
-                  )}
+                  <AdButtonProfile
+                    title={"Postavite oglas"}
+                    onPress={() => this.props.navigation.navigate("AdCreation")}
+                  />
+                )}
               </ScrollView>
             )}
           </ImageBackground>
@@ -345,7 +428,14 @@ export class Profile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     token: state.authenticationReducer.token,
+    user: state.userReducer.user,
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUserInfo: (user) => dispatch({ type: "SET_USER_INFO", data: user }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

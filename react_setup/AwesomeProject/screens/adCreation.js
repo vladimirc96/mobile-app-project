@@ -1,6 +1,5 @@
 import React from "react";
 import { ImageBackground, ActivityIndicator } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import * as Font from "expo-font";
 
 import { adCreationStyles } from "./../shared/Styles";
@@ -33,14 +32,6 @@ export class AdCreation extends React.Component {
   }
 
   componentDidMount() {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
     this._loadFontsAsync();
     this.getSubCategories(this.props.categories[0].id);
   }
@@ -68,13 +59,13 @@ export class AdCreation extends React.Component {
         if (key === "subCategory") {
           formData.append(
             key,
-            JSON.stringify({ id: ad[key].id, name: ad[key].name })
+            JSON.stringify({ id: ad[key].id, value: ad[key].name })
           );
           return;
         }
         formData.append(key, ad[key]);
       });
-      if (ad.image) {
+      if (ad.image.indexOf("file:/") !== -1) {
         const response = await fetch(ad.image);
         const blob = await response.blob();
         const image = {
@@ -84,7 +75,6 @@ export class AdCreation extends React.Component {
         };
         formData.append("image", image);
       }
-      formData.append("creationDate", new Date().toISOString().slice(0, 10));
       await saveAd(formData);
     } catch (err) {
       console.log(err);
@@ -105,6 +95,7 @@ export class AdCreation extends React.Component {
             subCategories={this.state.subCategories}
             onChangeCategory={this.onChangeCategory}
             handleSubmit={this.handleSubmit}
+            ad={this.props.navigation.getParam("ad")}
           ></AdForm>
         </ImageBackground>
       );

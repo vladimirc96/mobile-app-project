@@ -11,7 +11,7 @@ import {
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
 import * as ImagePicker from "expo-image-picker";
-import { MEDIA_LIBRARY_PERMISSION_ERROR } from "../../constants/Messages";
+import PermissionService from "../../services/PermissionService";
 
 const TITLE_MAX_LENGTH = 50;
 const MESSAGE_MAX_LENGTH = 1000;
@@ -26,17 +26,8 @@ const contactSchema = yup.object({
 export default function ContactUsForm(props) {
   const [image, setImage] = useState(null);
 
-  const getPermission = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== "granted") {
-      Toast.show(MEDIA_LIBRARY_PERMISSION_ERROR, Toast.LONG);
-      return false;
-    }
-    return true;
-  };
-
   const pickImage = async () => {
-    const permissionGranted = await getPermission();
+    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
     if (!permissionGranted) {
       return;
     }

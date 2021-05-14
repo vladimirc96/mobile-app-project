@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
 import { AntDesign } from "@expo/vector-icons";
 import RadioButton from "../RadioButton";
-import { TouchableOpacity, Text, TextInput, View, FlatList, Platform  } from "react-native";
+import { TouchableOpacity, Text, TextInput, View } from "react-native";
 import { adCreationStyles, errorStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
@@ -19,14 +15,47 @@ import {
   getErrorPlaceholder,
 } from "../../shared/ValidationUtil";
 import Picker from "../Picker";
+import PermissionService from "../../services/PermissionService";
 
 const adSchema = yup.object({
-  title: yup.string().required("Naslov je obavezan."),
+  title: yup.string().required(),
   description: yup.string().required(),
   category: yup.object().required(),
   subCategory: yup.object().required(),
-  price: yup.number().required(),
-  agreement: yup.boolean().required(),
+  price: yup.number().nullable().test({
+    name: "Price required",
+    exclusive: false,
+    params: {},
+    message: "Price is required",
+    // kada vratim true onda je ispunjen test i nema errore
+    test: function (value) {
+      if (value) {
+        return true;
+      }
+      if (!value && this.parent.agreement === null) {
+        return false;
+      }
+      if (!value && this.parent.agreement) {
+        return true;
+      }
+      return false;
+    },
+  }),
+  agreement: yup
+    .boolean()
+    .nullable()
+    .test({
+      name: "Agreement required",
+      exclusive: false,
+      params: {},
+      message: "Agreement is required",
+      test: function (value) {
+        if (value || !value) {
+          return true;
+        }
+        return false;
+      },
+    }),
 });
 
 export default function AdForm(props) {
@@ -47,19 +76,11 @@ export default function AdForm(props) {
 
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
-      }
-    })();
-  }, []);
-
-  const pickImage = async () => {
-    ImagePicker;
+  const pickImage = async (formikProps) => {
+    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    if (!permissionGranted) {
+      return;
+    }
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -68,47 +89,53 @@ export default function AdForm(props) {
       base64: true,
     });
     if (!result.cancelled) {
+      await formikProps.setFieldValue("image", result.uri);
       setImage(result.uri);
     }
   };
 
-  const handleChangeAgreement = (formikProps, value) => {
-    formikProps.setFieldValue("agreement", value);
-    formikProps.setFieldTouched("agreement", value);
-    formikProps.setFieldError("agreement", !value);
-    formikProps.setFieldValue("price", 0);
-    formikProps.setFieldTouched("price", false);
-    formikProps.setFieldError("price", false);
+  const handleChangeAgreement = async (formikProps, value) => {
+    await formikProps.setFieldValue("agreement", value);
+    await formikProps.setFieldTouched("agreement", value);
+    await formikProps.setFieldValue("price", null);
+    await formikProps.setFieldTouched("price", false);
   };
 
-  const handleChangePrice = (formikProps, text) => {
-    formikProps.setFieldValue("price", text);
-    formikProps.setFieldError("price", !text);
-    formikProps.setFieldValue("agreement", false);
-    formikProps.setFieldTouched("agreement", false);
-    formikProps.setFieldError("agreement", false);
+  const handleChangePrice = async (formikProps, text) => {
+    await formikProps.setFieldValue("price", text);
+    await formikProps.setFieldTouched("price", true);
+    await formikProps.setFieldValue("agreement", false);
+    await formikProps.setFieldTouched("agreement", false);
   };
 
-  const handleChangeCurrency = (formikProps, value) => {
+  const handleChangeCurrency = async (formikProps, value) => {
     value !== ""
       ? formikProps.setFieldValue("currency", value === "RSD" ? "EUR" : "RSD")
       : formikProps.setFieldValue("currency", value);
+    await formikProps.setFieldValue("agreement", null);
   };
 
   return (
     <Formik
       initialValues={{
-        title: "",
-        description: "",
-        category: props.categories[0],
-        subCategory: props.subCategories[0],
-        price: "",
-        agreement: false,
-        currency: "RSD",
+        id: props.ad ? props.ad.id : null,
+        title: props.ad ? props.ad.title : "",
+        description: props.ad ? props.ad.description : "",
+        category: props.ad ? props.categories[0] : props.categories[0],
+        subCategory: props.ad
+          ? {
+              id: props.ad.subCategory.id,
+              name: props.ad.subCategory.value,
+            }
+          : props.subCategories[0],
+        price: props.ad ? props.ad.price.toString() : "",
+        agreement: props.ad ? props.ad.agreement : null,
+        currency: props.ad && props.ad.currency ? props.ad.currency : "RSD",
+        creationDate: new Date().toISOString().slice(0, 10),
+        image: props.ad && props.ad.imageBytes ? props.ad.imageBytes : null,
       }}
       onSubmit={(values) => {
-        console.log(values);
-        props.handleSubmit({ ...values, image });
+        props.handleSubmit(values);
       }}
       validationSchema={adSchema}
     >
@@ -209,13 +236,14 @@ export default function AdForm(props) {
                   formikProps={formikProps}
                   price={formikProps.values.price}
                   agreement={formikProps.values.agreement}
+                  currency={formikProps.values.currency}
                 />
               </View>
             </View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Fotografija</Text>
               {!image ? (
-                <TouchableOpacity onPress={pickImage}>
+                <TouchableOpacity onPress={() => pickImage(formikProps)}>
                   <View style={adCreationStyles.pickImageContainer}>
                     <View style={adCreationStyles.pickImageAdditional}>
                       <Text style={adCreationStyles.pickingImage}>
@@ -240,7 +268,10 @@ export default function AdForm(props) {
             </View>
             <EditProfileButton
               title={"Postavi"}
-              onPress={formikProps.handleSubmit}
+              onPress={() => {
+                formikProps.handleSubmit();
+                console.log(formikProps.errors);
+              }}
             />
           </View>
         </ScrollView>

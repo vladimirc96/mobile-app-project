@@ -1,7 +1,13 @@
 import React from "react";
-import { ImageBackground, Text, View, ScrollView, ActivityIndicator} from "react-native";
+import {
+  ImageBackground,
+  Text,
+  View,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import Ad from "../components/Ad";
-import AdModal from './AdModal';
+import AdModal from "./AdModal";
 import { adsStyles } from "../shared/Styles";
 import * as Font from "expo-font";
 import { getAllBySubcategoryId } from "../services/AdService";
@@ -17,9 +23,9 @@ const customFonts = {
 export default class Ads extends React.Component {
   state = {
     fontsLoaded: false,
-	  showModal: false,
+    showModal: false,
     ads: [],
-    chosenAd: null
+    chosenAd: null,
   };
 
   async _loadFontsAsync() {
@@ -44,47 +50,57 @@ export default class Ads extends React.Component {
   }
 
   toggleModal = (ad) => {
-    this.setState(prevState => ({showModal:!prevState.showModal, chosenAd: ad}))
-  }
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+      chosenAd: ad,
+    }));
+  };
 
   render() {
     const backgroundImage = require("./../assets/images/background_bright.jpg");
-    const adsList = this.state.ads.map((ad) => (
-      <View style={adsStyles.adContainer}
-        key={ad.id}
-      >
-      <Ad
-        ad={ad}
-        onPress={() => this.toggleModal(ad)}
-      />
-    </View>
-    ));
-    if(this.state.fontsLoaded){
-    return (
-      <ImageBackground
-        style={adsStyles.backgroundImageContainer}
-        source={backgroundImage}
-      >
-      {this.state.showModal ?
-        <AdModal toggleModal={this.toggleModal} navigation={this.props.navigation} ad={this.state.chosenAd} />
-        :
-        <ScrollView>
-          <View style={adsStyles.mainContainer}>
-            <View style={adsStyles.titleContainer}>
-              <Text style={adsStyles.titleText}> {this.props.navigation.state.params.subCategoryName} </Text>
-            </View>
+    const adsList = this.state.ads.map((ad) => {
+      // convert to uri
+      if (ad.imageBytes) {
+        ad.image = "data:image/jpeg;base64," + ad.imageBytes;
+      }
+      return (
+        <View style={adsStyles.adContainer} key={ad.id}>
+          <Ad ad={ad} onPress={() => this.toggleModal(ad)} />
+        </View>
+      );
+    });
+    if (this.state.fontsLoaded) {
+      return (
+        <ImageBackground
+          style={adsStyles.backgroundImageContainer}
+          source={backgroundImage}
+        >
+          {this.state.showModal ? (
+            <AdModal
+              toggleModal={this.toggleModal}
+              navigation={this.props.navigation}
+              ad={this.state.chosenAd}
+            />
+          ) : (
+            <ScrollView>
+              <View style={adsStyles.mainContainer}>
+                <View style={adsStyles.titleContainer}>
+                  <Text style={adsStyles.titleText}>
+                    {" "}
+                    {this.props.navigation.state.params.subCategoryName}{" "}
+                  </Text>
+                </View>
                 <View>
                   <View style={adsStyles.numberOfAdsContainer}></View>
                   {adsList}
                 </View>
-          </View>
-        </ScrollView>
-      }
-      </ImageBackground>
-    );
+              </View>
+            </ScrollView>
+          )}
+        </ImageBackground>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
   }
-  else{
-    return <ActivityIndicator size="large" />;
-  }
-}}
-	
+}

@@ -25,7 +25,7 @@ public class AdInfoAdapter {
                 .views(ad.getViews())
                 .subCategory(new KeyValue(ad.getSubCategory().getId(), ad.getSubCategory().getName()))
                 .currency(ad.getCurrency())
-//                .image(new CustomMultipartFile(ad.getImage()))
+                .image(ad.getImage() != null ? ad.getImage() : null)
                 .build();
     }
 }

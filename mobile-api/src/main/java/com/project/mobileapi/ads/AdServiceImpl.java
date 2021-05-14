@@ -24,6 +24,12 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public AdDTO save(AdDTO adDTO) throws IOException {
+        if(adDTO.getId() != null){
+            Ad ad = adRepository.findOneById(adDTO.getId());
+            if(ad.getImage() != null && adDTO.getImage() == null){
+                adDTO.setImageBytes(ad.getImage());
+            }
+        }
         Ad ad = adRepository.save(AdAdapter.toModel(adDTO));
         return AdAdapter.toDto(ad);
     }
@@ -41,5 +47,10 @@ public class AdServiceImpl implements AdService{
     @Override
     public List<AdInfoDTO> getByUsername(String username) {
         return adRepository.findAllByUserUsername(username).stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        adRepository.deleteById(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.project.mobileapi.exceptions.handlers;
 
 import com.project.mobileapi.exceptions.ApiError;
+import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.exceptions.ResourceNotFoundException;
 import org.hibernate.HibernateException;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MessagingException.class)
     public ResponseEntity<Object> handleBadEmailException(MessagingException ex){
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, "Email nije moguće poslati.", ex));
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<Object> handleInvalidPasswordException(InvalidPasswordException ex){
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage(), ex));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

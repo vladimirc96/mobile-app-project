@@ -34,7 +34,6 @@ export default function Header({ title, navigation, mainScreen }) {
   const user = useSelector((state) => state.userReducer.user);
 
   return (
-    <Provider>
       <View style={headerStyles.header}>
         {mainScreen && (
           <MaterialIcons
@@ -87,6 +86,5 @@ export default function Header({ title, navigation, mainScreen }) {
           </View>
         ) : null}
       </View>
-    </Provider>
   );
 }
