@@ -148,23 +148,15 @@ export class AdModal extends React.Component {
                         </View>
                         <TouchableOpacity
                           onPress={() => {
-                            if (this.props.token) {
-                              this.props.navigation.navigate("AdCreation", {
-                                ad: this.props.ad,
-                              });
-                            } else {
-                              this.props.navigation.navigate("Profile", {
-                                username: this.props.ad.user.username,
-                                toggleModal: this.props.toggleModal,
-                              });
-                            }
+                            this.props.navigation.navigate("Profile", {
+                              username: this.props.ad.user.username,
+                              toggleModal: this.props.toggleModal,
+                            });
                           }}
                         >
                           <View style={modalStyles.editButton}>
                             <Text style={modalStyles.editButtonText}>
-                              {this.props.token
-                                ? "Izmeni profil"
-                                : "Pogledaj profil"}
+                              Pogledaj profil
                             </Text>
                           </View>
                         </TouchableOpacity>

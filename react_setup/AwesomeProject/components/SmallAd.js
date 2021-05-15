@@ -38,10 +38,12 @@ export default class SmallAd extends React.Component {
         >
           <View style={smallAdStyles.adMainContainer}>
             <View>
-              {this.props.ad.image ? (
+              {this.props.ad.imageBytes ? (
                 <Image
                   style={smallAdStyles.adImage}
-                  source={{ uri: this.props.ad.image }}
+                  source={{
+                    uri: "data:image/jpeg;base64," + this.props.ad.imageBytes,
+                  }}
                 />
               ) : (
                 <Image style={smallAdStyles.adImage} source={{ uri: null }} />

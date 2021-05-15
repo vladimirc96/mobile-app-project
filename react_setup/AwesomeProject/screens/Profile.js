@@ -28,7 +28,7 @@ import { AdButtonProfile } from "./../components/Buttons";
 import AdModalProfile from "./AdModalProfile";
 import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
-import { getByUsername } from "../services/AdService";
+import { getByUsername, deleteAdById } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
 import Toast from "react-native-simple-toast";
 const windowWidth = Dimensions.get("window").width;
@@ -158,6 +158,7 @@ export class Profile extends React.Component {
       });
     } catch (err) {
       console.log(err);
+      Toast.show(err.message, Toast.LONG);
     }
   };
 
@@ -166,10 +167,22 @@ export class Profile extends React.Component {
   };
 
   toggleAdModal = (ad) => {
+    this.toggleAds();
     this.setState((prevState) => ({
       showAdModal: !prevState.showAdModal,
       chosenAd: ad,
     }));
+  };
+
+  deleteAd = async (id) => {
+    try {
+      await deleteAdById(id);
+      await this.getByUsername();
+      this.toggleAdModal();
+    } catch (err) {
+      console.log(err);
+      Toast.show(err.message, Toast.LONG);
+    }
   };
 
   render() {
@@ -177,9 +190,6 @@ export class Profile extends React.Component {
     const avatar = require("./../assets/images/avatar.png");
     const adsList = this.state.ads.map((ad) => {
       // convert to uri
-      if (ad.image) {
-        ad.image = "data:image/jpeg;base64," + ad.image;
-      }
       return (
         <View key={ad.id} style={adsStyles.smallAdContainer}>
           <SmallAd ad={ad} onPress={() => this.toggleAdModal(ad)} />
@@ -203,6 +213,8 @@ export class Profile extends React.Component {
               toggleModal={this.toggleAdModal}
               ad={this.state.chosenAd}
               user={this.state.user}
+              navigation={this.props.navigation}
+              handleDelete={this.deleteAd}
             />
           </ImageBackground>
         );

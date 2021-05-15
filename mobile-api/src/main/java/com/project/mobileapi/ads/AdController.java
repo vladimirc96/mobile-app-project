@@ -64,8 +64,7 @@ public class AdController {
         return new ResponseEntity<>(adService.getByUsername(username), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{adId}")
-    @PreAuthorize("hasAuthority('DELETE_AD')")
+    @PutMapping("/{adId}")
     public void deleteById(@PathVariable("adId") Long adId){
         adService.deleteById(adId);
     }

@@ -29,5 +29,5 @@ export const updateAd = (ad) => {
 };
 
 export const deleteAdById = (id) => {
-  return MobileApi.delete(`${url}`, id);
+  return MobileApi.put(`${url}/${id}`);
 };

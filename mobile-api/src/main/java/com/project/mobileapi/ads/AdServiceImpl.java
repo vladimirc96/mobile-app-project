@@ -41,16 +41,20 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public List<AdDTO> findBySubCategoryId(Long subCategoryId) {
-        return adRepository.findAllBySubCategoryId(subCategoryId).stream().map(AdAdapter::toDto).collect(Collectors.toList());
+        List<Ad> ads = adRepository.findAllBySubCategoryId(subCategoryId).stream().filter(ad -> !ad.isDeleted()).collect(Collectors.toList());
+        return ads.stream().map(AdAdapter::toDto).collect(Collectors.toList());
     }
 
     @Override
     public List<AdInfoDTO> getByUsername(String username) {
-        return adRepository.findAllByUserUsername(username).stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
+        List<Ad> ads = adRepository.findAllByUserUsername(username).stream().filter(ad -> !ad.isDeleted()).collect(Collectors.toList());
+        return ads.stream().map(AdInfoAdapter::toDto).collect(Collectors.toList());
     }
 
     @Override
     public void deleteById(Long id) {
-        adRepository.deleteById(id);
+        Ad ad = adRepository.findOneById(id);
+        ad.setDeleted(true);
+        adRepository.save(ad);
     }
 }
