@@ -22,25 +22,28 @@ const adSchema = yup.object({
   description: yup.string().required(),
   category: yup.object().required(),
   subCategory: yup.object().required(),
-  price: yup.number().nullable().test({
-    name: "Price required",
-    exclusive: false,
-    params: {},
-    message: "Price is required",
-    // kada vratim true onda je ispunjen test i nema errore
-    test: function (value) {
-      if (value) {
-        return true;
-      }
-      if (!value && this.parent.agreement === null) {
+  price: yup
+    .number()
+    .nullable()
+    .test({
+      name: "Price required",
+      exclusive: false,
+      params: {},
+      message: "Price is required",
+      // kada vratim true onda je ispunjen test i nema errore
+      test: function (value) {
+        if (value) {
+          return true;
+        }
+        if (!value && this.parent.agreement === null) {
+          return false;
+        }
+        if (!value && this.parent.agreement) {
+          return true;
+        }
         return false;
-      }
-      if (!value && this.parent.agreement) {
-        return true;
-      }
-      return false;
-    },
-  }),
+      },
+    }),
   agreement: yup
     .boolean()
     .nullable()
@@ -77,7 +80,8 @@ export default function AdForm(props) {
   const [image, setImage] = useState(null);
 
   const pickImage = async (formikProps) => {
-    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    const permissionGranted =
+      await PermissionService.requestMediaLibraryPermission();
     if (!permissionGranted) {
       return;
     }
@@ -267,10 +271,9 @@ export default function AdForm(props) {
               )}
             </View>
             <EditProfileButton
-              title={"Postavi"}
+              title={"Potvrdi"}
               onPress={() => {
                 formikProps.handleSubmit();
-                console.log(formikProps.errors);
               }}
             />
           </View>

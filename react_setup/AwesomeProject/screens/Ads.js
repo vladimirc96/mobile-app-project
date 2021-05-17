@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
   ActivityIndicator,
+  StyleSheet,
 } from "react-native";
 import Ad from "../components/Ad";
 import AdModal from "./AdModal";
@@ -21,6 +22,9 @@ const customFonts = {
 };
 
 export default class Ads extends React.Component {
+  didFocusListener;
+  didBlurListener;
+
   state = {
     fontsLoaded: false,
     showModal: false,
@@ -36,7 +40,27 @@ export default class Ads extends React.Component {
   componentDidMount() {
     this._loadFontsAsync();
     this.getAllBySubCategoryId();
+    this.didFocusListener = this.props.navigation.addListener(
+      "didFocus",
+      this.onFocus
+    );
+    this.didBlurListener = this.props.navigation.addListener(
+      "didBlur",
+      this.onBlur
+    );
   }
+
+  componentWillUnmount() {
+    this.didFocusListener.remove();
+  }
+
+  onFocus = (payload) => {
+    this.getAllBySubCategoryId();
+  };
+
+  onBlur = (payload) => {
+    this.setState({ ads: [] });
+  };
 
   async getAllBySubCategoryId() {
     try {
@@ -69,7 +93,7 @@ export default class Ads extends React.Component {
         </View>
       );
     });
-    if (this.state.fontsLoaded) {
+    if (this.state.fontsLoaded && this.state.ads && this.state.ads !== 0) {
       return (
         <ImageBackground
           style={adsStyles.backgroundImageContainer}
@@ -100,7 +124,24 @@ export default class Ads extends React.Component {
         </ImageBackground>
       );
     } else {
-      return <ActivityIndicator size="large" />;
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator />
+          <ActivityIndicator size="large" />
+        </View>
+      );
     }
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  horizontal: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
+  },
+});

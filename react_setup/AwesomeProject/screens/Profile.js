@@ -152,10 +152,14 @@ export class Profile extends React.Component {
       const data = await saveUser(formData);
       this.setState({ user: data });
       this.props.setUserInfo(this.state.user);
-      Toast.show("Uspešno ste sačuvali izmene!", Toast.LONG);
-      this.props.navigation.navigate("Profile", {
-        username: this.state.user.username,
-      });
+      Toast.show("Uspešno ste sačuvali izmene!", Toast.SHORT);
+      setTimeout(
+        () =>
+          this.props.navigation.navigate("Profile", {
+            username: this.state.user.username,
+          }),
+        1000
+      );
     } catch (err) {
       console.log(err);
       Toast.show(err.message, Toast.LONG);
@@ -167,11 +171,13 @@ export class Profile extends React.Component {
   };
 
   toggleAdModal = (ad) => {
-    this.toggleAds();
     this.setState((prevState) => ({
       showAdModal: !prevState.showAdModal,
       chosenAd: ad,
     }));
+    this.setState({
+      showAds: false,
+    });
   };
 
   deleteAd = async (id) => {

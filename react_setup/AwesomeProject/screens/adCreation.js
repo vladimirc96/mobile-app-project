@@ -8,6 +8,7 @@ import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";
 import { getAllByCategoryId } from "../services/SubCategoryService";
 import { saveAd } from "../services/AdService";
+import Toast from "react-native-simple-toast";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -76,6 +77,17 @@ export class AdCreation extends React.Component {
         formData.append("image", image);
       }
       await saveAd(formData);
+      Toast.show(
+        !ad.id ? "Uspešno ste dodali oglas!" : "Uspešno ste sačuvali izmene!",
+        Toast.SHORT
+      );
+      setTimeout(
+        () =>
+          this.props.navigation.navigate("Profile", {
+            username: this.props.user.username,
+          }),
+        1000
+      );
     } catch (err) {
       console.log(err);
     }
@@ -108,6 +120,7 @@ export class AdCreation extends React.Component {
 const mapStateToProps = (state) => {
   return {
     categories: state.categoryReducer.categories,
+    user: state.userReducer.user,
   };
 };
 

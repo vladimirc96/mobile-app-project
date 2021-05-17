@@ -51,10 +51,7 @@ export class AdModalProfile extends React.Component {
   };
 
   delete = () => {
-    const buttons = [
-      confirmButton(this.handleConfirm),
-      rejectButton(this.handleReject),
-    ];
+    const buttons = [confirmButton(this.handleConfirm), rejectButton()];
     showPopup("", DELETE_MESSAGE, buttons);
   };
 
@@ -202,7 +199,14 @@ export class AdModalProfile extends React.Component {
                           </TouchableOpacity>
                         )}
                       </View>
-                      <View style={modalStyles.description}>
+                      <View
+                        style={[
+                          modalStyles.description,
+                          isEqual(this.props.user.id, this.props.userId)
+                            ? { minHeight: hp("34%") }
+                            : null,
+                        ]}
+                      >
                         <HTMLView
                           value={this.props.ad.description}
                           stylesheet={{
@@ -229,7 +233,10 @@ export class AdModalProfile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.userReducer.user.id,
+    userId:
+      state.userReducer.user && state.userReducer.user.id
+        ? state.userReducer.user.id
+        : null,
   };
 };
 export default connect(mapStateToProps)(AdModalProfile);
