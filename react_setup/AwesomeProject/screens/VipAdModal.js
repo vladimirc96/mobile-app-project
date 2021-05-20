@@ -8,7 +8,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { adsStyles, modalStyles } from "../shared/Styles";
+import { adsStyles, vipModalStyles } from "../shared/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -17,6 +17,7 @@ import { Dimensions } from "react-native";
 import * as Font from "expo-font";
 import HTMLView from "react-native-htmlview";
 import { connect } from "react-redux";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -47,17 +48,24 @@ export class AdModal extends React.Component {
     const avatar = require("./../assets/images/gitara.jpg");
     if (this.state.fontsLoaded) {
       return (
-        <BlurView intensity={100} tint={"dark"} style={modalStyles.blurView}>
+        <BlurView intensity={100} tint={"dark"} style={vipModalStyles.blurView}>
           <ScrollView>
             <View style={adsStyles.mainContainer}>
-              <View style={modalStyles.modalWrap}>
+              <View style={vipModalStyles.modalWrap}>
                 <Modal
                   transparent={true}
                   visible={this.state.showModal}
-                  style={modalStyles.modal}
+                  style={vipModalStyles.modal}
                 >
-                  <View style={modalStyles.modalInnerWrap}>
-                    <View style={modalStyles.closeButtonContainer}>
+                    <LinearGradient
+                    colors={['#d2bd84', '#fdfcfb', '#d2bd84', '#fdfcfb']}
+                    style={vipModalStyles.modalInnerWrap}
+                    start={{ x: 0.15, y: 0.2 }}
+                    end={{ x: 0.99, y: 1}}
+                    locations={[0.2, 0.5, 0.72, 1]}
+                    >
+                  <View>
+                    <View style={vipModalStyles.closeButtonContainer}>
                       <View></View>
                       <TouchableOpacity
                         onPress={() => this.props.toggleModal()}
@@ -65,38 +73,43 @@ export class AdModal extends React.Component {
                         <Ionicons
                           name="md-close"
                           size={26}
-                          style={modalStyles.closeButton}
+                          style={vipModalStyles.closeButton}
                           color="#ededed"
                         />
                       </TouchableOpacity>
                     </View>
-                    <View style={modalStyles.centeredWrap}>
-                      <View style={modalStyles.titleContainer}>
+                    <View style={vipModalStyles.centeredWrap}>
+                      <View style={vipModalStyles.titleContainer}>
                         <View>
-                          <Text style={modalStyles.title}>
+                          <Text style={vipModalStyles.title}>
                             {this.props.ad.title}
                           </Text>
                         </View>
-                        <View style={modalStyles.priceContainer}>
-                          <Text style={modalStyles.price}>
+                        <LinearGradient
+                        colors={['#b8986a', '#362a19']}
+                        style={vipModalStyles.priceContainer}
+                        locations={[0.01, 1]}>
+                        <View>
+                          <Text style={vipModalStyles.price}>
                             {this.props.ad.price}
                           </Text>
                         </View>
+                        </LinearGradient>
                       </View>
-                      <View style={modalStyles.basicUserInfo}>
+                      <View style={vipModalStyles.basicUserInfo}>
                         <View
                           style={
                             windowHeight * 0.37 < windowWidth * 0.7
-                              ? modalStyles.profileImageBorderHeight
-                              : modalStyles.profileImageBorderWidth
+                              ? vipModalStyles.profileImageBorderHeight
+                              : vipModalStyles.profileImageBorderWidth
                           }
                         >
                           {this.props.ad.image ? (
                             <Image
                               style={
                                 windowHeight * 0.37 < windowWidth * 0.7
-                                  ? modalStyles.profileImageHeight
-                                  : modalStyles.profileImageWidth
+                                  ? vipModalStyles.profileImageHeight
+                                  : vipModalStyles.profileImageWidth
                               }
                               source={{ uri: this.props.ad.image }}
                             />
@@ -104,45 +117,45 @@ export class AdModal extends React.Component {
                             <Image
                               style={
                                 windowHeight * 0.37 < windowWidth * 0.7
-                                  ? modalStyles.profileImageHeight
-                                  : modalStyles.profileImageWidth
+                                  ? vipModalStyles.profileImageHeight
+                                  : vipModalStyles.profileImageWidth
                               }
                               source={avatar}
                             />
                           )}
                         </View>
-                        <Text style={modalStyles.profileName}>
+                        <Text style={vipModalStyles.profileName}>
                           {this.props.ad.user.firstName +
                             " " +
                             this.props.ad.user.lastName}
                         </Text>
-                        <View style={modalStyles.userLocation}>
+                        <View style={vipModalStyles.userLocation}>
                           <SimpleLineIcons
                             name="location-pin"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={vipModalStyles.location}>
                             {this.props.ad.user.location.value}
                           </Text>
                         </View>
-                        <View style={modalStyles.userMail}>
+                        <View style={vipModalStyles.userMail}>
                           <Fontisto
                             name="email"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={vipModalStyles.location}>
                             {this.props.ad.user.email}
                           </Text>
                         </View>
-                        <View style={modalStyles.userOntact}>
+                        <View style={vipModalStyles.userOntact}>
                           <Feather
                             name="phone"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={vipModalStyles.location}>
                             {this.props.ad.user.phoneNumber}
                           </Text>
                         </View>
@@ -155,21 +168,19 @@ export class AdModal extends React.Component {
                             }
                           }
                         >
-                          <View style={modalStyles.editButton}>
-                            <Text style={modalStyles.editButtonText}>
-                              {this.props.token
-                                ? "Izmeni profil"
-                                : "Pogledaj profil"}
+                          <View style={vipModalStyles.editButton}>
+                            <Text style={vipModalStyles.editButtonText}>
+                                Pogledaj profil
                             </Text>
                           </View>
                         </TouchableOpacity>
                       </View>
-                      <View style={modalStyles.description}>
+                      <View style={vipModalStyles.description}>
                         <HTMLView
                           value={this.props.ad.description}
                           stylesheet={{
                             div: {
-                              color: "#ededed",
+                              color: "#000000",
                               paddingHorizontal: 5,
                             },
                           }}
@@ -177,6 +188,7 @@ export class AdModal extends React.Component {
                       </View>
                     </View>
                   </View>
+                  </LinearGradient>
                 </Modal>
               </View>
             </View>

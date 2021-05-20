@@ -10,7 +10,7 @@ const api =
     : `localhost:8080`;
 
 const Axios = axios.create({
-  baseURL: "http://".concat(api),
+  baseURL: "http://d02eb6c9f0b2.ngrok.io",
 });
 
 Axios.interceptors.request.use((req) => {

@@ -8,7 +8,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { adsStyles, modalStyles } from "../shared/Styles";
+import { adsStyles, premiumModalStyles } from "../shared/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -17,6 +17,7 @@ import { Dimensions } from "react-native";
 import * as Font from "expo-font";
 import HTMLView from "react-native-htmlview";
 import { connect } from "react-redux";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -47,17 +48,24 @@ export class AdModal extends React.Component {
     const avatar = require("./../assets/images/gitara.jpg");
     if (this.state.fontsLoaded) {
       return (
-        <BlurView intensity={100} tint={"dark"} style={modalStyles.blurView}>
+        <BlurView intensity={100} tint={"dark"} style={premiumModalStyles.blurView}>
           <ScrollView>
             <View style={adsStyles.mainContainer}>
-              <View style={modalStyles.modalWrap}>
+              <View style={premiumModalStyles.modalWrap}>
                 <Modal
                   transparent={true}
                   visible={this.state.showModal}
-                  style={modalStyles.modal}
+                  style={premiumModalStyles.modal}
                 >
-                  <View style={modalStyles.modalInnerWrap}>
-                    <View style={modalStyles.closeButtonContainer}>
+                    <LinearGradient
+                    colors={['#b9bdd1', '#f5f7fa', '#b9bdd1', '#f5f7fa' ]}
+                    style={premiumModalStyles.modalInnerWrap}
+                    start={{ x: 0.15, y: 0.2 }}
+                    end={{ x: 0.99, y: 1}}
+                    locations={[0.2, 0.5, 0.7, 1]}
+                    >
+                  <View >
+                    <View style={premiumModalStyles.closeButtonContainer}>
                       <View></View>
                       <TouchableOpacity
                         onPress={() => this.props.toggleModal()}
@@ -65,38 +73,43 @@ export class AdModal extends React.Component {
                         <Ionicons
                           name="md-close"
                           size={26}
-                          style={modalStyles.closeButton}
+                          style={premiumModalStyles.closeButton}
                           color="#ededed"
                         />
                       </TouchableOpacity>
                     </View>
-                    <View style={modalStyles.centeredWrap}>
-                      <View style={modalStyles.titleContainer}>
+                    <View style={premiumModalStyles.centeredWrap}>
+                      <View style={premiumModalStyles.titleContainer}>
                         <View>
-                          <Text style={modalStyles.title}>
+                          <Text style={premiumModalStyles.title}>
                             {this.props.ad.title}
                           </Text>
                         </View>
-                        <View style={modalStyles.priceContainer}>
-                          <Text style={modalStyles.price}>
+                        <LinearGradient
+                        colors={['#a4adc2', '#495370']}
+                        style={premiumModalStyles.priceContainer}
+                        locations={[0.01, 1]}>
+                        <View>
+                          <Text style={premiumModalStyles.price}>
                             {this.props.ad.price}
                           </Text>
                         </View>
+                        </LinearGradient>
                       </View>
-                      <View style={modalStyles.basicUserInfo}>
+                      <View style={premiumModalStyles.basicUserInfo}>
                         <View
                           style={
                             windowHeight * 0.37 < windowWidth * 0.7
-                              ? modalStyles.profileImageBorderHeight
-                              : modalStyles.profileImageBorderWidth
+                              ? premiumModalStyles.profileImageBorderHeight
+                              : premiumModalStyles.profileImageBorderWidth
                           }
                         >
                           {this.props.ad.image ? (
                             <Image
                               style={
                                 windowHeight * 0.37 < windowWidth * 0.7
-                                  ? modalStyles.profileImageHeight
-                                  : modalStyles.profileImageWidth
+                                  ? premiumModalStyles.profileImageHeight
+                                  : premiumModalStyles.profileImageWidth
                               }
                               source={{ uri: this.props.ad.image }}
                             />
@@ -104,59 +117,64 @@ export class AdModal extends React.Component {
                             <Image
                               style={
                                 windowHeight * 0.37 < windowWidth * 0.7
-                                  ? modalStyles.profileImageHeight
-                                  : modalStyles.profileImageWidth
+                                  ? premiumModalStyles.profileImageHeight
+                                  : premiumModalStyles.profileImageWidth
                               }
                               source={avatar}
                             />
                           )}
                         </View>
-                        <Text style={modalStyles.profileName}>
+                        <Text style={premiumModalStyles.profileName}>
                           {this.props.ad.user.firstName +
                             " " +
                             this.props.ad.user.lastName}
                         </Text>
-                        <View style={modalStyles.userLocation}>
+                        <View style={premiumModalStyles.userLocation}>
                           <SimpleLineIcons
                             name="location-pin"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={premiumModalStyles.location}>
                             {this.props.ad.user.location.value}
                           </Text>
                         </View>
-                        <View style={modalStyles.userMail}>
+                        <View style={premiumModalStyles.userMail}>
                           <Fontisto
                             name="email"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={premiumModalStyles.location}>
                             {this.props.ad.user.email}
                           </Text>
                         </View>
-                        <View style={modalStyles.userOntact}>
+                        <View style={premiumModalStyles.userOntact}>
                           <Feather
                             name="phone"
                             size={hp("2.5%")}
-                            color="#ededed"
+                            color="#000000"
                           />
-                          <Text style={modalStyles.location}>
+                          <Text style={premiumModalStyles.location}>
                             {this.props.ad.user.phoneNumber}
                           </Text>
                         </View>
                         <TouchableOpacity
                           onPress={() => {
+                            if (this.props.token) {
+                              this.props.navigation.navigate("AdCreation", {
+                                ad: this.props.ad,
+                              });
+                            } else {
                               this.props.navigation.navigate("Profile", {
                                 username: this.props.ad.user.username,
                                 toggleModal: this.props.toggleModal,
                               });
                             }
-                          }
+                          }}
                         >
-                          <View style={modalStyles.editButton}>
-                            <Text style={modalStyles.editButtonText}>
+                          <View style={premiumModalStyles.editButton}>
+                            <Text style={premiumModalStyles.editButtonText}>
                               {this.props.token
                                 ? "Izmeni profil"
                                 : "Pogledaj profil"}
@@ -164,12 +182,12 @@ export class AdModal extends React.Component {
                           </View>
                         </TouchableOpacity>
                       </View>
-                      <View style={modalStyles.description}>
+                      <View style={premiumModalStyles.description}>
                         <HTMLView
                           value={this.props.ad.description}
                           stylesheet={{
                             div: {
-                              color: "#ededed",
+                              color: "#000000",
                               paddingHorizontal: 5,
                             },
                           }}
@@ -177,6 +195,7 @@ export class AdModal extends React.Component {
                       </View>
                     </View>
                   </View>
+                  </LinearGradient>
                 </Modal>
               </View>
             </View>

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { EditProfileButton, AdDescriptionAdding } from "../Buttons";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import RadioButton from "../RadioButton";
-import { TouchableOpacity, Text, TextInput, View } from "react-native";
-import { adCreationStyles, errorStyle } from "../../shared/Styles";
+import { TouchableOpacity, Text, TextInput, View, Modal  } from "react-native";
+import { adCreationStyles, errorStyle, pickerStyle } from "../../shared/Styles";
 import { Divider } from "react-native-elements";
 import RichTextEditor from "../RichTextEditor";
 import * as ImagePicker from "expo-image-picker";
@@ -16,6 +16,11 @@ import {
 } from "../../shared/ValidationUtil";
 import Picker from "../Picker";
 import PermissionService from "../../services/PermissionService";
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const adSchema = yup.object({
   title: yup.string().required(),
@@ -60,6 +65,8 @@ const adSchema = yup.object({
 
 export default function AdForm(props) {
   const [visible, setVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
 
   const handleChangeVisible = (isVisible, formikProps) => {
     setVisible(isVisible);
@@ -142,7 +149,6 @@ export default function AdForm(props) {
       {(formikProps) => (
         <ScrollView>
           <View style={adCreationStyles.mainContainer}>
-            <View style={adCreationStyles.backForwardContainer}></View>
             <View style={adCreationStyles.inputFieldContainer}>
               <Text style={adCreationStyles.fieldName}>Naziv oglasa</Text>
               <TextInput
@@ -153,7 +159,7 @@ export default function AdForm(props) {
                     formikProps.touched.title
                   ),
                 ]}
-                placeholder="Max. 50 karaktera."
+                placeholder="Max 50 karaktera."
                 placeholderTextColor={getErrorPlaceholder(
                   formikProps.errors.title,
                   formikProps.touched.title
@@ -265,6 +271,87 @@ export default function AdForm(props) {
                   </View>
                 </View>
               )}
+            </View>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <View style={adCreationStyles.inputFieldAdditionalContainer}>
+                  <Text style={adCreationStyles.fieldName}>
+                    Izaberi tip oglasa
+                  </Text>
+                  <FontAwesome
+                    name="question-circle-o"
+                    style={adCreationStyles.questionMarkIcon}
+                  />
+                </View>
+              </TouchableOpacity>
+              <Modal transparent={true} visible={modalVisible} animationType="slide">
+                <View style={adCreationStyles.centeredView}>
+                  <View style={adCreationStyles.modalView}>
+                    <Ionicons
+                      name="md-close"
+                      size={wp("6.75%")}
+                      onPress={() => setModalVisible(false)}
+                      style={adCreationStyles.closeIcon}
+                      color="black"
+                    />
+                    <ScrollView>
+                      <View>
+                        <Text style={adCreationStyles.adTypeTextName}> - VIP -</Text>
+                        <Text style={adCreationStyles.adTypeText}>Osigurajte da Vaš oglas uvek bude istaknut prvi, na samom vrhu pretrage po
+                        izuzetno jeftinoj ceni. U svakoj potkategoriji može da postoji samo samo jedan VIP oglas. Jedan dan košta 50 dinara, a najmanmje je moguće
+                        rezervisati 7 dana. Dobar marketing se uvek isplati :)</Text>
+                      </View>
+                      <View>
+                        <Text style={adCreationStyles.adTypeTextName}>- Premium -</Text>
+                        <Text style={adCreationStyles.adTypeText}>Drugi vid plaćenog oglasa. Po ceni od 150 dinara nedeljno, učinite da
+                        Vaš oglas bude bolje istaknut i sortiran zajedno sa ostalim Premium oglasima, tik ispod VIP oglasa.</Text>
+                      </View>
+                      <View>
+                        <Text style={adCreationStyles.adTypeTextName}>- Classic -</Text>
+                        <Text style={adCreationStyles.adTypeText}>Besplatan oglas za one koji žele da se oglase bez ikakve novčane naknade.</Text>
+                      </View>
+                      <View>
+                        <Text style={adCreationStyles.adNoteText}>* Uplate se vrše slanjem SMS-a sa tekstom VIP ili Premium, u zavisnosti od toga za koji
+                        paket ste se odlučili na broj 1312. Nakon uplate dobićete odgovor koji sadrži kod koji je neophodno unet i u odgovarajuće polje čime
+                        se potvrđuje uplata.</Text>
+                      </View>
+                    </ScrollView>
+                  </View>
+                </View>
+              </Modal>
+              <View style={adCreationStyles.dropDownTypeWrapper}>
+                <View style={adCreationStyles.dropDownTypeContainer}>
+                    <Picker
+                      fieldWrapperStyle = {{
+                          alignSelf: "center",
+                          marginTop: hp("1%"),
+                          marginLeft: wp("2%"), 
+                          width: wp("42%"),
+                          height: hp("6%"),
+                          borderRadius: 8,
+                          opacity: 0.8,}}
+                      fieldStyle = {{
+                        alignSelf: "center",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        width: wp("40%"),
+                      }}
+                      selectedValue={formikProps.values.category}
+                      handleChangeValue={async (value) => {
+                        formikProps.setFieldValue("category", value);
+                        props.onChangeCategory(value.id);
+                        formikProps.setFieldValue("subCategory", {
+                          id: null,
+                          name: "",
+                        });
+                      }}
+                      items={props.categories}
+                    ></Picker>
+                  </View>
+                  <TextInput
+                  style={adCreationStyles.typeCodeInput}
+                  placeholder="Unesite kod ovde"
+                  placeholderTextColor="#ededed"
+                />
             </View>
             <EditProfileButton
               title={"Postavi"}
