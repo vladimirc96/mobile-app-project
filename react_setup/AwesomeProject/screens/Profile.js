@@ -231,7 +231,10 @@ export class Profile extends React.Component {
             source={backgroundImage}
           >
             {this.state.showModal ? (
-              <CommentModal toggleModal={this.toggleModal} />
+              <CommentModal
+                toggleModal={this.toggleModal}
+                userId={this.state.user.id}
+              />
             ) : (
               <ScrollView>
                 <View style={profileStyles.mainContainer}>
