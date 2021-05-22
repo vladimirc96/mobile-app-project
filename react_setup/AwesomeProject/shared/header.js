@@ -65,7 +65,7 @@ export default function Header({ title, navigation, mainScreen }) {
                 style={{ padding: 5, marginTop: 1.5 }}
                 onPress={() => setVisible(true)}
               >
-                {user.imageBytes ? (
+                {user && user.imageBytes ? (
                   <Avatar.Image
                     size={40}
                     source={{

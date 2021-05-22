@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.user.UserDTO;
 import com.project.mobileapi.model.Currency;
 import com.project.mobileapi.util.KeyValue;
+import com.project.mobileapi.util.KeyValueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class AdDTO {
     private int views;
 
     @NotNull(message = "Morate izabrati potkategoriju kojoj pripada oglas.")
+    @KeyValueConstraint(message = "Morate izabrati potkategoriju kojoj pripada oglas.")
     private KeyValue subCategory;
 
     private Currency currency;
