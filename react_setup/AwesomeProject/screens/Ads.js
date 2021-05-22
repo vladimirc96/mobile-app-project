@@ -8,7 +8,11 @@ import {
   StyleSheet,
 } from "react-native";
 import Ad from "../components/Ad";
-import AdModal from "./AdModal";
+import VipAd from "../components/VipAd";
+import PremiumAd from "../components/PremiumAd";
+import AdModal from './AdModal';
+import VipAdModal from './VipAdModal';
+import PremiumAdModal from './PremiumAdModal';
 import { adsStyles } from "../shared/Styles";
 import * as Font from "expo-font";
 import { getAllBySubcategoryId } from "../services/AdService";
@@ -89,7 +93,7 @@ export default class Ads extends React.Component {
       }
       return (
         <View style={adsStyles.adContainer} key={ad.id}>
-          <Ad ad={ad} onPress={() => this.toggleModal(ad)} />
+          <VipAd ad={ad} onPress={() => this.toggleModal(ad)} />
         </View>
       );
     });
@@ -100,7 +104,7 @@ export default class Ads extends React.Component {
           source={backgroundImage}
         >
           {this.state.showModal ? (
-            <AdModal
+            <PremiumAdModal
               toggleModal={this.toggleModal}
               navigation={this.props.navigation}
               ad={this.state.chosenAd}
