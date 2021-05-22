@@ -90,6 +90,7 @@ export class AdCreation extends React.Component {
       );
     } catch (err) {
       console.log(err);
+      Toast.show(err.message, Toast.SHORT);
     }
   };
 

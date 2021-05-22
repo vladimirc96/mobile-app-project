@@ -51,6 +51,7 @@ export default class ContactUs extends React.Component {
       this.props.navigation.navigate("Categories");
     } catch (err) {
       console.log(err);
+      Toast.show(err.message, Toast.SHORT);
     }
   };
 

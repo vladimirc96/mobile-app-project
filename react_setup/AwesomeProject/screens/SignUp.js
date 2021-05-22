@@ -9,6 +9,7 @@ import SignUpForm from "../components/forms/SignUpForm";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { registerUser } from "../store/actions/user/userActions";
 import { connect } from "react-redux";
+import Toast from "react-native-simple-toast";
 
 const backgroundImage = require("./../assets/images/signUpBackground.jpg");
 
@@ -43,21 +44,7 @@ export class SignUp extends React.Component {
       );
     } catch (err) {
       console.log(err.message);
-    }
-  };
-
-  redirect = async (user) => {
-    try {
-      await this.props.loginUser(
-        {
-          username: user.username,
-          password: user.password,
-        },
-        this.props.navigation
-      );
-      console.log("TOKEN: ", this.props.token);
-    } catch (err) {
-      console.log(err.message);
+      Toast.show(err.message, Toast.SHORT);
     }
   };
 
