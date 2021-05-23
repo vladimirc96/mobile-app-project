@@ -8,7 +8,7 @@ import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";
 import { getAllByCategoryId } from "../services/SubCategoryService";
 import { saveAd } from "../services/AdService";
-import Toast from "react-native-simple-toast";
+import Toast from "react-native-root-toast";
 
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
@@ -79,7 +79,7 @@ export class AdCreation extends React.Component {
       await saveAd(formData);
       Toast.show(
         !ad.id ? "Uspešno ste dodali oglas!" : "Uspešno ste sačuvali izmene!",
-        Toast.SHORT
+        { duration: Toast.durations.SHORT }
       );
       setTimeout(
         () =>
@@ -90,7 +90,7 @@ export class AdCreation extends React.Component {
       );
     } catch (err) {
       console.log(err);
-      Toast.show(err.message, Toast.SHORT);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   };
 

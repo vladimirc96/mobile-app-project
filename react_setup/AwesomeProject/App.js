@@ -7,6 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
 import Entry from "./screens/Entry";
 import { Provider as MenuProvider } from "react-native-paper";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
@@ -28,13 +29,15 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <MenuProvider>
-          <Provider store={persistedStore.store}>
-            <PersistGate loading={null} persistor={persistedStore.persistor}>
-              <Entry />
-            </PersistGate>
-          </Provider>
-        </MenuProvider>
+        <RootSiblingParent>
+          <MenuProvider>
+            <Provider store={persistedStore.store}>
+              <PersistGate loading={null} persistor={persistedStore.persistor}>
+                <Entry />
+              </PersistGate>
+            </Provider>
+          </MenuProvider>
+        </RootSiblingParent>
       );
     } else {
       return <ActivityIndicator size="large" />;

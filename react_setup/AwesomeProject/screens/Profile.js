@@ -30,7 +30,7 @@ import CommentModal from "./CommentModal";
 import Comment from "./../components/Comment";
 import { getByUsername, deleteAdById } from "../services/AdService";
 import { getCommentsByUsername } from "../services/commentService";
-import Toast from "react-native-simple-toast";
+import Toast from "react-native-root-toast";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const customFonts = {
@@ -152,7 +152,9 @@ export class Profile extends React.Component {
       const data = await saveUser(formData);
       this.setState({ user: data });
       this.props.setUserInfo(this.state.user);
-      Toast.show("Uspešno ste sačuvali izmene!", Toast.SHORT);
+      Toast.show("Uspešno ste sačuvali izmene!", {
+        duration: Toast.durations.SHORT,
+      });
       setTimeout(
         () =>
           this.props.navigation.navigate("Profile", {
@@ -162,7 +164,7 @@ export class Profile extends React.Component {
       );
     } catch (err) {
       console.log(err);
-      Toast.show(err.message, Toast.LONG);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   };
 
@@ -187,7 +189,7 @@ export class Profile extends React.Component {
       this.toggleAdModal();
     } catch (err) {
       console.log(err);
-      Toast.show(err.message, Toast.LONG);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   };
 

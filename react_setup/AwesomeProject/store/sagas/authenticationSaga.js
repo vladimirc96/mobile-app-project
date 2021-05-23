@@ -6,7 +6,7 @@ import {
 import { USER_ACTIONS } from "../actions/user/types";
 import { login, logout } from "../../services/AuthService";
 import { getUserInfo } from "../../services/UserService";
-import Toast from "react-native-simple-toast";
+import Toast from "react-native-root-toast";
 
 export function* loginUser() {
   yield takeLatest(AUTHENTICATION_ACTIONS_ASYNC.LOGIN, loginUserAsync);
@@ -21,7 +21,7 @@ export function* loginUserAsync(action) {
     action.navigation.navigate("Home");
   } catch (err) {
     if (err.message !== "") {
-      Toast.show(err.message, Toast.SHORT);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   }
 }
