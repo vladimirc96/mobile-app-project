@@ -3,6 +3,7 @@ package com.project.mobileapi.exceptions.handlers;
 import com.project.mobileapi.exceptions.ApiError;
 import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.exceptions.ResourceNotFoundException;
+import com.project.mobileapi.exceptions.UsersExistsException;
 import org.hibernate.HibernateException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,9 +59,17 @@ public class GlobalExceptionHandler {
         StringBuilder builder = new StringBuilder();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String errorMessage = error.getDefaultMessage();
+            if(builder.indexOf(errorMessage) != -1){
+                return;
+            }
             builder.append(errorMessage);
         });
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, builder.toString(), ex));
+    }
+
+    @ExceptionHandler(UsersExistsException.class)
+    public ResponseEntity<Object> handleUsersExistsException(UsersExistsException ex){
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getMessage(), ex));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

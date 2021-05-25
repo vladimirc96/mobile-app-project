@@ -54,7 +54,7 @@ export default function Picker(props) {
                   </TouchableOpacity>
                 );
               }}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.id.toString()}
             ></FlatList>
           </View>
         </View>

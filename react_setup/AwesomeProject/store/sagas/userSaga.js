@@ -2,6 +2,7 @@ import { takeLatest, put, all, call } from "redux-saga/effects";
 import { USER_ACTIONS, USER_ACTIONS_ASYNC } from "../actions/user/types";
 import { loginUserAsync } from "./authenticationSaga";
 import { getUser, signup } from "../../services/UserService";
+import Toast from "react-native-root-toast";
 
 // export function* updateUser() {
 //   yield takeLatest(USER_ACTIONS_ASYNC.UPDATE_USER, updateUserAsync);
@@ -42,6 +43,7 @@ function* registerUserAsync(action) {
     yield call(loginUserAsync, loginAction);
   } catch (err) {
     console.log(err);
+    Toast.show(err.message, { duration: Toast.durations.SHORT });
   }
 }
 

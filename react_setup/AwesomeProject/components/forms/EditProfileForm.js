@@ -45,7 +45,8 @@ export default function EditProfileForm({ updateUser, locations, user }) {
   const avatar = require("../../assets/images/avatar.png");
 
   const pickImage = async (formikProps) => {
-    const permissionGranted = await PermissionService.requestMediaLibraryPermission();
+    const permissionGranted =
+      await PermissionService.requestMediaLibraryPermission();
     if (!permissionGranted) {
       return;
     }
@@ -254,7 +255,6 @@ export default function EditProfileForm({ updateUser, locations, user }) {
                 <Picker
                   selectedValue={formikProps.values.location}
                   handleChangeValue={async (value) => {
-                    console.log(value);
                     formikProps.setFieldValue("location", value);
                   }}
                   items={locations}

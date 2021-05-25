@@ -1,6 +1,7 @@
 package com.project.mobileapi.user;
 
 import com.project.mobileapi.exceptions.InvalidPasswordException;
+import com.project.mobileapi.exceptions.UsersExistsException;
 import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.Role;
 import com.project.mobileapi.model.User;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDTO userDTO) throws IOException {
+        if(userRepository.findOneByUsername(userDTO.getUsername()) != null){
+            throw new UsersExistsException(UsersExistsException.USER_EXISTS_MESSAGE);
+        }
         if(!PasswordValidator.isValid(userDTO.getPassword())){
             throw new InvalidPasswordException(InvalidPasswordException.INVALID_PASSWORD_MESSAGE);
         }

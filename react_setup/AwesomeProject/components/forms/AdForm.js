@@ -28,7 +28,10 @@ const adSchema = yup.object({
   description: yup.string().required(),
   category: yup.object().required(),
   subCategory: yup
-    .object({ id: yup.number().required(), value: yup.string().required() })
+    .object({
+      id: yup.number().required(),
+      value: yup.string(),
+    })
     .required(),
   price: yup
     .number()
