@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { signupStyles } from "../../shared/Styles";
+import { signupStyles } from "../../shared/signupStyles";
 import { Formik } from "formik";
 import { TouchableOpacity, TextInput, View, Image } from "react-native";
 import { SignUpButton } from "../Buttons";

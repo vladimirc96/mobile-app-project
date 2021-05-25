@@ -19,7 +19,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { getUserInfo, saveUser } from "../services/UserService";
-import { adsStyles, profileStyles } from "../shared/Styles";
+import { profileStyles } from "../shared/profileStyles";
+import { adsStyles } from "../shared/adsStyles";
 import { Dimensions } from "react-native";
 import SmallAd from "../components/SmallAd";
 import * as Font from "expo-font";

@@ -9,7 +9,7 @@ import {
 import * as Font from "expo-font";
 import { FontAwesome } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import { vipAdStyles } from "./../shared/Styles";
+import { vipAdStyles } from "./../shared/adsStyles";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const customFonts = {

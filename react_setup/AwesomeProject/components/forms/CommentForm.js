@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { adsStyles, modalStyles } from "../../shared/Styles";
+import { modalStyles } from "../../shared/modalStyles";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import {

@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 
-import { adCreationStyles } from "./../shared/Styles";
+import { adCreationStyles } from "./../shared/adsStyles";
 import AdForm from "../components/forms/AdForm";
 import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";

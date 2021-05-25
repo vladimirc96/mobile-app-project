@@ -10,10 +10,10 @@ import {
 import Ad from "../components/Ad";
 import VipAd from "../components/VipAd";
 import PremiumAd from "../components/PremiumAd";
-import AdModal from './AdModal';
-import VipAdModal from './VipAdModal';
-import PremiumAdModal from './PremiumAdModal';
-import { adsStyles } from "../shared/Styles";
+import AdModal from "./AdModal";
+import VipAdModal from "./VipAdModal";
+import PremiumAdModal from "./PremiumAdModal";
+import { adsStyles } from "../shared/adsStyles";
 import * as Font from "expo-font";
 import { getAllBySubcategoryId } from "../services/AdService";
 

@@ -9,7 +9,8 @@ import {
   ActivityIndicator,
   TextInput,
 } from "react-native";
-import { adsStyles, modalStyles } from "../shared/Styles";
+import { adsStyles } from "../shared/adsStyles";
+import { modalStyles } from "../shared/modalStyles";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import { Dimensions } from "react-native";

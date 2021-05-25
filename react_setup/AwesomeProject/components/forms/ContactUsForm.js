@@ -10,7 +10,7 @@ import {
   View,
   KeyboardAvoidingView,
 } from "react-native";
-import { contactUsStyles } from "../../shared/Styles";
+import { contactUsStyles } from "../../shared/contactUsStyles";
 import {
   ScrollView,
   TouchableWithoutFeedback,

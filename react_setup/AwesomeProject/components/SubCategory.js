@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Font from "expo-font";
-import { subCategoryStyles } from "../shared/Styles";
+import { subCategoryStyles } from "../shared/subCategoriesStyles";
 
 const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),

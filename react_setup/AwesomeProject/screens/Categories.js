@@ -1,7 +1,13 @@
 import React from "react";
-import { ImageBackground, ActivityIndicator, View, TouchableOpacity, Text } from "react-native";
+import {
+  ImageBackground,
+  ActivityIndicator,
+  View,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import { AdvButton } from "./../components/Buttons";
-import { categoriesStyles } from "./../shared/Styles";
+import { categoriesStyles } from "./../shared/categoriesStyles";
 import Category from "./../components/Category";
 import { getCategories } from "../store/actions/category/categoryActions";
 import { connect } from "react-redux";
@@ -10,7 +16,7 @@ import * as Font from "expo-font";
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
 export class Categories extends React.Component {
@@ -66,22 +72,30 @@ export class Categories extends React.Component {
             {!this.props.token ? (
               <View style={categoriesStyles.footerContainer}>
                 <View style={categoriesStyles.footerSmallContainer}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate("SignUp")}>
-                    <Text style={categoriesStyles.boldText}>Registrujte se</Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate("SignUp")}
+                  >
+                    <Text style={categoriesStyles.boldText}>
+                      Registrujte se
+                    </Text>
                   </TouchableOpacity>
-                    <Text style={categoriesStyles.footerTextFirstPart}>ukoliko i Vi imate</Text>
+                  <Text style={categoriesStyles.footerTextFirstPart}>
+                    ukoliko i Vi imate
+                  </Text>
                 </View>
                 <View style={categoriesStyles.footerSmallContainerSecondPart}>
-                  <Text style={categoriesStyles.footerTextSecondPart}>oglas koji želite da postavite </Text>
+                  <Text style={categoriesStyles.footerTextSecondPart}>
+                    oglas koji želite da postavite{" "}
+                  </Text>
                 </View>
               </View>
             ) : (
               <AdvButton
                 title="Postavite oglas"
-                onPress={() => this.props.navigation.navigate("AdCreation") }
+                onPress={() => this.props.navigation.navigate("AdCreation")}
               />
-              )}
-            </View>
+            )}
+          </View>
         </ImageBackground>
       );
     } else {

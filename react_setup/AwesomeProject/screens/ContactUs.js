@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
-import { contactUsStyles } from "./../shared/Styles";
+import { contactUsStyles } from "./../shared/contactUsStyles";
 import ContactUsForm from "../components/forms/ContactUsForm";
 import { sendMail } from "../services/MailService";
 import Toast from "react-native-root-toast";

@@ -4,7 +4,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { signupStyles } from "../shared/Styles";
+import { signupStyles } from "../shared/signupStyles";
 import SignUpForm from "../components/forms/SignUpForm";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { registerUser } from "../store/actions/user/userActions";

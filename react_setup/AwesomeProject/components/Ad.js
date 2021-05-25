@@ -9,7 +9,7 @@ import {
 import * as Font from "expo-font";
 import { FontAwesome } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import { adStyles } from "./../shared/Styles";
+import { adStyles } from "./../shared/adsStyles";
 
 const customFonts = {
   "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
@@ -45,7 +45,10 @@ export default class Ad extends React.Component {
           <View style={adStyles.adMainContainer}>
             <View>
               {this.props.ad.image ? (
-                <Image style={adStyles.adImage} source={{ uri: this.props.ad.image }} />
+                <Image
+                  style={adStyles.adImage}
+                  source={{ uri: this.props.ad.image }}
+                />
               ) : (
                 <Image style={adStyles.adImage} source={{ uri: null }} />
               )}
@@ -111,10 +114,14 @@ export default class Ad extends React.Component {
               </View>
               <View>
                 <View style={adStyles.ratingStars}>
-                  <Text style={adStyles.likeText}>{this.props.ad.user.positiveRatings}</Text>
+                  <Text style={adStyles.likeText}>
+                    {this.props.ad.user.positiveRatings}
+                  </Text>
                   <Fontisto name="like" style={adStyles.like} />
                   <Fontisto name="dislike" style={adStyles.dislike} />
-                  <Text style={adStyles.dislikeText}>{this.props.ad.user.negativeRatings}</Text>
+                  <Text style={adStyles.dislikeText}>
+                    {this.props.ad.user.negativeRatings}
+                  </Text>
                 </View>
               </View>
             </View>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, FlatList, View, Text, TouchableOpacity } from "react-native";
-import { pickerStyle } from "../shared/Styles";
+import { pickerStyle } from "../shared/pickerStyle";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 

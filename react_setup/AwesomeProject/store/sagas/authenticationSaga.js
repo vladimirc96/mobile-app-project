@@ -18,6 +18,7 @@ export function* loginUserAsync(action) {
     yield put({ type: AUTHENTICATION_ACTIONS.LOGIN, token: token });
     const user = yield call(getUserInfo, action.credentials.username);
     yield put({ type: USER_ACTIONS.SET_USER_INFO, data: user });
+    console.log(user.username);
     action.navigation.navigate("Home");
   } catch (err) {
     if (err.message !== "") {

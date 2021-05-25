@@ -8,7 +8,8 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { adsStyles, modalStyles } from "../shared/Styles";
+import { adsStyles } from "../shared/adsStyles";
+import { modalStyles } from "../shared/modalStyles";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Fontisto, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
