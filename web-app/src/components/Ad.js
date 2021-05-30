@@ -1,6 +1,5 @@
-import "./App.css"
 import React from 'react'
-import ad from "./assets/images/ad.jpg"
+import ad from "./../assets/images/ad.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";

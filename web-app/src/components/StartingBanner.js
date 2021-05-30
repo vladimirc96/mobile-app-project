@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo_naziv from "./assets/images/logo_naziv.png"
-import log_in_icon from "./assets/images/doctor-icon.png"
 
 export default class StartingBanner extends Component {
 render() {

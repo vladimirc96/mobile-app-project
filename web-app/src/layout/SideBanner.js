@@ -1,6 +1,5 @@
-import './App.css'
 import React from 'react'
-import banner from "./assets/images/banner.jpg"
+import banner from "./../assets/images/banner.jpg"
 
 class SideBanner extends React.Component{
 

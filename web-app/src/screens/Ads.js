@@ -1,7 +1,6 @@
-import './App.css';
 import React from 'react'
-import AdCombined from './AdCombined'
-import SideBanner from './SideBanner'
+import AdCombined from '../components/AdCombined'
+import SideBanner from '../layout/SideBanner'
 
 class Ads extends React.Component{
 

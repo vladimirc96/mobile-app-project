@@ -1,12 +1,13 @@
-import './App.css';
-import Header from "./Header.js"
-import SearchForAd from "./SearchForAd.js"
-import StartingBanner from "./StartingBanner.js"
+import './css/App.css'
+import './css/Ad.css'
+import Header from "./layout/Header.js"
+import SearchForAd from "./components/SearchForAd.js"
+import StartingBanner from "./components/StartingBanner.js"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
-import Ads from './Ads';
+import Ads from './screens/Ads.js';
 
 function App() {
   return (
@@ -19,7 +20,6 @@ function App() {
                 <Switch>
                   <Route path="/">
                     <Ads />
-                    {/* <AdPage /> */}
                   </Route>
                 </Switch>
             </Router>

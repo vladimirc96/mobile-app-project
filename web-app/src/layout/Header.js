@@ -1,8 +1,8 @@
 // MyComponent.js
 import React, { Component } from 'react';
-import logo_naziv from "./assets/images/logo_naziv.png"
-import white_log_in_icon from "./assets/images/white_login.png"
-
+import logo_naziv from "./../assets/images/logo_naziv.png"
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default class Header extends Component {
 render() {
     return (
@@ -29,7 +29,7 @@ render() {
             </ul>
             <form className="col-sm-6 col-lg-3">
                 <div class="search_main">
-                    <button class="submit_bt"><a href="/"><span class="doctor"><img src={white_log_in_icon} alt="" width="25" height="25"/></span>Uloguj se</a></button>
+                    <button class="submit_bt"><a href="#"><span class="doctor"><FontAwesomeIcon icon={faSignInAlt} style={{ color: 'white'}} /></span>Uloguj se</a></button>
                 </div>
             </form>
         </div>
