@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 export default class SearchForAd extends Component {
 render() {
     return (
-        <div class="container">
+        <div className="row justify-content-center">
+            <div className="col-sm-8">
             <div class="search_box">
                 <div class="row">
                     <div class="col-sm-4">
@@ -59,6 +60,7 @@ render() {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

@@ -6,17 +6,20 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
+import Ads from './Ads';
 
 function App() {
   return (
-    <Provider store={persistedStore.store}>
+        <Provider store={persistedStore.store}>
           <PersistGate loading={null} persistor={persistedStore.persistor}>
             <Router>
               <Header/>
               <StartingBanner/>
+                <SearchForAd/>
                 <Switch>
                   <Route path="/">
-                    <SearchForAd/>
+                    <Ads />
+                    {/* <AdPage /> */}
                   </Route>
                 </Switch>
             </Router>
