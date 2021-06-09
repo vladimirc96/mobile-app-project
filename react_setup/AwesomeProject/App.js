@@ -8,6 +8,7 @@ import persistedStore from "./store/store";
 import Entry from "./screens/Entry";
 import { Provider as MenuProvider } from "react-native-paper";
 import { RootSiblingParent } from "react-native-root-siblings";
+import { LogBox } from "react-native";
 
 const customFonts = {
   "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
@@ -23,6 +24,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    LogBox.ignoreLogs(["Your project is accessing the following APIs"]);
     this._loadFontsAsync();
   }
 

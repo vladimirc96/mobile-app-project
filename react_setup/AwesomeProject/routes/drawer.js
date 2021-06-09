@@ -48,9 +48,6 @@ const RootDrawerNavigator = createDrawerNavigator(
         };
       },
     },
-    LogIn: {
-      screen: LogIn,
-    },
   },
   {
     contentComponent: Drawer,

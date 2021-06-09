@@ -16,6 +16,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { cloneDeep } from "lodash";
+
 export class Drawer extends React.Component {
   constructor(props, context) {
     super(props, context);

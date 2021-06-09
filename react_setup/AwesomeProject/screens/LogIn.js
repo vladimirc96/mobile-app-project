@@ -4,7 +4,6 @@ import * as Font from "expo-font";
 import { loginStyles } from "../shared/loginStyles";
 import LoginForm from "../components/forms/LoginForm";
 import { login } from "../services/AuthService";
-import LocalStorage from "../localStorage";
 
 const customFonts = {
   "Comfortaa-Regular": require("./../assets/fonts/Comfortaa-Regular.ttf"),

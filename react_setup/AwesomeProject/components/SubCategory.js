@@ -12,9 +12,6 @@ const customFonts = {
   "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
-const pressHandler = () => {
-  console.log(5);
-};
 
 export default class SubCategory extends React.Component {
   state = {
