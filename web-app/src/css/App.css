@@ -82,46 +82,19 @@ table {
 .banner_section{ 
   width: 100%; 
   float: left;
-  background-image: url(./../assets/images/banner.png);
-  height: 600px;  
+  background-color: #D6BF74;
+  height: 400px;  
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
-.banner_taital{
-  width: 100%;
+.image_section{
+  width: 50%;
   float: left;
-  color: #ffffff;
-  font-size: 44pt;
-  text-align: center;
-}
-
-.browse_text{
-  width: 100%;
-  float: left;
-  font-size: 16pt;
-  color: #cbcbcb;
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 20px;
-  font-weight: 500;
-  margin-left: 0px;
-}
-
-.banner_bt{
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.read_bt{
-  width: 20%;
-  height: 50px;
-  background-color: #D6BF74;
-  color: #ffffff;
-  border: 0px;
-  font-size: 17pt;
-  margin-bottom: 100px;
+  background-image: url(./../assets/images/banner.png);
+  height: 400px;  
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .read_bt:hover{
@@ -133,33 +106,33 @@ table {
 .search_box {
   width: 100%;
   float: left;
-  background-color: #ffffff;
+  background-color: #fdfdfd;
   height: auto;
-  padding: 60px 20px;
-  top: -125px;
+  padding: 15px 20px;
+  top: 100px;
   position: relative;
-  box-shadow: 0px 0px 8px 0px;
+  box-shadow: 2px 2px 4px 4px #bdbdbd;
 }
 
 .picker_text{
   width: 100%;
   float: left;
-  font-size: 13pt;
+  font-size: 20pt;
   color: #000000;
-  text-align: center;
+  text-align: left;
   font-weight: 500;
 }
 
-.form-select{
+.form-control{
   border: 1px solid #D6BF74;
-  border-radius: 4px;
+  border-radius: 5px;
   margin-top: 8px;
 }
 
 .custom-select{
   width: 100%;
   float: left;
-  border: 1px solid #D6BF74;
+  border: 14px solid #D6BF74;
   padding: 10px 15px;
   position: relative;
 }

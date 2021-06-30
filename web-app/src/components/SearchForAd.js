@@ -7,16 +7,15 @@ render() {
             <div className="col-sm-8">
             <div class="search_box">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <p class="picker_text">Izaberi kategoriju:</p>
+                    <div class="col-sm-6">
+                        <p class="picker_text">Kategorija:</p>
                     </div>
-                    <div class="col-sm-4">
-                        <p class="picker_text">Izaberi potkategoriju:</p>
+                    <div class="col-sm6" style={{marginLeft:"14px"}}>
+                        <p class="picker_text">Potkategorija:</p>
                     </div>
-                    <div class="col-sm-4"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                     <div class="form-group">
                         <div class="form-select">
                             <select className="form-control">
@@ -37,7 +36,7 @@ render() {
                         </div>
                     </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                     <div class="form-group">
                         <div class="form-select">
                             <select className="form-control">
@@ -57,11 +56,6 @@ render() {
                             </select>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <button class="search_bt">Pretraži oglase</button>
-                        </div>
                     </div>
                 </div>
             </div>
