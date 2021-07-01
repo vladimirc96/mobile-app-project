@@ -1,40 +1,48 @@
-// MyComponent.js
 import React, { Component } from 'react';
-import logo_naziv from "./../assets/images/logo_naziv.png"
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/images/logo.png';
 export default class Header extends Component {
+	constructor() {
+		super();
+		this.state = {showMenu: false};
+	  }
+
+	handleNavToggle = () => {
+		this.setState(prevstate => ({showMenu: !prevstate.showMenu}))
+	}
+
 render() {
     return (
-        <div>
-        <nav className="navbar navbar-expand-md navbar-light fixed-top custom-navigation-menu">
-        <a className="navbar-brand" href="/"><img src={logo_naziv} alt="" width="310" height="50"/></a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul className="navbar-nav mr-auto header-nav-part">
-            <li className="nav-item">
-                <a className="nav-link" href="/">Početna strana</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="/">O nama</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="/">Kontakt</a>
-            </li>
-
-            
-            </ul>
-            <form className="col-sm-6 col-lg-3">
-                <div class="search_main">
-                    <button class="submit_bt"><a href="#"><span class="doctor"><FontAwesomeIcon icon={faSignInAlt} style={{ color: 'white'}} /></span>Uloguj se</a></button>
-                </div>
-            </form>
-        </div>
-        </nav>
-        </div>
+		<div class="banner-section">
+			<div class="banner-section__top-nav">
+				<div class="wrap">
+					<div class="banner-section__navigation">
+						<div class="banner-section__brand">
+							<a href="/"><img class="banner-section__logo-image" src={logo} alt="LOGO" /></a>
+						</div>
+						<nav class="main-navigation">
+							<div class="main-navigation__mobile"><span id="nav-toggle" className={this.state.showMenu? "active" : ""} onClick={this.handleNavToggle}><span></span></span></div>
+							<ul class="main-navigation__ul" style={this.state.showMenu? {display:"block"} : {}}>
+								<li class="main-navigation__list">
+									<a class="main-navigation__link" href="/">Pocetna</a>
+								</li>
+								<li class="main-navigation__list">
+									<a class="main-navigation__link" href="/">Kontakt</a>
+								</li>
+								<li class="main-navigation__list">
+									<a class="main-navigation__link" href="/">O nama</a>
+								</li>
+								<li class="main-navigation__list">
+									<a class="main-navigation__link main-navigation__link--login" href="/">Prijavite se</a>
+								</li>
+								<li class="main-navigation__list">
+									<a class="main-navigation__link main-navigation__link--registration" href="/">Registracija</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
     );
     }
 }
