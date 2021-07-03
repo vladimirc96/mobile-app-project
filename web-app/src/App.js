@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
 import Register from "./screens/Register";
+import Home from "./screens/Home";
 function App() {
   return (
     <Provider store={persistedStore.store}>
@@ -18,7 +19,7 @@ function App() {
           </div>
           <div className="middle-section">
             <Switch>
-              <Route path="/" exact></Route>
+              <Route path="/" exact component={Home}></Route>
               <Route path="/register" component={Register}></Route>
             </Switch>
           </div>

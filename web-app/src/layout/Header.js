@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
-export default class Header extends Component {
+import { connect } from "react-redux";
+import { logout } from "../store/actions/authentication/authenticationActions";
+export class Header extends Component {
   constructor() {
     super();
     this.state = { showMenu: false };
@@ -11,23 +13,33 @@ export default class Header extends Component {
     this.setState((prevstate) => ({ showMenu: !prevstate.showMenu }));
   };
 
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
+
+  handleLogin = () => {};
+
+  componentDidMount() {
+    console.log(this.props.token);
+  }
+
   render() {
     return (
-      <div class="banner-section">
-        <div class="banner-section__top-nav">
-          <div class="wrap">
-            <div class="banner-section__navigation">
-              <div class="banner-section__brand">
-                <a href="/">
+      <div className="banner-section">
+        <div className="banner-section__top-nav">
+          <div className="wrap">
+            <div className="banner-section__navigation">
+              <div className="banner-section__brand">
+                <Link to="/">
                   <img
-                    class="banner-section__logo-image"
+                    className="banner-section__logo-image"
                     src={logo}
                     alt="LOGO"
                   />
-                </a>
+                </Link>
               </div>
-              <nav class="main-navigation">
-                <div class="main-navigation__mobile">
+              <nav className="main-navigation">
+                <div className="main-navigation__mobile">
                   <span
                     id="nav-toggle"
                     className={this.state.showMenu ? "active" : ""}
@@ -37,42 +49,45 @@ export default class Header extends Component {
                   </span>
                 </div>
                 <ul
-                  class="main-navigation__ul"
+                  className="main-navigation__ul"
                   style={this.state.showMenu ? { display: "block" } : {}}
                 >
-                  <li class="main-navigation__list">
-                    <a class="main-navigation__link" href="/">
-                      Pocetna
-                    </a>
+                  <li className="main-navigation__list">
+                    <a className="main-navigation__link">Pocetna</a>
                   </li>
-                  <li class="main-navigation__list">
-                    <a class="main-navigation__link" href="/">
-                      Kontakt
-                    </a>
+                  <li className="main-navigation__list">
+                    <a className="main-navigation__link">Kontakt</a>
                   </li>
-                  <li class="main-navigation__list">
-                    <a class="main-navigation__link" href="/">
-                      O nama
-                    </a>
+                  <li className="main-navigation__list">
+                    <a className="main-navigation__link">O nama</a>
                   </li>
-                  <li class="main-navigation__list">
-                    <a
-                      class="main-navigation__link main-navigation__link--login"
-                      href="/"
+                  {!this.props.token ? (
+                    <Link to="/">
+                      <li className="main-navigation__list">
+                        <span className="main-navigation__link main-navigation__link--login">
+                          Prijavite se
+                        </span>
+                      </li>
+                    </Link>
+                  ) : (
+                    <li
+                      className="main-navigation__list"
+                      onClick={this.handleLogout}
                     >
-                      Prijavite se
-                    </a>
-                  </li>
-                  <Link to="/register">
-                    <li class="main-navigation__list">
-                      <a
-                        class="main-navigation__link main-navigation__link--registration"
-                        href="/"
-                      >
-                        Registracija
-                      </a>
+                      <span className="main-navigation__link main-navigation__link--login">
+                        Odjavi se
+                      </span>
                     </li>
-                  </Link>
+                  )}
+                  {!this.props.token ? (
+                    <Link to="/register">
+                      <li className="main-navigation__list">
+                        <span className="main-navigation__link main-navigation__link--registration">
+                          Registracija
+                        </span>
+                      </li>
+                    </Link>
+                  ) : null}
                 </ul>
               </nav>
             </div>
@@ -82,4 +97,17 @@ export default class Header extends Component {
     );
   }
 }
-	
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user,
+    token: state.authenticationReducer.token,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

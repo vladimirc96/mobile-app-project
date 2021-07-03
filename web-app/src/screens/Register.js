@@ -1,15 +1,16 @@
 import React from "react";
 import "../css/Register.css";
 import TextInput from "../components/ui/TextInput";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { login } from "../store/actions/authentication/authenticationActions";
 import { registerUser } from "../store/actions/user/userActions";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Swal from "sweetalert2";
 
 library.add(faUserCircle);
 
@@ -30,7 +31,32 @@ const registerSchema = yup.object({
   phoneNumber: yup.string().required("Broj telefona je obavezan."),
 });
 
-export default class Register extends React.Component {
+export class Register extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleRegister = async (user) => {
+    const formData = new FormData();
+    Object.keys(user).forEach((key) => formData.append(key, user[key]));
+    try {
+      await this.props.register(formData, {
+        username: user.username,
+        password: user.password,
+      });
+      // Swal.fire({
+      //   text: "Uspešno ste se registrovali!",
+      //   confirmButtonText: "Ok",
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     console.log("redirect");
+      //     this.props.history.push("/");
+      //   }
+      // });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     return (
       <div className="d-flex flex-column register-section">
@@ -39,9 +65,9 @@ export default class Register extends React.Component {
           <p className="p-2 sub-header">
             Već imate profil?
             <Link to="/">
-              <a href="#" style={{ color: "#d1ad75", fontWeight: "650" }}>
+              <span style={{ color: "#d1ad75", fontWeight: "650" }}>
                 Prijavite se
-              </a>
+              </span>
             </Link>
           </p>
         </div>
@@ -55,7 +81,10 @@ export default class Register extends React.Component {
               image: null,
             }}
             onSubmit={(values) => {
-              console.log(values);
+              if (!values.image) {
+                delete values.image;
+              }
+              this.handleRegister(values);
             }}
             validationSchema={registerSchema}
           >
@@ -151,3 +180,18 @@ export default class Register extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user,
+    token: state.authenticationReducer.token,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: (user, credentials) => dispatch(registerUser(user, credentials)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
