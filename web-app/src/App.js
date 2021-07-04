@@ -21,7 +21,7 @@ function App() {
               <StartingBanner/>
                 <Switch>
                   <Route path="/">
-                    <Categories/>
+                    <Ads/>
                   </Route>
                 </Switch>
                 <Footer />

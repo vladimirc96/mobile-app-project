@@ -7,6 +7,7 @@
     box-shadow: 0px 0px 8px 0px;
     border-radius: 10px;
     align-content: center;
+    justify-content: center;
   }
 
   .text {
@@ -16,5 +17,138 @@
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
     padding: 0px 10px;
+  }
+
+  .ad-image-container{
+    width: 20%;
+    height: 100%;
+    margin: 2px 10px 0px 10px;
+  }
+
+  .ad-description-container{
+    width: 55%;
+    height: 100%;
+  }
+
+  .ad-title-text{
+    line-height: 0.9;
+    margin-left: -10px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .ad-description{
+    margin-top: 14px;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+  }
+
+  .ad-description-text{
+    margin-top: 14px;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+  }
+
+  .ad-owner-text{
+    font-size: 14pt;
+    position: absolute;
+    bottom: 10px;
+  }
+
+  .ad-details-container{
+    width: 20%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .ad-price-box{
+    align-self: center;
+    width: 80%;
+    height: 35px;
+    background-color: #5fd2ff;
+    padding-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 24px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+
+  }
+
+  .ad-price-text{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .big-ad-title{
+    justify-content: space-around;
+    margin-bottom: 25px;
+    height: 35px;
+  }
+
+  .big-ad-details-container{
+    width: 60%;
+    margin-top: 4%;
+    margin-left: 20%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+  }
+
+  .big-ad-image{
+    width: 35%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .big-ad-details{
+    margin-left: 2%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 60%;
+  }
+  
+  .big-ad-details-text{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5%;
+    padding-left: 10%;
+  }
+
+  .big-ad-price-box{
+    align-self: center;
+    margin-top: 2%;
+    margin-left: 40%;
+    width: 20%;
+    height: 4%;
+    background-color: #5fd2ff;
+    text-align: center;
+    border-radius: 24px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+  }
+
+  .big-ad-price-text{
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .big-ad-description {
+    margin-left: 3%;
+    width: 94%;
+    margin-top: 2%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px #bdbdbd;
+  }
+
+  .big-ad-description-text{
+    margin-top: 1%;
+    margin-left: 20px;
+    line-height: 30px;
   }
 
