@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
+import ContactUs from "./screens/ContactUs";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Header/>
                 <Switch>
                   <Route path="/">
+                    <ContactUs />
                   </Route>
                 </Switch>
                 <Footer />
