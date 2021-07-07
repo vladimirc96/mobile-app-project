@@ -62,7 +62,7 @@ export class Header extends Component {
                     <a className="main-navigation__link">O nama</a>
                   </li>
                   {!this.props.token ? (
-                    <Link to="/">
+                    <Link to="/login">
                       <li className="main-navigation__list">
                         <span className="main-navigation__link main-navigation__link--login">
                           Prijavite se
@@ -70,14 +70,16 @@ export class Header extends Component {
                       </li>
                     </Link>
                   ) : (
-                    <li
-                      className="main-navigation__list"
-                      onClick={this.handleLogout}
-                    >
-                      <span className="main-navigation__link main-navigation__link--login">
-                        Odjavi se
-                      </span>
-                    </li>
+                    <Link>
+                      <li
+                        className="main-navigation__list"
+                        onClick={this.handleLogout}
+                      >
+                        <span className="main-navigation__link main-navigation__link--login">
+                          Odjavi se
+                        </span>
+                      </li>
+                    </Link>
                   )}
                   {!this.props.token ? (
                     <Link to="/register">

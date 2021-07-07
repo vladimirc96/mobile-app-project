@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
 import Register from "./screens/Register";
+import Login from "./components/Login";
 import Home from "./screens/Home";
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home}></Route>
               <Route path="/register" component={Register}></Route>
+              <Route path="/login" component={Login}></Route>
             </Switch>
           </div>
           <Footer />

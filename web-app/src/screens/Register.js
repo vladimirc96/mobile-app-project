@@ -6,12 +6,15 @@ import * as yup from "yup";
 import { isInError } from "../validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { registerUser } from "../store/actions/user/userActions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-
+library.add(faEye);
+library.add(faEyeSlash);
 library.add(faUserCircle);
 
 const registerSchema = yup.object({
@@ -34,15 +37,27 @@ const registerSchema = yup.object({
 export class Register extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      passwordVisible: true,
+    };
   }
+  toggleVisible = () => {
+    this.setState((prevState) => {
+      return {
+        passwordVisible: !prevState.passwordVisible,
+      };
+    });
+  };
   handleRegister = async (user) => {
     const formData = new FormData();
     Object.keys(user).forEach((key) => formData.append(key, user[key]));
     try {
-      await this.props.register(formData, {
-        username: user.username,
-        password: user.password,
-      });
+      setTimeout(async () => {
+        await this.props.register(formData, {
+          username: user.username,
+          password: user.password,
+        });
+      }, 500);
       // Swal.fire({
       //   text: "Uspešno ste se registrovali!",
       //   confirmButtonText: "Ok",
@@ -64,10 +79,8 @@ export class Register extends React.Component {
           <p className="p-2 header"> Kreirajte profil </p>
           <p className="p-2 sub-header">
             Već imate profil?
-            <Link to="/">
-              <span style={{ color: "#d1ad75", fontWeight: "650" }}>
-                Prijavite se
-              </span>
+            <Link to="/login" style={{ color: "#d1ad75", fontWeight: "650" }}>
+              Prijavite se
             </Link>
           </p>
         </div>
@@ -125,16 +138,31 @@ export class Register extends React.Component {
                     classes={isInError(formikProps, "username")}
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group input-group">
                   <TextInput
                     name="password"
-                    type="password"
+                    type={this.state.passwordVisible ? "password" : "text"}
                     placeholder="Lozinka"
                     value={formikProps.values.password}
                     onChange={formikProps.handleChange("password")}
                     onBlur={formikProps.handleBlur("password")}
-                    classes={isInError(formikProps, "password")}
+                    classes={
+                      (isInError(formikProps, "password"), "password-input")
+                    }
                   />
+                  <div className="input-group-append">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary show-hide"
+                      onClick={this.toggleVisible}
+                    >
+                      {this.state.passwordVisible ? (
+                        <FontAwesomeIcon icon="eye" />
+                      ) : (
+                        <FontAwesomeIcon icon="eye-slash" />
+                      )}
+                    </button>
+                  </div>
                   {formikProps.errors.password !== "Šifra je obavezna." ? (
                     <span style={{ fontSize: "13px" }}>
                       {formikProps.errors.password}

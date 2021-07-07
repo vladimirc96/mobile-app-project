@@ -1,12 +1,12 @@
-.register-section {
+.login-section {
   width: 1000px;
-  height: 685px;
+  height: 500px;
   margin: 0 auto;
 }
 
 .upper-part {
   width: 100%;
-  height: 22%;
+  height: 166px;
   background: #f8f8f8;
   border: 1px solid #d4d4d4;
 }
@@ -54,17 +54,13 @@
   /* identical to box height, or 35px */
   text-align: center !important;
   color: #ffffff !important;
+  width: 200px;
 }
 
 .fields {
   width: 350px;
 }
 
-.picked-image {
-  border-radius: 10px;
-  height: 130px;
-  width: 130px;
-}
 .password-input {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
