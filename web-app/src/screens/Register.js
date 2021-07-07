@@ -146,9 +146,10 @@ export class Register extends React.Component {
                     value={formikProps.values.password}
                     onChange={formikProps.handleChange("password")}
                     onBlur={formikProps.handleBlur("password")}
-                    classes={
-                      (isInError(formikProps, "password"), "password-input")
-                    }
+                    classes={[
+                      isInError(formikProps, "password"),
+                      "password-input",
+                    ]}
                   />
                   <div className="input-group-append">
                     <button
