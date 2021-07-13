@@ -46,19 +46,19 @@ render() {
                     </div>
                 </div>
                 <div className="row categories-row">
-                    <div style={{height: "220px", width: "20%", marginLeft: "4%", borderWidth: "1px", borderColor: "#ededed", borderRadius: "20px", boxShadow: "0px 0px 2px 1px #bdbdbd"}}>
+                    <div className="single-category">
                         <img src={categoryIcon} style={{marginTop: "5%",marginLeft: "15%", width: "70%", height: "auto"}}/>
                         <p className="category-title"> Dizajn</p>
                     </div>
-                    <div style={{height: "220px", width: "20%", marginLeft: "4%", borderWidth: "1px", borderColor: "#ededed", borderRadius: "20px", boxShadow: "0px 0px 2px 1px #bdbdbd"}}>
+                    <div className="single-category">
                         <img src={categoryIcon} style={{marginTop: "5%",marginLeft: "15%", width: "70%", height: "auto"}}/>
                         <p className="category-title"> Dizajn</p>
                     </div>
-                    <div style={{height: "220px", width: "20%", marginLeft: "4%", borderWidth: "1px", borderColor: "#ededed", borderRadius: "20px", boxShadow: "0px 0px 2px 1px #bdbdbd"}}>
+                    <div className="single-category">
                         <img src={categoryIcon} style={{marginTop: "5%",marginLeft: "15%", width: "70%", height: "auto"}}/>
                         <p className="category-title"> Dizajn</p>
                     </div>
-                    <div style={{height: "220px", width: "20%", marginLeft: "4%", borderWidth: "1px", borderColor: "#ededed", borderRadius: "20px", boxShadow: "0px 0px 2px 1px #bdbdbd"}}>
+                    <div className="single-category">
                         <img src={categoryIcon} style={{marginTop: "5%",marginLeft: "15%", width: "70%", height: "auto"}}/>
                         <p className="category-title"> Dizajn</p>
                     </div>
