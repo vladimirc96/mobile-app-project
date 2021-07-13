@@ -22,7 +22,7 @@
   .ad-image-container{
     width: 20%;
     height: 100%;
-    margin: 2px 10px 0px 10px;
+    margin: 6px 10px 0px 2px;
   }
 
   .ad-description-container{
@@ -51,19 +51,20 @@
     width: 100%;
     padding-top: 10px;
     padding-left: 5px;
+    margin-bottom: 7.5%;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 2px #bdbdbd;
   }
 
   .ad-owner-text{
     font-size: 14pt;
+    font-weight: 600;
     position: absolute;
     bottom: 10px;
   }
 
   .ad-details-container{
     width: 20%;
-    height: 100%;
     text-align: center;
   }
 
@@ -101,16 +102,15 @@
 
   .big-ad-image{
     width: 35%;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-left: 6%;
+    margin-top: 3%;
+    margin-bottom: 3%;
   }
 
   .big-ad-details{
-    margin-left: 2%;
     margin-bottom: 2%;
     margin-top: 2%;
-    width: 60%;
+    width: 55%;
   }
   
   .big-ad-details-text{
@@ -147,6 +147,8 @@
   }
 
   .big-ad-description-text{
+    font-size: 14pt;
+    font-weight: 600;
     margin-top: 1%;
     margin-left: 20px;
     line-height: 30px;

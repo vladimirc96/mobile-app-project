@@ -20,7 +20,7 @@ class Ad extends React.Component{
                         <p className="text">Lorem ipsum dolor sit amet consectetur adipiscing elit.Pellentesque sapien lacus,interdum vitae massa nec,laoreet tempus tellus. Proin aliquet nibh quam, ac efficitur felis maximus ac. Phasellus pellentesque urna et ante commodo, gravida luctus eros viverra. Nullam mollis erat diam. Fusce venenatis gravida mi ac condimentum. Nulla eu pulvinar neque. Proin rutrum dui sed ligula congue, id facilisis odio blandit. Cras non metus posuere, mattis justo sit amet, ornare orci.</p>
                     </div>
                     <div className="row">
-                        <h5 className="ad-owner-text">Vlasnik: Slobodan Sarenac</h5>
+                        <p className="ad-owner-text">Vlasnik: Slobodan Sarenac</p>
                     </div>
                 </div>
                 <div className="ad-details-container">
