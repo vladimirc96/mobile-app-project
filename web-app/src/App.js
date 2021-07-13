@@ -2,6 +2,7 @@ import './css/App.css'
 import './css/Ad.css'
 import './css/Layout.css'
 import './css/Categories.css'
+import './css/AdCreation.css'
 import StartingBanner from "./components/StartingBanner.js"
 import Header from "./layout/Header.js"
 import Footer from "./layout/Footer.js"
@@ -11,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
 import Categories from './screens/Categories.js';
 import Ads from './screens/Ads.js';
+import AdCreation from './screens/AdCreation.js';
 
 function App() {
   return (
@@ -18,10 +20,9 @@ function App() {
           <PersistGate loading={null} persistor={persistedStore.persistor}>
             <Router>
               <Header/>
-              <StartingBanner/>
                 <Switch>
                   <Route path="/">
-                    <Ads/>
+                    <AdCreation/>
                   </Route>
                 </Switch>
                 <Footer />
