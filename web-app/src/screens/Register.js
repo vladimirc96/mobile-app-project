@@ -109,6 +109,7 @@ export class Register extends React.Component {
                       <FontAwesomeIcon icon="user-circle" size="8x" />
                     ) : (
                       <img
+                        alt="profilna"
                         className="picked-image"
                         src={URL.createObjectURL(formikProps.values.image)}
                       ></img>
