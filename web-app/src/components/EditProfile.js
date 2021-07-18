@@ -6,15 +6,16 @@ import TextArea from "./ui/TextArea";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
 import { getAll } from "../services/LocationService";
 
-library.add(faEye);
-library.add(faEyeSlash);
+library.add(faUserCircle);
 
 const registerSchema = yup.object({
 	username: yup.string().required("Korisničko ime je obavezno."),
@@ -62,6 +63,7 @@ export class Login extends Component {
 								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : "",
 							details: this.props.user && this.props.user.details ? this.props.user.details : "",
 							location: this.props.user && this.props.user.location ? this.props.user.location : "",
+							image: null,
 						}}
 						onSubmit={(values) => {
 							console.log(values);
@@ -70,6 +72,32 @@ export class Login extends Component {
 						{(formikProps) => (
 							<div className="fields column h-100">
 								<div className="d-flex flex-column h-100 justify-content-center">
+									<div className="form-group form-row d-flex justify-content-center">
+										<div className="col">
+											{!formikProps.values.image ? (
+												<FontAwesomeIcon icon="user-circle" size="5x" />
+											) : (
+												<img
+													alt="profilna"
+													className="picked-image"
+													src={URL.createObjectURL(formikProps.values.image)}
+												></img>
+											)}
+										</div>
+										<div className="d-flex align-items-center col-9">
+											<label className="btn btn-primary btn-file upload-btn">
+												DODAJ FOTOGRAFIJU
+												<input
+													style={{ marginTop: "5px" }}
+													type="file"
+													onChange={(event) =>
+														formikProps.setFieldValue("image", event.target.files[0])
+													}
+													style={{ display: "none" }}
+												/>
+											</label>
+										</div>
+									</div>
 									<div className="form-group">
 										<label className="label">Ime</label>
 										<TextInput

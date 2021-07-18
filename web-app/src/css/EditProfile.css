@@ -61,3 +61,30 @@
 	margin-bottom: 0 !important;
 	font-weight: bold;
 }
+
+.upload-btn {
+	background: #f8f8f8 !important;
+	border: 3px solid #d1ad75 !important;
+	box-sizing: border-box !important;
+	border-radius: 59px !important;
+	color: #d1ad75 !important;
+	font-family: "Montserrat" !important;
+	font-style: normal !important;
+	font-weight: bold !important;
+	font-size: 15px !important;
+	line-height: 165% !important;
+	/* identical to box height, or 35px */
+
+	text-align: center !important;
+}
+.upload-btn:hover {
+	background: #d1ad75 !important;
+	color: #f8f8f8 !important;
+}
+.picked-image {
+	border-radius: 100px;
+	border: 1px solid gray;
+	height: 80px;
+	width: 80px;
+	object-fit: contain;
+}
