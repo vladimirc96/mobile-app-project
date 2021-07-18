@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import logo from "../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/authentication/authenticationActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+library.add(faUserCircle);
+
 export class Header extends Component {
   constructor() {
     super();
@@ -15,13 +21,12 @@ export class Header extends Component {
 
   handleLogout = () => {
     this.props.logoutUser();
+    this.props.history.push("/");
   };
 
   handleLogin = () => {};
 
-  componentDidMount() {
-    console.log(this.props.token);
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -70,16 +75,55 @@ export class Header extends Component {
                       </li>
                     </Link>
                   ) : (
-                    <Link>
+                    <span>
                       <li
                         className="main-navigation__list"
                         onClick={this.handleLogout}
                       >
-                        <span className="main-navigation__link main-navigation__link--login">
-                          Odjavi se
+                        <span className="main-navigation__link main-navigation__link--registration">
+                          Postavi oglas
                         </span>
                       </li>
-                    </Link>
+                      <li className="main-navigation__list">
+                        <div class="dropdown">
+                          <FontAwesomeIcon
+                            className="menu-icon"
+                            icon="user-circle"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            size="3x"
+                          />
+                          <div
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <ul>
+                              <li className="dropdown-item">Moj profil</li>
+                              <Link
+                                to={`/user/${
+                                  this.props.user && this.props.user.id
+                                    ? this.props.user.id
+                                    : null
+                                }/edit-profile`}
+                              >
+                                <li className="dropdown-item">
+                                  Izmena profila
+                                </li>
+                              </Link>
+                              <div class="dropdown-divider"></div>
+                              <li
+                                className="dropdown-item"
+                                onClick={this.handleLogout}
+                              >
+                                Odjavi se
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </span>
                   )}
                   {!this.props.token ? (
                     <Link to="/register">
@@ -112,4 +156,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const HeaderComp = withRouter(Header);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderComp);

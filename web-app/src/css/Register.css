@@ -1,6 +1,7 @@
 .register-section {
   width: 1000px;
   height: 685px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
 
@@ -38,7 +39,6 @@
 .form-section {
   padding-top: 2%;
   background: #ffffff;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
   height: 78%;
 }
 
