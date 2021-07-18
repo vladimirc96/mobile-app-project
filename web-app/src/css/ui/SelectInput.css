@@ -1,9 +1,9 @@
 .select-input-field {
-  background: #f8f8f8 !important;
-  border: 0.5px solid #d4d4d4;
-  box-sizing: border-box !important;
-  box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 11px !important;
+	background: #f8f8f8 !important;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box !important;
+	box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
+	border-radius: 11px !important;
 }
 /* 
 select {
@@ -26,13 +26,13 @@ select {
 } */
 
 .input-field:focus {
-  background: #ffffff !important;
+	background: #ffffff !important;
 }
 
 .required-error {
-  border: 0.5px solid red !important;
+	border: 0.5px solid red !important;
 }
 
 .required-error::placeholder {
-  color: red !important;
+	color: red !important;
 }

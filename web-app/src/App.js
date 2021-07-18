@@ -12,28 +12,28 @@ import Login from "./components/Login";
 import Home from "./screens/Home";
 import EditProfile from "./components/EditProfile";
 function App() {
-  return (
-    <Provider store={persistedStore.store}>
-      <PersistGate loading={null} persistor={persistedStore.persistor}>
-        <Router>
-          <div className="header-section">
-            <Header />
-          </div>
-          <div className="middle-section">
-            <Switch>
-              <Route path="/" exact component={Home}></Route>
-              <Route path="/register" component={Register}></Route>
-              <Route path="/login" component={Login}></Route>
-              <Route path="/user/:id/edit-profile" component={EditProfile} />
-            </Switch>
-          </div>
-          <div className="footer-section">
-            <Footer />
-          </div>
-        </Router>
-      </PersistGate>
-    </Provider>
-  );
+	return (
+		<Provider store={persistedStore.store}>
+			<PersistGate loading={null} persistor={persistedStore.persistor}>
+				<Router>
+					<div className="header-section">
+						<Header />
+					</div>
+					<div className="middle-section">
+						<Switch>
+							<Route path="/" exact component={Home}></Route>
+							<Route path="/register" component={Register}></Route>
+							<Route path="/login" component={Login}></Route>
+							<Route path="/user/:id/edit-profile" component={EditProfile} />
+						</Switch>
+					</div>
+					<div className="footer-section">
+						<Footer />
+					</div>
+				</Router>
+			</PersistGate>
+		</Provider>
+	);
 }
 
 export default App;
