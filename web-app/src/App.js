@@ -1,6 +1,7 @@
 import './css/App.css'
 import './css/Ad.css'
 import './css/Layout.css'
+import "./css/ContactUs.css"
 import Header from "./layout/Header.js"
 import Footer from "./layout/Footer.js"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
