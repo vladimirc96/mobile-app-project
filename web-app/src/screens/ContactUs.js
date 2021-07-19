@@ -95,7 +95,7 @@ render() {
             <div className="about-bottom-section">
                 <div className="about-bottom-content">
                     <p className="about-bottom-text">Preuzmite mobilnu aplikaciju besplatno</p>
-                    <button className="about-bottom-button">PREUZMI {">"}</button>
+                    <button className="bottom-button">PREUZMI {">"}</button>
                 </div>
             </div>
         </div>
