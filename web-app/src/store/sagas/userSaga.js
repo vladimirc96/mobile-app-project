@@ -8,11 +8,11 @@ import { getUser, signup } from "../../services/UserService";
 // }
 
 export function* getUserInfo() {
-  yield takeLatest(USER_ACTIONS_ASYNC.GET_USER_INFO, getUserInfoAsync);
+	yield takeLatest(USER_ACTIONS_ASYNC.GET_USER_INFO, getUserInfoAsync);
 }
 
 export function* registerUser() {
-  yield takeLatest(USER_ACTIONS_ASYNC.REGISTER_USER, registerUserAsync);
+	yield takeLatest(USER_ACTIONS_ASYNC.REGISTER_USER, registerUserAsync);
 }
 // function* updateUserAsync(action) {
 //   try {
@@ -24,26 +24,26 @@ export function* registerUser() {
 // }
 
 function* getUserInfoAsync() {
-  try {
-    const data = yield call(getUser);
-    yield put({ type: USER_ACTIONS.GET_USER_INFO, data: data });
-  } catch (err) {
-    console.log(err);
-  }
+	try {
+		const data = yield call(getUser);
+		yield put({ type: USER_ACTIONS.GET_USER_INFO, data: data });
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 function* registerUserAsync(action) {
-  try {
-    yield call(signup, action.data);
-    const loginAction = {
-      credentials: action.credentials,
-    };
-    yield call(loginUserAsync, loginAction);
-  } catch (err) {
-    console.log(err);
-  }
+	try {
+		yield call(signup, action.data);
+		const loginAction = {
+			credentials: action.credentials,
+		};
+		yield call(loginUserAsync, loginAction);
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 export default function* userSaga() {
-  yield all([getUserInfo(), registerUser()]);
+	yield all([getUserInfo(), registerUser()]);
 }
