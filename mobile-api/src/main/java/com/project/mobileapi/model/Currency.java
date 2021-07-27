@@ -1,4 +1,4 @@
-package com.project.mobileapi.util;
+package com.project.mobileapi.model;
 
 public enum Currency {
     RSD("RSD"),

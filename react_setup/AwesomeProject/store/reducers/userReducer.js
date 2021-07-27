@@ -16,6 +16,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.data,
       };
+    case USER_ACTIONS.SET_USER_INFO:
+      return {
+        ...state,
+        user: action.data,
+      };
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Font from "expo-font";
-import { profileStyles } from "../shared/Styles";
+import { profileStyles } from "../shared/profileStyles";
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,

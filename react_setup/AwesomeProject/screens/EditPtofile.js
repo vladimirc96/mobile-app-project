@@ -26,7 +26,11 @@ export default class EditProfile extends React.Component {
   async componentDidMount() {
     try {
       const data = await getAll();
-      this.setState({ locations: data });
+      await data.map((item) => {
+        item.name = item.value;
+        delete item.value;
+      });
+      await this.setState({ locations: data });
     } catch (err) {
       console.log(err.message);
     }
@@ -36,18 +40,18 @@ export default class EditProfile extends React.Component {
 
   render() {
     const backgroundImage = require("./../assets/images/logInBackground.jpg");
-      return (
-        <ImageBackground
-          style={styles.backgroundImageContainer}
-          source={backgroundImage}
-        >
-          <EditProfileForm
-            updateUser={this.props.navigation.getParam("updateUser")}
-            locations={this.state.locations}
-            user={this.props.navigation.getParam("user")}
-          />
-        </ImageBackground>
-      );
+    return (
+      <ImageBackground
+        style={styles.backgroundImageContainer}
+        source={backgroundImage}
+      >
+        <EditProfileForm
+          updateUser={this.props.navigation.getParam("updateUser")}
+          locations={this.state.locations}
+          user={this.props.navigation.getParam("user")}
+        />
+      </ImageBackground>
+    );
   }
 }
 const styles = StyleSheet.create({

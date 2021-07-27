@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
-import { StyleSheet, Image, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { EditProfileButton } from "../Buttons";
+import * as ImagePicker from "expo-image-picker";
 
 import { Dimensions } from "react-native";
 import {
@@ -9,29 +17,50 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as yup from "yup";
-import { Picker } from "@react-native-picker/picker";
+import Picker from "../Picker";
 import {
   getEditProfileError,
   getFieldNameError,
 } from "../../shared/ValidationUtil";
 import { ScrollView } from "react-native-gesture-handler";
+import PermissionService from "../../services/PermissionService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const editProfileSchema = yup.object({
   username: yup.string().required(),
-  password: yup.string().required(),
+  // password: yup.string().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   phoneNumber: yup.string().required(),
-  email: yup.string().required(),
+  email: yup.string().email().required(),
   location: yup.object(),
   details: yup.string(),
 });
 
 export default function EditProfileForm({ updateUser, locations, user }) {
+  const [image, setImage] = useState(user.imageBytes);
+
   const avatar = require("../../assets/images/avatar.png");
+
+  const pickImage = async (formikProps) => {
+    const permissionGranted =
+      await PermissionService.requestMediaLibraryPermission();
+    if (!permissionGranted) {
+      return;
+    }
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
+    });
+    if (!result.cancelled) {
+      await formikProps.setFieldValue("image", result.uri);
+      setImage(result.base64);
+    }
+  };
 
   return (
     <ScrollView>
@@ -39,29 +68,50 @@ export default function EditProfileForm({ updateUser, locations, user }) {
         initialValues={{
           id: user.id,
           username: user.username,
+          password: user.password,
           firstName: user.firstName,
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
           email: user.email,
-          location: user.location,
+          location: { id: user.location.id, name: user.location.value },
           details: user.details ? user.details : "",
+          image: user.imageBytes,
         }}
         onSubmit={(values) => {
+          values.location = {
+            id: values.location.id,
+            value: values.location.name,
+          };
           updateUser(values);
         }}
         validationSchema={editProfileSchema}
       >
         {(formikProps) => (
           <View style={styles.mainContainer}>
-            <Image
-              style={
-                windowHeight * 0.15 < windowWidth * 0.28
-                  ? styles.inputImageHeight
-                  : styles.inputImageWidth
-              }
-              source={avatar}
-            />
-            <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
+            {formikProps.values.image ? (
+              <Image
+                style={
+                  windowHeight * 0.15 < windowWidth * 0.28
+                    ? styles.inputImageHeight
+                    : styles.inputImageWidth
+                }
+                source={{
+                  uri: "data:image/png;base64," + image,
+                }}
+              />
+            ) : (
+              <Image
+                style={
+                  windowHeight * 0.15 < windowWidth * 0.28
+                    ? styles.inputImageHeight
+                    : styles.inputImageWidth
+                }
+                source={avatar}
+              />
+            )}
+            <TouchableOpacity onPress={() => pickImage(formikProps)}>
+              <Text style={styles.pickImage}>Izmeni Profilnu Sliku</Text>
+            </TouchableOpacity>
             <View style={styles.userDetailsContainer}>
               <View
                 style={[
@@ -201,31 +251,22 @@ export default function EditProfileForm({ updateUser, locations, user }) {
               </View>
 
               <View style={styles.inputFieldContainer}>
+                <Text style={styles.fieldName}>Lokacija</Text>
                 <Picker
-                  selectedValue={formikProps.values.location.id}
-                  style={{
-                    fontSize: hp("2%"),
-                    backgroundColor: "#1e1c24",
-                    color: "white",
-                    borderColor: "transparent",
-                    paddingTop: hp("0.5%"),
+                  selectedValue={formikProps.values.location}
+                  handleChangeValue={async (value) => {
+                    formikProps.setFieldValue("location", value);
                   }}
-                  onValueChange={(itemValue, itemIndex) => {
-                    formikProps.setFieldValue("location", locations[itemIndex]);
-                  }}
-                >
-                  {locations.map((location) => (
-                    <Picker.Item
-                      label={location.value}
-                      value={location.id}
-                      key={location.id}
-                    />
-                  ))}
-                </Picker>
+                  items={locations}
+                  fieldTextStyle={{ fontStyle: "normal", color: "#ffffff" }}
+                  fieldStyle={{ width: wp("80%") }}
+                  fieldWrapperStyle={{ marginTop: hp("0%") }}
+                ></Picker>
               </View>
             </View>
             <TextInput
               placeholder="Detalji"
+              placeholderTextColor="#ededed"
               multiline={true}
               textAlignVertical="top"
               numberOfLines={5}

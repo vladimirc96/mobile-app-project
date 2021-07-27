@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, FlatList, View, Text, TouchableOpacity } from "react-native";
-import { pickerStyle } from "../shared/Styles";
+import { pickerStyle } from "../shared/pickerStyle";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -15,11 +15,12 @@ export default function Picker(props) {
   return (
     <View>
       <TouchableOpacity onPress={() => setVisible(true)}>
-        <View style={pickerStyle.fieldWrapper}>
-          <View style={pickerStyle.field}>
-            <Text style={pickerStyle.fieldText}>
+        <View style={[pickerStyle.fieldWrapper, props.fieldWrapperStyle]}>
+          <View style={[pickerStyle.field, props.fieldStyle]}>
+            <Text style={[pickerStyle.fieldText, props.fieldTextStyle]}>
               {props.items.find((item) => item.id === props.selectedValue.id)
-                ? props.items.find((item) => item.id === props.selectedValue.id)
+                ? props.items
+                    .find((item) => item.id === props.selectedValue.id)
                     .name.replace(/(\r\n|\n|\r)/gm, " ")
                 : ""}
             </Text>
@@ -47,11 +48,13 @@ export default function Picker(props) {
                       setVisible(false);
                     }}
                   >
-                    <Text style={pickerStyle.textStyle}>{item.name.replace(/\n/g,' ')}</Text>
+                    <Text style={pickerStyle.textStyle}>
+                      {item.name.replace(/\n/g, " ")}
+                    </Text>
                   </TouchableOpacity>
                 );
               }}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.id.toString()}
             ></FlatList>
           </View>
         </View>

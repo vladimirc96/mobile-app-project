@@ -1,11 +1,9 @@
-package com.project.mobileapi.security.config;
+package com.project.mobileapi.config;
 
 import com.project.mobileapi.security.CustomUserDetailsService;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.security.auth.RestAuthenticationEntryPoint;
 import com.project.mobileapi.security.auth.TokenAuthenticationFilter;
-import com.project.mobileapi.util.DateConverter;
-import com.project.mobileapi.util.KeyValueConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     // Definisemo prava pristupa odredjenim URL-ovima
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
 
                 // komunikacija izmedju klijenta i servera je stateless
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -91,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 // presretni svaki zahtev filterom
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService), BasicAuthenticationFilter.class);
 
-        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
+//        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
     }
 
 
@@ -132,5 +130,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new KeyValueConverter());
         registry.addConverter(new DateConverter());
+        registry.addConverter(new LongConverter());
+        registry.addConverter(new DoubleConverter());
     }
 }

@@ -5,17 +5,13 @@ import FirstRun from "../screens/FirstRun";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Home from "../screens/Home";
+import AuthStack from "./AuthStack";
 
 const screens = {
   FirstRun: {
     screen: FirstRun,
   },
-  LogIn: {
-    screen: LogIn,
-  },
-  SignUp: {
-    screen: SignUp,
-  },
+  Auth: AuthStack,
   Home: {
     screen: Home,
   },

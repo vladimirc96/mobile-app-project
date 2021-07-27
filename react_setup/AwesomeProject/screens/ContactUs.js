@@ -1,10 +1,10 @@
 import React from "react";
 import { ImageBackground, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
-import { contactUsStyles } from "./../shared/Styles";
+import { contactUsStyles } from "./../shared/contactUsStyles";
 import ContactUsForm from "../components/forms/ContactUsForm";
 import { sendMail } from "../services/MailService";
-import Toast from "react-native-simple-toast";
+import Toast from "react-native-root-toast";
 import { CONTACT_US_SUCCESS } from "../constants/Messages";
 
 const customFonts = {
@@ -47,10 +47,11 @@ export default class ContactUs extends React.Component {
         formData.append("image", image);
       }
       await sendMail(formData);
-      Toast.show(CONTACT_US_SUCCESS, Toast.LONG);
+      Toast.show(CONTACT_US_SUCCESS, { duration: Toast.durations.SHORT });
       this.props.navigation.navigate("Categories");
     } catch (err) {
       console.log(err);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   };
 

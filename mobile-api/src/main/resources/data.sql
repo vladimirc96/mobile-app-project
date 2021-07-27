@@ -33,11 +33,15 @@ INSERT INTO table_users VALUES (1, null, null, 'test@gmail.com', '2021-01-14', '
 INSERT INTO table_privileges VALUES (1, 'GET_USER_DETAILS');
 
 INSERT INTO table_privileges VALUES (2, 'POST_AD');
+INSERT INTO table_privileges VALUES (3, 'UPDATE_AD');
+INSERT INTO table_privileges VALUES (4, 'DELETE_AD');
 
 INSERT INTO table_roles VALUES (1, 'User');
 
 INSERT INTO roles_privileges VALUES (1, 1);
 INSERT INTO roles_privileges VALUES (1, 2);
+INSERT INTO roles_privileges VALUES (1, 3);
+INSERT INTO roles_privileges VALUES (1, 4);
 
 INSERT INTO user_roles VALUES ('test', 1);
 
