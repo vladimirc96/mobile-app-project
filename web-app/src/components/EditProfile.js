@@ -7,13 +7,15 @@ import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
 import { getAll } from "../services/LocationService";
+import { saveUser } from "../services/UserService";
+import { base64ToFile, toBase64 } from "../ImageUtil";
+import Swal from "sweetalert2";
+import { isEqual } from "lodash";
 
 library.add(faUserCircle);
 
@@ -22,11 +24,12 @@ const registerSchema = yup.object({
 	password: yup.string().required("Šifra je obavezna."),
 });
 
-export class Login extends Component {
+export class EditProfile extends Component {
 	constructor() {
 		super();
 		this.state = {
 			locations: [],
+			image: null,
 		};
 	}
 
@@ -44,7 +47,43 @@ export class Login extends Component {
 		await formikProps.setFieldValue("location", location);
 	};
 
+	saveUser = async (user) => {
+		try {
+			const formData = new FormData();
+			Object.keys(user).forEach((key) => {
+				if (key === "imageBytes") {
+					return;
+				}
+				if (key === "location") {
+					formData.append(key, JSON.stringify(user[key]));
+					return;
+				}
+				formData.append(key, user[key]);
+			});
+			if (!this.state.image) {
+				const image = await base64ToFile(user["imageBytes"]);
+				formData.append("image", image);
+			} else {
+				formData.append("image", this.state.image);
+			}
+			await saveUser(formData);
+			console.log(user);
+			this.props.setUserInfo(user);
+			Swal.fire({
+				text: "Uspešno ste izmenili podatke!",
+				confirmButtonText: "Ok",
+			});
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
+	isModified = (formikProps) => {
+		return isEqual(formikProps.values, this.props.user);
+	};
+
 	componentDidMount() {
+		console.log(this.props.user);
 		this.getLocations();
 	}
 
@@ -57,16 +96,23 @@ export class Login extends Component {
 				<div className="d-flex flex-row justify-content-center form-section">
 					<Formik
 						initialValues={{
+							id: this.props.user && this.props.user.id ? this.props.user.id : "",
+							username: this.props.user && this.props.user.username ? this.props.user.username : "",
+							password: this.props.user && this.props.user.password ? this.props.user.password : "",
 							firstName: this.props.user && this.props.user.firstName ? this.props.user.firstName : "",
 							lastName: this.props.user && this.props.user.lastName ? this.props.user.lastName : "",
 							phoneNumber:
 								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : "",
+							email: this.props.user && this.props.user.email ? this.props.user.email : "",
 							details: this.props.user && this.props.user.details ? this.props.user.details : "",
 							location: this.props.user && this.props.user.location ? this.props.user.location : "",
-							image: null,
+							image: this.props.user && this.props.user.image ? this.props.user.image : null,
+							imageBytes:
+								this.props.user && this.props.user.imageBytes ? this.props.user.imageBytes : null,
 						}}
 						onSubmit={(values) => {
 							console.log(values);
+							this.saveUser(values);
 						}}
 					>
 						{(formikProps) => (
@@ -74,13 +120,17 @@ export class Login extends Component {
 								<div className="d-flex flex-column h-100 justify-content-center">
 									<div className="form-group form-row d-flex justify-content-center">
 										<div className="col">
-											{!formikProps.values.image ? (
+											{!formikProps.values.imageBytes ? (
 												<FontAwesomeIcon icon="user-circle" size="5x" />
 											) : (
 												<img
 													alt="profilna"
 													className="picked-image"
-													src={URL.createObjectURL(formikProps.values.image)}
+													src={
+														formikProps.values.imageBytes.indexOf("data") === -1
+															? `data:image/jpg;base64,${formikProps.values.imageBytes}`
+															: formikProps.values.imageBytes
+													}
 												></img>
 											)}
 										</div>
@@ -90,9 +140,13 @@ export class Login extends Component {
 												<input
 													style={{ marginTop: "5px" }}
 													type="file"
-													onChange={(event) =>
-														formikProps.setFieldValue("image", event.target.files[0])
-													}
+													onChange={async (event) => {
+														formikProps.setFieldValue(
+															"imageBytes",
+															await toBase64(event.target.files[0])
+														);
+														this.setState({ image: event.target.files[0] });
+													}}
 													style={{ display: "none" }}
 												/>
 											</label>
@@ -152,6 +206,7 @@ export class Login extends Component {
 									</div>
 									<div className="d-flex justify-content-center form-group">
 										<button
+											disabled={this.isModified(formikProps)}
 											type="button"
 											className="btn gold-btn"
 											onClick={formikProps.handleSubmit}
@@ -179,7 +234,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		loginUser: (credentials) => dispatch(login(credentials)),
+		setUserInfo: (user) => dispatch({ type: "SET_USER_INFO", data: user }),
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
