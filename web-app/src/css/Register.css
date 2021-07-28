@@ -60,10 +60,11 @@
 	width: 350px;
 }
 
-.picked-image {
-	border-radius: 10px;
-	height: 130px;
-	width: 130px;
+.picked-image-register {
+	border-radius: 100px;
+	border: 1px solid gray;
+	height: 128px;
+	width: 128px;
 }
 .password-input {
 	border-top-right-radius: 0 !important;
@@ -108,4 +109,8 @@
 		text-align: center;
 		color: #000000;
 	}
+}
+
+.image-label:hover {
+	cursor: pointer;
 }

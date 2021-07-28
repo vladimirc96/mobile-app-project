@@ -3,7 +3,7 @@ import "../css/EditProfile.css";
 import SelectInput from "../components/ui/SelectInput";
 import TextInput from "../components/ui/TextInput";
 import TextArea from "./ui/TextArea";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +16,15 @@ import { saveUser } from "../services/UserService";
 import { base64ToFile, toBase64 } from "../ImageUtil";
 import Swal from "sweetalert2";
 import { isEqual } from "lodash";
+import { formatDate } from "../DateUtil";
 
 library.add(faUserCircle);
 
-const registerSchema = yup.object({
-	username: yup.string().required("Korisničko ime je obavezno."),
-	password: yup.string().required("Šifra je obavezna."),
+const editProfilerSchema = yup.object({
+	location: yup.object({
+		id: yup.number().required(),
+		value: yup.string(),
+	}),
 });
 
 export class EditProfile extends Component {
@@ -67,10 +70,10 @@ export class EditProfile extends Component {
 				formData.append("image", this.state.image);
 			}
 			await saveUser(formData);
-			console.log(user);
 			this.props.setUserInfo(user);
 			Swal.fire({
 				text: "Uspešno ste izmenili podatke!",
+				confirmButtonColor: "#d1ad75",
 				confirmButtonText: "Ok",
 			});
 		} catch (err) {
@@ -79,11 +82,10 @@ export class EditProfile extends Component {
 	};
 
 	isModified = (formikProps) => {
-		return isEqual(formikProps.values, this.props.user);
+		return !isEqual(formikProps.values, this.props.user);
 	};
 
 	componentDidMount() {
-		console.log(this.props.user);
 		this.getLocations();
 	}
 
@@ -96,24 +98,37 @@ export class EditProfile extends Component {
 				<div className="d-flex flex-row justify-content-center form-section">
 					<Formik
 						initialValues={{
-							id: this.props.user && this.props.user.id ? this.props.user.id : "",
-							username: this.props.user && this.props.user.username ? this.props.user.username : "",
-							password: this.props.user && this.props.user.password ? this.props.user.password : "",
-							firstName: this.props.user && this.props.user.firstName ? this.props.user.firstName : "",
-							lastName: this.props.user && this.props.user.lastName ? this.props.user.lastName : "",
+							id: this.props.user && this.props.user.id ? this.props.user.id : null,
+							username: this.props.user && this.props.user.username ? this.props.user.username : null,
+							password: this.props.user && this.props.user.password ? this.props.user.password : null,
+							firstName: this.props.user && this.props.user.firstName ? this.props.user.firstName : null,
+							lastName: this.props.user && this.props.user.lastName ? this.props.user.lastName : null,
 							phoneNumber:
-								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : "",
-							email: this.props.user && this.props.user.email ? this.props.user.email : "",
-							details: this.props.user && this.props.user.details ? this.props.user.details : "",
-							location: this.props.user && this.props.user.location ? this.props.user.location : "",
+								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : null,
+							email: this.props.user && this.props.user.email ? this.props.user.email : null,
+							details: this.props.user && this.props.user.details ? this.props.user.details : null,
+							location: this.props.user && this.props.user.location ? this.props.user.location : null,
 							image: this.props.user && this.props.user.image ? this.props.user.image : null,
 							imageBytes:
 								this.props.user && this.props.user.imageBytes ? this.props.user.imageBytes : null,
+							entryDate:
+								this.props.user && this.props.user.entryDate
+									? formatDate(this.props.user.entryDate)
+									: null,
+							positiveRatings:
+								this.props.user && this.props.user.positiveRatings
+									? this.props.user.positiveRatings
+									: 0,
+							negativeRatings:
+								this.props.user && this.props.user.negativeRatings
+									? this.props.user.negativeRatings
+									: 0,
 						}}
 						onSubmit={(values) => {
-							console.log(values);
 							this.saveUser(values);
 						}}
+						validationSchema={editProfilerSchema}
+						validateOnMount
 					>
 						{(formikProps) => (
 							<div className="fields column h-100">
@@ -181,6 +196,7 @@ export class EditProfile extends Component {
 											value={formikProps.values.location}
 											onChange={(event) => this.handleLocationChange(event, formikProps)}
 											onBlur={formikProps.handleBlur("location")}
+											classes={[isInError(formikProps, "location")]}
 										/>
 									</div>
 									<div className="form-group">
@@ -206,7 +222,7 @@ export class EditProfile extends Component {
 									</div>
 									<div className="d-flex justify-content-center form-group">
 										<button
-											disabled={this.isModified(formikProps)}
+											disabled={!this.isModified(formikProps) || !formikProps.isValid}
 											type="button"
 											className="btn gold-btn"
 											onClick={formikProps.handleSubmit}

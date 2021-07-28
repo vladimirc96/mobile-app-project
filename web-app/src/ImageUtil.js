@@ -18,7 +18,13 @@ export const toBase64 = (file) =>
 	});
 
 export const base64ToFile = async (url) => {
-	const response = await fetch(url);
+	let imageUrl;
+	if (url.indexOf("data") !== -1) {
+		imageUrl = url;
+	} else {
+		imageUrl = "data:image/png;base64," + url;
+	}
+	const response = await fetch(imageUrl);
 	const blob = await response.blob();
 	const file = new File([blob], "File name", { type: "image/png" });
 	return file;
