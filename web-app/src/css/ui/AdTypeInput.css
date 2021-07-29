@@ -1,4 +1,3 @@
-/* Customize the label (the container) */
 .ad-type-wrapper {
   margin-top: 2.5%;
   padding-top: 1%;
@@ -76,7 +75,6 @@
   user-select: none;
 }
   
-/* Hide the browser's default checkbox */
 .ad-type-container input {
   position: absolute;
   opacity: 0;
@@ -85,7 +83,6 @@
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 12px;
@@ -97,39 +94,32 @@
   background-color: #eee;
 }
 
-/* On mouse-over, add a grey background color */
 .ad-type-container:hover input ~ .checkmark {
   background-color: #d1ad75;
 }
 
-/* On mouse-over, add a grey background color */
 .ad-type-container-wrapper-upper:hover input ~ .checkmark {
   background-color: #d1ad75;
 }
 
-/* On mouse-over, add a grey background color */
 .ad-type-container-wrapper-middle:hover input ~ .checkmark {
   background-color: #d1ad75;
 }
 
-  /* On mouse-over, add a grey background color */
 .ad-type-container-wrapper-down:hover input ~ .checkmark {
   background-color: #d1ad75;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .ad-type-container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .ad-type-container .checkmark:after {
   left: 7px;
   top: 4px;
@@ -142,7 +132,8 @@
   transform: rotate(45deg);
 }
 
-.price-input-field {
+.ad-type-input-field {
+  margin-top: 3.5%;
 	background: #f8f8f8 !important;
 	border: 0.5px solid #d4d4d4;
 	box-sizing: border-box !important;
@@ -150,7 +141,7 @@
 	border-radius: 11px !important;
 }
 
-.price-input-field-disabled {
+.ad-type-input-field-disabled {
 	background: rgba(0, 0, 0, 0.25) !important;
 	border: 0.5px solid #d4d4d4;
 	box-sizing: border-box !important;
@@ -163,7 +154,7 @@
     background-color: red !important;
 }
 
-.price-input-field:focus {
+.ad-type-input-field:focus {
 	background: #ffffff !important;
 }
 

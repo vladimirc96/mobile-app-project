@@ -1,4 +1,3 @@
-/* Customize the label (the container) */
 .ad-price-wrapper {
   margin-left: 5%;
   margin-top: 2.5%;
@@ -18,7 +17,6 @@
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
 .ad-price-container input {
   position: absolute;
   opacity: 0;
@@ -27,7 +25,6 @@
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark-price {
   position: absolute;
   margin-left: 10%;
@@ -39,24 +36,20 @@
   background-color: #eee;
 }
 
-/* On mouse-over, add a grey background color */
 .ad-price-container:hover input ~ .checkmark-price {
   background-color: #d1ad75;
 }
 
-/* Create the checkmark-price/indicator (hidden when not checked) */
 .checkmark-price:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark-price when checked */
 .ad-price-container input:checked ~ .checkmark-price:after {
   display: block;
 }
 
-/* Style the checkmark-price/indicator */
 .ad-price-container .checkmark-price:after {
   left: 8px;
   top: 5px;

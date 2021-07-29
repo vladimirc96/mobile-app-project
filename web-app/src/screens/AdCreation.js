@@ -127,12 +127,12 @@ export default class AdCreation extends Component {
                                     <div className="form-group">
                                         <label className="row label" style={{ marginLeft: "3px"}}>Tip oglasa <FontAwesomeIcon icon={faQuestionCircle} style={{ color: "black", marginLeft: "3px", marginTop: "5px"}} /></label> 
                                         <AdTypeInput
-                                            name="adPrice"
+                                            name="adTypeCode"
                                             type="text"
-                                            placeholder="Iznos"
-                                            value={formikProps.values.adPrice}
-                                            onChange={formikProps.handleChange("adPrice")}
-                                            onBlur={formikProps.handleBlur("adPrice")}
+                                            placeholder="Unesite kod iz SMS-a"
+                                            value={formikProps.values.adTypeCode}
+                                            onChange={formikProps.handleChange("adTypeCode")}
+                                            onBlur={formikProps.handleBlur("adTypeCode")}
                                         />
                                     </div>
                                     <div className="d-flex justify-content-center form-group">
