@@ -11,6 +11,7 @@ import persistedStore from "./store/store";
 import ContactUs from "./screens/ContactUs";
 
 import Register from "./screens/Register";
+import AdCreation from "./screens/AdCreation";
 import Login from "./components/Login";
 import Home from "./screens/Home";
 import EditProfile from "./components/EditProfile";
@@ -24,7 +25,7 @@ function App() {
 					</div>
 					<div className="middle-section">
 						<Switch>
-							<Route path="/" exact component={Home}></Route>
+							<Route path="/" exact component={AdCreation}></Route>
 							<Route path="/register" component={Register}></Route>
 							<Route path="/login" component={Login}></Route>
 							<Route path="/user/:id/edit-profile" component={EditProfile} />
