@@ -47,6 +47,10 @@ export class Login extends Component {
 		}
 	};
 
+	componentDidMount() {
+		console.log(this.props.user);
+	}
+
 	render() {
 		return (
 			<div className="d-flex flex-column login-section">

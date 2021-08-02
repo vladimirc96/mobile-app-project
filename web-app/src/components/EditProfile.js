@@ -17,38 +17,19 @@ import { base64ToFile, toBase64 } from "../ImageUtil";
 import Swal from "sweetalert2";
 import { isEqual } from "lodash";
 import { formatDate } from "../DateUtil";
+import { Switch, Route, Link } from "react-router-dom";
+import EditProfileForm from "./forms/EditProfileForm";
+import SettingsForm from "./forms/SettingsForm";
 
 library.add(faUserCircle);
-
-const editProfilerSchema = yup.object({
-	location: yup.object({
-		id: yup.number().required(),
-		value: yup.string(),
-	}),
-});
 
 export class EditProfile extends Component {
 	constructor() {
 		super();
 		this.state = {
-			locations: [],
 			image: null,
 		};
 	}
-
-	getLocations = async () => {
-		try {
-			const data = await getAll();
-			await this.setState({ locations: data });
-		} catch (err) {
-			alert(err);
-		}
-	};
-
-	handleLocationChange = async (event, formikProps) => {
-		const location = this.state.locations.find((item) => item.id == event.target.value);
-		await formikProps.setFieldValue("location", location);
-	};
 
 	saveUser = async (user) => {
 		try {
@@ -81,159 +62,46 @@ export class EditProfile extends Component {
 		}
 	};
 
-	isModified = (formikProps) => {
-		return !isEqual(formikProps.values, this.props.user);
+	getTitle = () => {
+		if (this.props.location.pathname.includes("settings")) {
+			return "Podešavanja";
+		}
+		return "Izmena profila";
 	};
-
-	componentDidMount() {
-		this.getLocations();
-	}
 
 	render() {
 		return (
 			<div className="d-flex flex-column edit-profile-section">
 				<div className="d-flex flex-column justify-content-center upper-part">
-					<p className="p-2 header"> Izmena profila </p>
+					<p className="p-2 header"> {this.getTitle()} </p>
 				</div>
-				<div className="d-flex flex-row justify-content-center form-section">
-					<Formik
-						initialValues={{
-							id: this.props.user && this.props.user.id ? this.props.user.id : null,
-							username: this.props.user && this.props.user.username ? this.props.user.username : null,
-							password: this.props.user && this.props.user.password ? this.props.user.password : null,
-							firstName: this.props.user && this.props.user.firstName ? this.props.user.firstName : null,
-							lastName: this.props.user && this.props.user.lastName ? this.props.user.lastName : null,
-							phoneNumber:
-								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : null,
-							email: this.props.user && this.props.user.email ? this.props.user.email : null,
-							details: this.props.user && this.props.user.details ? this.props.user.details : null,
-							location: this.props.user && this.props.user.location ? this.props.user.location : null,
-							image: this.props.user && this.props.user.image ? this.props.user.image : null,
-							imageBytes:
-								this.props.user && this.props.user.imageBytes ? this.props.user.imageBytes : null,
-							entryDate:
-								this.props.user && this.props.user.entryDate
-									? formatDate(this.props.user.entryDate)
-									: null,
-							positiveRatings:
-								this.props.user && this.props.user.positiveRatings
-									? this.props.user.positiveRatings
-									: 0,
-							negativeRatings:
-								this.props.user && this.props.user.negativeRatings
-									? this.props.user.negativeRatings
-									: 0,
-						}}
-						onSubmit={(values) => {
-							this.saveUser(values);
-						}}
-						validationSchema={editProfilerSchema}
-						validateOnMount
-					>
-						{(formikProps) => (
-							<div className="fields column h-100">
-								<div className="d-flex flex-column h-100 justify-content-center">
-									<div className="form-group form-row d-flex justify-content-center">
-										<div className="col">
-											{!formikProps.values.imageBytes ? (
-												<FontAwesomeIcon icon="user-circle" size="5x" />
-											) : (
-												<img
-													alt="profilna"
-													className="picked-image"
-													src={
-														formikProps.values.imageBytes.indexOf("data") === -1
-															? `data:image/jpg;base64,${formikProps.values.imageBytes}`
-															: formikProps.values.imageBytes
-													}
-												></img>
-											)}
-										</div>
-										<div className="d-flex align-items-center col-9">
-											<label className="btn btn-primary btn-file upload-btn">
-												DODAJ FOTOGRAFIJU
-												<input
-													style={{ marginTop: "5px" }}
-													type="file"
-													onChange={async (event) => {
-														formikProps.setFieldValue(
-															"imageBytes",
-															await toBase64(event.target.files[0])
-														);
-														this.setState({ image: event.target.files[0] });
-													}}
-													style={{ display: "none" }}
-												/>
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="label">Ime</label>
-										<TextInput
-											name="firstName"
-											type="text"
-											value={formikProps.values.firstName}
-											onChange={formikProps.handleChange("firstName")}
-											onBlur={formikProps.handleBlur("firstName")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Prezime</label>
-										<TextInput
-											name="lastName"
-											type="text"
-											value={formikProps.values.lastName}
-											onChange={formikProps.handleChange("lastName")}
-											onBlur={formikProps.handleBlur("lastName")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Lokacija</label>
-										<SelectInput
-											name="location"
-											type="text"
-											items={this.state.locations}
-											value={formikProps.values.location}
-											onChange={(event) => this.handleLocationChange(event, formikProps)}
-											onBlur={formikProps.handleBlur("location")}
-											classes={[isInError(formikProps, "location")]}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Broj telefona</label>
-										<TextInput
-											name="phoneNumber"
-											type="text"
-											value={formikProps.values.phoneNumber}
-											onChange={formikProps.handleChange("phoneNumber")}
-											onBlur={formikProps.handleBlur("phoneNumber")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Detalji</label>
-										<TextArea
-											name="details"
-											type="text"
-											rows="3"
-											value={formikProps.values.details}
-											onChange={formikProps.handleChange("details")}
-											onBlur={formikProps.handleBlur("details")}
-										/>
-									</div>
-									<div className="d-flex justify-content-center form-group">
-										<button
-											disabled={!this.isModified(formikProps) || !formikProps.isValid}
-											type="button"
-											className="btn gold-btn"
-											onClick={formikProps.handleSubmit}
-										>
-											SAČUVAJ IZMENE
-										</button>
-									</div>
-								</div>
-							</div>
-						)}
-					</Formik>
+				<div className="wrapper row w-100">
+					<div className="d-flex flex-column col-2 align-content-center side-links">
+						<ul>
+							<li className="edit-link">
+								<Link to={`/user/${this.props.user.id}/edit-profile`}>Izmeni profil </Link>
+							</li>
+							<li className="edit-link">
+								<Link to={`/user/${this.props.user.id}/edit-profile/settings`}> Podešavanja </Link>
+							</li>
+							<li className="edit-link">
+								<Link to="/"> Lozinka </Link>
+							</li>
+						</ul>
+					</div>
+					<div className="d-flex flex-row justify-content-center form-section col">
+						<Switch>
+							<Route
+								exact
+								path={`/user/${this.props.user.id}/edit-profile`}
+								component={() => <EditProfileForm handleSaveUser={this.saveUser} />}
+							/>
+							<Route
+								path={`/user/${this.props.user.id}/edit-profile/settings`}
+								component={() => <SettingsForm handleSaveUser={this.saveUser} />}
+							/>
+						</Switch>
+					</div>
 				</div>
 			</div>
 		);

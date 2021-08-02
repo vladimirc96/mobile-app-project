@@ -1,3 +1,7 @@
+.wrapper {
+	margin: 0 !important;
+}
+
 .edit-profile-section {
 	width: 1000px;
 	margin: 0 auto;
@@ -45,7 +49,7 @@
 }
 
 .fields {
-	width: 350px;
+	width: 400px;
 }
 
 .password-input {
@@ -60,6 +64,7 @@
 .label {
 	margin-bottom: 0 !important;
 	font-weight: bold;
+	font-family: "Montserrat";
 }
 
 .upload-btn {
@@ -87,4 +92,29 @@
 	height: 80px;
 	width: 80px;
 	object-fit: contain;
+}
+
+.edit-link {
+	margin-bottom: 5px;
+}
+
+.edit-link > a {
+	font-family: "Montserrat";
+	color: black;
+}
+
+.edit-link > a:hover {
+	font-weight: bold;
+	color: black;
+	text-decoration: underline;
+}
+
+.edit-link > a:focus {
+	font-weight: bold !important;
+	color: black !important;
+}
+
+.side-links {
+	padding-top: 15px;
+	padding-left: 30px !important;
 }
