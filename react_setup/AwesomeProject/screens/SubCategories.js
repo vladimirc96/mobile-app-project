@@ -1,8 +1,15 @@
 import React from "react";
-import { ImageBackground, Text, View, Image, ScrollView, ActivityIndicator } from "react-native";
+import {
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import SubCategory from "./../components/SubCategory";
 import * as Font from "expo-font";
-import { subCategoriesStyles } from "../shared/Styles";
+import { subCategoriesStyles } from "../shared/subCategoriesStyles";
 import { Dimensions } from "react-native";
 import { getAllByCategoryId } from "../services/SubCategoryService";
 
@@ -12,7 +19,7 @@ const windowHeight = Dimensions.get("window").height;
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 export default class SubCategories extends React.Component {
   state = {
@@ -54,7 +61,7 @@ export default class SubCategories extends React.Component {
           onPress={() =>
             this.props.navigation.navigate("Ads", {
               subCategoryId: subCategory.id,
-              subCategoryName: subCategory.name
+              subCategoryName: subCategory.name,
             })
           }
           title={subCategory.name}

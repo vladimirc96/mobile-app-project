@@ -1,3 +1,7 @@
+.wrapper {
+	margin: 0 !important;
+}
+
 .edit-profile-section {
 	width: 1000px;
 	margin: 0 auto;
@@ -45,7 +49,7 @@
 }
 
 .fields {
-	width: 350px;
+	width: 400px;
 }
 
 .password-input {
@@ -60,4 +64,57 @@
 .label {
 	margin-bottom: 0 !important;
 	font-weight: bold;
+	font-family: "Montserrat";
+}
+
+.upload-btn {
+	background: #f8f8f8 !important;
+	border: 3px solid #d1ad75 !important;
+	box-sizing: border-box !important;
+	border-radius: 59px !important;
+	color: #d1ad75 !important;
+	font-family: "Montserrat" !important;
+	font-style: normal !important;
+	font-weight: bold !important;
+	font-size: 15px !important;
+	line-height: 165% !important;
+	/* identical to box height, or 35px */
+
+	text-align: center !important;
+}
+.upload-btn:hover {
+	background: #d1ad75 !important;
+	color: #f8f8f8 !important;
+}
+.picked-image {
+	border-radius: 100px;
+	border: 1px solid gray;
+	height: 80px;
+	width: 80px;
+	object-fit: contain;
+}
+
+.edit-link {
+	margin-bottom: 5px;
+}
+
+.edit-link > a {
+	font-family: "Montserrat";
+	color: black;
+}
+
+.edit-link > a:hover {
+	font-weight: bold;
+	color: black;
+	text-decoration: underline;
+}
+
+.edit-link > a:focus {
+	font-weight: bold !important;
+	color: black !important;
+}
+
+.side-links {
+	padding-top: 15px;
+	padding-left: 30px !important;
 }

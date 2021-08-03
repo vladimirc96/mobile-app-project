@@ -18,3 +18,10 @@ export const rejectButton = (onPress) => {
     onPress,
   };
 };
+
+export const customButton = (text, onPress) => {
+  return {
+    text: text,
+    onPress,
+  };
+};

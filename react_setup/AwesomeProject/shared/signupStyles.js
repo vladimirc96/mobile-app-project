@@ -1,0 +1,111 @@
+import { Platform, StyleSheet } from "react-native";
+import { withTheme } from "react-native-elements";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
+const customFonts = {
+  "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+  "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+  "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
+  "Roboto-Thin": require("../assets/fonts/Roboto-Thin.ttf"),
+  "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Light": require("../assets/fonts/Roboto-Light.ttf"),
+};
+
+export const signupStyles = StyleSheet.create({
+  backgroundImageContainer: {
+    flex: 1,
+    resizeMode: "cover",
+  },
+  mainContainer: {
+    flex: 1,
+    alignSelf: "center",
+  },
+  imageContainerHeight: {
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: hp("7%"),
+    marginBottom: hp("2.2%"),
+    borderWidth: 2,
+    width: hp("24%"),
+    height: hp("24%"),
+    paddingLeft: hp("3.25%"),
+    borderRadius: 180,
+    opacity: 0.8,
+    borderColor: "#ededed",
+    backgroundColor: "#1e1c24",
+  },
+  imageContainerWidth: {
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: hp("7%"),
+    marginBottom: hp("2.2%"),
+    borderWidth: 2,
+    width: wp("44%"),
+    height: wp("44%"),
+    paddingLeft: wp("6.25%"),
+    borderRadius: 100,
+    opacity: 0.8,
+    borderColor: "#ededed",
+    backgroundColor: "#1e1c24",
+  },
+  inputImageHeight: {
+    width: hp("17%"),
+    height: hp("17%"),
+  },
+  inputImageWidth: {
+    width: wp("30%"),
+    height: wp("30%"),
+  },
+  pickedImageHeight: {
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: hp("7%"),
+    marginBottom: hp("2.2%"),
+    borderWidth: 2,
+    width: hp("24%"),
+    height: hp("24%"),
+    borderRadius: 100,
+    paddingLeft: hp("3.25%"),
+    borderColor: "#ededed",
+    borderWidth: 2,
+  },
+  pickedImageWidth: {
+    alignSelf: "center",
+    justifyContent: "center",
+    marginTop: hp("7%"),
+    marginBottom: hp("2.2%"),
+    borderWidth: 2,
+    width: wp("44%"),
+    height: wp("44%"),
+    borderRadius: 100,
+    paddingLeft: wp("6.25%"),
+    borderColor: "#ededed",
+    borderWidth: 2,
+  },
+  inputContainer: {
+    alignSelf: "center",
+    marginBottom: hp("6%"),
+  },
+  inputField: {
+    borderWidth: 2,
+    width: wp("90%"),
+    height: hp("10%"),
+    paddingLeft: wp("5%"),
+    borderRadius: 20,
+    marginTop: hp("1.5%"),
+    fontSize: wp("4%"),
+    fontFamily: "Comfortaa-Light",
+    opacity: 0.8,
+    borderColor: "#ededed",
+    backgroundColor: "#1e1c24",
+    color: "#ededed",
+  },
+  buttonContainer: {
+    alignSelf: "center",
+  },
+});

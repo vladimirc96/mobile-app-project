@@ -1,12 +1,22 @@
 import React from "react";
-import { Text, View, ScrollView, Modal, TouchableOpacity, Image, ActivityIndicator, TextInput} from "react-native";
-import { adsStyles, modalStyles } from "../shared/Styles";
-import { Ionicons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
+import {
+  Text,
+  View,
+  ScrollView,
+  Modal,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+  TextInput,
+} from "react-native";
+import { adsStyles } from "../shared/adsStyles";
+import { modalStyles } from "../shared/modalStyles";
+import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
 import { Dimensions } from "react-native";
 import * as Font from "expo-font";
 import { SimpleLineIcons } from "@expo/vector-icons";
-
+import CommentForm from "../components/forms/CommentForm";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -20,7 +30,7 @@ const customFonts = {
 
 export default class CommentModal extends React.Component {
   state = {
-    fontsLoaded: false
+    fontsLoaded: false,
   };
 
   async _loadFontsAsync() {
@@ -32,67 +42,35 @@ export default class CommentModal extends React.Component {
     this._loadFontsAsync();
   }
 
+  handleSubmitRating = (rating) => {
+    this.props.toggleModal();
+  };
+
   render() {
-    const avatar = require("./../assets/images/gitara.jpg");
-    if(this.state.fontsLoaded){
-    return (
+    if (this.state.fontsLoaded) {
+      return (
         <BlurView intensity={100} tint={"dark"} style={modalStyles.blurView}>
-        <ScrollView>
-          <View style={adsStyles.mainContainer}>
-                    <View style={modalStyles.modalWrap}>
-                      <Modal
-                        transparent={true}
-                        visible={this.state.showModal}
-                        style={modalStyles.modal}
-                        >
-                          <View style={modalStyles.modalInnerWrapComment}>
-                            <View style={modalStyles.closeButtonContainer}>
-                              <View></View>
-                              <Ionicons name="md-close" size={26} onPress={() => this.props.toggleModal()} style={modalStyles.closeButton} color="black" />
-                            </View>
-                            <View style={modalStyles.centeredWrap}>
-                              <View style={modalStyles.reviewTitle}>
-                                <Text style={modalStyles.reviewTitleText}>Oceni korisnika</Text>
-                              </View>
-                              <View style={modalStyles.ratingContainer}>
-                                <TouchableOpacity>
-                                  <SimpleLineIcons name="like" size={50} style={{color:"green"}} />
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                  <SimpleLineIcons name="dislike" size={50} style={{color:"red"}} />
-                                </TouchableOpacity>
-                              </View>
-                              <View style={modalStyles.commentHeadingContainer}>
-                                <View>
-                                  <Text style={modalStyles.commentHeading}>Vaše ime: </Text>
-                                </View>
-                                <View>
-                                  <Text style={modalStyles.innerText}> (ukoliko ne želite da ostanete anonimni) </Text>
-                                </View>
-                              </View>
-                              <TextInput style={modalStyles.nickname}>
-                              </TextInput>
-                              <View style={modalStyles.commentHeadingContainer}>
-                                <Text style={modalStyles.commentHeading}>Ostavite komentar:</Text>
-                              </View>
-                              <TextInput style={modalStyles.textInput}>
-                              </TextInput>
-                              <TouchableOpacity>
-                                <View style={modalStyles.button}>
-                                  <Text style={modalStyles.buttonText}> Posalji </Text>
-                                </View>
-                              </TouchableOpacity>
-                            </View>
-                          </View>
-                        </Modal>
-                    </View>
-          </View>
-        </ScrollView>
-        </BlurView> 
-    );
+          <ScrollView>
+            <View style={adsStyles.mainContainer}>
+              <View style={modalStyles.modalWrap}>
+                <Modal
+                  transparent={true}
+                  visible={this.state.showModal}
+                  style={modalStyles.modal}
+                >
+                  <CommentForm
+                    toggleModal={this.props.toggleModal}
+                    userId={this.props.userId}
+                    submitRating={this.handleSubmitRating}
+                  />
+                </Modal>
+              </View>
+            </View>
+          </ScrollView>
+        </BlurView>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
   }
-  else{
-    return <ActivityIndicator size="large" />;
-  }
-}}
-	
+}

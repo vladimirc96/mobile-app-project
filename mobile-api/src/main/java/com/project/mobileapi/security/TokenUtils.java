@@ -67,9 +67,8 @@ public class TokenUtils {
 
     private Date generateExpirationDate(Device device) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.YEAR, 1);
-        long expiresIn = device.isTablet() || device.isMobile() ? MOBILE_EXPIRES_IN : EXPIRES_IN;
-        return new Date(calendar.getTime().getTime() + expiresIn);
+        calendar.add(Calendar.MINUTE, 1);
+        return calendar.getTime();
     }
 
     // Functions for refreshing JWT token

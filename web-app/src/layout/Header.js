@@ -26,7 +26,9 @@ export class Header extends Component {
 
 	handleLogin = () => {};
 
-	componentDidMount() {}
+	componentDidMount() {
+		console.log(this.props.user);
+	}
 
 	render() {
 		return (

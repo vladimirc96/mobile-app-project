@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
-import { categoryStyles } from "./../shared/Styles";
+import { categoryStyles } from "./../shared/categoriesStyles";
 
 import { Dimensions } from "react-native";
 
@@ -11,12 +11,9 @@ const windowHeight = Dimensions.get("window").height;
 const customFonts = {
   "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
   "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
-  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf")
+  "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
 };
 
-const pressHandler = () => {
-  console.log(5);
-};
 
 export default class Category extends React.Component {
   state = {
@@ -33,12 +30,14 @@ export default class Category extends React.Component {
   }
 
   render() {
-
     if (this.state.fontsLoaded) {
       return (
         <TouchableOpacity
           onPress={this.props.onPress}
-          style={[categoryStyles.category, {backgroundColor: this.props.color}]}
+          style={[
+            categoryStyles.category,
+            { backgroundColor: this.props.color },
+          ]}
         >
           <Image
             style={
@@ -51,8 +50,12 @@ export default class Category extends React.Component {
           <Text
             style={
               windowHeight * 0.15 < windowWidth * 0.28
-                ? this.props.multiLine? categoryStyles.categoryNameHeightMultiline : categoryStyles.categoryNameHeight
-                : this.props.multiLine? categoryStyles.categoryNameWidthMultiline : categoryStyles.categoryNameWidth
+                ? this.props.multiLine
+                  ? categoryStyles.categoryNameHeightMultiline
+                  : categoryStyles.categoryNameHeight
+                : this.props.multiLine
+                ? categoryStyles.categoryNameWidthMultiline
+                : categoryStyles.categoryNameWidth
             }
           >
             {this.props.title}

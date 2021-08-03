@@ -10,6 +10,7 @@ import AdCreation from "./../screens/adCreation";
 import AboutUs from "./../screens/AboutUs";
 import ContactUs from "./../screens/ContactUs";
 import SignUp from "./../screens/SignUp";
+import LogIn from "./../screens/LogIn";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const screens = {
@@ -18,7 +19,11 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => (
-          <Header title="Pronadji sam." navigation={navigation} mainScreen={true} />
+          <Header
+            title="Pronadji sam."
+            navigation={navigation}
+            mainScreen={true}
+          />
         ),
         headerLeft: null,
       };
@@ -28,7 +33,9 @@ const screens = {
     screen: SubCategories,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
@@ -36,7 +43,9 @@ const screens = {
     screen: Ads,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
@@ -44,7 +53,9 @@ const screens = {
     screen: Profile,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
@@ -52,7 +63,9 @@ const screens = {
     screen: EditProfile,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
@@ -60,7 +73,9 @@ const screens = {
     screen: AdCreation,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
@@ -76,13 +91,12 @@ const screens = {
     screen: ContactUs,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header title="Pronadji sam." navigation={navigation} />,
+        headerTitle: () => (
+          <Header title="Pronadji sam." navigation={navigation} />
+        ),
       };
     },
   },
-  SignUp: {
-    screen: SignUp
-  }
 };
 
 // home stack navigator screens

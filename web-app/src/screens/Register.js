@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Register.css";
 import TextInput from "../components/ui/TextInput";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,6 +36,7 @@ export class Register extends React.Component {
 		super(props);
 		this.state = {
 			passwordVisible: true,
+			image: null,
 		};
 	}
 	toggleVisible = () => {
@@ -107,19 +108,22 @@ export class Register extends React.Component {
 										) : (
 											<img
 												alt="profilna"
-												className="picked-image"
+												className="picked-image-register"
 												src={URL.createObjectURL(formikProps.values.image)}
 											></img>
 										)}
 									</div>
-									<div className="d-flex justify-content-center">
-										<input
-											style={{ marginTop: "5px" }}
-											type="file"
-											onChange={(event) =>
-												formikProps.setFieldValue("image", event.target.files[0])
-											}
-										/>
+									<div className="d-flex justify-content-center" style={{ marginTop: "10px" }}>
+										<label className="image-label">
+											Dodaj fotografiju
+											<input
+												style={{ display: "none" }}
+												type="file"
+												onChange={(event) =>
+													formikProps.setFieldValue("image", event.target.files[0])
+												}
+											/>
+										</label>
 									</div>
 								</div>
 								<div className="form-group">

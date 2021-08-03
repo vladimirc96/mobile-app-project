@@ -9,7 +9,7 @@ import {
 import * as Font from "expo-font";
 import { FontAwesome } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import { adStyles } from "./../shared/Styles";
+import { adStyles } from "./../shared/adsStyles";
 
 const customFonts = {
   "Comfortaa-Bold": require("./../assets/fonts/Comfortaa-Bold.ttf"),
@@ -44,11 +44,23 @@ export default class Ad extends React.Component {
         >
           <View style={adStyles.adMainContainer}>
             <View>
-              <Image style={adStyles.adImage} source={gitara} />
+              {this.props.ad.image ? (
+                <Image
+                  style={adStyles.adImage}
+                  source={{ uri: this.props.ad.image }}
+                />
+              ) : (
+                <Image style={adStyles.adImage} source={{ uri: null }} />
+              )}
             </View>
             <View style={adStyles.adMainText}>
               <View style={adStyles.adTitleContainer}>
-                <Text numberOfLines={this.props.ad.title.length < 15? 1 : 2} style={adStyles.adTitle}>{this.props.ad.title.toUpperCase()}</Text>
+                <Text
+                  numberOfLines={this.props.ad.title.length < 15 ? 1 : 2}
+                  style={adStyles.adTitle}
+                >
+                  {this.props.ad.title.toUpperCase()}
+                </Text>
               </View>
               <View
                 style={
@@ -57,10 +69,16 @@ export default class Ad extends React.Component {
                     : adStyles.descriptionLarge
                 }
               >
-                <Text numberOfLines={this.props.ad.title.length < 15 ? 4 : 3} style={adStyles.descriptionText}>
-                  {this.props.ad.description.replace(/(<([^>]+)>)/ig, '')}
+                <Text
+                  numberOfLines={this.props.ad.title.length < 15 ? 4 : 3}
+                  style={adStyles.descriptionText}
+                >
+                  {this.props.ad.description.replace(/(<([^>]+)>)/gi, "")}
                 </Text>
-                <TouchableOpacity style={adStyles.descriptionDetails} onPress={this.props.onPress}>
+                <TouchableOpacity
+                  style={adStyles.descriptionDetails}
+                  onPress={this.props.onPress}
+                >
                   <Text style={adStyles.descriptionDetailsText}>
                     Detaljnije
                   </Text>
@@ -72,7 +90,10 @@ export default class Ad extends React.Component {
               </View>
               <View style={adStyles.ownerNameContainer}>
                 <Text style={adStyles.ownerName}>
-                  Vlasnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName} {" "}
+                  Vlasnik:{" "}
+                  {this.props.ad.user.firstName +
+                    " " +
+                    this.props.ad.user.lastName}{" "}
                 </Text>
               </View>
             </View>
@@ -82,17 +103,25 @@ export default class Ad extends React.Component {
               </View>
               <View style={adStyles.publishDateContainer}>
                 <Text style={adStyles.publishTitle}>postavljen:</Text>
-                <Text style={adStyles.publishDate}>{this.props.ad.creationDate}</Text>
+                <Text style={adStyles.publishDate}>
+                  {this.props.ad.creationDate}
+                </Text>
               </View>
               <View style={adStyles.location}>
-                <Text style={adStyles.locationText}>{this.props.ad.user.location.value}</Text>
+                <Text style={adStyles.locationText}>
+                  {this.props.ad.user.location.value}
+                </Text>
               </View>
               <View>
                 <View style={adStyles.ratingStars}>
-                  <Text style={adStyles.likeText}>{this.props.ad.user.positiveRatings}</Text>
+                  <Text style={adStyles.likeText}>
+                    {this.props.ad.user.positiveRatings}
+                  </Text>
                   <Fontisto name="like" style={adStyles.like} />
                   <Fontisto name="dislike" style={adStyles.dislike} />
-                  <Text style={adStyles.dislikeText}>{this.props.ad.user.negativeRatings}</Text>
+                  <Text style={adStyles.dislikeText}>
+                    {this.props.ad.user.negativeRatings}
+                  </Text>
                 </View>
               </View>
             </View>

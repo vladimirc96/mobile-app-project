@@ -4,11 +4,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { signupStyles } from "../shared/Styles";
+import { signupStyles } from "../shared/signupStyles";
 import SignUpForm from "../components/forms/SignUpForm";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { registerUser } from "../store/actions/user/userActions";
 import { connect } from "react-redux";
+import Toast from "react-native-root-toast";
 
 const backgroundImage = require("./../assets/images/signUpBackground.jpg");
 
@@ -43,21 +44,7 @@ export class SignUp extends React.Component {
       );
     } catch (err) {
       console.log(err.message);
-    }
-  };
-
-  redirect = async (user) => {
-    try {
-      await this.props.loginUser(
-        {
-          username: user.username,
-          password: user.password,
-        },
-        this.props.navigation
-      );
-      console.log("TOKEN: ", this.props.token);
-    } catch (err) {
-      console.log(err.message);
+      Toast.show(err.message, { duration: Toast.durations.SHORT });
     }
   };
 

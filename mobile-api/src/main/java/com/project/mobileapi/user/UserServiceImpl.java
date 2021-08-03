@@ -1,10 +1,13 @@
 package com.project.mobileapi.user;
 
+import com.project.mobileapi.exceptions.InvalidPasswordException;
+import com.project.mobileapi.exceptions.UsersExistsException;
 import com.project.mobileapi.model.Location;
 import com.project.mobileapi.model.Role;
 import com.project.mobileapi.model.User;
 import com.project.mobileapi.repository.RoleRepository;
 import com.project.mobileapi.repository.UserRepository;
+import com.project.mobileapi.util.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDTO userDTO) throws IOException {
+        if(userRepository.findOneByUsername(userDTO.getUsername()) != null){
+            throw new UsersExistsException(UsersExistsException.USER_EXISTS_MESSAGE);
+        }
+        if(!PasswordValidator.isValid(userDTO.getPassword())){
+            throw new InvalidPasswordException(InvalidPasswordException.INVALID_PASSWORD_MESSAGE);
+        }
         String salt = BCrypt.gensalt();
         Role role = roleRepository.findOneById(USER_ROLE_ID);
         User user = User.builder()
@@ -46,7 +55,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO saveUser(UserDTO userDTO) {
+    public UserDTO saveUser(UserDTO userDTO) throws IOException {
+        User user = userRepository.findOneById(userDTO.getId());
+        if(user.getImage() != null && userDTO.getImage() == null){
+            userDTO.setImageBytes(user.getImage());
+        }
         return UserAdapter.toDto(userRepository.save(UserAdapter.toModel(userDTO)));
     }
 }

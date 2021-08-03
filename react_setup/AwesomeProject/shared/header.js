@@ -34,59 +34,66 @@ export default function Header({ title, navigation, mainScreen }) {
   const user = useSelector((state) => state.userReducer.user);
 
   return (
-    <Provider>
-      <View style={headerStyles.header}>
-        {mainScreen && (
-          <MaterialIcons
-            name="menu"
-            onPress={openDrawer}
-            style={headerStyles.icon}
-          />
-        )}
-          <Image
-            style={
-              mainScreen ? headerStyles.headerLogoMain : headerStyles.headerLogo
-            }
-            source={inLineLogo}
-          /> 
-          {token ? (
-            <View
-              style={{
-                height: hp("7%"),
-                width: hp("7%"),
-                position: "absolute",
-                right: Platform.OS === "ios" ? -wp("10%") : wp("2%"),
-              }}
-            >
-              <Menu
-                visible={visible}
-                onDismiss={closeMenu}
-                anchor={
-                  <TouchableOpacity
-                    style={{ padding: 5 }}
-                    onPress={() => setVisible(true)}
-                  >
-                    <Avatar.Image size={35} source={avatar} />
-                  </TouchableOpacity>
-                }
+    <View style={headerStyles.header}>
+      {mainScreen && (
+        <MaterialIcons
+          name="menu"
+          onPress={openDrawer}
+          style={headerStyles.icon}
+        />
+      )}
+      <Image
+        style={
+          mainScreen ? headerStyles.headerLogoMain : headerStyles.headerLogo
+        }
+        source={inLineLogo}
+      />
+      {token ? (
+        <View
+          style={{
+            height: hp("7%"),
+            width: hp("7%"),
+            position: "absolute",
+            right: Platform.OS === "ios" ? -wp("10%") : wp("2%"),
+          }}
+        >
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+              <TouchableOpacity
+                style={{ padding: 5, marginTop: 1.5 }}
+                onPress={() => setVisible(true)}
               >
-              <Menu.Item
-                onPress={() => {
-                  navigation.navigate("Profile", { username: user.username });
-                  setVisible(false);
-                }}
-                title="Profil"
-              />
-              <Menu.Item
-                onPress={() => {
-                  logoutUser();
-                }}
-                title="Odjavi se"
-              />
-            </Menu>
-          </View>
-        ) : null}
-      </View>
-    </Provider>
+                {user && user.imageBytes ? (
+                  <Avatar.Image
+                    size={40}
+                    source={{
+                      uri: "data:image/jpeg;base64," + user.imageBytes,
+                    }}
+                  />
+                ) : (
+                  <Avatar.Image size={40} source={avatar} />
+                )}
+              </TouchableOpacity>
+            }
+          >
+            <Menu.Item
+              onPress={() => {
+                navigation.navigate("Profile", { username: user.username });
+                setVisible(false);
+              }}
+              title="Profil"
+            />
+            <Menu.Item
+              onPress={() => {
+                logoutUser();
+              }}
+              title="Odjavi se"
+            />
+          </Menu>
+        </View>
+      ) : null}
+    </View>
   );
 }

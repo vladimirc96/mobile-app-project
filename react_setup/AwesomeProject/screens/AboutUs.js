@@ -9,8 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { screensEnabled } from "react-native-screens";
-import { aboutUsStyles } from "./../shared/Styles";
- 
+import { aboutUsStyles } from "./../shared/aboutUsStyles";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -18,7 +17,7 @@ const windowHeight = Dimensions.get("window").height;
 const SCREENS = {
   HOME: 1,
   LOGIN: 2,
-  CONTACTUS: 3
+  CONTACTUS: 3,
 };
 
 const customFonts = {
@@ -71,37 +70,53 @@ export default class AboutUs extends React.Component {
               </View>
               <View style={aboutUsStyles.subtitleContainer}>
                 <View style={aboutUsStyles.subtitleNameContainer}>
-                  <Text style={aboutUsStyles.subtitleText}>Čemu služi ova aplikacija?</Text>
+                  <Text style={aboutUsStyles.subtitleText}>
+                    Čemu služi ova aplikacija?
+                  </Text>
                 </View>
                 <Text style={aboutUsStyles.mainTextFirstPart}>
                   {" "}
-                  Pronađi sam je aplikacija koju je razvio tim mladih ljudi, entuzijasta, sa ciljem
-                  da uz pomoć te aplikacije, oni koji traže određenu uslugu lako i brzo nađu one koji tu uslugu pružaju.
+                  Pronađi sam je aplikacija koju je razvio tim mladih ljudi,
+                  entuzijasta, sa ciljem da uz pomoć te aplikacije, oni koji
+                  traže određenu uslugu lako i brzo nađu one koji tu uslugu
+                  pružaju.
                 </Text>
-                  <View style={aboutUsStyles.SecondPartTextContainer}>
-                    <Text style={aboutUsStyles.mainTextSecondPart}>
-                      Sebi smo postavili tri izazova:
-                    </Text>
-                  </View>
-                  <View style={aboutUsStyles.SecondPartTextContainer}>
-                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon}/>
-                    <Text style={aboutUsStyles.mainTextThirdPart}>
-                      da vredni ljudi, koji nude svoje znanje i veštine, budu lako dostupni onima koji to traže
-                    </Text>
-                  </View>
-                  <View style={aboutUsStyles.SecondPartTextContainer}>
-                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon}/>
-                    <Text style={aboutUsStyles.mainTextThirdPart}>
-                      da što više korisnih usluga imate na jednom mestu i to na Vašem mobilnom uređaju 
-                    </Text>
-                  </View>
-                  <View style={aboutUsStyles.SecondPartTextContainer}>
-                    <FontAwesome name="chevron-circle-right" style={aboutUsStyles.bulletIcon} />
-                    <Text style={aboutUsStyles.mainTextThirdPart}>
-                      da iskoristimo tehnologiju na pravi način, jer je brža od tradicionalnog oglašavanja
-                      (novinski oglasi, lepljenje letaka po autobuskim stanicama...)
-                    </Text>
-                  </View>
+                <View style={aboutUsStyles.SecondPartTextContainer}>
+                  <Text style={aboutUsStyles.mainTextSecondPart}>
+                    Sebi smo postavili tri izazova:
+                  </Text>
+                </View>
+                <View style={aboutUsStyles.SecondPartTextContainer}>
+                  <FontAwesome
+                    name="chevron-circle-right"
+                    style={aboutUsStyles.bulletIcon}
+                  />
+                  <Text style={aboutUsStyles.mainTextThirdPart}>
+                    da vredni ljudi, koji nude svoje znanje i veštine, budu lako
+                    dostupni onima koji to traže
+                  </Text>
+                </View>
+                <View style={aboutUsStyles.SecondPartTextContainer}>
+                  <FontAwesome
+                    name="chevron-circle-right"
+                    style={aboutUsStyles.bulletIcon}
+                  />
+                  <Text style={aboutUsStyles.mainTextThirdPart}>
+                    da što više korisnih usluga imate na jednom mestu i to na
+                    Vašem mobilnom uređaju
+                  </Text>
+                </View>
+                <View style={aboutUsStyles.SecondPartTextContainer}>
+                  <FontAwesome
+                    name="chevron-circle-right"
+                    style={aboutUsStyles.bulletIcon}
+                  />
+                  <Text style={aboutUsStyles.mainTextThirdPart}>
+                    da iskoristimo tehnologiju na pravi način, jer je brža od
+                    tradicionalnog oglašavanja (novinski oglasi, lepljenje
+                    letaka po autobuskim stanicama...)
+                  </Text>
+                </View>
               </View>
             </View>
             <View style={aboutUsStyles.contactPartContainer}>

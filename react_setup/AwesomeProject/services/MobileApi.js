@@ -1,6 +1,9 @@
 import axios from "axios";
 import Constants from "expo-constants";
 import persistedStore from "../store/store";
+import { logout } from "../store/actions/authentication/authenticationActions";
+import * as NavigationService from "../routes/NavigationService.js";
+import { Alert } from "react-native";
 
 const { manifest } = Constants;
 
@@ -13,9 +16,45 @@ const Axios = axios.create({
   baseURL: "http://".concat(api),
 });
 
-Axios.interceptors.request.use((req) => {
+const AsyncAlert = () =>
+  new Promise((resolve) => {
+    Alert.alert(
+      "",
+      "Sesija vam je istekla. Molimo Vas da se ponovo ulogujete.",
+      [
+        {
+          text: "Ulogujte se",
+          onPress: async () => {
+            await persistedStore.store.dispatch(logout());
+            NavigationService.navigate("Auth");
+            resolve(true);
+          },
+        },
+      ]
+    );
+  });
+
+const isTokenExpired = async (token) => {
+  if (!token) {
+    return false;
+  }
+  const expirationDate = new Date(token.expiresIn);
+  const todayDate = new Date();
+  if (todayDate > expirationDate) {
+    console.log("expired");
+    const response = await AsyncAlert();
+    return response;
+  }
+  return false;
+};
+
+Axios.interceptors.request.use(async (req) => {
   const state = persistedStore.store.getState();
   const token = state.authenticationReducer.token;
+  const isExpired = await isTokenExpired(token);
+  if (isExpired) {
+    return req;
+  }
   if (token !== null && token !== undefined) {
     req.headers.Authorization = "Bearer " + token.accessToken;
   }

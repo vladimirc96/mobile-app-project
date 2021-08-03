@@ -3,138 +3,105 @@ import "../css/EditProfile.css";
 import SelectInput from "../components/ui/SelectInput";
 import TextInput from "../components/ui/TextInput";
 import TextArea from "./ui/TextArea";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
 import { getAll } from "../services/LocationService";
+import { saveUser } from "../services/UserService";
+import { base64ToFile, toBase64 } from "../ImageUtil";
+import Swal from "sweetalert2";
+import { isEqual } from "lodash";
+import { formatDate } from "../DateUtil";
+import { Switch, Route, Link } from "react-router-dom";
+import EditProfileForm from "./forms/EditProfileForm";
+import SettingsForm from "./forms/SettingsForm";
 
-library.add(faEye);
-library.add(faEyeSlash);
+library.add(faUserCircle);
 
-const registerSchema = yup.object({
-	username: yup.string().required("Korisničko ime je obavezno."),
-	password: yup.string().required("Šifra je obavezna."),
-});
-
-export class Login extends Component {
+export class EditProfile extends Component {
 	constructor() {
 		super();
 		this.state = {
-			locations: [],
+			image: null,
 		};
 	}
 
-	getLocations = async () => {
+	saveUser = async (user) => {
 		try {
-			const data = await getAll();
-			await this.setState({ locations: data });
+			const formData = new FormData();
+			Object.keys(user).forEach((key) => {
+				if (key === "imageBytes") {
+					return;
+				}
+				if (key === "location") {
+					formData.append(key, JSON.stringify(user[key]));
+					return;
+				}
+				formData.append(key, user[key]);
+			});
+			if (!this.state.image) {
+				const image = await base64ToFile(user["imageBytes"]);
+				formData.append("image", image);
+			} else {
+				formData.append("image", this.state.image);
+			}
+			await saveUser(formData);
+			this.props.setUserInfo(user);
+			Swal.fire({
+				text: "Uspešno ste izmenili podatke!",
+				confirmButtonColor: "#d1ad75",
+				confirmButtonText: "Ok",
+			});
 		} catch (err) {
-			alert(err);
+			console.log(err.message);
 		}
 	};
 
-	handleLocationChange = async (event, formikProps) => {
-		const location = this.state.locations.find((item) => item.id == event.target.value);
-		await formikProps.setFieldValue("location", location);
+	getTitle = () => {
+		if (this.props.location.pathname.includes("settings")) {
+			return "Podešavanja";
+		}
+		return "Izmena profila";
 	};
-
-	componentDidMount() {
-		this.getLocations();
-	}
 
 	render() {
 		return (
 			<div className="d-flex flex-column edit-profile-section">
 				<div className="d-flex flex-column justify-content-center upper-part">
-					<p className="p-2 header"> Izmena profila </p>
+					<p className="p-2 header"> {this.getTitle()} </p>
 				</div>
-				<div className="d-flex flex-row justify-content-center form-section">
-					<Formik
-						initialValues={{
-							firstName: this.props.user && this.props.user.firstName ? this.props.user.firstName : "",
-							lastName: this.props.user && this.props.user.lastName ? this.props.user.lastName : "",
-							phoneNumber:
-								this.props.user && this.props.user.phoneNumber ? this.props.user.phoneNumber : "",
-							details: this.props.user && this.props.user.details ? this.props.user.details : "",
-							location: this.props.user && this.props.user.location ? this.props.user.location : "",
-						}}
-						onSubmit={(values) => {
-							console.log(values);
-						}}
-					>
-						{(formikProps) => (
-							<div className="fields column h-100">
-								<div className="d-flex flex-column h-100 justify-content-center">
-									<div className="form-group">
-										<label className="label">Ime</label>
-										<TextInput
-											name="firstName"
-											type="text"
-											value={formikProps.values.firstName}
-											onChange={formikProps.handleChange("firstName")}
-											onBlur={formikProps.handleBlur("firstName")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Prezime</label>
-										<TextInput
-											name="lastName"
-											type="text"
-											value={formikProps.values.lastName}
-											onChange={formikProps.handleChange("lastName")}
-											onBlur={formikProps.handleBlur("lastName")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Lokacija</label>
-										<SelectInput
-											name="location"
-											type="text"
-											items={this.state.locations}
-											value={formikProps.values.location}
-											onChange={(event) => this.handleLocationChange(event, formikProps)}
-											onBlur={formikProps.handleBlur("location")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Broj telefona</label>
-										<TextInput
-											name="phoneNumber"
-											type="text"
-											value={formikProps.values.phoneNumber}
-											onChange={formikProps.handleChange("phoneNumber")}
-											onBlur={formikProps.handleBlur("phoneNumber")}
-										/>
-									</div>
-									<div className="form-group">
-										<label className="label">Detalji</label>
-										<TextArea
-											name="details"
-											type="text"
-											rows="3"
-											value={formikProps.values.details}
-											onChange={formikProps.handleChange("details")}
-											onBlur={formikProps.handleBlur("details")}
-										/>
-									</div>
-									<div className="d-flex justify-content-center form-group">
-										<button
-											type="button"
-											className="btn gold-btn"
-											onClick={formikProps.handleSubmit}
-										>
-											SAČUVAJ IZMENE
-										</button>
-									</div>
-								</div>
-							</div>
-						)}
-					</Formik>
+				<div className="wrapper row w-100">
+					<div className="d-flex flex-column col-2 align-content-center side-links">
+						<ul>
+							<li className="edit-link">
+								<Link to={`/user/${this.props.user.id}/edit-profile`}>Izmeni profil </Link>
+							</li>
+							<li className="edit-link">
+								<Link to={`/user/${this.props.user.id}/edit-profile/settings`}> Podešavanja </Link>
+							</li>
+							<li className="edit-link">
+								<Link to="/"> Lozinka </Link>
+							</li>
+						</ul>
+					</div>
+					<div className="d-flex flex-row justify-content-center form-section col">
+						<Switch>
+							<Route
+								exact
+								path={`/user/${this.props.user.id}/edit-profile`}
+								component={() => <EditProfileForm handleSaveUser={this.saveUser} />}
+							/>
+							<Route
+								path={`/user/${this.props.user.id}/edit-profile/settings`}
+								component={() => <SettingsForm handleSaveUser={this.saveUser} />}
+							/>
+						</Switch>
+					</div>
 				</div>
 			</div>
 		);
@@ -151,7 +118,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		loginUser: (credentials) => dispatch(login(credentials)),
+		setUserInfo: (user) => dispatch({ type: "SET_USER_INFO", data: user }),
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

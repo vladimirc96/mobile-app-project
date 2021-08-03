@@ -1,11 +1,9 @@
-package com.project.mobileapi.security.config;
+package com.project.mobileapi.config;
 
 import com.project.mobileapi.security.CustomUserDetailsService;
 import com.project.mobileapi.security.TokenUtils;
 import com.project.mobileapi.security.auth.RestAuthenticationEntryPoint;
 import com.project.mobileapi.security.auth.TokenAuthenticationFilter;
-import com.project.mobileapi.util.DateConverter;
-import com.project.mobileapi.util.KeyValueConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +22,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -60,6 +62,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         return super.authenticationManagerBean();
     }
 
+//    @Bean
+//    public FilterRegistrationBean corsFilterRegistration() {
+//        FilterRegistrationBean registrationBean =
+//                new FilterRegistrationBean(new CORSFilter());
+//        registrationBean.setName("CORS Filter");
+//        registrationBean.addUrlPatterns("/*");
+//        registrationBean.setOrder(1);
+//        return registrationBean;
+//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowCredentials(true)
+            .allowedHeaders("*")
+            .allowedMethods("*")
+            .allowedOrigins("*");
+    }
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new
+//                UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("*");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter(source);
+//    }
+
     // Definisemo nacin autentifikacije
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -70,7 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     // Definisemo prava pristupa odredjenim URL-ovima
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
 
                 // komunikacija izmedju klijenta i servera je stateless
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -91,7 +123,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 // presretni svaki zahtev filterom
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService), BasicAuthenticationFilter.class);
 
-        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
+//        http.headers().contentSecurityPolicy("script-src 'self' https://localhost:3000; object-src https://localhost:3000");
     }
 
 
@@ -132,5 +164,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new KeyValueConverter());
         registry.addConverter(new DateConverter());
+        registry.addConverter(new LongConverter());
+        registry.addConverter(new DoubleConverter());
     }
 }

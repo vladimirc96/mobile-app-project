@@ -19,7 +19,6 @@ const authenticationReducer = (state = initialState, action) => {
     default:
       return state;
   }
-  
 };
 
 export default authenticationReducer;
