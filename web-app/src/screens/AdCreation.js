@@ -5,17 +5,15 @@ import TextInput from "../components/ui/TextInput";
 import TextArea from "../components/ui/TextArea";
 import PriceInput from "../components/ui/PriceInput";
 import AdTypeInput from "../components/ui/AdTypeInput";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
-import { isInError } from "../validation";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {faQuestionCircle} from "@fortawesome/free-regular-svg-icons"
-import { login } from "../store/actions/authentication/authenticationActions";
-import { connect } from "react-redux";
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { getAll } from "../services/LocationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RichTextEditor from "../components/RichTextEditor";
 
 library.add(faEye);
 library.add(faEyeSlash);
@@ -57,36 +55,36 @@ export default class AdCreation extends Component {
 					<p className="p-2 header"> Postavi oglas </p>
 				</div>
 				<div className="d-flex flex-row justify-content-center form-section">
-                    <Formik
+					<Formik
 						initialValues={{
 							adTitle: "",
 							adDescription: "",
 							adCategory: "",
 							adSubcategory: "",
-                            adPrice: "",
+							adPrice: "",
 							adType: "",
 						}}
 						onSubmit={(values) => {
 							console.log(values);
 						}}
 					>
-                        {(formikProps) => (
-                            <div className="fields column h-100">
-                                <div className="d-flex flex-column h-100 justify-content-center">
-                                    <div className="form-group">
-                                        <label className="label">Naslov oglasa</label>
-                                        <TextInput
-                                            name="adTitle"
-                                            type="text"
-                                            placeholder="npr. Časovi nemačkog jezika"
-                                            value={formikProps.values.adTitle}
-                                            onChange={formikProps.handleChange("adTitle")}
-                                            onBlur={formikProps.handleBlur("adTitle")}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="label">Opis oglasa</label>
-                                        <TextArea
+						{(formikProps) => (
+							<div className="fields column h-100">
+								<div className="d-flex flex-column h-100 justify-content-center">
+									<div className="form-group">
+										<label className="label">Naslov oglasa</label>
+										<TextInput
+											name="adTitle"
+											type="text"
+											placeholder="npr. Časovi nemačkog jezika"
+											value={formikProps.values.adTitle}
+											onChange={formikProps.handleChange("adTitle")}
+											onBlur={formikProps.handleBlur("adTitle")}
+										/>
+									</div>
+									<div className="form-group">
+										<label className="label">Opis oglasa</label>
+										{/* <TextArea
                                             name="adDescription"
                                             type="text"
                                             rows="3"
@@ -94,58 +92,66 @@ export default class AdCreation extends Component {
                                             value={formikProps.values.adDescription}
                                             onChange={formikProps.handleChange("adDescription")}
                                             onBlur={formikProps.handleBlur("adDescription")}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="label">Kategorija</label>
-                                        <SelectInput
-                                            name="adCategory"
-                                            type="text"
-                                            value={formikProps.values.adCategory}
-                                            onChange={(event) => this.handleLocationChange(event, formikProps)}
-                                            onBlur={formikProps.handleBlur("adCategory")}
-                                        />
-                                        <SelectInput
-                                            name="adSubcategory"
-                                            type="text"
-                                            value={formikProps.values.adSubcategory}
-                                            onChange={(event) => this.handleLocationChange(event, formikProps)}
-                                            onBlur={formikProps.handleBlur("adSubcategory")}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="label">Cena</label>
-                                        <PriceInput
-                                            name="adPrice"
-                                            type="text"
-                                            placeholder="Iznos"
-                                            value={formikProps.values.adPrice}
-                                            onChange={formikProps.handleChange("adPrice")}
-                                            onBlur={formikProps.handleBlur("adPrice")}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label className="row label" style={{ marginLeft: "3px"}}>Tip oglasa <FontAwesomeIcon icon={faQuestionCircle} style={{ color: "black", marginLeft: "3px", marginTop: "5px"}} /></label> 
-                                        <AdTypeInput
-                                            name="adTypeCode"
-                                            type="text"
-                                            placeholder="Unesite kod iz SMS-a"
-                                            value={formikProps.values.adTypeCode}
-                                            onChange={formikProps.handleChange("adTypeCode")}
-                                            onBlur={formikProps.handleBlur("adTypeCode")}
-                                        />
-                                    </div>
-                                    <div className="d-flex justify-content-center form-group">
-                                        <button
-                                            type="button"
-                                            className="btn gold-btn"
-                                        >
-                                            POSTAVI OGLAS
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                                        /> */}
+										<RichTextEditor
+											value={formikProps.values.adDescription}
+											onChange={formikProps.handleChange("adDescription")}
+											onBlur={formikProps.handleBlur("adDescription")}
+										/>
+									</div>
+									<div className="form-group">
+										<label className="label">Kategorija</label>
+										<SelectInput
+											name="adCategory"
+											type="text"
+											value={formikProps.values.adCategory}
+											onChange={(event) => this.handleLocationChange(event, formikProps)}
+											onBlur={formikProps.handleBlur("adCategory")}
+										/>
+										<SelectInput
+											name="adSubcategory"
+											type="text"
+											value={formikProps.values.adSubcategory}
+											onChange={(event) => this.handleLocationChange(event, formikProps)}
+											onBlur={formikProps.handleBlur("adSubcategory")}
+										/>
+									</div>
+									<div className="form-group">
+										<label className="label">Cena</label>
+										<PriceInput
+											name="adPrice"
+											type="text"
+											placeholder="Iznos"
+											value={formikProps.values.adPrice}
+											onChange={formikProps.handleChange("adPrice")}
+											onBlur={formikProps.handleBlur("adPrice")}
+										/>
+									</div>
+									<div className="form-group">
+										<label className="row label" style={{ marginLeft: "3px" }}>
+											Tip oglasa{" "}
+											<FontAwesomeIcon
+												icon={faQuestionCircle}
+												style={{ color: "black", marginLeft: "3px", marginTop: "5px" }}
+											/>
+										</label>
+										<AdTypeInput
+											name="adTypeCode"
+											type="text"
+											placeholder="Unesite kod iz SMS-a"
+											value={formikProps.values.adTypeCode}
+											onChange={formikProps.handleChange("adTypeCode")}
+											onBlur={formikProps.handleBlur("adTypeCode")}
+										/>
+									</div>
+									<div className="d-flex justify-content-center form-group">
+										<button type="button" className="btn gold-btn">
+											POSTAVI OGLAS
+										</button>
+									</div>
+								</div>
+							</div>
+						)}
 					</Formik>
 				</div>
 			</div>
