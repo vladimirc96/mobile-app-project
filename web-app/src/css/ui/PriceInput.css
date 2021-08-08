@@ -1,67 +1,66 @@
 .ad-price-wrapper {
-  margin-left: 5%;
-  margin-top: 2.5%;
+	margin-left: 5%;
+	margin-top: 2.5%;
 }
 .ad-price-container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  margin-left: 2%;
-  cursor: pointer;
-  line-height: 1.15;
-  font-size: 16px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	margin-left: 2%;
+	cursor: pointer;
+	line-height: 1.15;
+	font-size: 16px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .ad-price-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 
 .checkmark-price {
-  position: absolute;
-  margin-left: 10%;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
-  background-color: #eee;
+	position: absolute;
+	margin-left: 10%;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	border-radius: 10px;
+	background-color: #eee;
 }
 
 .ad-price-container:hover input ~ .checkmark-price {
-  background-color: #d1ad75;
+	background-color: #d1ad75;
 }
 
 .checkmark-price:after {
-  content: "";
-  position: absolute;
-  display: none;
+	content: "";
+	position: absolute;
+	display: none;
 }
 
 .ad-price-container input:checked ~ .checkmark-price:after {
-  display: block;
+	display: block;
 }
 
 .ad-price-container .checkmark-price:after {
-  left: 8px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid #d1ad75;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+	left: 8px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid #d1ad75;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
-
 
 .price-input-field {
 	background: #f8f8f8 !important;
@@ -79,9 +78,9 @@
 	border-radius: 11px !important;
 }
 
-.price-radio-button{
-    margin-left: 3.5%;
-    background-color: red !important;
+.price-radio-button {
+	margin-left: 3.5%;
+	background-color: red !important;
 }
 
 .price-input-field:focus {
@@ -112,9 +111,9 @@
 	border-radius: 11px !important;
 }
 
-.price-radio-button{
-    margin-left: 3.5%;
-    background-color: red !important;
+.price-radio-button {
+	margin-left: 3.5%;
+	background-color: red !important;
 }
 
 .price-input-field:focus {

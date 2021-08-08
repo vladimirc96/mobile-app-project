@@ -5,6 +5,7 @@ import TextInput from "../components/ui/TextInput";
 import TextArea from "../components/ui/TextArea";
 import PriceInput from "../components/ui/PriceInput";
 import AdTypeInput from "../components/ui/AdTypeInput";
+import AdTypeModal from "../components/ui/AdTypeModal"
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
@@ -30,6 +31,7 @@ export default class AdCreation extends Component {
 		super();
 		this.state = {
 			adCategory: [],
+            show: false,
 		};
 	}
 
@@ -125,6 +127,8 @@ export default class AdCreation extends Component {
                                         />
                                     </div>
                                     <div className="form-group">
+                                        <button onClick={() => this.setState({show: true}) }>Show Modal</button>
+                                        <AdTypeModal onClose={() => this.setState({show: false})} show={this.state.show}/>
                                         <label className="row label" style={{ marginLeft: "3px"}}>Tip oglasa <FontAwesomeIcon icon={faQuestionCircle} style={{ color: "black", marginLeft: "3px", marginTop: "5px"}} /></label> 
                                         <AdTypeInput
                                             name="adTypeCode"
