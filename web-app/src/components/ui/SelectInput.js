@@ -14,7 +14,7 @@ export class SelectInput extends Component {
 			this.props.items.forEach((item) => {
 				const option = (
 					<option key={item.id} value={item.id}>
-						{item.value}
+						{item.value ? item.value : item.name}
 					</option>
 				);
 				items.push(option);
@@ -31,7 +31,7 @@ export class SelectInput extends Component {
 					className={classNames("form-control", "select-input-field", this.props.classes)}
 					onChange={this.props.onChange ? this.props.onChange : null}
 					onBlur={this.props.onBlur ? this.props.onBlur : null}
-					value={this.props.value.id ? this.props.value.id : ""}
+					value={this.props.value && this.props.value.id ? this.props.value.id : ""}
 				>
 					{this.prepareItems()}
 				</select>
