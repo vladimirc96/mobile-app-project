@@ -20,34 +20,37 @@
 .modal-footer {
 	padding: 10px;
 	text-align: center;
+	align-self: center;
 }
 
 .modal-title {
-	margin: 0;
-	text-align: center;
-	font-size: 20px;
-	font-weight: 600;
-}
-
-.modal-body {
-	padding: 20px;
-	border-top: 1px solid #d1ad75;
-	border-bottom: 1px solid #d1ad75;
-}
-
-.modal-ad-type-section {
-	margin-top: 2.5%;
-}
-
-.ad-type-title {
 	text-align: center;
 	font-size: 24px;
 	font-weight: 600;
 }
 
+.modal-body {
+	padding: 18px;
+}
+
+.modal-ad-type-section {
+	margin-top: 2.5%;
+	padding: 0% 2%;
+	border: 1px solid #ffffff;
+	border-radius: 12px;
+	background-color: #fafafa;
+	box-shadow: 0px 0px 4px 0px;
+}
+
+.ad-type-title {
+	text-align: center;
+	font-size: 22px;
+	font-weight: 600;
+}
+
 .ad-type-body {
 	text-align: justify;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
 }
 
@@ -57,6 +60,6 @@
 
 .ad-type-note-body {
 	text-align: justify;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
 }

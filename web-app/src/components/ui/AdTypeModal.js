@@ -6,10 +6,17 @@ const AdTypeModal = (props) => {
 		return null;
 	}
 	return (
-		<div className="modal" id="typeModal" role="dialog" tabindex="-1" aria-hidden="true">
-			<div className="modal-content">
-				<div className="modal-header">
-					<p className="modal-title">Promocija oglasa</p>
+		<div className="modal" id="typeModal" role="dialog" tabindex="-1" aria-hidden="true" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)"}}>
+			<div className="modal-content" style={{ marginLeft: "20%", marginTop: "50px" , alignSelf: "center", width: "60%", backgroundColor: "#ffffff", border: "1px", borderColor: "#d1ad75" }}>
+				<div className="modal-header" >
+					<p className="modal-title">PROMOCIJA OGLASA</p>
+					<hr
+						style={{
+							color: "#d1ad75",
+							backgroundColor: "#d1ad75",
+							height: "5"
+						}}
+					/>
 				</div>
 				<div className="modal-body">
 					<div className="modal-ad-type-section">
@@ -42,7 +49,12 @@ const AdTypeModal = (props) => {
 					</div>
 				</div>
 				<div className="modal-footer">
-					<button onClick={props.onClose} className="modal-button" data-dismiss="modal">
+					<button
+						type="button"
+						className="btn gold-btn"
+						onClick={props.onClose}
+						data-dismiss="modal"
+					>
 						Close
 					</button>
 				</div>
