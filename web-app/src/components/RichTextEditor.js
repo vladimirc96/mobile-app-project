@@ -5,6 +5,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
+var classNames = require("classnames");
 
 const toolbarConfig = {
 	options: ["inline", "blockType", "fontSize", "fontFamily", "list", "textAlign", "link", "remove", "history"],
@@ -50,7 +51,7 @@ export class RichTextEditor extends Component {
 				<Editor
 					toolbar={toolbarConfig}
 					editorState={this.state.editorState}
-					wrapperClassName="rich-text-editor"
+					wrapperClassName={classNames("rich-text-editor", this.props.classes)}
 					toolbarClassName="rich-text-toolbar"
 					editorClassName="rich-text-content"
 					onEditorStateChange={this.handleChange}

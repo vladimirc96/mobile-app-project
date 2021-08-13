@@ -9,7 +9,7 @@ export class SelectInput extends Component {
 	}
 
 	prepareItems = () => {
-		let items = [];
+		let items = [<option hidden key="hidden"></option>];
 		if (this.props.items) {
 			this.props.items.forEach((item) => {
 				const option = (

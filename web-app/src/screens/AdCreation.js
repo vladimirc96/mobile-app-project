@@ -7,19 +7,22 @@ import AdTypeInput from "../components/ui/AdTypeInput";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faImage } from "@fortawesome/free-regular-svg-icons";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RichTextEditor from "../components/RichTextEditor";
 import { isInError } from "../validation";
 import { getAllByCategoryId } from "../services/SubCategoryService";
 import { getCategories } from "../services/CategoryService";
-import { toBase64 } from "../ImageUtil";
+import { toBase64, base64ToFile } from "../ImageUtil";
+import { saveAd } from "../services/AdService";
+import Swal from "sweetalert2";
+import { formatDate } from "../DateUtil";
 
 library.add(faImage);
 
 const adCreationSchema = yup.object({
 	title: yup.string().required(),
-	description: "",
+	description: yup.string().required(),
 	category: yup
 		.object({
 			id: yup.number().required(),
@@ -32,8 +35,44 @@ const adCreationSchema = yup.object({
 			value: yup.string(),
 		})
 		.required(),
-	price: yup.number().required(),
-	type: "",
+	price: yup
+		.number()
+		.nullable()
+		.test({
+			name: "Price required",
+			exclusive: false,
+			params: {},
+			message: "Price is required",
+			// kada vratim true onda je ispunjen test i nema errore
+			test: function (value) {
+				console.log(this.parent);
+				if (value) {
+					return true;
+				}
+				if (!value && this.parent.agreement === null) {
+					return false;
+				}
+				if (!value && this.parent.agreement) {
+					return true;
+				}
+				return false;
+			},
+		}),
+	agreement: yup
+		.boolean()
+		.nullable()
+		.test({
+			name: "Agreement required",
+			exclusive: false,
+			params: {},
+			message: "Agreement is required",
+			test: function (value) {
+				if (value || !value) {
+					return true;
+				}
+				return false;
+			},
+		}),
 });
 
 export default class AdCreation extends Component {
@@ -46,24 +85,32 @@ export default class AdCreation extends Component {
 		};
 	}
 
-	generateInitalValues = () => {
-		console.log({
-			id: this.props.ad ? this.props.ad.id : null,
-			title: this.props.ad ? this.props.ad.title : "",
-			description: this.props.ad ? this.props.ad.description : "",
-			category: this.props.ad ? this.props.ad.category : this.state.categories[0],
-			subCategory: this.props.ad
-				? {
-						id: this.props.ad.subCategory.id,
-						name: this.props.ad.subCategory.value,
-				  }
-				: this.state.subCategories[0],
-			price: this.props.ad ? this.props.ad.price.toString() : "",
-			agreement: this.props.ad ? this.props.ad.agreement : null,
-			currency: this.props.ad && this.props.ad.currency ? this.props.ad.currency : "RSD",
-			creationDate: new Date().toISOString().slice(0, 10),
-			image: this.props.ad && this.props.ad.imageBytes ? this.props.ad.imageBytes : null,
-		});
+	handleSubmit = async (ad) => {
+		try {
+			const formData = new FormData();
+			Object.keys(ad).forEach((key) => {
+				if (key === "category" || key === "image" || key === "imageBytes") {
+					return;
+				}
+				if (key === "subCategory") {
+					formData.append(key, JSON.stringify({ id: ad[key].id, value: ad[key].name }));
+					return;
+				}
+				formData.append(key, ad[key]);
+			});
+			if (ad.imageBytes) {
+				const image = await base64ToFile(ad["imageBytes"]);
+				formData.append("image", image);
+			}
+			await saveAd(formData);
+			Swal.fire({
+				text: "Uspešno ste sačuvali oglas!",
+				confirmButtonColor: "#d1ad75",
+				confirmButtonText: "Ok",
+			});
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	getAdCategory = async () => {
@@ -111,7 +158,7 @@ export default class AdCreation extends Component {
 
 	handleChangeCurrency = async (formikProps, value) => {
 		await formikProps.setFieldValue("currency", value);
-		await formikProps.setFieldValue("agreement", value !== "" ? false : true);
+		await formikProps.setFieldValue("agreement", value !== "" ? null : true);
 	};
 
 	getSubCategories = async (categoryId) => {
@@ -126,7 +173,6 @@ export default class AdCreation extends Component {
 	async componentDidMount() {
 		await this.getAdCategory();
 		await this.getSubCategories(this.state.categories[0].id);
-		this.generateInitalValues();
 	}
 
 	render() {
@@ -139,23 +185,24 @@ export default class AdCreation extends Component {
 					<Formik
 						initialValues={{
 							id: this.props.ad ? this.props.ad.id : null,
-							title: this.props.ad ? this.props.ad.title : "",
-							description: this.props.ad ? this.props.ad.description : "",
-							category: this.props.ad ? this.props.ad.category : this.state.categories[0],
+							title: this.props.ad ? this.props.ad.title : null,
+							description: this.props.ad ? this.props.ad.description : null,
+							category: this.props.ad ? this.props.ad.category : null,
 							subCategory: this.props.ad
 								? {
 										id: this.props.ad.subCategory.id,
 										name: this.props.ad.subCategory.value,
 								  }
-								: this.state.subCategories[0],
-							price: this.props.ad ? this.props.ad.price.toString() : "",
+								: null,
+							price: this.props.ad ? this.props.ad.price.toString() : null,
 							agreement: this.props.ad ? this.props.ad.agreement : null,
-							currency: this.props.ad && this.props.ad.currency ? this.props.ad.currency : "RSD",
-							creationDate: new Date().toISOString().slice(0, 10),
-							image: this.props.ad && this.props.ad.imageBytes ? this.props.ad.imageBytes : null,
+							currency: this.props.ad && this.props.ad.currency ? this.props.ad.currency : null,
+							creationDate: formatDate(new Date()),
+							image: this.props.ad && this.props.ad.image ? this.props.ad.image : null,
+							imageBytes: this.props.ad && this.props.ad.imageBytes ? this.props.ad.imageBytes : null,
 						}}
 						onSubmit={(values) => {
-							console.log(values);
+							this.handleSubmit(values);
 						}}
 						validationSchema={adCreationSchema}
 					>
@@ -181,14 +228,15 @@ export default class AdCreation extends Component {
 											value={formikProps.values.description}
 											onChange={this.handleChangeRichText}
 											onBlur={formikProps.handleBlur("description")}
+											classes={isInError(formikProps, "description")}
 										/>
 									</div>
 									<div className="form-group form-row d-flex justify-content-center">
 										<div className="d-flex justify-content-end col-4">
 											{!formikProps.values.imageBytes ? (
-												// <FontAwesomeIcon icon="image" size="5x" />
-												<p>Slika ovde</p>
+												<FontAwesomeIcon icon="image" size="5x" />
 											) : (
+												// <p>Slika ovde</p>
 												<img
 													alt="slika-oglas"
 													className="picked-image"
@@ -253,7 +301,6 @@ export default class AdCreation extends Component {
 												this.handleChangeAgreement(formikProps, value)
 											}
 											onChangeCurrency={(value) => this.handleChangeCurrency(formikProps, value)}
-											// onBlur={formikProps.handleBlur("price")}
 											classes={isInError(formikProps, "price")}
 										/>
 									</div>
@@ -279,7 +326,10 @@ export default class AdCreation extends Component {
 										<button
 											type="button"
 											className="btn gold-btn"
-											onClick={formikProps.handleSubmit}
+											onClick={() => {
+												console.log(formikProps.values);
+												formikProps.handleSubmit();
+											}}
 										>
 											POSTAVI OGLAS
 										</button>
