@@ -7,7 +7,7 @@ const AdTypeModal = (props) => {
 	}
 	return (
 		<div className="modal" id="typeModal" role="dialog" tabindex="-1" aria-hidden="true" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)"}}>
-			<div className="modal-content" style={{ marginLeft: "20%", marginTop: "50px" , alignSelf: "center", width: "60%", backgroundColor: "#ffffff", border: "1px", borderColor: "#d1ad75" }}>
+			<div className="modal-content" style={{ marginLeft: "20%", marginTop: "50px" , alignSelf: "center", width: "60%", backgroundColor: "#f8f3eb", border: "1px", borderColor: "#d1ad75" }}>
 				<div className="modal-header" >
 					<p className="modal-title">PROMOCIJA OGLASA</p>
 					<hr
@@ -24,7 +24,7 @@ const AdTypeModal = (props) => {
 						<p className="ad-type-body">
 							Osigurajte da Vaš oglas uvek bude istaknut prvi, na samom vrhu pretrage po izuzetno jeftinoj
 							ceni. U svakoj potkategoriji može da postoji samo jedan VIP oglas. Jedan dan košta 50
-							dinara, a najmanmje je moguće rezervisati 7 dana. Dobar marketing se uvek isplati :)
+							dinara, a najmanje je moguće rezervisati 7 dana. Dobar marketing se uvek isplati :)
 						</p>
 					</div>
 					<div className="modal-ad-type-section">
@@ -44,7 +44,7 @@ const AdTypeModal = (props) => {
 						<p className="ad-type-note-body">
 							* Uplate se vrše slanjem SMS-a sa tekstom VIP ili Premium, u zavisnosti od toga za koji
 							paket ste se odlučili na broj 1312. Nakon uplate dobićete odgovor koji sadrži kod koji je
-							neophodno unet i u odgovarajuće polje čime se potvrđuje uplata.
+							neophodno uneti u odgovarajuće polje čime se potvrđuje uplata.
 						</p>
 					</div>
 				</div>
