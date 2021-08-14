@@ -24,8 +24,10 @@
 }
 
 .modal-title {
+	margin-top: 15px;
 	text-align: center;
-	font-size: 24px;
+	font-family: "Montserrat";
+	font-size: 22px;
 	font-weight: 600;
 }
 
@@ -38,7 +40,7 @@
 	width: 80%;
 	margin-left: 10%;
 	margin-top: 2.5%;
-	padding: 0% 2%;
+	padding: 1.5% 2% 0% 2%;
 	border: 1px solid #ffffff;
 	border-radius: 12px;
 	background-color: #fafafa;
@@ -47,13 +49,15 @@
 
 .ad-type-title {
 	text-align: center;
-	font-size: 22px;
+	font-family: "Montserrat";
+	font-size: 20px;
 	font-weight: 600;
 }
 
 .ad-type-body {
 	text-align: justify;
-	font-size: 18px;
+	font-family: "Montserrat";
+	font-size: 16px;
 	font-weight: 600;
 }
 
@@ -65,6 +69,7 @@
 
 .ad-type-note-body {
 	text-align: justify;
-	font-size: 18px;
+	font-family: "Montserrat";
+	font-size: 16px;
 	font-weight: 600;
 }

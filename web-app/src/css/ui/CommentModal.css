@@ -1,0 +1,82 @@
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-comment-content {
+	width: 500px;
+	background-color: #ffffff;
+	border: 1px solid #d1ad75;
+}
+
+.modal-comment-header,
+.modal-comment-footer {
+	padding: 10px;
+	text-align: center;
+	align-self: center;
+}
+
+.modal-comment-title {
+	margin-top: 20px;
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.modal-comment-body {
+	padding: 18px;
+	background-color: #ffffff;
+}
+
+.modal-comment-positive-section {
+	width: 30%;
+	margin-left: 17.5%;
+	background: #f8f8f8;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 25px;
+}
+
+.modal-comment-negative-section {
+	width: 30%;
+	margin-left: 5%;
+	background: #f8f8f8;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 25px;
+}
+
+.modal-comment-text-section {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+.your-comment-text {
+	font-family: "Montserrat";
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.comment-title {
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-comment-note {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
+}

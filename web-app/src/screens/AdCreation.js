@@ -6,6 +6,7 @@ import TextArea from "../components/ui/TextArea";
 import PriceInput from "../components/ui/PriceInput";
 import AdTypeInput from "../components/ui/AdTypeInput";
 import AdTypeModal from "../components/ui/AdTypeModal";
+import CommentModal from "../components/ui/CommentModal";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { isInError } from "../validation";
@@ -134,7 +135,7 @@ export default class AdCreation extends Component {
 										>
 											Show Modal
 										</button>
-										<AdTypeModal
+										<CommentModal
 											onClose={() => this.setState({ show: false })}
 											show={this.state.show}
 										/>
