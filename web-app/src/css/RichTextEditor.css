@@ -1,0 +1,14 @@
+.rich-text-editor {
+	border-radius: 11px !important;
+	border: 1px solid #ced4da;
+	box-shadow: inset 0px 0px 5px 1px rgb(0 0 0 / 25%) !important;
+}
+
+.rich-text-toolbar {
+	border-bottom: 1px solid #ced4da !important;
+}
+
+.rich-text-content {
+	height: 200px !important;
+	overflow: auto !important;
+}
