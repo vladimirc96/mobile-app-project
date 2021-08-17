@@ -10,4 +10,5 @@ public interface AdService {
     List<AdDTO> findBySubCategoryId(Long subCategoryId);
     List<AdInfoDTO> getByUsername(String username);
     void deleteById(Long id);
+    List<AdDTO> findAllByPage(int pageNumber);
 }
