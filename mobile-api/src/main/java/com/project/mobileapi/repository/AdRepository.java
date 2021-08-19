@@ -1,6 +1,8 @@
 package com.project.mobileapi.repository;
 
 import com.project.mobileapi.model.Ad;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,4 +12,5 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     List<Ad> findAllBySubCategoryId(Long subCategoryId);
     List<Ad> findAllByUserUsername(String username);
     void deleteAdById(Long id);
+    Page<Ad> findAll(Pageable pageable);
 }

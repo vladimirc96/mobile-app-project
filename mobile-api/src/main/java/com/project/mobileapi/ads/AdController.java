@@ -69,4 +69,8 @@ public class AdController {
         adService.deleteById(adId);
     }
 
+    @GetMapping("/get-by-page")
+    public ResponseEntity<List<AdDTO>> findAllByPage(@RequestParam("pageNumber") int pageNumber){
+        return new ResponseEntity(ObjectUtils.isEmpty(adService.findAllByPage(pageNumber)), HttpStatus.OK);
+    }
 }

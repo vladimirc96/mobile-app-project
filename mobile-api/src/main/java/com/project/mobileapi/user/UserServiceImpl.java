@@ -60,6 +60,8 @@ public class UserServiceImpl implements UserService{
         if(user.getImage() != null && userDTO.getImage() == null){
             userDTO.setImageBytes(user.getImage());
         }
-        return UserAdapter.toDto(userRepository.save(UserAdapter.toModel(userDTO)));
+        User updatedUser = UserAdapter.toModel(userDTO);
+        updatedUser.setRoles(user.getRoles());
+        return UserAdapter.toDto(userRepository.save(updatedUser));
     }
 }

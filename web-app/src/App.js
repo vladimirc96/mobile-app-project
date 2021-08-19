@@ -9,12 +9,13 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
 import ContactUs from "./screens/ContactUs";
-
 import Register from "./screens/Register";
 import AdCreation from "./screens/AdCreation";
 import Login from "./components/Login";
 import Home from "./screens/Home";
 import EditProfile from "./components/EditProfile";
+import Categories from "./screens/Categories";
+import Ads from "./screens/Ads";
 function App() {
 	return (
 		<Provider store={persistedStore.store}>
@@ -30,6 +31,8 @@ function App() {
 							<Route path="/login" component={Login}></Route>
 							<Route path="/user/:id/edit-profile" component={EditProfile} />
 							<Route path="/contact-us" component={ContactUs} />
+							<Route path="/categories" component={Categories} />
+							<Route path="/ads/:category" component={Ads} />
 						</Switch>
 					</div>
 					<div className="footer-section">

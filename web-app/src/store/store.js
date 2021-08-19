@@ -1,6 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import userReducer from "./reducers/userReducer";
 import authenticationReducer from "./reducers/authenticationReducer";
+import subcategoryReducer from "./reducers/subcategoryReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";
 import { persistStore, persistReducer } from "redux-persist";
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
 	userReducer: userReducer,
 	authenticationReducer: authenticationReducer,
+	subcategoryReducer: subcategoryReducer
 });
 
 // PERSISTOR CONFIG
@@ -20,7 +22,8 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 const persistedStore = { store, persistor };

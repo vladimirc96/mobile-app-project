@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import "../css/EditProfile.css";
-import SelectInput from "../components/ui/SelectInput";
-import TextInput from "../components/ui/TextInput";
-import TextArea from "./ui/TextArea";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { isInError } from "../validation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { login } from "../store/actions/authentication/authenticationActions";
 import { connect } from "react-redux";
-import { getAll } from "../services/LocationService";
 import { saveUser } from "../services/UserService";
 import { base64ToFile, toBase64 } from "../ImageUtil";
 import Swal from "sweetalert2";
-import { isEqual } from "lodash";
-import { formatDate } from "../DateUtil";
 import { Switch, Route, Link } from "react-router-dom";
 import EditProfileForm from "./forms/EditProfileForm";
 import SettingsForm from "./forms/SettingsForm";
@@ -35,7 +25,7 @@ export class EditProfile extends Component {
 		try {
 			const formData = new FormData();
 			Object.keys(user).forEach((key) => {
-				if (key === "imageBytes") {
+				if (key === "imageBytes" || key === "image") {
 					return;
 				}
 				if (key === "location") {
@@ -44,11 +34,9 @@ export class EditProfile extends Component {
 				}
 				formData.append(key, user[key]);
 			});
-			if (!this.state.image) {
+			if (user.imageBytes) {
 				const image = await base64ToFile(user["imageBytes"]);
 				formData.append("image", image);
-			} else {
-				formData.append("image", this.state.image);
 			}
 			await saveUser(formData);
 			this.props.setUserInfo(user);

@@ -74,7 +74,7 @@ export class Header extends Component {
 										</Link>
 									) : (
 										<span>
-											<li className="main-navigation__list" onClick={this.handleLogout}>
+											<li className="main-navigation__list">
 												<span className="main-navigation__link main-navigation__link--registration">
 													Postavi oglas
 												</span>
