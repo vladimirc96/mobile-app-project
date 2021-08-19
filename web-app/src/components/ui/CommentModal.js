@@ -1,6 +1,11 @@
 import React from "react";
 import TextArea from "./TextArea";
 import "../../css/ui/CommentModal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+
+
 
 const CommentModal = (props) => {
 	if (!props.show) {
@@ -12,26 +17,20 @@ const CommentModal = (props) => {
 				<div className="modal-comment-header" >
 					<p className="modal-comment-title">Kako biste ocenili iskustvo sa korisnikom?</p>
 				</div>
-				<div className="row modal-comment-body">
-					<div className="modal-comment-positive-section">
-                        <button
-                            type="button"
-                            className="btn gold-btn"
-                            onClick={props.onClose}
-                            data-dismiss="modal"
-                        >
-                            Odustani
-                        </button>
-					</div>
-                    <div className="modal-comment-negative-section">
-                        <button
-                            type="button"
-                            className="btn gold-btn"
-                            onClick={props.onClose}
-                            data-dismiss="modal"
-                        >
-                            Odustani
-                        </button>
+				<div className="modal-comment-body">
+					<div className="row">
+						<div className="modal-comment-positive-section">
+							<FontAwesomeIcon
+								icon={faThumbsUp}
+								style={{ color: "grey", margin: "20px 0px 20px 0", fontSize: "84px", alignSelf: "center"}}
+							/>
+						</div>
+						<div className="modal-comment-negative-section">
+							<FontAwesomeIcon
+								icon={faThumbsDown}
+								style={{ color: "grey", margin: "20px 0px 20px 0", fontSize: "84px" }}
+							/>
+						</div>
 					</div>
                     <div className="modal-comment-text-section">
                         <p className="your-comment-text">
@@ -40,16 +39,15 @@ const CommentModal = (props) => {
                         <TextArea
                             name="userComment"
                             type="text"
-                            rows="4"
+                            rows="5"
                             placeholder="Komentar će biti vidljiv na korisnikovom profilu"
                         />
                     </div>
-					
 				</div>
 				<div className="modal-comment-footer">
 					<button
 						type="button"
-						className="btn gold-btn"
+						className="btn gold-btn-comment"
 						onClick={props.onClose}
 						data-dismiss="modal"
 					>
@@ -57,7 +55,7 @@ const CommentModal = (props) => {
 					</button>
                     <button
 						type="button"
-						className="btn gold-btn"
+						className="btn oposite-btn-comment"
 						onClick={props.onClose}
 						data-dismiss="modal"
 					>
