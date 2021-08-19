@@ -10,6 +10,7 @@ import {
 	faThumbsUp,
 	faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
+import {stripHtml} from "../StringUtil";
 
 library.add(faUser, faMapMarkerAlt, faPhoneAlt, faEnvelope, faThumbsUp, faThumbsDown);
 
@@ -19,7 +20,7 @@ class BigAd extends React.Component {
 			<div className="ad-container">
 				<div className="row big-ad-title">
 					<div style={{ width: "40%", textAlign: "center" }}>
-						<h3> Individualni treninzi kosarke </h3>
+						<h3> {this.props.ad.title} </h3>
 					</div>
 				</div>
 				<div className="big-ad-details-container">
@@ -30,19 +31,19 @@ class BigAd extends React.Component {
 						<div className="big-ad-details">
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="user" style={{ marginRight: "10px" }} />
-								Korisnik: Slobodan Sarenac
+								Korisnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName}
 							</p>
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="map-marker-alt" style={{ marginRight: "10px" }} />
-								Lokacija: Novo Naselje
+								Lokacija: {this.props.ad.user.location.value}
 							</p>
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="envelope" style={{ marginRight: "10px" }} />E Mail:
-								test@gmail.com
+								{this.props.ad.user.email}
 							</p>
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="phone-alt" style={{ marginRight: "10px" }} />
-								Broj Telefona: 062 489 22 47
+								Broj Telefona: {this.props.ad.user.phoneNumber}
 							</p>
 							<p style={{ paddingLeft: "10%" }}>
 								<FontAwesomeIcon icon="thumbs-up" style={{ marginRight: "10px" }} />
@@ -53,7 +54,7 @@ class BigAd extends React.Component {
 										fontWeight: "600",
 									}}
 								>
-									100
+									{this.props.ad.user.positiveRatings}
 								</span>
 								<FontAwesomeIcon icon="thumbs-down" style={{ marginRight: "5%" }} />
 								<span
@@ -62,24 +63,18 @@ class BigAd extends React.Component {
 										fontWeight: "600",
 									}}
 								>
-									20
+									{this.props.ad.user.negativeRatings}
 								</span>
 							</p>
 						</div>
 					</div>
 				</div>
 				<div className="big-ad-price-box">
-					<p className="big-ad-price-text">1000 RSD</p>
+					<p className="big-ad-price-text">{this.props.ad.price} RSD</p>
 				</div>
 				<div className="big-ad-description">
 					<p className="big-ad-description-text">
-						Nullam metus mi, ultricies eu est id, bibendum vestibulum felis. Integer id ipsum vulputate,
-						faucibus ipsum at, pretium ipsum. Morbi in tristique odio, molestie sodales mi. Vestibulum
-						pulvinar magna massa, in ultricies ipsum faucibus eget. Sed eleifend feugiat tellus, quis
-						sollicitudin risus ullamcorper ut. Nunc egestas, sem eget varius accumsan, ligula turpis
-						porttitor dolor, vel molestie augue velit sed enim. Praesent ultrices finibus purus, et semper
-						nulla ultricies a. Ut eleifend enim libero, eu pharetra lorem elementum efficitur. Vivamus quis
-						efficitur sem.
+						{stripHtml(this.props.ad.description)}
 					</p>
 				</div>
 			</div>
