@@ -1,139 +1,139 @@
 .ad-type-wrapper {
-  margin-top: 2.5%;
-  padding-top: 1%;
-  padding-left: 5%; 
-  background: #f8f8f8 !important;
-  border: 0.5px solid #d4d4d4;
-  box-sizing: border-box !important;
-  box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 20px !important;
+	margin-top: 2.5%;
+	padding-top: 1%;
+	padding-left: 5%;
+	background: #f8f8f8 !important;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box !important;
+	box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.25) !important;
+	border-radius: 20px !important;
 }
 
-.ad-type-container-wrapper-upper{
-  width: 103%;
-  height: 40px;
-  font-size: 16px;
-  line-height: 1.5;
-  border: 0.5px solid #f8f8f8;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+.ad-type-container-wrapper-upper {
+	width: 103%;
+	height: 40px;
+	font-size: 16px;
+	line-height: 1.5;
+	border: 0.5px solid #f8f8f8;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 
-.ad-type-container-wrapper-upper:hover{
-  background: #ffffff !important;
-  height: 40px;
-  font-weight: 700;
+.ad-type-container-wrapper-upper:hover {
+	background: #ffffff !important;
+	height: 40px;
+	font-weight: 700;
 }
 
-.ad-type-container-wrapper-middle{
-  width: 103%;
-  height: 42px;
-  font-size: 16px;
-  line-height: 1.5;
-  border: 5px #0d0d0d;
+.ad-type-container-wrapper-middle {
+	width: 103%;
+	height: 42px;
+	font-size: 16px;
+	line-height: 1.5;
+	border: 5px #0d0d0d;
 }
 
-.ad-type-container-wrapper-middle:hover{
-  background: #ffffff !important;
-  height: 42px;
-  font-weight: 700;
+.ad-type-container-wrapper-middle:hover {
+	background: #ffffff !important;
+	height: 42px;
+	font-weight: 700;
 }
 
-.ad-type-container-wrapper-down{
-  width: 103%;
-  margin-bottom: 6px;   
-  height: 40px;
-  font-size: 16px;
-  line-height: 1.5;
-  border: 0.5px solid #f8f8f8;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+.ad-type-container-wrapper-down {
+	width: 103%;
+	margin-bottom: 6px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 1.5;
+	border: 0.5px solid #f8f8f8;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
-.ad-type-container-wrapper-down:hover{
-  background: #ffffff !important;
-  margin-bottom: 6px;   
-  height: 40px;
-  font-weight: 700;
+.ad-type-container-wrapper-down:hover {
+	background: #ffffff !important;
+	margin-bottom: 6px;
+	height: 40px;
+	font-weight: 700;
 }
 
-.ad-type-text{
-  width: 80%;
-  margin-top: 10px;
-  margin-left: 7%;
+.ad-type-text {
+	width: 80%;
+	margin-top: 10px;
+	margin-left: 7%;
 }
 
 .ad-type-container {
-  width: 10%;
-  margin-right: 3%;
-  display: block;
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	width: 10%;
+	margin-right: 3%;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
-  
+
 .ad-type-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 
 .checkmark {
-  position: absolute;
-  top: 12px;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  border: 0.5px solid #d4d4d4;
-  border-radius: 10px;
-  background-color: #eee;
+	position: absolute;
+	top: 12px;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	border: 0.5px solid #d4d4d4;
+	border-radius: 10px;
+	background-color: #eee;
 }
 
 .ad-type-container:hover input ~ .checkmark {
-  background-color: #d1ad75;
+	background-color: #d1ad75;
 }
 
 .ad-type-container-wrapper-upper:hover input ~ .checkmark {
-  background-color: #d1ad75;
+	background-color: #d1ad75;
 }
 
 .ad-type-container-wrapper-middle:hover input ~ .checkmark {
-  background-color: #d1ad75;
+	background-color: #d1ad75;
 }
 
 .ad-type-container-wrapper-down:hover input ~ .checkmark {
-  background-color: #d1ad75;
+	background-color: #d1ad75;
 }
 
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+	content: "";
+	position: absolute;
+	display: none;
 }
 
 .ad-type-container input:checked ~ .checkmark:after {
-  display: block;
+	display: block;
 }
 
 .ad-type-container .checkmark:after {
-  left: 7px;
-  top: 4px;
-  width: 5px;
-  height: 10px;
-  border: solid #d1ad75;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+	left: 7px;
+	top: 4px;
+	width: 5px;
+	height: 10px;
+	border: solid #d1ad75;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .ad-type-input-field {
-  margin-top: 3.5%;
+	margin-top: 3.5%;
 	background: #f8f8f8 !important;
 	border: 0.5px solid #d4d4d4;
 	box-sizing: border-box !important;
@@ -149,9 +149,9 @@
 	border-radius: 11px !important;
 }
 
-.price-radio-button{
-    margin-left: 3.5%;
-    background-color: red !important;
+.price-radio-button {
+	margin-left: 3.5%;
+	background-color: red !important;
 }
 
 .ad-type-input-field:focus {

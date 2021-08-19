@@ -4,9 +4,15 @@ import SelectInput from "../components/ui/SelectInput";
 import TextInput from "../components/ui/TextInput";
 import PriceInput from "../components/ui/PriceInput";
 import AdTypeInput from "../components/ui/AdTypeInput";
-import { Formik } from "formik";
+import AdTypeModal from "../components/ui/AdTypeModal";
+import CommentModal from "../components/ui/CommentModal";
+import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
+import { login } from "../store/actions/authentication/authenticationActions";
+import { connect } from "react-redux";
+import { getAll } from "../services/LocationService";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RichTextEditor from "../components/RichTextEditor";
@@ -79,6 +85,8 @@ export default class AdCreation extends Component {
 	constructor() {
 		super();
 		this.state = {
+			adCategory: [],
+			show: false,
 			categories: [],
 			subCategories: [],
 			image: null,
@@ -304,8 +312,18 @@ export default class AdCreation extends Component {
 											classes={isInError(formikProps, "price")}
 										/>
 									</div>
-									{/* ODRADITI KADA SE UTVRDI SMS PLACANJE */}
-									{/* <div className="form-group">
+									<div className="form-group">
+										<button
+											onClick={() => this.setState({ show: true })}
+											data-toggle="modal"
+											data-target="#typeModal"
+										>
+											Show Modal
+										</button>
+										<CommentModal
+											onClose={() => this.setState({ show: false })}
+											show={this.state.show}
+										/>
 										<label className="row label" style={{ marginLeft: "3px" }}>
 											Tip oglasa
 											<FontAwesomeIcon
@@ -321,7 +339,7 @@ export default class AdCreation extends Component {
 											onChange={formikProps.handleChange("adTypeCode")}
 											onBlur={formikProps.handleBlur("adTypeCode")}
 										/>
-									</div> */}
+									</div>
 									<div className="d-flex justify-content-center form-group">
 										<button
 											type="button"
