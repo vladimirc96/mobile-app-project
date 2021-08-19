@@ -1,29 +1,89 @@
 import React, { Component } from 'react';
+import { sendMail } from "../services/MailService";
+import { Formik } from "formik";
+import Swal from "sweetalert2";
 import slika from './../assets/images/slika_telefon.png';
 
 export default class ContactUs extends Component {
+
+handleSubmit = async (mail) => {
+    try {
+        const formData = new FormData();
+        Object.keys(mail).forEach((key) => {
+        formData.append(key, mail[key]);
+        });
+        await sendMail(formData);
+        Swal.fire({
+            text: "Poruka uspesno poslata!",
+            confirmButtonColor: "#d1ad75",
+            confirmButtonText: "Ok",
+        });
+        console.log("sucess");
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 render() {
     return (
         <div className="contact-us-container">
-            <div className="contact-form-wrap">
-                <div className="contact-form-flex">
-                    <input className="contact-form-name"
-                            placeholder="Ime">
-                    </input>
-                    <input className="contact-form-lastname"
-                            placeholder="Prezime">
-                    </input>
-                </div>
-                <input className="contact-form-mail"
-                        placeholder="E mail adresa">
-                </input>
-                <textarea className="contact-form-message"
-                            placeholder="Poruka">
-                </textarea>
-                <div className="contact-button-container">
-                    <button className="contact-button">POSALJI PORUKU</button>
-                </div>
-            </div>
+            <Formik
+                initialValues={{
+                title: "",
+                message: "",
+                senderName: "",
+                senderEmail: "",
+                }}
+                onSubmit={(values) => {
+                this.handleSubmit({ ...values });
+            }}
+            >
+                {(formikProps) => (
+                    <div className="contact-form-wrap">
+                        <div className="contact-form-flex">
+                            <input className="contact-form-name"
+                                placeholder="Ime"
+                                name="senderName"
+                                type="text"
+                                value={formikProps.values.senderName}
+                                onChange={formikProps.handleChange("senderName")}
+                                onBlur={formikProps.handleBlur("senderName")}
+                                >
+                            </input>
+                            <input className="contact-form-lastname"
+                                placeholder="Email adresa"
+                                name="senderEmail"
+                                type="text"
+                                value={formikProps.values.senderEmail}
+                                onChange={formikProps.handleChange("senderEmail")}
+                                onBlur={formikProps.handleBlur("senderEmail")}
+                                >
+                            </input>
+                        </div>
+                        <input className="contact-form-mail"
+                            placeholder="Naslov"
+                            name="title"
+                            type="text"
+                            value={formikProps.values.title}
+                            onChange={formikProps.handleChange("title")}
+                            onBlur={formikProps.handleBlur("title")}
+                            >
+                        </input>
+                        <textarea className="contact-form-message"
+                                placeholder="Poruka"
+                                name="message"
+                                type="text"
+                                value={formikProps.values.message}
+                                onChange={formikProps.handleChange("message")}
+                                onBlur={formikProps.handleBlur("message")}
+                                >
+                        </textarea>
+                        <div className="contact-button-container">
+                            <button className="contact-button" onClick={formikProps.handleSubmit}>POSALJI PORUKU</button>
+                        </div>
+                    </div>
+                )}
+            </Formik>
             <div className="about-container">
                 <div className="about-section">
                     <div className="about-section-flex">

@@ -15,7 +15,7 @@ class AdCombined extends React.Component {
 	};
 
 	render() {
-		return <div onClick={this.adToggle}>{this.state.showBigAd ? <BigAd /> : <Ad />}</div>;
+		return <div onClick={this.adToggle}>{this.state.showBigAd ? <BigAd ad={this.props.ad} /> : <Ad ad={this.props.ad} />}</div>;
 	}
 }
 
