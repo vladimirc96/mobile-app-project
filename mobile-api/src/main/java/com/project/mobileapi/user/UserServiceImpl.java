@@ -3,8 +3,10 @@ package com.project.mobileapi.user;
 import com.project.mobileapi.exceptions.InvalidPasswordException;
 import com.project.mobileapi.exceptions.UsersExistsException;
 import com.project.mobileapi.model.Location;
+import com.project.mobileapi.model.PasswordResetToken;
 import com.project.mobileapi.model.Role;
 import com.project.mobileapi.model.User;
+import com.project.mobileapi.repository.PasswordTokenRepository;
 import com.project.mobileapi.repository.RoleRepository;
 import com.project.mobileapi.repository.UserRepository;
 import com.project.mobileapi.util.PasswordValidator;
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService{
     private static final Long USER_ROLE_ID = 1L;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordTokenRepository passwordTokenRepository;
 
     @Override
     public User register(UserDTO userDTO) throws IOException {
@@ -63,5 +66,16 @@ public class UserServiceImpl implements UserService{
         User updatedUser = UserAdapter.toModel(userDTO);
         updatedUser.setRoles(user.getRoles());
         return UserAdapter.toDto(userRepository.save(updatedUser));
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    @Override
+    public void createPasswordResetTokenForUser(User user, String token) {
+        final PasswordResetToken myToken = new PasswordResetToken(token, user);
+        passwordTokenRepository.save(myToken);
     }
 }

@@ -1,10 +1,10 @@
-import './css/App.css'
-import './css/Ad.css'
-import './css/Layout.css'
-import "./css/ContactUs.css"
-import Header from "./layout/Header.js"
-import Footer from "./layout/Footer.js"
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import "./css/App.css";
+import "./css/Ad.css";
+import "./css/Layout.css";
+import "./css/ContactUs.css";
+import Header from "./layout/Header.js";
+import Footer from "./layout/Footer.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
@@ -16,6 +16,7 @@ import Home from "./screens/Home";
 import EditProfile from "./components/EditProfile";
 import Categories from "./screens/Categories";
 import Ads from "./screens/Ads";
+import ForgotPassword from "./screens/ForgotPassword";
 function App() {
 	return (
 		<Provider store={persistedStore.store}>
@@ -33,6 +34,7 @@ function App() {
 							<Route path="/contact-us" component={ContactUs} />
 							<Route path="/categories" component={Categories} />
 							<Route path="/ads/:category" component={Ads} />
+							<Route path="/forgot-password" component={ForgotPassword} />
 						</Switch>
 					</div>
 					<div className="footer-section">

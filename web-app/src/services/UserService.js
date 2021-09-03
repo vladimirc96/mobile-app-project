@@ -22,3 +22,12 @@ export const saveUser = (user) => {
 export const getUser = () => {
 	return WebApi.get(`${url}`);
 };
+
+export const forgotPassword = (email) => {
+	const config = {
+		params: {
+			email,
+		},
+	};
+	return WebApi.post(`${url}/reset-password`, null, config);
+};

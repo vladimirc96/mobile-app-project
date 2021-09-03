@@ -9,5 +9,6 @@ public interface UserService {
     User register(UserDTO userDTO) throws IOException;
     UserDTO findOneByUsername(String username);
     UserDTO saveUser(UserDTO userDTO) throws IOException;
-    
+    User findUserByEmail(String email);
+    void createPasswordResetTokenForUser(final User user, final String token);
 }

@@ -112,13 +112,19 @@ export class Login extends Component {
 											</button>
 										</div>
 									</div>
-									<div className="d-flex justify-content-center form-group">
+									<div className="d-flex flex-column align-items-center justify-content-center form-group">
 										<button
 											type="button"
 											className="btn gold-btn"
 											onClick={formikProps.handleSubmit}
 										>
 											PRIJAVI SE
+										</button>
+										<button
+											style={{ color: "#d1ad75", fontWeight: "650" }}
+											onClick={() => window.open("/forgot-password")}
+										>
+											Zaboravili ste lozinku?
 										</button>
 									</div>
 								</div>
