@@ -22,6 +22,7 @@ public class PasswordResetToken {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "token")
     private String token;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)

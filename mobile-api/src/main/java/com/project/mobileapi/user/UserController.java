@@ -59,7 +59,7 @@ public class UserController {
     // Reset password
     @PostMapping("/reset-password")
     public void resetPassword(final HttpServletRequest request, @RequestParam("email") final String userEmail) {
-        final User user = userService.findUserByEmail("test@gmail.com");
+        final User user = userService.findUserByEmail(userEmail);
         if (user != null) {
             final String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(user, token);
@@ -69,6 +69,16 @@ public class UserController {
 
     private String getAppUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    }
+
+    @GetMapping("/change-password")
+    public String showChangePasswordPage(@RequestParam("token") String token) {
+        String result = userService.validatePasswordResetToken(token);
+        if(result != null) {
+            return result;
+        } else {
+            return "update password";
+        }
     }
 
 }

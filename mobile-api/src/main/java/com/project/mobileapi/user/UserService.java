@@ -11,4 +11,6 @@ public interface UserService {
     UserDTO saveUser(UserDTO userDTO) throws IOException;
     User findUserByEmail(String email);
     void createPasswordResetTokenForUser(final User user, final String token);
+    String validatePasswordResetToken(String token);
+
 }

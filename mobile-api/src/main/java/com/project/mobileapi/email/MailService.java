@@ -43,7 +43,7 @@ public class MailService {
     }
 
     private SimpleMailMessage constructResetTokenEmail(String contextPath, Locale locale, String token, User user) {
-        String url = contextPath + "/users/changePassword?token=" + token;
+        String url = contextPath + "/users/change-password?token=" + token;
         String message = "Reset password";
         return constructEmail("Reset Password", message + " \r\n" + url, user);
     }
@@ -52,7 +52,7 @@ public class MailService {
         SimpleMailMessage email = new SimpleMailMessage();
         email.setSubject(subject);
         email.setText(body);
-        email.setTo("cvetanovic9696@gmail.com");
+        email.setTo(user.getEmail());
         email.setFrom(environment.getProperty("spring.mail.username"));
         return email;
     }
