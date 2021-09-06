@@ -12,5 +12,7 @@ public interface UserService {
     User findUserByEmail(String email);
     void createPasswordResetTokenForUser(final User user, final String token);
     String validatePasswordResetToken(String token);
+    User findUserByPasswordResetToken(String token);
+    User changeUserPassword(User user, String newPassword);
 
 }

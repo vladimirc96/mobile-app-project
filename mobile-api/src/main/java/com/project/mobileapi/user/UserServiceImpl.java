@@ -89,6 +89,21 @@ public class UserServiceImpl implements UserService{
                 : null;
     }
 
+    @Override
+    public User findUserByPasswordResetToken(String token) {
+        return passwordTokenRepository.findByToken(token).getUser();
+    }
+
+    @Override
+    public User changeUserPassword(User user, String newPassword) {
+        if(!PasswordValidator.isValid(newPassword)){
+            throw new InvalidPasswordException(InvalidPasswordException.INVALID_PASSWORD_MESSAGE);
+        }
+        String salt = BCrypt.gensalt();
+        user.setPassword(BCrypt.hashpw(newPassword, salt));
+        return userRepository.save(user);
+    }
+
     private boolean isTokenFound(PasswordResetToken passToken) {
         return passToken != null;
     }
