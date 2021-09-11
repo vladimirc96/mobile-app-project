@@ -182,16 +182,6 @@ table {
 	padding-top: 120px;
 }
 
-.banner_section {
-	width: 100%;
-	float: left;
-	background-color: #d6bf74;
-	height: 400px;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	font-family: "Comfortaa", cursive;
-}
-
 .image_section {
 	width: 50%;
 	float: left;
@@ -199,12 +189,6 @@ table {
 	height: 400px;
 	background-size: 100%;
 	background-repeat: no-repeat;
-}
-
-.read_bt:hover {
-	color: #2f2f2f;
-	text-decoration: none;
-	outline: none;
 }
 
 .search_box {

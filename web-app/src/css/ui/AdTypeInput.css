@@ -1,7 +1,7 @@
 .ad-type-wrapper {
 	margin-top: 2.5%;
 	padding-top: 1%;
-	padding-left: 5%;
+	padding-left: 4%;
 	background: #f8f8f8 !important;
 	border: 0.5px solid #d4d4d4;
 	box-sizing: border-box !important;
@@ -10,7 +10,7 @@
 }
 
 .ad-type-container-wrapper-upper {
-	width: 103%;
+	width: 102%;
 	height: 40px;
 	font-size: 16px;
 	line-height: 1.5;
@@ -26,7 +26,7 @@
 }
 
 .ad-type-container-wrapper-middle {
-	width: 103%;
+	width: 102%;
 	height: 42px;
 	font-size: 16px;
 	line-height: 1.5;
@@ -40,7 +40,7 @@
 }
 
 .ad-type-container-wrapper-down {
-	width: 103%;
+	width: 102%;
 	margin-bottom: 6px;
 	height: 40px;
 	font-size: 16px;
@@ -55,6 +55,23 @@
 	margin-bottom: 6px;
 	height: 40px;
 	font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+	.ad-type-wrapper {
+		padding-left: 6%;
+	}
+	.ad-type-container-wrapper-upper {
+		width: 104%;
+	}
+
+	.ad-type-container-wrapper-middle {
+		width: 104%;
+	}
+
+	.ad-type-container-wrapper-down {
+		width: 104%;
+	}
 }
 
 .ad-type-text {

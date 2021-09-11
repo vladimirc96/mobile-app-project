@@ -320,7 +320,7 @@ export default class AdCreation extends Component {
 										>
 											Show Modal
 										</button>
-										<CommentModal
+										<AdTypeModal
 											onClose={() => this.setState({ show: false })}
 											show={this.state.show}
 										/>

@@ -26,7 +26,7 @@ function App() {
 					</div>
 					<div className="middle-section">
 						<Switch>
-							<Route path="/" exact component={AdCreation}></Route>
+							<Route path="/" exact component={Home}></Route>
 							<Route path="/register" component={Register}></Route>
 							<Route path="/login" component={Login}></Route>
 							<Route path="/user/:id/edit-profile" component={EditProfile} />

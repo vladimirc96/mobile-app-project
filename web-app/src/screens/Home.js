@@ -8,6 +8,8 @@ export class Home extends Component {
   render() {
     return (
       <div>
+        {/* <StartingBanner/>
+        <Categories/> */}
         <AdCreation/>
       </div>
     );
