@@ -72,128 +72,134 @@ export class Register extends React.Component {
 
 	render() {
 		return (
-			<div className="d-flex flex-column register-section">
-				<div className="d-flex flex-column justify-content-center upper-part">
-					<p className="p-2 header"> Kreirajte profil </p>
-					<p className="p-2 sub-header">
-						Već imate profil?
-						<Link to="/login" style={{ color: "#d1ad75", fontWeight: "650" }}>
-							Prijavite se
-						</Link>
-					</p>
-				</div>
-				<div className="d-flex flex-row justify-content-center form-section">
-					<Formik
-						initialValues={{
-							username: "",
-							password: "",
-							email: "",
-							phoneNumber: "",
-							image: null,
-						}}
-						onSubmit={(values) => {
-							if (!values.image) {
-								delete values.image;
-							}
-							this.handleRegister(values);
-						}}
-						validationSchema={registerSchema}
-					>
-						{(formikProps) => (
-							<div className="fields column h-100">
-								<div className="form-group">
-									<div className="d-flex justify-content-center">
-										{!formikProps.values.image ? (
-											<FontAwesomeIcon icon="user-circle" size="8x" />
-										) : (
-											<img
-												alt="profilna"
-												className="picked-image-register"
-												src={URL.createObjectURL(formikProps.values.image)}
-											></img>
-										)}
+			<div className="auth">
+				<div className="d-flex flex-column register-section">
+					<div className="d-flex flex-column justify-content-center upper-part">
+						<p className="p-2 header"> Kreirajte profil </p>
+						<p className="p-2 sub-header">
+							Već imate profil?
+							<Link to="/login" style={{ color: "#d1ad75", fontWeight: "650" }}>
+								Prijavite se
+							</Link>
+						</p>
+					</div>
+					<div className="d-flex flex-row justify-content-center form-section">
+						<Formik
+							initialValues={{
+								username: "",
+								password: "",
+								email: "",
+								phoneNumber: "",
+								image: null,
+							}}
+							onSubmit={(values) => {
+								if (!values.image) {
+									delete values.image;
+								}
+								this.handleRegister(values);
+							}}
+							validationSchema={registerSchema}
+						>
+							{(formikProps) => (
+								<div className="fields column h-100">
+									<div className="form-group">
+										<div className="d-flex justify-content-center">
+											{!formikProps.values.image ? (
+												<FontAwesomeIcon icon="user-circle" size="8x" />
+											) : (
+												<img
+													alt="profilna"
+													className="picked-image-register"
+													src={URL.createObjectURL(formikProps.values.image)}
+												></img>
+											)}
+										</div>
+										<div className="d-flex justify-content-center" style={{ marginTop: "10px" }}>
+											<label className="image-label">
+												Dodaj fotografiju
+												<input
+													style={{ display: "none" }}
+													type="file"
+													onChange={(event) =>
+														formikProps.setFieldValue("image", event.target.files[0])
+													}
+												/>
+											</label>
+										</div>
 									</div>
-									<div className="d-flex justify-content-center" style={{ marginTop: "10px" }}>
-										<label className="image-label">
-											Dodaj fotografiju
-											<input
-												style={{ display: "none" }}
-												type="file"
-												onChange={(event) =>
-													formikProps.setFieldValue("image", event.target.files[0])
-												}
-											/>
-										</label>
+									<div className="form-group">
+										<TextInput
+											name="username"
+											type="text"
+											placeholder="Korisničko ime"
+											value={formikProps.values.username}
+											onChange={formikProps.handleChange("username")}
+											onBlur={formikProps.handleBlur("username")}
+											classes={isInError(formikProps, "username")}
+										/>
 									</div>
-								</div>
-								<div className="form-group">
-									<TextInput
-										name="username"
-										type="text"
-										placeholder="Korisničko ime"
-										value={formikProps.values.username}
-										onChange={formikProps.handleChange("username")}
-										onBlur={formikProps.handleBlur("username")}
-										classes={isInError(formikProps, "username")}
-									/>
-								</div>
-								<div className="form-group input-group">
-									<TextInput
-										name="password"
-										type={this.state.passwordVisible ? "password" : "text"}
-										placeholder="Lozinka"
-										value={formikProps.values.password}
-										onChange={formikProps.handleChange("password")}
-										onBlur={formikProps.handleBlur("password")}
-										classes={[isInError(formikProps, "password"), "password-input"]}
-									/>
-									<div className="input-group-append">
+									<div className="form-group input-group">
+										<TextInput
+											name="password"
+											type={this.state.passwordVisible ? "password" : "text"}
+											placeholder="Lozinka"
+											value={formikProps.values.password}
+											onChange={formikProps.handleChange("password")}
+											onBlur={formikProps.handleBlur("password")}
+											classes={[isInError(formikProps, "password"), "password-input"]}
+										/>
+										<div className="input-group-append">
+											<button
+												type="button"
+												className="btn btn-outline-secondary show-hide"
+												onClick={this.toggleVisible}
+											>
+												{this.state.passwordVisible ? (
+													<FontAwesomeIcon icon="eye" />
+												) : (
+													<FontAwesomeIcon icon="eye-slash" />
+												)}
+											</button>
+										</div>
+										{formikProps.errors.password !== "Šifra je obavezna." ? (
+											<span style={{ fontSize: "13px" }}>{formikProps.errors.password}</span>
+										) : null}
+									</div>
+									<div className="form-group">
+										<TextInput
+											name="email"
+											type="email"
+											placeholder="Email"
+											value={formikProps.values.email}
+											onChange={formikProps.handleChange("email")}
+											onBlur={formikProps.handleBlur("email")}
+											classes={isInError(formikProps, "email")}
+										/>
+									</div>
+									<div className="form-group">
+										<TextInput
+											name="phoneNumber"
+											type="text"
+											placeholder="Broj telefona"
+											value={formikProps.values.phoneNumber}
+											onChange={formikProps.handleChange("phoneNumber")}
+											onBlur={formikProps.handleBlur("phoneNumber")}
+											classes={isInError(formikProps, "phoneNumber")}
+										/>
+									</div>
+									<div className="d-flex justify-content-center form-group">
 										<button
 											type="button"
-											className="btn btn-outline-secondary show-hide"
-											onClick={this.toggleVisible}
+											className="btn gold-btn"
+											onClick={formikProps.handleSubmit}
 										>
-											{this.state.passwordVisible ? (
-												<FontAwesomeIcon icon="eye" />
-											) : (
-												<FontAwesomeIcon icon="eye-slash" />
-											)}
+											REGISTRUJ SE
 										</button>
 									</div>
-									{formikProps.errors.password !== "Šifra je obavezna." ? (
-										<span style={{ fontSize: "13px" }}>{formikProps.errors.password}</span>
-									) : null}
 								</div>
-								<div className="form-group">
-									<TextInput
-										name="email"
-										type="email"
-										placeholder="Email"
-										value={formikProps.values.email}
-										onChange={formikProps.handleChange("email")}
-										onBlur={formikProps.handleBlur("email")}
-										classes={isInError(formikProps, "email")}
-									/>
-								</div>
-								<div className="form-group">
-									<TextInput
-										name="phoneNumber"
-										type="text"
-										placeholder="Broj telefona"
-										value={formikProps.values.phoneNumber}
-										onChange={formikProps.handleChange("phoneNumber")}
-										onBlur={formikProps.handleBlur("phoneNumber")}
-										classes={isInError(formikProps, "phoneNumber")}
-									/>
-								</div>
-								<div className="d-flex justify-content-center form-group">
-									<button type="button" className="btn gold-btn" onClick={formikProps.handleSubmit}>
-										REGISTRUJ SE
-									</button>
-								</div>
-							</div>
-						)}
-					</Formik>
+							)}
+						</Formik>
+					</div>
 				</div>
 			</div>
 		);
