@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PasswordDto {
 
-    private String oldPassword;
+    private String confirmPassword;
     private  String token;
     private String newPassword;
 

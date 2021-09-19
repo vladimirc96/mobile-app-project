@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.UUID;
@@ -62,12 +63,13 @@ public class UserController {
     }
 
     @GetMapping("/change-password")
-    public String showChangePasswordPage(@RequestParam("token") String token) {
+    public String showChangePasswordPage(@RequestParam("token") String token, final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         String result = userService.validatePasswordResetToken(token);
-        if(result != null) {
-            return result;
+        if(result == null) {
+            response.sendRedirect("http://localhost:3000/change-password/" + token);
+            return "Redirected";
         } else {
-            return "update password";
+            return "Redirected";
         }
     }
 
@@ -82,6 +84,7 @@ public class UserController {
         User user = userService.findUserByPasswordResetToken(passwordDto.getToken());
         if(user != null) {
             userService.changeUserPassword(user, passwordDto.getNewPassword());
+            userService.deletePasswordResetToken(passwordDto.getToken());
             return new ResponseEntity<>("Uspesno izmenjena sifra", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Neuspesna izmena", HttpStatus.BAD_REQUEST);

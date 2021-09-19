@@ -4,30 +4,29 @@ import { forgotPassword } from "../services/UserService";
 import "../css/ForgotPassword.css";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
+import Swal from "sweetalert2";
 
 const forgotPasswordSchema = yup.object({
 	email: yup.string().required("Email je obavezan.").email("Email nije validan."),
 });
 
 export class ForgotPassword extends Component {
-	constructor() {
-		super();
-		this.state = {
-			email: "",
-		};
-	}
-
 	forgotPassword = async (email) => {
 		try {
 			await forgotPassword(email);
+			Swal.fire({
+				text: "Aktivacioni link uspešno poslat!",
+				confirmButtonColor: "#d1ad75",
+				confirmButtonText: "Ok",
+			});
 		} catch (err) {
-			console.log(err.message);
+			Swal.fire({
+				icon: "error",
+				text: err.message,
+				confirmButtonColor: "#d1ad75",
+				confirmButtonText: "Ok",
+			});
 		}
-	};
-
-	onChangeEmail = (event) => {
-		const email = event.target.value;
-		this.setState({ email: email });
 	};
 
 	render() {
@@ -36,9 +35,7 @@ export class ForgotPassword extends Component {
 				<div className="d-flex flex-column forgot-password-section">
 					<div className="d-flex flex-column justify-content-center upper-part">
 						<p className="p-2 header"> Zaboravili ste lozinku? </p>
-						<p className="p-2 sub-header">
-							Unesite email da dobijete aktivacioni link i da izmenite šifru{" "}
-						</p>
+						<p className="p-2 sub-header">Unesite email da dobijete aktivacioni link i da izmenite šifru</p>
 					</div>
 					<div className="d-flex flex-row justify-content-center form-section">
 						<Formik
@@ -46,10 +43,10 @@ export class ForgotPassword extends Component {
 								email: "",
 							}}
 							onSubmit={(values) => {
-								console.log(values.email);
-								// this.handleLogin(values.email);
+								this.forgotPassword(values.email);
 							}}
 							validationSchema={forgotPasswordSchema}
+							validateOnMount
 						>
 							{(formikProps) => (
 								<div className="fields-pass column h-100 ">
@@ -66,6 +63,7 @@ export class ForgotPassword extends Component {
 										<button
 											type="button"
 											className="btn gold-btn"
+											disabled={!formikProps.isValid}
 											onClick={formikProps.handleSubmit}
 										>
 											POŠALJI LINK

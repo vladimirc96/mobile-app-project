@@ -10,6 +10,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import ForgotPassword from "./screens/ForgotPassword";
+import ChangePassword from "./screens/ChangePassword";
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 						<Route exact path="/login" component={Login}></Route>
 						<Route exact path="/register" component={Register}></Route>
 						<Route exact path="/forgot-password" component={ForgotPassword}></Route>
+						<Route exact path="/change-password/:token" component={ChangePassword}></Route>
 						<Route path="/" component={Home}></Route>
 					</Switch>
 				</Router>

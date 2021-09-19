@@ -31,3 +31,7 @@ export const forgotPassword = (email) => {
 	};
 	return WebApi.post(`${url}/reset-password`, null, config);
 };
+
+export const savePassword = (dto) => {
+	return WebApi.put(`${url}/save-password`, dto);
+};
