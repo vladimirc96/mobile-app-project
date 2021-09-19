@@ -1,96 +1,47 @@
 import React, { Component } from "react";
+import "./../css/StartingBanner.css";
 
 export default class StartingBanner extends Component {
 	render() {
 		return (
-			<div class="layout_padding banner_section">
+			<div class="banner_layout_padding banner_section">
 				<div class="container">
 					<div class="row">
-						<div style={{ width: "50%", marginTop: "2%" }}>
+						<div className="left-banner-side-wrapper">
 							<p
-								class="banner_taital"
-								style={{
-									textAlign: "left",
-									paddingLeft: "2%",
-									fontSize: "44px",
-									fontWeight: "600",
-									color: "#000000",
-									lineHeight: "34px",
-								}}
+								class="banner-upper-text"
 							>
 								Postanite deo{" "}
 							</p>
 							<p
-								class="banner_taital"
-								style={{
-									textAlign: "left",
-									paddingLeft: "2%",
-									fontSize: "44px",
-									fontWeight: "600",
-									fontStyle: "italic",
-									color: "#000000",
-									lineHeight: "34px",
-								}}
+								class="banner-middle-text"
 							>
 								najveće baze usluga
 							</p>
 							<p
-								class="browse_text"
-								style={{
-									textAlign: "left",
-									paddingLeft: "2%",
-									fontSize: "44px",
-									fontWeight: "600",
-									color: "#ffffff",
-									lineHeight: "44px",
-								}}
+								class="banner-down-text"
 							>
 								u Novom Sadu
 							</p>
 							<div
-								class="row"
-								style={{
-									width: "60%",
-									marginLeft: "2%",
-									marginTop: "5%",
-								}}
+								class="row banner-buttons-wrapper"
 							>
-								<div class="banner_bt_set_ad" style={{ width: "42%", marginLeft: "1%" }}>
+								<div class="banner_bt_set_ad">
 									<button
-										class="read_bt"
-										style={{
-											width: "100%",
-											height: "30px",
-											fontSize: "16px",
-											borderRadius: "14px",
-											backgroundColor: "#2f2f2f",
-											color: "#ffffff",
-										}}
+										class="set_bt"
 									>
 										Postavi oglas
 									</button>
 								</div>
-								<div class="banner_bt_find_ad" style={{ width: "42%", marginLeft: "2%" }}>
+								<div class="banner_bt_find_ad">
 									<button
 										class="read_bt"
-										style={{
-											width: "100%",
-											height: "30px",
-											fontSize: "16px",
-											borderWidth: "2px",
-											borderColor: "#ffffff",
-											borderRadius: "14px",
-											backgroundColor: "#565656",
-											opacity: "50%",
-											color: "#ffffff",
-										}}
 									>
 										Pronađi oglas
 									</button>
 								</div>
 							</div>
 						</div>
-						<div class="image_section"></div>
 					</div>
 				</div>
 			</div>

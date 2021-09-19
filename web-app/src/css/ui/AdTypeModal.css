@@ -73,3 +73,21 @@
 	font-size: 16px;
 	font-weight: 600;
 }
+
+@media only screen and (max-width: 900px) {
+	.modal-title {
+		font-size: 18px;
+	}
+
+	.ad-type-title {
+		font-size: 16px;
+	}
+
+	.ad-type-body {
+		font-size: 14px;
+	}
+
+	.ad-type-note-body {
+		font-size: 14px;
+	}
+}

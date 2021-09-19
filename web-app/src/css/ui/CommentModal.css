@@ -158,3 +158,15 @@
 	background: #6e6e6e !important;
 	color: #ffffff !important;
 }
+
+@media only screen and (max-width: 900px) {
+	.gold-btn-comment {
+		width: 45%;
+		margin-left: 1.5%;
+	}
+
+	.oposite-btn-comment {
+		width: 45%;
+		margin-left: 1.5%;
+	}
+}

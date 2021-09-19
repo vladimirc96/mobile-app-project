@@ -15,9 +15,6 @@ import EditProfile from "../components/EditProfile";
 import Ads from "./Ads";
 
 export class Home extends Component {
-	componentDidMount() {
-		console.log(this.props.match);
-	}
 	render() {
 		return (
 			<div>
