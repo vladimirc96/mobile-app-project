@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ContactUs from "./ContactUs";
 import EditProfile from "../components/EditProfile";
 import Ads from "./Ads";
+import Profile from "./Profile";
 
 export class Home extends Component {
 	render() {
@@ -23,11 +24,13 @@ export class Home extends Component {
 				</div>
 				<div className="middle-section">
 					<Switch>
-						<Route exact path="/" component={AdCreation}></Route>
+						<Route exact path="/" component={Categories}></Route>
+						<Route exact path="/ads" component={AdCreation}></Route>
 						<Route path="/user/:id/edit-profile" component={EditProfile} />
 						<Route path="/contact-us" component={ContactUs} />
 						<Route path="/categories" component={Categories} />
 						<Route path="/ads/:category" component={Ads} />
+						<Route path="/profile/:username" component={Profile} />
 					</Switch>
 				</div>
 				<div className="footer-section">

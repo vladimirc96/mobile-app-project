@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistedStore from "./store/store";
-import Profile from './screens/Profile'
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
@@ -21,7 +20,6 @@ function App() {
 					<Switch>
 						<Route exact path="/login" component={Login}></Route>
 						<Route exact path="/register" component={Register}></Route>
-            <Route path="/profile/:username" component={Profile} />
 						<Route exact path="/forgot-password" component={ForgotPassword}></Route>
 						<Route exact path="/change-password/:token" component={ChangePassword}></Route>
 						<Route path="/" component={Home}></Route>

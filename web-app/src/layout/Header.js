@@ -92,7 +92,15 @@ export class Header extends Component {
 													/>
 													<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 														<ul>
-															<li className="dropdown-item">Moj profil</li>
+															<Link
+																to={`/profile/${
+																	this.props.user && this.props.user.id
+																		? this.props.user.username
+																		: null
+																}`}
+															>
+																<li className="dropdown-item">Moj profil</li>
+															</Link>
 															<Link
 																to={`/user/${
 																	this.props.user && this.props.user.id
