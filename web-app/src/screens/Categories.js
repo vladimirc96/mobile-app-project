@@ -55,14 +55,18 @@ export default class Categories extends Component {
 		
 		
 		return (
-			<div className="row justify-content-center">
-				<div className="categories-box">
-					<div className="categories-title">
-						<p className="categories-title-text"> Izaberite kategoriju</p>
+			<div>
+				< StartingBanner />
+				<div className="row justify-content-center">
+					<div className="categories-box">
+						<div className="categories-title">
+							<p className="categories-title-text"> Izaberite kategoriju</p>
+						</div>
+						{rows}
 					</div>
-					{rows}
 				</div>
 			</div>
+
 		);
 	}
 }

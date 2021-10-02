@@ -45,6 +45,13 @@ class Ads extends React.Component {
 					<SideBanner />
 					<div class="col-sm-8">
 						{adsList}
+						<div class="pagination">
+                        <a href="/">1</a>
+                        <a href="/">2</a>
+                        <a href="/">3</a>
+                        <a href="/" class="tacke">...</a>
+                        <a href="/">7</a>
+                    </div>
 					</div>
 					<SideBanner />
 				</div>
