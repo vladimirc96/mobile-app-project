@@ -22,3 +22,10 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.auth {
+	height: 100%;
+	width: 100%;
+	background: url("./assets/images/banner.png");
+	background-size: cover;
+}

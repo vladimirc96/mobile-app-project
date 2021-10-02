@@ -43,7 +43,7 @@ INSERT INTO roles_privileges VALUES (1, 2);
 INSERT INTO roles_privileges VALUES (1, 3);
 INSERT INTO roles_privileges VALUES (1, 4);
 
-INSERT INTO user_roles VALUES ('test', 1);
+INSERT INTO user_roles VALUES (1, 1);
 
 INSERT INTO table_categories VALUES (1, 'Majstori i zanati');
 INSERT INTO table_categories VALUES (2, 'Računari, telefoni bela tehnika');
