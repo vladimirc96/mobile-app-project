@@ -55,6 +55,7 @@ export class EditProfileForm extends Component {
 
 	componentDidMount() {
 		this.getLocations();
+		console.log("USER ", this.props.user);
 	}
 
 	render() {
@@ -88,9 +89,9 @@ export class EditProfileForm extends Component {
 					validateOnMount
 				>
 					{(formikProps) => (
-						<div className="fields column h-100">
+						<div className="fields-edit-profile column h-100">
 							<div className="d-flex flex-column h-100 justify-content-center">
-								<div className="form-group form-row d-flex justify-content-center">
+								<div className="form-group  d-flex justify-content-center">
 									<div className="col">
 										{!formikProps.values.imageBytes ? (
 											<FontAwesomeIcon icon="user-circle" size="5x" />
@@ -124,47 +125,73 @@ export class EditProfileForm extends Component {
 										</label>
 									</div>
 								</div>
-								<div className="form-group">
-									<label className="label">Ime</label>
-									<TextInput
-										name="firstName"
-										type="text"
-										value={formikProps.values.firstName}
-										onChange={formikProps.handleChange("firstName")}
-										onBlur={formikProps.handleBlur("firstName")}
-									/>
+								<div className="row">
+									<div className="form-group col">
+										<label className="label">Ime</label>
+										<TextInput
+											name="firstName"
+											type="text"
+											value={formikProps.values.firstName}
+											onChange={formikProps.handleChange("firstName")}
+											onBlur={formikProps.handleBlur("firstName")}
+										/>
+									</div>
+									<div className="form-group col">
+										<label className="label">Prezime</label>
+										<TextInput
+											name="lastName"
+											type="text"
+											value={formikProps.values.lastName}
+											onChange={formikProps.handleChange("lastName")}
+											onBlur={formikProps.handleBlur("lastName")}
+										/>
+									</div>
 								</div>
-								<div className="form-group">
-									<label className="label">Prezime</label>
-									<TextInput
-										name="lastName"
-										type="text"
-										value={formikProps.values.lastName}
-										onChange={formikProps.handleChange("lastName")}
-										onBlur={formikProps.handleBlur("lastName")}
-									/>
+								<div className="row">
+									<div className="form-group col">
+										<label className="label">Korisničko ime</label>
+										<TextInput
+											name="username"
+											type="text"
+											value={formikProps.values.username}
+											onChange={formikProps.handleChange("username")}
+											onBlur={formikProps.handleBlur("username")}
+										/>
+									</div>
+									<div className="form-group col">
+										<label className="label">Email</label>
+										<TextInput
+											name="email"
+											type="text"
+											value={formikProps.values.email}
+											onChange={formikProps.handleChange("email")}
+											onBlur={formikProps.handleBlur("email")}
+										/>
+									</div>
 								</div>
-								<div className="form-group">
-									<label className="label">Lokacija</label>
-									<SelectInput
-										name="location"
-										type="text"
-										items={this.state.locations}
-										value={formikProps.values.location}
-										onChange={(event) => this.handleLocationChange(event, formikProps)}
-										onBlur={formikProps.handleBlur("location")}
-										classes={[isInError(formikProps, "location")]}
-									/>
-								</div>
-								<div className="form-group">
-									<label className="label">Broj telefona</label>
-									<TextInput
-										name="phoneNumber"
-										type="text"
-										value={formikProps.values.phoneNumber}
-										onChange={formikProps.handleChange("phoneNumber")}
-										onBlur={formikProps.handleBlur("phoneNumber")}
-									/>
+								<div className="row">
+									<div className="form-group col">
+										<label className="label">Lokacija</label>
+										<SelectInput
+											name="location"
+											type="text"
+											items={this.state.locations}
+											value={formikProps.values.location}
+											onChange={(event) => this.handleLocationChange(event, formikProps)}
+											onBlur={formikProps.handleBlur("location")}
+											classes={[isInError(formikProps, "location")]}
+										/>
+									</div>
+									<div className="form-group col">
+										<label className="label">Broj telefona</label>
+										<TextInput
+											name="phoneNumber"
+											type="text"
+											value={formikProps.values.phoneNumber}
+											onChange={formikProps.handleChange("phoneNumber")}
+											onBlur={formikProps.handleBlur("phoneNumber")}
+										/>
+									</div>
 								</div>
 								<div className="form-group">
 									<label className="label">Detalji</label>

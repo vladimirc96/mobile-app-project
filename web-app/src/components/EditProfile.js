@@ -38,8 +38,9 @@ export class EditProfile extends Component {
 				const image = await base64ToFile(user["imageBytes"]);
 				formData.append("image", image);
 			}
-			await saveUser(formData);
-			this.props.setUserInfo(user);
+			const savedUser = await saveUser(formData);
+			console.log(savedUser);
+			this.props.setUserInfo(savedUser);
 			Swal.fire({
 				text: "Uspešno ste izmenili podatke!",
 				confirmButtonColor: "#d1ad75",
@@ -64,19 +65,6 @@ export class EditProfile extends Component {
 					<p className="p-2 header"> {this.getTitle()} </p>
 				</div>
 				<div className="wrapper row w-100">
-					<div className="d-flex flex-column col-2 align-content-center side-links">
-						<ul>
-							<li className="edit-link">
-								<Link to={`/user/${this.props.user.id}/edit-profile`}>Izmeni profil </Link>
-							</li>
-							<li className="edit-link">
-								<Link to={`/user/${this.props.user.id}/edit-profile/settings`}> Podešavanja </Link>
-							</li>
-							<li className="edit-link">
-								<Link to="/"> Lozinka </Link>
-							</li>
-						</ul>
-					</div>
 					<div className="d-flex flex-row justify-content-center form-section col">
 						<Switch>
 							<Route

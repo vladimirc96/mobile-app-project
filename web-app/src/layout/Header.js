@@ -75,21 +75,36 @@ export class Header extends Component {
 									) : (
 										<span>
 											<li className="main-navigation__list">
-												<span className="main-navigation__link main-navigation__link--registration">
-													Postavi oglas
-												</span>
+												<Link to="/ads" style={{ textDecoration: "none" }}>
+													<span className="main-navigation__link main-navigation__link--registration">
+														Postavi oglas
+													</span>
+												</Link>
 											</li>
 											<li className="main-navigation__list">
 												<div class="dropdown">
-													<FontAwesomeIcon
-														className="menu-icon"
-														icon="user-circle"
-														id="dropdownMenuButton"
-														data-toggle="dropdown"
-														aria-haspopup="true"
-														aria-expanded="false"
-														size="3x"
-													/>
+													{this.props.user && !this.props.user.imageBytes ? (
+														<FontAwesomeIcon
+															className="menu-icon"
+															icon="user-circle"
+															id="dropdownMenuButton"
+															data-toggle="dropdown"
+															aria-haspopup="true"
+															aria-expanded="false"
+															size="3x"
+														/>
+													) : (
+														<img
+															id="dropdownMenuButton"
+															data-toggle="dropdown"
+															aria-haspopup="true"
+															aria-expanded="false"
+															alt="profilna"
+															className="avatar-header"
+															src={`data:image/jpg;base64,${this.props.user.imageBytes}`}
+														></img>
+													)}
+
 													<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 														<ul>
 															<Link
