@@ -58,9 +58,11 @@ export class Header extends Component {
 									<li className="main-navigation__list">
 										<a className="main-navigation__link">Pocetna</a>
 									</li>
-									<li className="main-navigation__list">
-										<a className="main-navigation__link">Kontakt</a>
-									</li>
+									<Link to="/contact-us">
+										<li className="main-navigation__list">
+											<a className="main-navigation__link">Kontakt</a>
+										</li>
+									</Link>
 									<li className="main-navigation__list">
 										<a className="main-navigation__link">O nama</a>
 									</li>

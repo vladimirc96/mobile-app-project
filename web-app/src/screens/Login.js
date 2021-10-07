@@ -38,18 +38,14 @@ export class Login extends Component {
 
 	handleLogin = async (user) => {
 		try {
+			await this.props.loginUser(user);
 			setTimeout(async () => {
-				await this.props.loginUser(user);
 				this.props.history.push("/");
 			}, 500);
 		} catch (err) {
 			console.log(err);
 		}
 	};
-
-	componentDidMount() {
-		console.log(this.props.user);
-	}
 
 	render() {
 		return (
