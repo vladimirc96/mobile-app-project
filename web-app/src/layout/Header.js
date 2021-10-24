@@ -26,10 +26,6 @@ export class Header extends Component {
 
 	handleLogin = () => {};
 
-	componentDidMount() {
-		console.log(this.props.user);
-	}
-
 	render() {
 		return (
 			<div className="banner-section">
@@ -126,6 +122,15 @@ export class Header extends Component {
 																}/edit-profile`}
 															>
 																<li className="dropdown-item">Izmena profila</li>
+															</Link>
+															<Link
+																to={`/user/${
+																	this.props.user && this.props.user.id
+																		? this.props.user.id
+																		: null
+																}/edit-password`}
+															>
+																<li className="dropdown-item">Izmena lozinke</li>
 															</Link>
 															<div class="dropdown-divider"></div>
 															<li className="dropdown-item" onClick={this.handleLogout}>

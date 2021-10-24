@@ -12,6 +12,8 @@ import com.project.mobileapi.repository.UserRepository;
 import com.project.mobileapi.util.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -108,6 +110,29 @@ public class UserServiceImpl implements UserService{
     public void deletePasswordResetToken(String token) {
         PasswordResetToken passwordResetToken = passwordTokenRepository.findByToken(token);
         passwordTokenRepository.delete(passwordResetToken);
+    }
+
+    @Override
+    public String updatePassword(UpdatePasswordDTO updatePasswordDTO, String username) {
+        User user = userRepository.findOneByUsername(username);
+
+        if(!PasswordValidator.isValid(updatePasswordDTO.getNewPassword())){
+            throw new InvalidPasswordException(InvalidPasswordException.INVALID_PASSWORD_MESSAGE);
+        }
+
+        String result = "";
+        if(!updatePasswordDTO.getNewPassword().equals(updatePasswordDTO.getConfirmPassword())){
+            result = "Potvrda lozinke nije ispravna";
+        }
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if(passwordEncoder.matches(updatePasswordDTO.getOldPassword(), user.getPassword())){
+            String salt = BCrypt.gensalt();
+            user.setPassword(BCrypt.hashpw(updatePasswordDTO.getNewPassword(), salt));
+            userRepository.save(user);
+            result = "Uspešno izmenjena šifra";
+        }
+        return result;
     }
 
     private boolean isTokenFound(PasswordResetToken passToken) {

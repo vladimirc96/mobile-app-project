@@ -39,7 +39,6 @@ export class EditProfile extends Component {
 				formData.append("image", image);
 			}
 			const savedUser = await saveUser(formData);
-			console.log(savedUser);
 			this.props.setUserInfo(savedUser);
 			Swal.fire({
 				text: "Uspešno ste izmenili podatke!",

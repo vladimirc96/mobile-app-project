@@ -41,7 +41,7 @@ export class Login extends Component {
 			await this.props.loginUser(user);
 			setTimeout(async () => {
 				this.props.history.push("/");
-			}, 500);
+			}, 1000);
 		} catch (err) {
 			console.log(err);
 		}

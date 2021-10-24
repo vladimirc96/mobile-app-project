@@ -91,6 +91,14 @@ public class UserController {
         }
     }
 
+    @PutMapping("/update-password")
+    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordDTO updatePasswordDTO, HttpServletRequest request) {
+        String username = tokenUtils.getUsernameFromToken(tokenUtils.getToken(request));
+        String result = userService.updatePassword(updatePasswordDTO, username);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     private String getAppUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }
