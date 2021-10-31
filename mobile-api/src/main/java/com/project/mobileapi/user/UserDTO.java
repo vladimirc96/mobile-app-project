@@ -1,20 +1,27 @@
 package com.project.mobileapi.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.mobileapi.util.KeyValue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class UserDTO implements Serializable {
+
+    private Long id;
 
     @NotNull(message = "Korisničko ime ne sme da bude prazno.")
     @NotBlank(message = "Korisničko ime ne sme da bude prazno.")
@@ -24,7 +31,7 @@ public class UserDTO {
     @NotBlank(message = "Šifra ne sme da bude prazna.")
     private String password;
 
-    private String name;
+    private String firstName;
 
     private String lastName;
 
@@ -39,7 +46,16 @@ public class UserDTO {
 
     private String details;
 
-    @NotNull(message = "Lokacija ne sme da bude prazna.")
     private KeyValue location;
 
+    private MultipartFile image;
+
+    private int positiveRatings;
+
+    private int negativeRatings;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy.")
+    private LocalDate entryDate;
+
+    private byte[] imageBytes;
 }

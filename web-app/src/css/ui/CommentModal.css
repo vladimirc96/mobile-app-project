@@ -1,0 +1,172 @@
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-comment-content {
+	width: 500px;
+	background-color: #ffffff;
+	border: 1px solid #d1ad75;
+}
+
+.modal-comment-header {
+	padding: 25px 0px 10px 0px;
+	text-align: center;
+	align-self: center;
+}
+
+.modal-comment-footer {
+	padding: 30px;
+}
+
+.modal-comment-title {
+	margin-top: 20px;
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.modal-comment-body {
+	padding: 18px;
+	background-color: #ffffff;
+}
+
+.modal-comment-positive-section {
+	width: 30%;
+	margin-left: 17.5%;
+	text-align: center;
+	background: #f8f8f8;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 25px;
+}
+
+.modal-comment-positive-section:hover {
+	background: rgb(168, 226, 168);
+	border: 5px solid rgb(112, 134, 112);
+	box-sizing: border-box;
+	box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.modal-comment-positive-section:active {
+	background: rgb(168, 226, 168);
+	border: 5px solid rgb(112, 134, 112);
+	box-sizing: border-box;
+	box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.modal-comment-negative-section {
+	width: 30%;
+	margin-left: 5%;
+	text-align: center;
+	background: #f8f8f8;
+	border: 0.5px solid #d4d4d4;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 25px;
+}
+
+.modal-comment-negative-section:hover {
+	background: rgb(226, 117, 117);
+	border: 5px solid rgb(133, 90, 90);
+	box-sizing: border-box;
+	box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.modal-comment-negative-section:active {
+	background: rgb(226, 117, 117);
+	border: 5px solid rgb(133, 90, 90);
+	box-sizing: border-box;
+	box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.modal-comment-text-section {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+.your-comment-text {
+	font-family: "Montserrat";
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.comment-title {
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-comment-note {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+.gold-btn-comment {
+	background: #d1ad75 !important;
+	border-radius: 59px !important;
+	font-family: "Montserrat" !important;
+	font-style: normal !important;
+	font-weight: bold !important;
+	font-size: 15px !important;
+	line-height: 165% !important;
+	/* identical to box height, or 35px */
+	text-align: center !important;
+	color: #ffffff !important;
+	width: 25%;
+	margin-left: 23.5%;
+}
+
+.gold-btn-comment:hover {
+	background: #fcf4e6 !important;
+	border: 1px solid #d1ad75 !important;
+	box-sizing: border-box !important;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12) !important;
+	color: #5f5f5f !important;
+}
+
+.oposite-btn-comment {
+	background: #ffffff !important;
+	border: 1px solid #d4d4d4 !important;
+	border-radius: 59px !important;
+	box-sizing: border-box !important;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12) !important;
+	font-family: "Montserrat" !important;
+	font-style: normal !important;
+	font-weight: bold !important;
+	font-size: 15px !important;
+	line-height: 165% !important;
+	/* identical to box height, or 35px */
+	text-align: center !important;
+	width: 25%;
+	margin-left: 3%;
+}
+
+.oposite-btn-comment:hover {
+	background: #6e6e6e !important;
+	color: #ffffff !important;
+}
+
+@media only screen and (max-width: 900px) {
+	.gold-btn-comment {
+		width: 45%;
+		margin-left: 1.5%;
+	}
+
+	.oposite-btn-comment {
+		width: 45%;
+		margin-left: 1.5%;
+	}
+}

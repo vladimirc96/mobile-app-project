@@ -1,0 +1,9 @@
+export const AUTHENTICATION_ACTIONS = {
+    LOGIN: "LOGIN",
+    LOGOUT: "LOGOUT",
+  }
+  
+  export const AUTHENTICATION_ACTIONS_ASYNC = {
+    LOGIN: "LOGIN_ASYNC",
+    LOGOUT: "LOGOUT_ASYNC",
+  }

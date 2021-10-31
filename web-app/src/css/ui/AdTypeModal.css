@@ -1,0 +1,93 @@
+.model {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-content {
+	width: 500px;
+	background-color: #f8f3eb;
+	border: 1px solid #d1ad75;
+}
+
+.modal-header,
+.modal-footer {
+	padding: 10px;
+	text-align: center;
+	align-self: center;
+}
+
+.modal-title {
+	margin-top: 15px;
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.modal-body {
+	padding: 18px;
+	background-color: #f8f3eb;
+}
+
+.modal-ad-type-section {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 2.5%;
+	padding: 1.5% 2% 0% 2%;
+	border: 1px solid #ffffff;
+	border-radius: 12px;
+	background-color: #fafafa;
+	box-shadow: 0px 0px 4px 0px;
+}
+
+.ad-type-title {
+	text-align: center;
+	font-family: "Montserrat";
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.ad-type-body {
+	text-align: justify;
+	font-family: "Montserrat";
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.modal-ad-type-note {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+.ad-type-note-body {
+	text-align: justify;
+	font-family: "Montserrat";
+	font-size: 16px;
+	font-weight: 600;
+}
+
+@media only screen and (max-width: 900px) {
+	.modal-title {
+		font-size: 18px;
+	}
+
+	.ad-type-title {
+		font-size: 16px;
+	}
+
+	.ad-type-body {
+		font-size: 14px;
+	}
+
+	.ad-type-note-body {
+		font-size: 14px;
+	}
+}

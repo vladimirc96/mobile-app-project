@@ -1,0 +1,48 @@
+import * as Font from "expo-font";
+import { ActivityIndicator } from "react-native";
+import Navigator from "./routes/firstRunStack";
+import React from "react";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import persistedStore from "./store/store";
+import Entry from "./screens/Entry";
+import { Provider as MenuProvider } from "react-native-paper";
+import { RootSiblingParent } from "react-native-root-siblings";
+import { LogBox } from "react-native";
+
+const customFonts = {
+  "Comfortaa-Bold": require("./assets/fonts/Comfortaa-Bold.ttf"),
+};
+export default class App extends React.Component {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    LogBox.ignoreLogs(["Your project is accessing the following APIs"]);
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <RootSiblingParent>
+          <MenuProvider>
+            <Provider store={persistedStore.store}>
+              <PersistGate loading={null} persistor={persistedStore.persistor}>
+                <Entry />
+              </PersistGate>
+            </Provider>
+          </MenuProvider>
+        </RootSiblingParent>
+      );
+    } else {
+      return <ActivityIndicator size="large" />;
+    }
+  }
+}
