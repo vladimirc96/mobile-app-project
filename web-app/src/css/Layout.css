@@ -7,6 +7,15 @@ body {
 	max-width: 200px;
 }
 
+.avatar-header {
+	border-radius: 100px;
+	border: 1px solid gray;
+	height: 48px;
+	width: 48px;
+	object-fit: cover;
+	cursor: pointer;
+}
+
 .banner-section {
 	font-family: "Comfortaa", cursive;
 	background: url("../assets/images/banner.png");

@@ -26,10 +26,6 @@ export class Header extends Component {
 
 	handleLogin = () => {};
 
-	componentDidMount() {
-		console.log(this.props.user);
-	}
-
 	render() {
 		return (
 			<div className="banner-section">
@@ -58,9 +54,11 @@ export class Header extends Component {
 									<li className="main-navigation__list">
 										<a className="main-navigation__link">Pocetna</a>
 									</li>
-									<li className="main-navigation__list">
-										<a className="main-navigation__link">Kontakt</a>
-									</li>
+									<Link to="/contact-us">
+										<li className="main-navigation__list">
+											<a className="main-navigation__link">Kontakt</a>
+										</li>
+									</Link>
 									<li className="main-navigation__list">
 										<a className="main-navigation__link">O nama</a>
 									</li>
@@ -75,21 +73,36 @@ export class Header extends Component {
 									) : (
 										<span>
 											<li className="main-navigation__list">
-												<span className="main-navigation__link main-navigation__link--registration">
-													Postavi oglas
-												</span>
+												<Link to="/ads" style={{ textDecoration: "none" }}>
+													<span className="main-navigation__link main-navigation__link--registration">
+														Postavi oglas
+													</span>
+												</Link>
 											</li>
 											<li className="main-navigation__list">
 												<div class="dropdown">
-													<FontAwesomeIcon
-														className="menu-icon"
-														icon="user-circle"
-														id="dropdownMenuButton"
-														data-toggle="dropdown"
-														aria-haspopup="true"
-														aria-expanded="false"
-														size="3x"
-													/>
+													{this.props.user && !this.props.user.imageBytes ? (
+														<FontAwesomeIcon
+															className="menu-icon"
+															icon="user-circle"
+															id="dropdownMenuButton"
+															data-toggle="dropdown"
+															aria-haspopup="true"
+															aria-expanded="false"
+															size="3x"
+														/>
+													) : (
+														<img
+															id="dropdownMenuButton"
+															data-toggle="dropdown"
+															aria-haspopup="true"
+															aria-expanded="false"
+															alt="profilna"
+															className="avatar-header"
+															src={`data:image/jpg;base64,${this.props.user.imageBytes}`}
+														></img>
+													)}
+
 													<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 														<ul>
 															<Link
@@ -109,6 +122,15 @@ export class Header extends Component {
 																}/edit-profile`}
 															>
 																<li className="dropdown-item">Izmena profila</li>
+															</Link>
+															<Link
+																to={`/user/${
+																	this.props.user && this.props.user.id
+																		? this.props.user.id
+																		: null
+																}/edit-password`}
+															>
+																<li className="dropdown-item">Izmena lozinke</li>
 															</Link>
 															<div class="dropdown-divider"></div>
 															<li className="dropdown-item" onClick={this.handleLogout}>

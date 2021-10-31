@@ -35,3 +35,7 @@ export const forgotPassword = (email) => {
 export const savePassword = (dto) => {
 	return WebApi.put(`${url}/save-password`, dto);
 };
+
+export const updatePassword = (dto) => {
+	return WebApi.put(`${url}/update-password`, dto);
+};

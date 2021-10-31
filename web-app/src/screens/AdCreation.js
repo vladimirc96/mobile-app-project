@@ -313,13 +313,6 @@ export default class AdCreation extends Component {
 										/>
 									</div>
 									<div className="form-group">
-										<button
-											onClick={() => this.setState({ show: true })}
-											data-toggle="modal"
-											data-target="#typeModal"
-										>
-											Show Modal
-										</button>
 										<AdTypeModal
 											onClose={() => this.setState({ show: false })}
 											show={this.state.show}
@@ -327,8 +320,16 @@ export default class AdCreation extends Component {
 										<label className="row label" style={{ marginLeft: "3px" }}>
 											Tip oglasa
 											<FontAwesomeIcon
+												onClick={() => this.setState({ show: true })}
 												icon={faQuestionCircle}
-												style={{ color: "black", marginLeft: "3px", marginTop: "5px" }}
+												style={{
+													color: "black",
+													marginLeft: "3px",
+													marginTop: "5px",
+													cursor: "pointer",
+												}}
+												data-toggle="modal"
+												data-target="#typeModal"
 											/>
 										</label>
 										<AdTypeInput

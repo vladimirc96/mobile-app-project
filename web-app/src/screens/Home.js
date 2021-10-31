@@ -12,6 +12,7 @@ import Footer from "../layout/Footer.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ContactUs from "./ContactUs";
 import EditProfile from "../components/EditProfile";
+import EditPassword from "./EditPassword";
 import Ads from "./Ads";
 import Profile from "./Profile";
 import ProfileAds from "./ProfileAds";
@@ -28,6 +29,7 @@ export class Home extends Component {
 						<Route exact path="/" component={Categories}></Route>
 						<Route exact path="/ads" component={AdCreation}></Route>
 						<Route path="/user/:id/edit-profile" component={EditProfile} />
+						<Route path="/user/:id/edit-password" component={EditPassword} />
 						<Route path="/contact-us" component={ContactUs} />
 						<Route path="/categories" component={Categories} />
 						<Route path="/ads/:category" component={Ads} />

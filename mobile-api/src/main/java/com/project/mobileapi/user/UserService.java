@@ -15,5 +15,5 @@ public interface UserService {
     User findUserByPasswordResetToken(String token);
     User changeUserPassword(User user, String newPassword);
     void deletePasswordResetToken(String token);
-
+    String updatePassword(UpdatePasswordDTO updatePasswordDTO, String username);
 }
