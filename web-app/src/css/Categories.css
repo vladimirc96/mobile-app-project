@@ -46,8 +46,8 @@
 }
 
 .single-category {
-	height: 200px;
 	width: 20%;
+	height: auto;
 	margin-left: 4%;
 	border-width: 1px;
 	border-color: #ededed;
@@ -81,9 +81,10 @@
 	}
 
 	.single-category {
-		height: 160px;
-		width: 25%;
-		margin-left: 7%;
+		width: 27%;
+		height: auto;
+		margin-left: 5%;
+		padding-top: 1%;
 	}
 
 	.category-title {

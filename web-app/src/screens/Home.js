@@ -25,7 +25,7 @@ export class Home extends Component {
 				<div className="middle-section">
 					<Switch>
 						<Route exact path="/" component={Categories}></Route>
-						<Route exact path="/ads" component={AdCreation}></Route>
+						<Route exact path="/ad-creation" component={AdCreation}></Route>
 						<Route path="/user/:id/edit-profile" component={EditProfile} />
 						<Route path="/contact-us" component={ContactUs} />
 						<Route path="/categories" component={Categories} />
