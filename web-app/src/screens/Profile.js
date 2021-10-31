@@ -2,12 +2,16 @@ import React from "react";
 import "../css/Profile.css";
 import avatar from "../assets/images/avatar.jpg";
 import oglas1 from "../assets/images/oglas1.png";
-import dislike from "../assets/images/ThumbsDown.png";
 import { getUserInfo } from "../services/UserService";
 import { getByUsername } from "../services/AdService";
 import { getCommentsByUsername } from "../services/CommentService";
 import {stripHtml} from "../StringUtil";
-import CommentModal from "../components/ui/CommentModal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faPhoneAlt, faEnvelope, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import BigAd from "../components/BigAd";
+import { concat } from "lodash";
 
 class Profile extends React.Component {
     state={
@@ -15,13 +19,14 @@ class Profile extends React.Component {
         location: "",
         ads: [],
         comments: [],
-        showCommentModal: false
+        showCommentModal: false,
+        bigAd: null
     }
 
     async getByUsername() {
         try {
           const data = await getByUsername(this.props.match.params.username);
-          this.setState({ ads: data, adsLoaded: true });
+          this.setState({ ads: data.slice(0,3), adsLoaded: true });
         } catch (err) {
           console.log(err.message);
         }
@@ -49,14 +54,24 @@ class Profile extends React.Component {
             await this.getCommentsByUsername();
         }
 
+        handleAdClick = (id) => {
+            var bigAd = this.state.ads.find((x) => x.id === id);
+            bigAd.user = this.state.user;
+            this.setState({bigAd: bigAd});
+        }
+
+        handleBigAdClick = () => {
+            this.setState({bigAd: null})
+        }
+
 
 	render() {
         const adsList = this.state.ads.map((ad) => {
             return (
-                <div class="Oglas" key={ad.id}>
+                <div class="Oglas" key={ad.id} onClick={() => this.handleAdClick(ad.id)}>
                     <img src={oglas1} alt="slika oglasa" />
                     <h2 class="imeOglasa">{ad.title}</h2>
-                    <p class="opisOglasa">{stripHtml(ad.description)}</p>
+                    <p class="opisOglasa">{stripHtml(ad.description).length > 115? stripHtml(ad.description).slice(0, 115).concat("...") : stripHtml(ad.description)}</p>
                     <div class="pogledajOglas"><p>Pogledaj oglas {">"}</p></div>
                 </div>
             );
@@ -70,7 +85,7 @@ class Profile extends React.Component {
                             <p class="datum">{comment.creationDate}</p>
                         </div>
                         <div class="komentarLike">
-                            <img src={comment.positive? dislike : dislike} alt="slika oglasa" />
+                            {comment.positive? <FontAwesomeIcon icon={faThumbsUp} style={{fontSize:"30px"}} /> : <FontAwesomeIcon icon={faThumbsDown} style={{fontSize:"30px"}} />}
                         </div>
                     </div>
                     <div class="komentarBody">
@@ -81,51 +96,57 @@ class Profile extends React.Component {
           ));
 		return (
             <div className="profile">
-                <CommentModal show={this.state.showCommentModal} userId={this.state.user.id} />
                 <div class="profilSection1">
-                    <img class="avataricon" src={avatar} alt="user avatar" />
+                    <img class="avataricon" src={avatar} alt="user avatar" style={{boxShadow: "2px 2px 1px #ccc"}} />
                     <div class="generalInfo">
                         <p class="ime">{this.state.user.firstName+" "+this.state.user.lastName}</p>
-                        <p class="lokacija">{this.state.location}</p>
-                        <p class="broj">{this.state.user.phoneNumber}</p>
-                        <p class="email">{this.state.user.email}</p>
+                        <p class="lokacija"> <FontAwesomeIcon icon={faMapMarkerAlt} /> {this.state.location}</p>
+                        <p class="broj"> <FontAwesomeIcon icon={faPhoneAlt} /> {this.state.user.phoneNumber}</p>
+                        <p class="email"> <FontAwesomeIcon icon={faEnvelope} /> {this.state.user.email}</p>
                     </div>
                     <hr class="hrsolid" />
                     <div class="likes">
-                        <p>{this.state.user.positiveRatings+" "+this.state.user.positiveRatings}</p>
+                        <p> <FontAwesomeIcon icon={faThumbsUp} /> {this.state.user.positiveRatings} <FontAwesomeIcon icon={faThumbsDown} /> {this.state.user.negativeRatings} </p>
+                        {
+                        this.props.token? 
+                        <Link to={`/user/${this.props.user && this.props.user.id ? this.props.user.id: null}/edit-profile`}>
+                        <input type="button" class="oceniKor" value="IZMENI PROFIL" /> </Link> :
                         <input type="button" onClick={() => this.setState({showCommentModal: true})} class="oceniKor" value="OCENI KORISNIKA" />
+                        }
                     </div>
                     <hr class="hrsolid" />
                     <div class="about">
                         <p class="aboutNaslov">O KORISNIKU</p>
-                        <p class="aboutOpis">{this.state.user.details}</p>
+                        <p class="aboutOpis">{this.state.user.details? this.state.user.details : "Korisnik jos uvek nije uneo informacije o sebi."}</p>
                     </div>
                 </div>
                 <div class="profilSection2">
                     <h1 class="naslov">Oglasi</h1>
                     <div class="oglasContainer">
-                        {adsList}
-                    </div>
+                        {this.state.bigAd ? <div> <BigAd ad={this.state.bigAd} click={this.handleBigAdClick} /> </div> : adsList}
+                    </div>           
                 <div>
-                    <input type="button" class="sviOglasi" value="SVI OGLASI >" />
+                   <Link to={"/profile-ads/"+concat(this.state.user.username)}> <input type="button" class="sviOglasi" value="SVI OGLASI >" /> </Link>
                 </div>
                 </div>
                 <hr class="hrsolid" />
                 <div class="profilSection3">
                     <h1 class="naslov">Komentari</h1>
-                    <div class="pomeranjeDesno"><input type="button" onClick={() => this.setState({showCommentModal: true})} class="oceniKor2" value="OCENI KORISNIKA" /></div>
-                    {commentsList}
-                    <div class="pagination">
-                        <a href="/">1</a>
-                        <a href="/">2</a>
-                        <a href="/">3</a>
-                        <a href="/" class="tacke">...</a>
-                        <a href="/">7</a>
+                    <div class="pomeranjeDesno">
+                        {!this.props.token &&  <input type="button" onClick={() => this.setState({showCommentModal: true})} class="oceniKor2" value="OCENI KORISNIKA" />}                   
                     </div>
+                    {commentsList}
                 </div>
             </div> 
 		);
 	}
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+	return {
+        user: state.userReducer.user,
+		token: state.authenticationReducer.token
+	};
+};
+
+export default connect(mapStateToProps)(Profile);

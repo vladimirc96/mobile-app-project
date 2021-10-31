@@ -9,15 +9,17 @@ import {
 	faEnvelope,
 	faThumbsUp,
 	faThumbsDown,
+	faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import {stripHtml} from "../StringUtil";
 
-library.add(faUser, faMapMarkerAlt, faPhoneAlt, faEnvelope, faThumbsUp, faThumbsDown);
+library.add(faUser, faMapMarkerAlt, faPhoneAlt, faEnvelope, faThumbsUp, faThumbsDown, faTimes);
 
 class BigAd extends React.Component {
 	render() {
 		return (
 			<div className="ad-container">
+				<FontAwesomeIcon onClick={this.props.click && this.props.click} icon="times" style={{float: "right"}} />
 				<div className="row big-ad-title">
 					<div style={{ width: "40%", textAlign: "center" }}>
 						<h3> {this.props.ad.title} </h3>

@@ -15,6 +15,7 @@ import EditProfile from "../components/EditProfile";
 import EditPassword from "./EditPassword";
 import Ads from "./Ads";
 import Profile from "./Profile";
+import ProfileAds from "./ProfileAds";
 
 export class Home extends Component {
 	render() {
@@ -33,6 +34,7 @@ export class Home extends Component {
 						<Route path="/categories" component={Categories} />
 						<Route path="/ads/:category" component={Ads} />
 						<Route path="/profile/:username" component={Profile} />
+						<Route path="/profile-ads/:username" component={ProfileAds} />
 					</Switch>
 				</div>
 				<div className="footer-section">
