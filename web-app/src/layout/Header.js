@@ -59,9 +59,11 @@ export class Header extends Component {
 											<a className="main-navigation__link">Kontakt</a>
 										</li>
 									</Link>
-									<li className="main-navigation__list">
-										<a className="main-navigation__link">O nama</a>
-									</li>
+									<Link to="/contact-us">
+										<li className="main-navigation__list">
+											<a className="main-navigation__link">O nama</a>
+										</li>
+									</Link>
 									{!this.props.token ? (
 										<Link to="/login">
 											<li className="main-navigation__list">
@@ -73,7 +75,7 @@ export class Header extends Component {
 									) : (
 										<span>
 											<li className="main-navigation__list">
-												<Link to="/ads" style={{ textDecoration: "none" }}>
+												<Link to="/ad-creation" style={{ textDecoration: "none" }}>
 													<span className="main-navigation__link main-navigation__link--registration">
 														Postavi oglas
 													</span>

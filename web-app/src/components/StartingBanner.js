@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./../css/StartingBanner.css";
 
 export default class StartingBanner extends Component {
@@ -27,18 +28,22 @@ export default class StartingBanner extends Component {
 								class="row banner-buttons-wrapper"
 							>
 								<div class="banner_bt_set_ad">
-									<button
-										class="set_bt"
-									>
-										Postavi oglas
-									</button>
+									<Link to="/ad-creation" style={{ textDecoration: "none" }}>
+										<button
+											class="set_bt"
+										>
+											Postavi oglas
+										</button>
+									</Link>
 								</div>
 								<div class="banner_bt_find_ad">
-									<button
-										class="read_bt"
-									>
-										Pronađi oglas
-									</button>
+									<Link to="/ads" style={{ textDecoration: "none" }}>
+										<button
+											class="read_bt"
+										>
+											Pronađi oglas
+										</button>
+									</Link>
 								</div>
 							</div>
 						</div>

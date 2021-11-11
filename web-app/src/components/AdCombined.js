@@ -8,14 +8,8 @@ class AdCombined extends React.Component {
 		this.state = { showBigAd: false };
 	}
 
-	adToggle = () => {
-		this.setState((prevState) => ({
-			showBigAd: !prevState.showBigAd,
-		}));
-	};
-
 	render() {
-		return <div onClick={this.adToggle}>{this.state.showBigAd ? <BigAd ad={this.props.ad} /> : <Ad ad={this.props.ad} />}</div>;
+		return <div onClick={()=>this.setState({showBigAd: true})}>{this.state.showBigAd ? <BigAd ad={this.props.ad} /> : <Ad ad={this.props.ad} />}</div>;
 	}
 }
 

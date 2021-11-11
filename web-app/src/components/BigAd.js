@@ -1,4 +1,5 @@
 import React from "react";
+import { Link} from "react-router-dom";
 import ad from "./../assets/images/ad.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -31,10 +32,12 @@ class BigAd extends React.Component {
 							<img src={ad} alt="" style={{ width: "100%", height: "100%" }} />
 						</div>
 						<div className="big-ad-details">
-							<p className="big-ad-details-text">
-								<FontAwesomeIcon icon="user" style={{ marginRight: "10px" }} />
-								Korisnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName}
-							</p>
+							<Link to={"/profile/".concat(this.props.ad.user.username)}>
+								<p className="big-ad-details-text">
+									<FontAwesomeIcon icon="user" style={{ marginRight: "10px" }} />
+									Korisnik: {this.props.ad.user.firstName+" "+this.props.ad.user.lastName}
+								</p>
+							</Link>
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="map-marker-alt" style={{ marginRight: "10px" }} />
 								Lokacija: {this.props.ad.user.location.value}
