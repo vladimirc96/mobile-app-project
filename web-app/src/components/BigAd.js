@@ -20,7 +20,7 @@ class BigAd extends React.Component {
 	render() {
 		return (
 			<div className="ad-container">
-				<FontAwesomeIcon onClick={this.props.click && this.props.click} icon="times" style={{float: "right"}} />
+				<FontAwesomeIcon onClick={() => this.props.click()} icon="times" style={{float: "right"}} />
 				<div className="row big-ad-title">
 					<div style={{ width: "40%", textAlign: "center" }}>
 						<h3> {this.props.ad.title} </h3>
@@ -42,14 +42,18 @@ class BigAd extends React.Component {
 								<FontAwesomeIcon icon="map-marker-alt" style={{ marginRight: "10px" }} />
 								Lokacija: {this.props.ad.user.location.value}
 							</p>
+							<a href={"mailto:".concat(this.props.ad.user.email)}> 
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="envelope" style={{ marginRight: "10px" }} />E Mail:
 								{this.props.ad.user.email}
 							</p>
+							</a>
+							<a href={"tel:".concat(this.props.ad.user.phoneNumber)}> 
 							<p className="big-ad-details-text">
 								<FontAwesomeIcon icon="phone-alt" style={{ marginRight: "10px" }} />
 								Broj Telefona: {this.props.ad.user.phoneNumber}
 							</p>
+							</a>
 							<p style={{ paddingLeft: "10%" }}>
 								<FontAwesomeIcon icon="thumbs-up" style={{ marginRight: "10px" }} />
 								<span

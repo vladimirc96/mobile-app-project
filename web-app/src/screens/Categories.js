@@ -17,7 +17,8 @@ export default class Categories extends Component {
 	render() {
 		const categoryList = CategoriesArray.map((category) => (
 			<div className="single-category" key={category.id}>
-				<Link to={"ads/".concat(category.id)}>
+				<Link to={"ads/".concat(category.id)}
+						style={{textDecoration: "none"}}>
 					<img
 						src={category.imagePath}
 						alt="/"

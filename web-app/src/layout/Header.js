@@ -108,6 +108,7 @@ export class Header extends Component {
 													<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 														<ul>
 															<Link
+																style={{textDecoration: "none"}}
 																to={`/profile/${
 																	this.props.user && this.props.user.id
 																		? this.props.user.username
@@ -117,6 +118,7 @@ export class Header extends Component {
 																<li className="dropdown-item">Moj profil</li>
 															</Link>
 															<Link
+																style={{textDecoration: "none"}}
 																to={`/user/${
 																	this.props.user && this.props.user.id
 																		? this.props.user.id
@@ -126,6 +128,7 @@ export class Header extends Component {
 																<li className="dropdown-item">Izmena profila</li>
 															</Link>
 															<Link
+																style={{textDecoration: "none"}}
 																to={`/user/${
 																	this.props.user && this.props.user.id
 																		? this.props.user.id

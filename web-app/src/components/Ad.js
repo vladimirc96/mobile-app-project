@@ -29,13 +29,13 @@ class Ad extends React.Component {
 					<div className="col-sm-12 ad-price-box">
 						<p className="ad-price-text">{this.props.ad.price} RSD</p>
 					</div>
-					<div style={{ alignSelf: "center", width: "80%" }}>
+					<div style={{ marginLeft: "10%",width: "80%" }}>
 						<p style={{ marginTop: "-4px" }}>postavljen:</p>
 						<p style={{ marginTop: "-12px", fontWeight: "bold" }}>{this.props.ad.creationDate}</p>
 						<p style={{ marginTop: "-4px" }}>Lokacija:</p>
 						<p style={{ marginTop: "-12px", fontWeight: "bold" }}>{this.props.ad.user.location.value}</p>
 					</div>
-					<div style={{ alignSelf: "center", width: "80%" }}>
+					<div style={{ marginLeft: "10%", width: "80%" }}>
 						<span style={{ fontSize: "14pt" }}> {this.props.ad.user.positiveRatings} </span>
 						<FontAwesomeIcon icon="thumbs-up" style={{ marginRight: "5px", fontSize: "14pt" }} />
 						<FontAwesomeIcon icon="thumbs-down" style={{ marginLeft: "5px", fontSize: "14pt" }} />

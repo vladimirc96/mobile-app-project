@@ -92,7 +92,7 @@ export class EditProfileForm extends Component {
 						<div className="fields-edit-profile column h-100">
 							<div className="d-flex flex-column h-100 justify-content-center">
 								<div className="form-group  d-flex justify-content-center">
-									<div className="col">
+									<div className="offset-sm-4 col">
 										{!formikProps.values.imageBytes ? (
 											<FontAwesomeIcon icon="user-circle" size="5x" />
 										) : (
